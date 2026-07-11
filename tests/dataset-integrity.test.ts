@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { getPack, type PackName } from "../src/lib/data";
+import { applyDistrictLock, getPack, type PackName } from "../src/lib/data";
 import { haversineMeters } from "../src/lib/geo";
 
 // Independent ground truth: a POI whose label says one city while its pin sits in
@@ -99,5 +99,28 @@ describe("open pack semantic coverage (Quận 1 depth)", () => {
 
   it("keeps every open POI inside the district", () => {
     expect(getPack("open").pois.every((poi) => poi.district === "Quận 1" && poi.city === "TP.HCM")).toBe(true);
+  });
+});
+
+// The demo serves with TASCO_DISTRICT_LOCK='Quận 1' (see dev scripts) so the
+// multi-city TASCO workbook can never surface a Hà Nội / Đà Nẵng venue live.
+// The lock filters the served dataset only — workbook.json stays frozen for
+// the judged eval, which runs without the lock.
+describe("district lock", () => {
+  it("strips every non-Quận-1 venue from the served workbook", () => {
+    const locked = applyDistrictLock(getPack("workbook"), "Quận 1");
+    expect(locked.pois.length).toBeGreaterThan(0);
+    expect(locked.pois.every((poi) => poi.district === "Quận 1" && poi.city === "TP.HCM")).toBe(true);
+  });
+
+  it("is a no-op when unset, preserving the frozen eval surface", () => {
+    const pack = getPack("workbook");
+    expect(applyDistrictLock(pack, undefined)).toBe(pack);
+    expect(pack.pois.some((poi) => poi.city === "Đà Nẵng")).toBe(true);
+  });
+
+  it("keeps the open pack intact (already single-district)", () => {
+    const locked = applyDistrictLock(getPack("open"), "Quận 1");
+    expect(locked.pois.length).toBe(getPack("open").pois.length);
   });
 });

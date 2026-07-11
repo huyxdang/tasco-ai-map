@@ -1,6 +1,6 @@
 # TASCO Atlas Conversation Scenario Evaluation
 
-Generated: 2026-07-11T18:49:42.791Z
+Generated: 2026-07-11T19:03:29.861Z
 
 Source of truth: `dataset.xlsx`, sheet `Conversation_Scenarios` (90 scenarios). Results use the deterministic dataset-backed `handleChat` path; OpenAI prose enhancement is intentionally excluded from ranking evaluation.
 

@@ -5,10 +5,12 @@ import { POST as POST_TTS } from "../src/app/api/tts/route";
 import { isConfirmedBargeIn, isConfirmedSpeech, setAudioTracksMuted } from "../src/lib/realtime";
 import { routeTheaterAvailability } from "../src/lib/route-theater";
 
-// The voice stack is fully ElevenLabs: Scribe v2 Realtime STT behind
-// /api/stt/token (single-use tokens) and Flash v2.5 TTS behind /api/tts.
-// Both endpoints hold the API key server-side and fail closed without it.
-describe("ElevenLabs voice endpoints", () => {
+// The voice stack is provider-toggleable via TASCO_STT_PROVIDER /
+// TASCO_TTS_PROVIDER: ElevenLabs by default (Scribe v2 Realtime STT behind
+// /api/stt/token single-use tokens, Flash v2.5 TTS behind /api/tts), Valsea
+// as the SEA-accent alternative. Endpoints fail closed without the selected
+// provider's key.
+describe("ElevenLabs voice endpoints (default provider)", () => {
   afterEach(() => {
     vi.unstubAllEnvs();
     vi.unstubAllGlobals();
@@ -33,7 +35,7 @@ describe("ElevenLabs voice endpoints", () => {
     vi.stubGlobal("fetch", upstreamFetch);
     const response = await POST_STT_TOKEN();
     expect(response.status).toBe(200);
-    await expect(response.json()).resolves.toEqual({ token: "single-use-token" });
+    await expect(response.json()).resolves.toEqual({ provider: "elevenlabs", token: "single-use-token" });
     expect(JSON.stringify([...response.headers.entries()])).not.toContain("el-secret-key");
     expect(upstreamFetch).toHaveBeenCalledOnce();
   });
@@ -88,6 +90,91 @@ describe("ElevenLabs voice endpoints", () => {
       method: "POST", headers: { "Content-Type": "application/json" }, body: "not json"
     }));
     expect(malformed.status).toBe(400);
+  });
+});
+
+describe("Valsea voice endpoints (TASCO_STT_PROVIDER / TASCO_TTS_PROVIDER = valsea)", () => {
+  afterEach(() => {
+    vi.unstubAllEnvs();
+    vi.unstubAllGlobals();
+  });
+
+  it("STT token endpoint fails closed without the Valsea key", async () => {
+    vi.stubEnv("TASCO_STT_PROVIDER", "valsea");
+    vi.stubEnv("VALSEA_API_KEY", "");
+    const response = await POST_STT_TOKEN();
+    expect(response.status).toBe(503);
+  });
+
+  it("STT token endpoint returns the Valsea browser credential without calling ElevenLabs", async () => {
+    vi.stubEnv("TASCO_STT_PROVIDER", "valsea");
+    vi.stubEnv("VALSEA_API_KEY", "vs-demo-key");
+    const upstreamFetch = vi.fn();
+    vi.stubGlobal("fetch", upstreamFetch);
+    const response = await POST_STT_TOKEN();
+    expect(response.status).toBe(200);
+    // Valsea has no single-use-token endpoint; browser WS auth is the raw key
+    // (documented ?api_key= handshake), so the key IS the token here.
+    await expect(response.json()).resolves.toEqual({ provider: "valsea", token: "vs-demo-key" });
+    expect(upstreamFetch).not.toHaveBeenCalled();
+  });
+
+  it("TTS endpoint fails closed without the Valsea key", async () => {
+    vi.stubEnv("TASCO_TTS_PROVIDER", "valsea");
+    vi.stubEnv("VALSEA_API_KEY", "");
+    const response = await POST_TTS(new Request("http://localhost/api/tts", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text: "Xin chào" })
+    }));
+    expect(response.status).toBe(503);
+  });
+
+  it("TTS endpoint streams Valsea audio via the OpenAI-compatible speech route", async () => {
+    vi.stubEnv("TASCO_TTS_PROVIDER", "valsea");
+    vi.stubEnv("VALSEA_API_KEY", "vs-demo-key");
+    const upstreamFetch = vi.fn(async (url: string | URL | Request, init?: RequestInit) => {
+      expect(String(url)).toBe("https://api.valsea.ai/v1/audio/speech");
+      expect(init?.method).toBe("POST");
+      expect(init?.headers).toMatchObject({ Authorization: "Bearer vs-demo-key" });
+      const body = JSON.parse(String(init?.body)) as {
+        model: string; input: string; voice: string; language: string; response_format: string;
+      };
+      expect(body.model).toBe("valsea-tts");
+      expect(body.voice).toBe("valsea-neutral");
+      expect(body.language).toBe("vietnamese");
+      expect(body.response_format).toBe("mp3");
+      expect(body.input).toBe("Tôi tìm được 2 lựa chọn phù hợp nhất.");
+      return new Response(new Blob([new Uint8Array([1, 2, 3])]).stream(), {
+        status: 200, headers: { "Content-Type": "audio/mpeg" }
+      });
+    });
+    vi.stubGlobal("fetch", upstreamFetch);
+    const response = await POST_TTS(new Request("http://localhost/api/tts", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text: "Tôi tìm được 2 lựa chọn phù hợp nhất." })
+    }));
+    expect(response.status).toBe(200);
+    expect(response.headers.get("Content-Type")).toBe("audio/mpeg");
+    expect(JSON.stringify([...response.headers.entries()])).not.toContain("vs-demo-key");
+    expect(upstreamFetch).toHaveBeenCalledOnce();
+  });
+
+  it("unrecognized provider values fall back to ElevenLabs", async () => {
+    vi.stubEnv("TASCO_TTS_PROVIDER", "whisper-lol");
+    vi.stubEnv("ELEVENLABS_API_KEY", "el-secret-key");
+    const upstreamFetch = vi.fn(async (url: string | URL | Request) => {
+      expect(String(url)).toContain("api.elevenlabs.io/v1/text-to-speech/");
+      return new Response(new Blob([new Uint8Array([1])]).stream(), {
+        status: 200, headers: { "Content-Type": "audio/mpeg" }
+      });
+    });
+    vi.stubGlobal("fetch", upstreamFetch);
+    const response = await POST_TTS(new Request("http://localhost/api/tts", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text: "Xin chào" })
+    }));
+    expect(response.status).toBe(200);
+    expect(upstreamFetch).toHaveBeenCalledOnce();
   });
 });
 

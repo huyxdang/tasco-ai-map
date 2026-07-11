@@ -37,7 +37,7 @@ import type { ChatResponse, Coordinates, Journey, JourneyActionKind, Poi, UserPr
 import { isConfirmedBargeIn, isConfirmedSpeech, setAudioTracksMuted } from "@/lib/realtime";
 import { routeTheaterAvailability } from "@/lib/route-theater";
 import { buildRoutes } from "@/lib/routing";
-import { startScribeSession, type SttSession } from "@/lib/stt-client";
+import { startSttSession, type SttSession } from "@/lib/stt-client";
 import { playGroundedSpeech, type TtsPlayback } from "@/lib/tts-client";
 
 const MapView = dynamic(
@@ -306,7 +306,7 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
     setRealtimeMode("connecting");
     setNotice("");
     try {
-      const session = await startScribeSession({
+      const session = await startSttSession({
         onOpen: () => {
           if (realtimeAttemptRef.current !== attempt) return;
           setRealtimeMode("realtime");

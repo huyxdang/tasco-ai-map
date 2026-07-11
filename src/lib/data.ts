@@ -21,7 +21,23 @@ export function getPack(name: PackName): Dataset {
 export const activePackName: PackName =
   process.env.TASCO_DATASET_PACK === "open" ? "open" : "workbook";
 
-export const dataset = getPack(activePackName);
+// District lock: the TASCO-provided workbook ships venues in Hà Nội, Đà Nẵng,
+// Đà Lạt, etc., but the demo story is strictly Quận 1 — without a fence the
+// engine happily recommends a Đà Nẵng hotel. TASCO_DISTRICT_LOCK (set in the
+// dev scripts) filters the SERVED dataset only; workbook.json itself stays
+// frozen because the judged eval pins POI IDs across all cities and runs
+// without the lock.
+export const districtLock = process.env.TASCO_DISTRICT_LOCK?.trim() || undefined;
+
+export function applyDistrictLock(dataset: Dataset, district: string | undefined): Dataset {
+  if (!district) return dataset;
+  return {
+    ...dataset,
+    pois: dataset.pois.filter((poi) => poi.district === district && poi.city === "TP.HCM"),
+  };
+}
+
+export const dataset = applyDistrictLock(getPack(activePackName), districtLock);
 export const pois: readonly Poi[] = dataset.pois;
 
 // Profiles, workbook scenarios, and the public evaluation exist only in the

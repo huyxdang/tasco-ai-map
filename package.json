@@ -4,7 +4,7 @@
   "private": true,
   "packageManager": "pnpm@11.7.0",
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "TASCO_DISTRICT_LOCK='Quận 1' next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
@@ -12,7 +12,7 @@
     "test": "vitest run",
     "test:eval": "vitest run tests/conversation-scenarios-eval.test.ts --reporter=verbose",
     "test:eval:open": "TASCO_DATASET_PACK=open vitest run tests/open-holdout.test.ts --reporter=verbose",
-    "dev:open": "TASCO_DATASET_PACK=open next dev --turbopack",
+    "dev:open": "TASCO_DATASET_PACK=open TASCO_DISTRICT_LOCK='Quận 1' next dev --turbopack",
     "test:watch": "vitest"
   },
   "dependencies": {
