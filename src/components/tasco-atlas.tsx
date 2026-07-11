@@ -7,7 +7,6 @@ import {
   Car,
   Check,
   CheckCircle2,
-  ChevronRight,
   CircleStop,
   Clock3,
   CreditCard,
@@ -49,7 +48,6 @@ const MapView = dynamic(
 type TascoAtlasProps = { initialPois: Poi[]; profiles: UserProfile[] };
 type Screen = "home" | "session" | "live" | "checkout" | "receipt" | "driving";
 type VoiceState = "idle" | "listening" | "thinking" | "speaking" | "interrupted" | "muted";
-type DemoStage = 0 | 1 | 2 | 3;
 type MapMode = "2d" | "3d";
 type SimulatedReceipt = { id: string; journey: Journey; confirmedAt: string };
 type DriveStop = { poi: Poi; kind: JourneyActionKind };
@@ -84,12 +82,6 @@ function driveClock(offsetSeconds: number) {
     .toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" });
 }
 
-const SCRIPT = {
-  first: "Tối nay bốn người muốn ăn món Việt gần trung tâm, dễ đỗ xe.",
-  budget: "Nhưng đừng mắc quá. Khoảng một triệu thôi.",
-  interrupt: "Không, chỗ đó xa quá. Gần hơn và rẻ hơn một chút."
-};
-
 function newSessionId() {
   return typeof crypto !== "undefined" && "randomUUID" in crypto
     ? crypto.randomUUID()
@@ -103,10 +95,9 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
   }, [initialPois]);
   const [screen, setScreen] = useState<Screen>("home");
   const [voiceState, setVoiceState] = useState<VoiceState>("idle");
-  const [stage, setStage] = useState<DemoStage>(0);
+  const [wasInterrupted, setWasInterrupted] = useState(false);
   const [input, setInput] = useState("");
   const [partial, setPartial] = useState("");
-  const [isTextMode, setIsTextMode] = useState(false);
   const [latestResponse, setLatestResponse] = useState<ChatResponse | null>(null);
   const [mapMode, setMapMode] = useState<MapMode>("2d");
   const [activeStopIndex, setActiveStopIndex] = useState(-1);
@@ -129,9 +120,6 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
   const responseActiveRef = useRef(false);
   const utteranceRef = useRef("");
   const ttsRef = useRef<TtsPlayback | null>(null);
-  // Demo chrome (scripted advance button) only appears with ?demo=1 — the design
-  // keeps demo stepping outside the customer sheet.
-  const [showDemoRail, setShowDemoRail] = useState(false);
   const [sessionEnded, setSessionEnded] = useState(false);
   // Driving mode (design §2.6 / Step 7): simulated progression through the
   // confirmed journey's ordered stops, with pause/resume and canned commands.
@@ -140,12 +128,6 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
   const [driveLog, setDriveLog] = useState<DriveLogEntry[]>([]);
 
   useEffect(() => { sessionIdRef.current = newSessionId(); }, []);
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => {
-      setShowDemoRail(new URLSearchParams(window.location.search).has("demo"));
-    });
-    return () => cancelAnimationFrame(frame);
-  }, []);
   useEffect(() => {
     if (!isTheaterPlaying) return;
     const stopCount = latestResponse?.journey?.actions.length ?? 0;
@@ -235,7 +217,6 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
     sttRef.current = null;
     streamRef.current = null;
   }
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- unmount cleanup only
   useEffect(() => () => stopRealtime(), []);
 
   function setMicrophoneMuted(muted: boolean) {
@@ -349,7 +330,7 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
 
   async function startSession() {
     setScreen("live");
-    setStage(0);
+    setWasInterrupted(false);
     setPartial("");
     await startRealtime();
   }
@@ -378,45 +359,23 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
   async function handleUtterance(message: string) {
     const normalized = message.toLocaleLowerCase("vi");
     setInput(""); setPartial(message);
-    if (normalized.includes("gần hơn") || normalized.includes("rẻ hơn")) {
-      cancelActiveResponseForBargeIn();
-      setVoiceState("interrupted"); setStage(3);
-      const result = await queryDeterministic(message);
-      if (result) void speakGrounded(result); else setVoiceState("listening");
-      return;
-    }
-    if (stage === 0) {
-      setStage(1); setVoiceState("thinking");
-      const result = await queryDeterministic(message);
-      if (result) void speakGrounded(result); else setVoiceState("listening");
-      return;
-    }
-    setStage(2); setVoiceState("thinking");
+    const interrupted = normalized.includes("gần hơn") || normalized.includes("rẻ hơn");
+    if (interrupted) cancelActiveResponseForBargeIn();
+    setWasInterrupted(interrupted);
+    setVoiceState(interrupted ? "interrupted" : "thinking");
     const result = await queryDeterministic(message);
     if (result) void speakGrounded(result); else setVoiceState("listening");
   }
 
   function submit(event: FormEvent) { event.preventDefault(); if (input.trim()) void handleUtterance(input.trim()); }
-  function advanceDemo() {
-    const next = stage === 0 ? SCRIPT.first : stage === 1 ? SCRIPT.budget : SCRIPT.interrupt;
-    void handleUtterance(next);
-  }
   function endSession() {
-    stopRealtime(); setVoiceState("idle"); setScreen("session"); setStage(0); setPartial(""); setLatestResponse(null); setMapPois(defaultPois); setReceipt(null); confirmationLockRef.current = false;
-    setDriveLog([]); setDrivePaused(false); setDriveStopIndex(0);
+    stopRealtime(); setVoiceState("idle"); setScreen("session"); setPartial(""); setLatestResponse(null); setMapPois(defaultPois); setReceipt(null); confirmationLockRef.current = false;
+    setDriveLog([]); setDrivePaused(false); setDriveStopIndex(0); setWasInterrupted(false);
     setSessionEnded(true);
   }
 
   async function openJourney() {
-    let result = latestResponse;
-    if (!result?.journey) {
-      setVoiceState("thinking");
-      result = await queryDeterministic("Tôi lái xe ở TP.HCM, cần đổ xăng, ăn tối và bãi đỗ xe.", { cleanJourneyContext: true });
-    }
-    if (stage >= 3 && result?.journey?.revision.outcome === "composed") {
-      result = await queryDeterministic(SCRIPT.interrupt);
-    }
-    if (!result?.journey) { setNotice("Chưa đủ dữ liệu để tạo hành trình."); setVoiceState("listening"); return; }
+    if (!latestResponse?.journey) { setNotice("Chưa đủ dữ liệu để tạo hành trình."); return; }
     setScreen("checkout");
   }
 
@@ -575,7 +534,7 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
           <p>Hãy cùng nhau nói về chuyến đi. Bạn có thể ngắt lời Atlas bất cứ lúc nào.</p>
           {sessionEnded ? <p className="ended-notice"><CheckCircle2 size={14} /> Phiên đã kết thúc — bản ghi và ngữ cảnh đã được xoá.</p> : null}
           <button className="atlas-primary" type="button" onClick={() => { setSessionEnded(false); void startSession(); }}><Mic size={20} /> Bắt đầu trò chuyện</button>
-          <button className="atlas-text-link" type="button" onClick={() => { setIsTextMode(true); setScreen("live"); setVoiceState("listening"); }}>Không dùng giọng nói? <strong>Nhập bằng chữ</strong></button>
+          <button className="atlas-text-link" type="button" onClick={() => { setScreen("live"); setVoiceState("listening"); }}>Không dùng giọng nói? <strong>Nhập bằng chữ</strong></button>
           <small><ShieldCheck size={13} /> Micrô chỉ được dùng trong phiên đang hoạt động và dừng ngay khi bạn kết thúc.</small>
         </section>
       ) : screen === "checkout" && latestResponse?.journey ? (
@@ -589,7 +548,7 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
           paused={drivePaused}
           voiceMuted={voiceState === "muted"}
           realtimeMode={realtimeMode}
-          showComposer={realtimeMode === "scripted" || isTextMode}
+          showComposer={realtimeMode !== "realtime"}
           input={input}
           onInput={setInput}
           onComposerSubmit={() => { if (input.trim()) { handleDrivingText(input.trim()); setInput(""); } }}
@@ -616,7 +575,7 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
           {notice ? <p className="fallback-notice">{notice}</p> : null}
           <div className="conversation-label"><span>Cuộc trò chuyện</span><small>Không nhận diện người nói</small></div>
           <p className="live-transcript">{partial || "Hãy nói tự nhiên về nơi bạn muốn đến…"}</p>
-          {stage >= 3 ? <div className="interrupt-banner"><Check size={16} /><div><strong>Đã nghe yêu cầu mới</strong><span>Đã dừng nói khi bạn ngắt lời</span></div></div> : null}
+          {wasInterrupted ? <div className="interrupt-banner"><Check size={16} /><div><strong>Đã nghe yêu cầu mới</strong><span>Đã dừng nói khi bạn ngắt lời</span></div></div> : null}
 
           {latestResponse?.intent === "clarification_required" && latestResponse.quickReplies?.length ? (
             <div className="quick-replies">
@@ -630,17 +589,11 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
           ))}</div></> : null}
           {latestResponse ? <RecommendationCard response={latestResponse} onOpen={() => void openJourney()} /> : <div className="empty-understanding"><Sparkles size={18} /><span>Atlas sẽ biến cuộc trò chuyện thành một kế hoạch duy nhất trên bản đồ.</span></div>}
 
-          {(isTextMode || realtimeMode === "scripted") ? (
+          {realtimeMode !== "realtime" ? (
             <form className="atlas-composer" onSubmit={submit}>
               <input aria-label="Nhập yêu cầu" value={input} onChange={(event) => setInput(event.target.value)} placeholder="Nhập yêu cầu của bạn…" />
               <button type="submit" disabled={!input.trim()} aria-label="Gửi"><Send size={18} /></button>
             </form>
-          ) : null}
-          {showDemoRail ? (
-            <button className="demo-next" type="button" onClick={advanceDemo} disabled={stage >= 3}>
-              {stage === 0 ? "Chạy câu mở đầu mẫu" : stage === 1 ? "Thêm ngân sách mẫu" : stage === 2 ? "Ngắt lời: gần hơn, rẻ hơn" : "Kịch bản demo đã chạy xong"}
-              <ChevronRight size={17} />
-            </button>
           ) : null}
         </section>
       )}

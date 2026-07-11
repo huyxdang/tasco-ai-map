@@ -1489,8 +1489,6 @@ button:focus-visible,input:focus-visible { outline:3px solid rgba(18,147,79,.28)
 .atlas-composer input { min-width:0; height:44px; padding:0 12px; border:1px solid var(--atlas-border); border-radius:13px; background:#fff; color:var(--atlas-text); font-size:11px; }
 .atlas-composer button { display:grid; width:44px; height:44px; place-items:center; border:0; border-radius:13px; background:var(--atlas-green); color:#fff; }
 .atlas-composer button:disabled { opacity:.45; }
-.demo-next { display:flex; width:100%; min-height:44px; align-items:center; justify-content:center; gap:5px; margin-top:7px; border:1px solid var(--atlas-green-border); border-radius:13px; background:var(--atlas-surface-green); color:var(--atlas-green-dark); font-size:10.5px; font-weight:750; }
-.demo-next:disabled { color:var(--atlas-text-muted); }
 
 .atlas-checkout-sheet,.atlas-receipt-sheet { position:absolute; z-index:7; right:0; bottom:0; left:0; max-height:78dvh; padding:13px 14px max(14px,env(safe-area-inset-bottom)); overflow-y:auto; border-radius:25px 25px 0 0; background:#fff; box-shadow:0 -8px 30px rgba(15,35,50,.14); }
 .atlas-checkout-sheet .sheet-handle,.atlas-receipt-sheet .sheet-handle { margin-bottom:10px; }

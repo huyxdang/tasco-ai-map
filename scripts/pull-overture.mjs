@@ -12,6 +12,8 @@
 
 import { readFileSync, writeFileSync } from "node:fs";
 
+import { normalizeText as normalize } from "../src/lib/text.ts";
+
 const DISTRICT = "Quận 1";
 const CITY = "TP.HCM";
 const MIN_CONFIDENCE = 0.7;
@@ -60,16 +62,6 @@ if (!inputPath) {
 }
 
 const collection = JSON.parse(readFileSync(inputPath, "utf8"));
-
-const normalize = (value) =>
-  value
-    .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "")
-    .replace(/đ/g, "d")
-    .replace(/Đ/g, "D")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, " ")
-    .trim();
 
 const byCategory = new Map();
 const seen = new Set();

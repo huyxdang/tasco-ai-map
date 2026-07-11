@@ -34,13 +34,15 @@ describe("UI truthfulness", () => {
     expect(source).not.toMatch(/stage >= 1\s*\?\s*\[/);
   });
 
-  it("keeps demo chrome out of the default customer sheet", () => {
-    expect(source).toContain("showDemoRail");
-    expect(source).toMatch(/showDemoRail \? \(/);
+  it("contains no demo chrome or scripted-stage machinery at all", () => {
+    expect(source).not.toContain("showDemoRail");
+    expect(source).not.toContain("advanceDemo");
+    expect(source).not.toContain("Chạy câu mở đầu mẫu");
+    expect(source).not.toContain("DemoStage");
   });
 
   it("derives the revised state from the journey revision, not a stage counter", () => {
     expect(source).toContain('revision.outcome === "cheaper"');
-    expect(source).not.toContain("revised={stage");
+    expect(source).not.toMatch(/\bsetStage\b|\bstage\s*[>=]/);
   });
 });

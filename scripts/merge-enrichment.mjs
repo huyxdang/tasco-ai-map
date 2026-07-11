@@ -14,6 +14,9 @@
 
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 
+import { haversineMeters } from "../src/lib/geo.ts";
+import { normalizeText } from "../src/lib/text.ts";
+
 const DICTIONARY = JSON.parse(readFileSync("scripts/bigset-jobs/attribute-dictionary.json", "utf8"));
 const PACK_PATH = "src/data/packs/open.json";
 // BigSet coordinates come from Google Maps URLs and sit up to ~500m from the
@@ -30,15 +33,12 @@ if (inputs.length === 0) {
 
 const pack = JSON.parse(readFileSync(PACK_PATH, "utf8"));
 
+// Matcher-specific on top of the shared normalizer: venue-type prefixes carry
+// no identity ("Quán Cà Phê X" ≡ "X Coffee") and are stripped before comparison.
 const normalize = (value) =>
-  String(value ?? "")
-    .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "")
-    .replace(/đ/g, "d")
-    .replace(/Đ/g, "D")
-    .toLowerCase()
+  normalizeText(String(value ?? ""))
     .replace(/\b(quan|cafe|ca phe|coffee|nha hang|restaurant|khach san|hotel|the|shop)\b/g, " ")
-    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
     .trim();
 
 const tokenSimilarity = (a, b) => {
@@ -49,13 +49,7 @@ const tokenSimilarity = (a, b) => {
   return overlap / Math.max(ta.size, tb.size);
 };
 
-const meters = (a, b) => {
-  const R = 6371e3;
-  const dLat = ((b.lat - a.lat) * Math.PI) / 180;
-  const dLon = ((b.lon - a.lon) * Math.PI) / 180;
-  const x = Math.sin(dLat / 2) ** 2 + Math.cos((a.lat * Math.PI) / 180) * Math.cos((b.lat * Math.PI) / 180) * Math.sin(dLon / 2) ** 2;
-  return 2 * R * Math.asin(Math.sqrt(x));
-};
+const meters = haversineMeters;
 
 function tokensFor(row) {
   const tokens = new Set();
