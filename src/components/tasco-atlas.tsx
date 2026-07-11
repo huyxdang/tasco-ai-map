@@ -37,7 +37,7 @@ import type { ChatResponse, Coordinates, Journey, JourneyActionKind, Poi, UserPr
 import { isConfirmedBargeIn, isConfirmedSpeech, setAudioTracksMuted } from "@/lib/realtime";
 import { routeTheaterAvailability } from "@/lib/route-theater";
 import { buildRoutes } from "@/lib/routing";
-import { startSttSession, type SttSession } from "@/lib/stt-client";
+import { startSttSession, type SttProvider, type SttSession } from "@/lib/stt-client";
 import { playGroundedSpeech, type TtsPlayback } from "@/lib/tts-client";
 
 const MapView = dynamic(
@@ -95,6 +95,7 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
   }, [initialPois]);
   const [screen, setScreen] = useState<Screen>("home");
   const [voiceState, setVoiceState] = useState<VoiceState>("idle");
+  const [voiceProvider, setVoiceProvider] = useState<SttProvider>("elevenlabs");
   const [wasInterrupted, setWasInterrupted] = useState(false);
   const [input, setInput] = useState("");
   const [partial, setPartial] = useState("");
@@ -238,7 +239,7 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
     ttsRef.current?.stop();
     responseActiveRef.current = true;
     setVoiceState("speaking");
-    const playback = playGroundedSpeech(response.assistantResponse);
+    const playback = playGroundedSpeech(response.assistantResponse, voiceProvider);
     ttsRef.current = playback;
     const played = await playback.done;
     if (ttsRef.current === playback) {
@@ -315,7 +316,7 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
         onPartial: (text) => { if (realtimeAttemptRef.current === attempt) sttHandlersRef.current.onPartial(text); },
         onCommitted: (text) => { if (realtimeAttemptRef.current === attempt) sttHandlersRef.current.onCommitted(text); },
         onError: () => { if (realtimeAttemptRef.current === attempt) sttHandlersRef.current.onError(); },
-      });
+      }, voiceProvider);
       if (realtimeAttemptRef.current !== attempt) { session.stop(); return; }
       sttRef.current = session;
       streamRef.current = session.stream;
@@ -429,7 +430,7 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
     if (realtimeMode !== "realtime") return;
     ttsRef.current?.stop();
     responseActiveRef.current = true;
-    const playback = playGroundedSpeech(text);
+    const playback = playGroundedSpeech(text, voiceProvider);
     ttsRef.current = playback;
     await playback.done;
     if (ttsRef.current === playback) responseActiveRef.current = false;
@@ -533,6 +534,11 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
           <h1>Bắt đầu phiên trò chuyện</h1>
           <p>Hãy cùng nhau nói về chuyến đi. Bạn có thể ngắt lời Atlas bất cứ lúc nào.</p>
           {sessionEnded ? <p className="ended-notice"><CheckCircle2 size={14} /> Phiên đã kết thúc — bản ghi và ngữ cảnh đã được xoá.</p> : null}
+          <fieldset className="voice-provider-picker">
+            <legend>Giọng nói cho phiên này</legend>
+            <button type="button" className={voiceProvider === "elevenlabs" ? "is-selected" : ""} onClick={() => setVoiceProvider("elevenlabs")}><strong>ElevenLabs</strong><small>Ổn định mặc định</small></button>
+            <button type="button" className={voiceProvider === "valsea" ? "is-selected" : ""} onClick={() => setVoiceProvider("valsea")}><strong>Valsea</strong><small>Giọng Đông Nam Á</small></button>
+          </fieldset>
           <button className="atlas-primary" type="button" onClick={() => { setSessionEnded(false); void startSession(); }}><Mic size={20} /> Bắt đầu trò chuyện</button>
           <button className="atlas-text-link" type="button" onClick={() => { setScreen("live"); setVoiceState("listening"); }}>Không dùng giọng nói? <strong>Nhập bằng chữ</strong></button>
           <small><ShieldCheck size={13} /> Micrô chỉ được dùng trong phiên đang hoạt động và dừng ngay khi bạn kết thúc.</small>

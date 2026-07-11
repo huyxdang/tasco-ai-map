@@ -18,7 +18,7 @@ export interface SttSession {
   stop: () => void;
 }
 
-type SttProvider = "elevenlabs" | "valsea";
+export type SttProvider = "elevenlabs" | "valsea";
 
 const TARGET_SAMPLE_RATE = 16_000;
 
@@ -87,8 +87,12 @@ function encodeChunk(provider: SttProvider, pcm: Int16Array): string {
   });
 }
 
-export async function startSttSession(handlers: SttHandlers): Promise<SttSession> {
-  const tokenResponse = await fetch("/api/stt/token", { method: "POST" });
+export async function startSttSession(handlers: SttHandlers, requestedProvider: SttProvider = "elevenlabs"): Promise<SttSession> {
+  const tokenResponse = await fetch("/api/stt/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ provider: requestedProvider }),
+  });
   if (!tokenResponse.ok) throw new Error("STT token unavailable");
   const { token, provider = "elevenlabs" } = (await tokenResponse.json()) as {
     token: string;

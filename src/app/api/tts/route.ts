@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { resolveTtsProvider } from "../../../lib/voice-provider";
+import { resolveTtsProvider, resolveVoiceProvider } from "../../../lib/voice-provider";
 
 export const runtime = "nodejs";
 
@@ -50,22 +50,21 @@ async function fetchValseaAudio(text: string, apiKey: string): Promise<Response>
 }
 
 export async function POST(request: Request) {
-  const provider = resolveTtsProvider();
-  const apiKey =
-    provider === "valsea" ? process.env.VALSEA_API_KEY : process.env.ELEVENLABS_API_KEY;
-  if (!apiKey) {
-    return NextResponse.json({ error: "TTS is not configured." }, { status: 503 });
-  }
   let text = "";
+  let requestedProvider: string | undefined;
   try {
-    const body = (await request.json()) as { text?: string };
+    const body = (await request.json()) as { text?: string; provider?: string };
     text = (body.text ?? "").trim();
+    requestedProvider = body.provider;
   } catch {
     return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
   }
   if (!text) {
     return NextResponse.json({ error: "Missing text." }, { status: 400 });
   }
+  const provider = requestedProvider ? resolveVoiceProvider(requestedProvider) : resolveTtsProvider();
+  const apiKey = provider === "valsea" ? process.env.VALSEA_API_KEY : process.env.ELEVENLABS_API_KEY;
+  if (!apiKey) return NextResponse.json({ error: "TTS is not configured." }, { status: 503 });
   const clipped = text.slice(0, MAX_TEXT_LENGTH);
   const upstream =
     provider === "valsea"

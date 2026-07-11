@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { resolveSttProvider } from "../../../../lib/voice-provider";
+import { resolveSttProvider, resolveVoiceProvider } from "../../../../lib/voice-provider";
 
 export const runtime = "nodejs";
 
@@ -14,8 +14,10 @@ export const runtime = "nodejs";
 //     browser auth is `?api_key=` on the WebSocket URL, so this route returns
 //     the raw VALSEA_API_KEY as the token. That exposes the key to the browser
 //     session; acceptable for the local demo, NOT for production.
-export async function POST() {
-  const provider = resolveSttProvider();
+export async function POST(request?: Request) {
+  let requestedProvider: string | undefined;
+  try { requestedProvider = request ? ((await request.json()) as { provider?: string }).provider : undefined; } catch { /* env default */ }
+  const provider = requestedProvider ? resolveVoiceProvider(requestedProvider) : resolveSttProvider();
 
   if (provider === "valsea") {
     const apiKey = process.env.VALSEA_API_KEY;
