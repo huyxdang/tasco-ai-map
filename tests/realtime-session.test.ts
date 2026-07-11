@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { POST } from "../src/app/api/realtime/session/route";
-import { dispatchRealtimeServerEvent, groundedRealtimeResponse, setAudioTracksMuted } from "../src/lib/realtime";
+import { dispatchRealtimeServerEvent, groundedRealtimeResponse, isConfirmedSpeech, setAudioTracksMuted } from "../src/lib/realtime";
 import type { ChatResponse } from "../src/lib/types";
 import { routeTheaterAvailability } from "../src/lib/route-theater";
 
@@ -86,6 +86,38 @@ describe("Realtime session endpoint", () => {
     });
     expect(first).toHaveBeenCalledWith("first");
     expect(second).toHaveBeenCalledWith("latest");
+  });
+
+  it("confirms barge-in only on real words, never on noise artifacts", () => {
+    expect(isConfirmedSpeech("gần hơn")).toBe(true);
+    expect(isConfirmedSpeech("rẻ hơn một chút")).toBe(true);
+    expect(isConfirmedSpeech("khoan")).toBe(true);
+    expect(isConfirmedSpeech("")).toBe(false);
+    expect(isConfirmedSpeech("   ")).toBe(false);
+    expect(isConfirmedSpeech("à")).toBe(false);
+    expect(isConfirmedSpeech("ừm")).toBe(false);
+    expect(isConfirmedSpeech("...")).toBe(false);
+    expect(isConfirmedSpeech("hm")).toBe(false);
+  });
+
+  it("keeps the session config non-interrupting at the VAD layer", async () => {
+    vi.stubEnv("OPENAI_API_KEY", "server-secret-key");
+    const upstreamFetch = vi.fn(async (_url: string | URL | Request, init?: RequestInit) => {
+      const form = init?.body as FormData;
+      const session = JSON.parse(String(form.get("session"))) as {
+        audio: { input: { turn_detection: { type: string; eagerness: string; create_response: boolean; interrupt_response: boolean } } };
+      };
+      expect(session.audio.input.turn_detection).toEqual({
+        type: "semantic_vad", eagerness: "low", create_response: false, interrupt_response: false,
+      });
+      return new Response("v=0", { status: 200, headers: { "Content-Type": "application/sdp" } });
+    });
+    vi.stubGlobal("fetch", upstreamFetch);
+    const response = await POST(new Request("http://localhost/api/realtime/session", {
+      method: "POST", headers: { "Content-Type": "application/sdp" }, body: "v=0"
+    }));
+    expect(response.status).toBe(200);
+    expect(upstreamFetch).toHaveBeenCalledOnce();
   });
 
   it("starts Route Theater only when MapLibre reports ready", () => {

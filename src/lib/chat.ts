@@ -3,11 +3,16 @@ import { buildRoutes } from "./routing";
 import {
   composeJourney,
   isCheaperJourneyRequest,
+  isJourneyIntent,
   journeyState,
   reviseJourneyCheaper,
 } from "./journey";
 import {
-  inferCategories,
+  hasIntentQualifier,
+  inferCategoryConstraint,
+  isAvoidedByProfile,
+  locationLabelFor,
+  queryLocationSignal,
   rankPois,
   toPlaceResult,
 } from "./search";
@@ -57,15 +62,52 @@ const LOCATION_CENTERS: Array<{
 const POI_ALIASES: Array<{ phrases: string[]; poiId: string }> = [
   { phrases: ["ho guom", "ho hoan kiem"], poiId: "POI030" },
   { phrases: ["pho thin", "pho thin lo duc"], poiId: "POI018" },
-  { phrases: ["cho ben thanh"], poiId: "POI003" },
+  { phrases: ["cho ben thanh", "ben thanh market"], poiId: "POI003" },
   { phrases: ["vincom dong khoi"], poiId: "POI007" },
   { phrases: ["galaxy nguyen du"], poiId: "POI008" },
   { phrases: ["galaxy hotel"], poiId: "POI009" },
-  { phrases: ["tan son nhat"], poiId: "POI026" },
+  { phrases: ["tan son nhat", "tsn"], poiId: "POI026" },
   { phrases: ["noi bai"], poiId: "POI027" },
   { phrases: ["lotte hotel"], poiId: "POI012" },
   { phrases: ["secret garden"], poiId: "POI021" },
 ];
+
+// "gần <named POI>" turns the named place into a proximity anchor: it supplies the
+// search center and radius but is never itself a recommendable result, and its
+// name must not leak into category inference (e.g. an airport near-food request).
+const NEAR_ANCHOR_RADIUS_METERS = 5_000;
+
+interface LocationAnchor {
+  poi: Poi;
+  phrases: string[];
+}
+
+function locationAnchorFor(text: string): LocationAnchor | undefined {
+  const normalized = expandAliases(text);
+  for (const { phrases, poiId } of POI_ALIASES) {
+    for (const phrase of phrases) {
+      const index = normalized.indexOf(phrase);
+      if (index < 0) continue;
+      const before = normalized.slice(Math.max(0, index - 24), index);
+      if (/(^|\s)gan(\s|$)/.test(`${before} `)) {
+        const poi = getPoiById(poiId);
+        if (poi) return { poi, phrases };
+      }
+    }
+  }
+  return undefined;
+}
+
+function withoutAnchorPhrases(text: string, anchor: LocationAnchor): string {
+  const phrases = [...anchor.phrases, normalizeText(anchor.poi.name)].sort(
+    (left, right) => right.length - left.length,
+  );
+  let result = expandAliases(text);
+  for (const phrase of phrases) {
+    result = result.split(phrase).join(" ");
+  }
+  return result.replace(/\s+/g, " ").trim();
+}
 
 function conversationText(request: ChatRequest): string {
   const history = Array.isArray(request.history)
@@ -187,7 +229,9 @@ function routeReferences(query: string): {
   origin?: Poi;
   destination?: Poi;
 } {
-  const normalized = expandAliases(query);
+  // Plain normalization only: expandAliases APPENDS expansions to the end of the
+  // string, which would leak into the destination capture group below.
+  const normalized = normalizeText(query);
   const fromThenTo = normalized.match(/(?:tu) (.+?) (?:den|toi) (.+)$/);
   if (fromThenTo) {
     return {
@@ -208,10 +252,22 @@ function routeReferences(query: string): {
   )
     .map(({ poiId }) => getPoiById(poiId))
     .filter((poi): poi is Poi => Boolean(poi));
-  return {
-    ...(matches.length > 1 ? { origin: matches[0] } : {}),
-    ...(matches.length > 0 ? { destination: matches.at(-1) } : {}),
-  };
+  if (matches.length > 0) {
+    return {
+      ...(matches.length > 1 ? { origin: matches[0] } : {}),
+      destination: matches.at(-1),
+    };
+  }
+
+  // No alias hit: take the text after the navigation verb as the destination, so
+  // "chỉ đường tới Bệnh viện Bạch Mai" resolves any dataset POI by name.
+  const spoken = normalized.match(
+    /(?:chi duong|dua toi|dan toi|lam the nao de den|den|toi)\s+(?:den |toi )?(.+)$/,
+  );
+  if (spoken) {
+    return { destination: resolvePoiReference(spoken[1]) };
+  }
+  return {};
 }
 
 function locationCenter(value?: string): Coordinates | undefined {
@@ -260,24 +316,90 @@ function diversified(ranked: RankedPoi[], limit: number): RankedPoi[] {
   return selected;
 }
 
+const KNOWN_CONSTRAINTS: Array<{ match: string; label: string }> = [
+  { match: "wifi", label: "wifi" },
+  { match: "yen tinh", label: "yên tĩnh" },
+  { match: "khong qua on", label: "yên tĩnh" },
+  { match: "khong on ao", label: "yên tĩnh" },
+  { match: "lam viec", label: "làm việc" },
+  { match: "hoc nhom", label: "học nhóm" },
+  { match: "gia hop ly", label: "giá hợp lý" },
+  { match: "gia re", label: "giá rẻ" },
+  { match: "gia dinh", label: "gia đình" },
+  { match: "tre em", label: "trẻ em" },
+  { match: "view dep", label: "view đẹp" },
+  { match: "gan bien", label: "gần biển" },
+  { match: "mo khuya", label: "mở cửa khuya" },
+  { match: "mo cua khuya", label: "mở cửa khuya" },
+  { match: "an khuya", label: "mở cửa khuya" },
+  { match: "toilet", label: "toilet" },
+  { match: "ho boi", label: "hồ bơi" },
+  { match: "bai do xe", label: "bãi đỗ xe" },
+];
+
+const BUDGET_PREFIX_LABELS: Record<string, string> = {
+  duoi: "dưới",
+  khoang: "khoảng",
+  "toi da": "tối đa",
+  tren: "trên",
+  hon: "hơn",
+};
+
+const NUMBER_WORD_LABELS: Record<string, string> = {
+  mot: "một",
+  hai: "hai",
+  ba: "ba",
+  bon: "bốn",
+  nam: "năm",
+  sau: "sáu",
+  bay: "bảy",
+  tam: "tám",
+  chin: "chín",
+  muoi: "mười",
+};
+
+const UNIT_LABELS: Record<string, string> = {
+  k: "k",
+  nghin: "nghìn",
+  ngan: "ngàn",
+  trieu: "triệu",
+  dong: "đồng",
+  vnd: "VND",
+};
+
+// Deterministic numeric-budget extraction: "dưới 500k", "dưới 500.000",
+// "khoảng một triệu". Returned labels keep the amount verbatim so downstream
+// context checks (e.g. "500k") match exactly.
+function budgetConstraintsFor(normalized: string): string[] {
+  const constraints: string[] = [];
+  const numeric =
+    /(^|\s)(duoi|khoang|toi da|tren|hon)\s+(\d+(?:[\s.]\d+)*\s*(?:k|nghin|ngan|trieu|dong|vnd)?)(?=\s|$)/g;
+  for (const match of normalized.matchAll(numeric)) {
+    constraints.push(`${BUDGET_PREFIX_LABELS[match[2]]} ${match[3].trim()}`);
+  }
+  const wordNumbers = Object.keys(NUMBER_WORD_LABELS).join("|");
+  const worded = new RegExp(
+    `(^|\\s)(duoi|khoang|toi da|tren|hon)\\s+((?:(?:${wordNumbers})\\s+)*(?:${wordNumbers}))\\s+(trieu|nghin|ngan)(?=\\s|$)`,
+    "g",
+  );
+  for (const match of normalized.matchAll(worded)) {
+    const amount = match[3]
+      .split(/\s+/)
+      .map((word) => NUMBER_WORD_LABELS[word] ?? word)
+      .join(" ");
+    constraints.push(
+      `${BUDGET_PREFIX_LABELS[match[2]]} ${amount} ${UNIT_LABELS[match[4]]}`,
+    );
+  }
+  return constraints;
+}
+
 function constraintsFor(query: string): string[] {
   const normalized = expandAliases(query);
-  const known = [
-    "wifi",
-    "yen tinh",
-    "lam viec",
-    "gia hop ly",
-    "gia re",
-    "gia dinh",
-    "tre em",
-    "view dep",
-    "gan bien",
-    "mo khuya",
-    "toilet",
-    "ho boi",
-    "bai do xe",
-  ];
-  return known.filter((constraint) => normalized.includes(constraint));
+  const known = KNOWN_CONSTRAINTS.filter(({ match }) =>
+    normalized.includes(match),
+  ).map(({ label }) => label);
+  return [...new Set([...known, ...budgetConstraintsFor(normalized)])];
 }
 
 function sessionContext(
@@ -481,20 +603,54 @@ export function handleChat(request: ChatRequest): ChatResponse {
     }
   }
 
-  const ranked = rankPois(combined, {
+  const anchor = locationAnchorFor(combined);
+  const searchText = anchor ? withoutAnchorPhrases(combined, anchor) : combined;
+  const categoryConstraint = inferCategoryConstraint(searchText);
+
+  // Clarification-first: a bare or empty request gets a question, not a guess.
+  // Qualifiers (attributes, budgets, purpose phrases), an explicit area, a named
+  // place, GPS, or an in-flight clarification all count as enough information.
+  const slotQuestion =
+    intent === "search" || intent === "recommendation"
+      ? clarificationQuestionFor(request, combined, searchText, Boolean(anchor), categoryConstraint.categories)
+      : undefined;
+  if (slotQuestion) {
+    return {
+      intent: "clarification_required",
+      assistantResponse: slotQuestion,
+      recommendations: [],
+      confidence: 0.9,
+      mapAction: { type: "clarify", query: request.message, poiIds: [] },
+      sessionContext: sessionContext(request, "clarification_required"),
+      privacy,
+    };
+  }
+  // Plans and multi-service journeys need a cross-category pool; everything else
+  // with an explicit venue type gets a hard category filter.
+  const hardCategory =
+    categoryConstraint.hard &&
+    intent !== "planning" &&
+    !isJourneyIntent(request.message);
+  const ranked = rankPois(searchText, {
     profile,
-    origin: request.location,
+    origin: anchor?.poi.coordinates ?? request.location,
+    ...(anchor ? { radiusMeters: NEAR_ANCHOR_RADIUS_METERS } : {}),
     locationText: explicitLocation,
-    category: inferCategories(combined),
+    category: categoryConstraint.categories,
+    hardCategory,
     limit: 80,
   });
+  const pool = ranked.filter(
+    (item) =>
+      item.poi.id !== anchor?.poi.id && !isAvoidedByProfile(item.poi, profile),
+  );
   let selected =
-    intent === "planning" ? diversified(ranked, 4) : ranked.slice(0, 3);
+    intent === "planning" ? diversified(pool, 4) : pool.slice(0, 3);
   let recommendations = selected.map(toRecommendation);
-  const journey = composeJourney(request.message, ranked, recommendations);
+  const journey = composeJourney(request.message, pool, recommendations);
   if (journey) {
     const actionIds = new Set(journey.actions.map((item) => item.poiId));
-    selected = ranked.filter((item) => actionIds.has(item.poi.id));
+    selected = pool.filter((item) => actionIds.has(item.poi.id));
     recommendations = selected.map(toRecommendation);
   }
   const topScore = recommendations[0]?.score ?? 0;
@@ -508,7 +664,7 @@ export function handleChat(request: ChatRequest): ChatResponse {
       : journey
         ? `Tôi đã ghép một hành trình mô phỏng gồm ${journey.actions.length} dịch vụ từ các POI phù hợp: ${names}. Hãy xem từng khoản trước khi xác nhận.`
       : `Tôi tìm được ${recommendations.length} lựa chọn phù hợp nhất: ${names}. Mỗi gợi ý kèm lý do và điểm thành phần để bạn kiểm tra.`
-    : "Tôi chưa tìm thấy địa điểm phù hợp trong bộ dữ liệu mẫu. Hãy thử nêu rõ thành phố hoặc loại địa điểm.";
+    : noMatchResponse(categoryConstraint.categories, anchor, constraintsFor(request.message), locationLabelFor(searchText));
 
   return {
     intent,
@@ -519,12 +675,73 @@ export function handleChat(request: ChatRequest): ChatResponse {
       type: intent === "planning" ? "plan" : "search",
       query: request.message,
       poiIds: recommendations.map(({ poi }) => poi.id),
-      ...(recommendations[0]
-        ? { center: recommendations[0].poi.coordinates, zoom: 13 }
-        : {}),
+      ...(anchor
+        ? { center: anchor.poi.coordinates, zoom: 13 }
+        : recommendations[0]
+          ? { center: recommendations[0].poi.coordinates, zoom: 13 }
+          : {}),
     },
     sessionContext: sessionContext(request, intent, undefined, journey ? journeyState(request.message, journey) : undefined),
     ...(journey ? { journey } : {}),
     privacy,
   };
+}
+
+function mentionsKnownPoi(text: string): boolean {
+  const normalized = expandAliases(text);
+  if (POI_ALIASES.some(({ phrases }) => phrases.some((phrase) => normalized.includes(phrase)))) {
+    return true;
+  }
+  return pois.some((poi) => normalized.includes(normalizeText(poi.name)));
+}
+
+function clarificationQuestionFor(
+  request: ChatRequest,
+  combined: string,
+  searchText: string,
+  hasAnchor: boolean,
+  categories: string[],
+): string | undefined {
+  if (request.sessionContext?.lastIntent === "clarification_required") return undefined;
+  if (isJourneyIntent(request.message)) return undefined;
+  if (mentionsKnownPoi(combined)) return undefined;
+  const hasLocation = hasAnchor || Boolean(request.location) || queryLocationSignal(searchText);
+  const hasQualifier =
+    hasIntentQualifier(searchText) || constraintsFor(combined).length > 0;
+  if (hasQualifier) return undefined;
+  const categoryLabel = categories.length
+    ? categories.join("/").toLowerCase()
+    : undefined;
+  if (!hasLocation && categoryLabel) {
+    return `Bạn muốn tìm ${categoryLabel} ở khu vực nào, và có tiêu chí gì thêm không (ví dụ: yên tĩnh, giá rẻ, cho nhóm)?`;
+  }
+  if (!hasLocation && !categoryLabel) {
+    return "Bạn muốn tìm loại địa điểm nào (quán cà phê, nhà hàng, khách sạn…), và ở khu vực nào?";
+  }
+  if (!categoryLabel) {
+    return "Bạn muốn tìm loại địa điểm nào ở khu vực đó — quán cà phê, nhà hàng, hay chỗ vui chơi?";
+  }
+  return undefined;
+}
+
+// Honest coverage-gap answer: never relax hard constraints silently; name the
+// constraint the dataset cannot satisfy instead of returning unrelated venues.
+function noMatchResponse(
+  categories: string[],
+  anchor: LocationAnchor | undefined,
+  constraints: string[],
+  locationLabel?: string,
+): string {
+  const what = categories.length
+    ? categories.join("/").toLowerCase()
+    : "địa điểm phù hợp";
+  const where = anchor
+    ? ` gần ${anchor.poi.name}`
+    : locationLabel
+      ? ` ở ${locationLabel}`
+      : "";
+  const wants = constraints.length
+    ? ` đáp ứng yêu cầu ${constraints.join(", ")}`
+    : "";
+  return `Trong bộ dữ liệu TASCO hiện chưa có ${what} nào${where}${wants}. Tôi không gợi ý địa điểm ngoài phạm vi yêu cầu; bạn có thể mở rộng khu vực hoặc bỏ bớt điều kiện để tôi tìm lại.`;
 }
