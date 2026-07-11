@@ -1,6 +1,8 @@
 import { createOpenAI } from "@ai-sdk/openai";
 import { generateObject, jsonSchema } from "ai";
 
+import type { JourneyStopCategory, JourneyStopCuisine } from "./types";
+
 // LLM as TRANSLATOR, never as DECIDER. This layer converts arbitrary human
 // phrasing (any language, messy transcripts) into a STRICT schema of enum
 // fields, which is then assembled — deterministically, from a fixed vocabulary —
@@ -10,9 +12,16 @@ import { generateObject, jsonSchema } from "ai";
 // The live app uses this as the primary ear; tests and evals run the pure rules
 // path (no key / TASCO_NLU=rules), keeping the benchmark deterministic.
 
-interface ParsedIntent {
+interface ParsedStop {
+  category: JourneyStopCategory;
+  cuisine?: JourneyStopCuisine;
+}
+
+export interface ParsedIntent {
   category?: string;
-  cuisine?: string;
+  cuisine?: JourneyStopCuisine;
+  /** Ordered only when the user explicitly asks for sequential destinations. */
+  stops?: ParsedStop[];
   area?: string;
   budgetVndMax?: number;
   partySize?: number;
@@ -35,7 +44,8 @@ const CATEGORY_VI: Record<string, string> = {
   attraction: "địa điểm du lịch",
 };
 
-const CUISINE_VI: Record<string, string> = {
+const CUISINE_VI: Record<JourneyStopCuisine, string> = {
+  pho: "phở",
   vietnamese: "món Việt",
   italian: "món Ý",
   japanese: "món Nhật",
@@ -62,12 +72,36 @@ const ATTRIBUTE_VI: Record<string, string> = {
   near_beach: "gần biển",
 };
 
+const ORDERED_STOP_CATEGORIES: JourneyStopCategory[] = ["cafe", "restaurant"];
+const ORDERED_STOP_CUISINES: JourneyStopCuisine[] = [
+  "pho",
+  "vietnamese",
+  "italian",
+  "japanese",
+  "korean",
+];
+
 const PARSE_SCHEMA = jsonSchema<ParsedIntent>({
   type: "object",
   additionalProperties: false,
   properties: {
     category: { type: "string", enum: Object.keys(CATEGORY_VI) },
     cuisine: { type: "string", enum: Object.keys(CUISINE_VI) },
+    stops: {
+      type: "array",
+      minItems: 2,
+      maxItems: 3,
+      description: "Explicitly ordered destinations, only for requests such as coffee then pho.",
+      items: {
+        type: "object",
+        additionalProperties: false,
+        properties: {
+          category: { type: "string", enum: ORDERED_STOP_CATEGORIES },
+          cuisine: { type: "string", enum: ORDERED_STOP_CUISINES },
+        },
+        required: ["category"],
+      },
+    },
     area: { type: "string", description: "Named place, district, or city mentioned (verbatim), if any." },
     budgetVndMax: { type: "number", description: "Maximum budget in VND if stated." },
     partySize: { type: "number" },
@@ -80,14 +114,26 @@ const PARSE_INSTRUCTIONS = [
   "You translate a user's request to a map assistant into a strict form.",
   "The user may speak Vietnamese, English, or a mix, possibly with transcription errors.",
   "Fill ONLY fields the user actually expressed (this turn or clearly carried from the recent turns provided).",
+  "When the user explicitly orders supported cafe/restaurant destinations with then/roi/sau do, put them in stops in that exact order; do not collapse them into one category.",
+  "Preserve an explicitly named supported cuisine or dish on its own stop (for example pho on the restaurant stop).",
   "Never guess venues, never add preferences the user did not state, leave unknown fields absent.",
 ].join("\n");
 
 /** Deterministic assembly: enum fields → canonical Vietnamese the engine parses. */
 export function canonicalQueryFrom(parsed: ParsedIntent): string {
   const parts: string[] = [];
-  if (parsed.category && CATEGORY_VI[parsed.category]) parts.push(CATEGORY_VI[parsed.category]);
-  if (parsed.cuisine && CUISINE_VI[parsed.cuisine]) parts.push(CUISINE_VI[parsed.cuisine]);
+  const orderedStops = (parsed.stops ?? []).flatMap((stop) => {
+    const category = CATEGORY_VI[stop.category];
+    if (!category) return [];
+    const cuisine = stop.cuisine ? CUISINE_VI[stop.cuisine] : undefined;
+    return [[category, cuisine].filter(Boolean).join(" ")];
+  });
+  if (orderedStops.length >= 2) {
+    parts.push(orderedStops.join(" rồi "));
+  } else {
+    if (parsed.category && CATEGORY_VI[parsed.category]) parts.push(CATEGORY_VI[parsed.category]);
+    if (parsed.cuisine && CUISINE_VI[parsed.cuisine]) parts.push(CUISINE_VI[parsed.cuisine]);
+  }
   for (const attribute of parsed.attributes ?? []) {
     if (ATTRIBUTE_VI[attribute]) parts.push(ATTRIBUTE_VI[attribute]);
   }

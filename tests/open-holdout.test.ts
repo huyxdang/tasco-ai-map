@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 
 import { handleChat } from "../src/lib/chat";
 import { activePackName, getPack } from "../src/lib/data";
+import { normalizeText } from "../src/lib/text";
+import type { Poi } from "../src/lib/types";
 
 // Hand-verified holdout for the open (Quận 1) pack — autoplan AD4.
 // Expectations are REAL-WORLD facts about District 1 (famous venues that exist
@@ -14,6 +16,15 @@ const enrichmentLanded = pack.pois.some((poi) => poi.datasetTier === "open-enric
 
 describe.skipIf(!openActive)("open pack holdout — engine behavior", () => {
   const ids = (message: string) => handleChat({ message }).recommendations.map(({ poi }) => poi);
+  const isPhoVenue = (poi: Poi | undefined) =>
+    Boolean(
+      poi &&
+      /(^|\s)pho(\s|$)/.test(
+        normalizeText(
+          [poi.name, ...poi.tags, ...poi.attributes, poi.description].join(" "),
+        ),
+      ),
+    );
 
   it("H1: cafés in Quận 1 returns real cafés only", () => {
     const pois = ids("Quán cà phê ở Quận 1");
@@ -77,6 +88,31 @@ describe.skipIf(!openActive)("open pack holdout — engine behavior", () => {
   it.skipIf(!enrichmentLanded)("H11 (post-enrichment): wifi cafés carry real attribute evidence", () => {
     const response = handleChat({ message: "Quán cà phê có wifi ở Quận 1" });
     expect(response.recommendations.some(({ poi }) => poi.attributes.includes("wifi"))).toBe(true);
+  });
+
+  it("H16: ordered coffee then pho preserves the dish across refinement and revision", () => {
+    const first = handleChat({
+      message: "Tìm quán cà phê yên tĩnh ở Quận 1 rồi đi ăn phở gần đó.",
+    });
+    expect(first.journey?.actions.map((action) => action.requestedCuisine)).toEqual([
+      undefined,
+      "pho",
+    ]);
+    expect(isPhoVenue(first.recommendations[1]?.poi)).toBe(true);
+
+    const refined = handleChat({
+      message: "Điểm cà phê đầu tiên phải yên tĩnh hơn.",
+      sessionContext: first.sessionContext,
+    });
+    expect(refined.journey?.actions[1]?.requestedCuisine).toBe("pho");
+    expect(isPhoVenue(refined.recommendations[1]?.poi)).toBe(true);
+
+    const cheaper = handleChat({
+      message: "Rẻ hơn một chút.",
+      sessionContext: refined.sessionContext,
+    });
+    expect(cheaper.journey?.actions[1]?.requestedCuisine).toBe("pho");
+    expect(isPhoVenue(cheaper.recommendations[1]?.poi)).toBe(true);
   });
 });
 

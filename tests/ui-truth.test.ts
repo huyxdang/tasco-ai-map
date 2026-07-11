@@ -45,4 +45,13 @@ describe("UI truthfulness", () => {
     expect(source).toContain('revision.outcome === "cheaper"');
     expect(source).not.toMatch(/\bsetStage\b|\bstage\s*[>=]/);
   });
+
+  it("renders every grounded recommendation in the live sheet", () => {
+    expect(source).toContain("response.recommendations.map((recommendation, index)");
+    expect(source).not.toContain("const recommendation = response.recommendations[0]");
+  });
+
+  it("does not advertise unsupported dragging on the live sheet", () => {
+    expect(source).not.toMatch(/<section className="atlas-live-sheet">\s*<div className="sheet-handle"/);
+  });
 });

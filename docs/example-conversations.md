@@ -10,6 +10,16 @@
 
 **Atlas:** Preserves the fuel/dining/parking kinds and city. It changes an eligible selection only when the recomputed total is strictly lower; otherwise it retains the journey and says no grounded cheaper option exists. One local VETC confirmation creates one simulated receipt, followed by Route Theater or a reduced-motion/manual fallback.
 
+## Ordered café → phở path
+
+**Người dùng:** Tôi muốn uống cà phê rồi ăn phở ở Hà Nội.
+
+**Atlas:** Returns one ordered, dataset-grounded journey with a café first and an actual phở venue second. The café and phở segments rank independently, and the response never silently drops or weakens a requested leg.
+
+**Người dùng:** Điểm cà phê đầu tiên phải yên tĩnh hơn.
+
+**Atlas:** Keeps the phở dish constraint and city, reranks both stops deterministically from the current turn plus the three prior user turns, and replaces the café only when a grounded match exists. “Rẻ hơn” may change either stop only to a cheaper candidate with the same category and cuisine constraint. A new request such as “Tìm khách sạn ở Quận 1” clears the old journey context.
+
 These examples define expected, illustrative behavior for the TASCO map assistant. They are **not transcripts from the live application** and should not be presented as current model output.
 
 The only factual source for POIs, profiles, scenarios, and evaluation IDs in this document is `src/data/dataset.json`. That dataset is Vietnamese, synthetic, and generated from `dataset.xlsx` on 2026-07-11. The `confidence band` values below are proposed acceptance expectations for how certain a final destination or recommendation is; they are not fields supplied by the dataset. They are distinct from the API's numeric response-behavior `confidence`: the API can return `0.99` when it is highly confident that it must clarify, even though confidence in either destination remains low.

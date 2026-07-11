@@ -1424,7 +1424,6 @@ button:focus-visible,input:focus-visible { outline:3px solid rgba(18,147,79,.28)
 .atlas-start-sheet>small { display:flex; align-items:center; justify-content:center; gap:6px; color:var(--atlas-text-muted); font-size:10px; line-height:1.45; }
 
 .atlas-live-sheet { max-height:72dvh; padding:13px 14px max(12px,env(safe-area-inset-bottom)); overflow-y:auto; overscroll-behavior:contain; }
-.atlas-live-sheet .sheet-handle { margin-bottom:11px; }
 .live-controls { display:grid; grid-template-columns:50px 1fr 48px 48px; align-items:center; gap:8px; }
 .live-orb { display:grid; width:50px; height:50px; place-items:center; border:0; border-radius:50%; background:var(--atlas-green); color:#fff; box-shadow:0 3px 12px rgba(18,147,79,.28); }
 .live-orb.state-listening { animation:atlas-pulse 1.8s infinite; }
@@ -1456,7 +1455,7 @@ button:focus-visible,input:focus-visible { outline:3px solid rgba(18,147,79,.28)
 .quick-replies button:hover { background:var(--atlas-surface-green); }
 .ended-notice { margin:10px 0 0; font-size:11.5px; font-weight:650; color:var(--atlas-green-dark); display:flex; align-items:center; gap:6px; }
 .recommendation-facts strong.is-counting { font-variant-numeric:tabular-nums; }
-.receipts-toggle { display:flex; align-items:center; gap:5px; margin:8px 0 0; padding:0; border:none; background:none; color:var(--atlas-green-dark); font-size:10.5px; font-weight:700; cursor:pointer; }
+.receipts-toggle { display:flex; min-height:44px; align-items:center; justify-content:flex-start; gap:5px; margin:8px 0 0; padding:0; border:none; background:none; color:var(--atlas-green-dark); font-size:10.5px; font-weight:700; cursor:pointer; }
 .receipts-panel { margin-top:8px; padding:10px; border:1px solid var(--atlas-border); border-radius:12px; background:#fafaf8; }
 .receipts-row { display:grid; grid-template-columns:104px 1fr 34px; align-items:center; gap:7px; margin-bottom:5px; }
 .receipts-row small { font-size:9px; font-weight:650; color:var(--atlas-text-secondary); }
@@ -1467,7 +1466,12 @@ button:focus-visible,input:focus-visible { outline:3px solid rgba(18,147,79,.28)
 .receipts-source { display:flex; align-items:center; gap:4px; font-size:8.5px; color:var(--atlas-text-secondary); }
 .empty-understanding { display:flex; align-items:center; gap:9px; margin:10px 0; padding:12px; border:1px dashed var(--atlas-border); border-radius:14px; color:var(--atlas-text-secondary); font-size:11px; line-height:1.4; }
 .empty-understanding svg { flex:none; color:var(--atlas-green); }
-.live-recommendation { margin:8px 0; padding:11px; border:1px solid var(--atlas-border); border-radius:16px; background:#fff; box-shadow:0 1px 4px rgba(15,35,50,.05); }
+.live-recommendations { margin:8px 0; }
+.recommendations-summary { display:flex; align-items:center; justify-content:space-between; margin:0 2px 8px; }
+.recommendations-summary span,.recommendations-summary em { display:flex; align-items:center; gap:5px; color:var(--atlas-green-dark); font-size:10px; font-style:normal; font-weight:750; }
+.recommendations-summary em { padding:4px 6px; border-radius:999px; background:var(--atlas-surface-green); }
+.live-recommendation-list { display:grid; gap:8px; margin:0; padding:0; list-style:none; }
+.live-recommendation { margin:0; padding:11px; border:1px solid var(--atlas-border); border-radius:16px; background:#fff; box-shadow:0 1px 4px rgba(15,35,50,.05); }
 .live-recommendation.is-revised { border-color:var(--atlas-green-border); animation:recommendation-swap .4s ease both; }
 .live-recommendation>header { display:flex; align-items:center; justify-content:space-between; margin-bottom:9px; }
 .live-recommendation>header span,.live-recommendation>header em { display:flex; align-items:center; gap:5px; color:var(--atlas-green-dark); font-size:9px; font-style:normal; font-weight:750; }
@@ -1484,7 +1488,7 @@ button:focus-visible,input:focus-visible { outline:3px solid rgba(18,147,79,.28)
 .recommendation-facts small { color:var(--atlas-text-muted); font-size:7.5px; }
 .savings-line { display:flex; align-items:center; gap:6px; margin-top:8px; padding:7px 9px; border-radius:9px; background:var(--atlas-surface-green); color:var(--atlas-green-dark); font-size:10px; font-weight:750; }
 .live-recommendation>p { margin:8px 1px 0; color:var(--atlas-text-muted); font-size:8px; line-height:1.4; }
-.live-recommendation>button { display:flex; width:100%; min-height:44px; align-items:center; justify-content:center; gap:7px; margin-top:9px; border:0; border-radius:13px; background:var(--atlas-green); color:#fff; font-size:11px; font-weight:750; }
+.recommendations-journey-button { margin-top:8px; }
 .atlas-composer { display:grid; grid-template-columns:1fr 44px; gap:6px; margin-top:8px; }
 .atlas-composer input { min-width:0; height:44px; padding:0 12px; border:1px solid var(--atlas-border); border-radius:13px; background:#fff; color:var(--atlas-text); font-size:11px; }
 .atlas-composer button { display:grid; width:44px; height:44px; place-items:center; border:0; border-radius:13px; background:var(--atlas-green); color:#fff; }

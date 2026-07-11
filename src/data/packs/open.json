@@ -206,12 +206,19 @@
       "rating": 0,
       "reviewCount": 0,
       "popularityScore": 97,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "mở cửa khuya",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "gia đình"
+      ],
       "tags": [
         "restaurant"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-028393E0-F35C-4332-9CF0-7E4B4EF78AE6",
@@ -272,17 +279,23 @@
         "lat": 10.773675,
         "lon": 106.696882
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.5,
+      "reviewCount": 275,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "bãi đỗ xe",
+        "gia đình",
+        "view đẹp",
+        "ăn sáng",
+        "buffet sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-046208C7-A3DB-4B0B-ABB6-B440AF167EF7",
@@ -738,17 +751,22 @@
         "lat": 10.773215,
         "lon": 106.698452
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.4,
+      "reviewCount": 130,
       "popularityScore": 100,
-      "attributes": [],
+      "attributes": [
+        "bãi đỗ xe",
+        "gia đình",
+        "hồ bơi",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-0797E6D5-9D3C-4253-913A-3DFF0CFFA1C5",
@@ -816,17 +834,23 @@
         "lat": 10.769556,
         "lon": 106.700168
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.6,
+      "reviewCount": 109,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "yên tĩnh",
+        "bãi đỗ xe",
+        "gia đình",
+        "view đẹp",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-091CCEB8-5094-4CBD-B027-982C2C01A02B",
@@ -888,17 +912,26 @@
         "lat": 10.780458,
         "lon": 106.704341
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.5,
+      "reviewCount": 5929,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "yên tĩnh",
+        "cao cấp",
+        "bãi đỗ xe",
+        "gia đình",
+        "view đẹp",
+        "hồ bơi",
+        "ăn sáng",
+        "buffet sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-09A2011C-4719-4A4F-80C8-090A63FFB928",
@@ -1198,17 +1231,23 @@
         "lat": 10.773621,
         "lon": 106.696398
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.7,
+      "reviewCount": 990,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "yên tĩnh",
+        "bãi đỗ xe",
+        "view đẹp",
+        "hồ bơi",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-0DBB1B3A-6C93-4194-9FDD-3C563E87B7E7",
@@ -1397,15 +1436,22 @@
         "lat": 10.789143,
         "lon": 106.702898
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.1,
+      "reviewCount": 9,
       "popularityScore": 96,
-      "attributes": [],
+      "attributes": [
+        "wifi",
+        "máy lạnh",
+        "giá hợp lý",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "takeaway"
+      ],
       "tags": [
         "coffee_shop"
       ],
       "description": "Quán cà phê tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-0F1272C6-6552-48C8-A747-5A68B73F83CF",
@@ -1934,17 +1980,25 @@
         "lat": 10.79352,
         "lon": 106.68966
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.6,
+      "reviewCount": 25,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "phù hợp hẹn hò",
+        "gia đình",
+        "món Việt"
+      ],
       "tags": [
         "vietnamese_restaurant",
         "restaurant",
         "asian_restaurant"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-14CC1122-78C6-4D6A-A6A8-EAC18825227F",
@@ -2438,17 +2492,22 @@
         "lat": 10.77443,
         "lon": 106.700404
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.3,
+      "reviewCount": 1538,
       "popularityScore": 100,
-      "attributes": [],
+      "attributes": [
+        "yên tĩnh",
+        "bãi đỗ xe",
+        "view đẹp",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-18D232C5-BB99-4BF9-ABB9-AA011ABFAEA6",
@@ -2651,17 +2710,19 @@
         "lat": 10.766286,
         "lon": 106.693109
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4,
+      "reviewCount": 1122,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "bãi đỗ xe"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-1B29FBF7-FE74-4F0F-A9DB-BA8060C9F2D3",
@@ -2832,14 +2893,21 @@
       "rating": 0,
       "reviewCount": 0,
       "popularityScore": 95,
-      "attributes": [],
+      "attributes": [
+        "wifi",
+        "máy lạnh",
+        "mở cửa sớm",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "takeaway"
+      ],
       "tags": [
         "coffee_shop",
         "cafe",
         "convenience_store"
       ],
       "description": "Quán cà phê tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-1DB53022-B3D9-4B8A-881D-833CD96FEE66",
@@ -3396,17 +3464,22 @@
         "lat": 10.771458,
         "lon": 106.694449
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.9,
+      "reviewCount": 212,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "view đẹp",
+        "hồ bơi",
+        "ăn sáng",
+        "buffet sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-24EA7C2A-CDC5-4148-AE1D-F5A9BABDF92A",
@@ -3491,17 +3564,27 @@
         "lat": 10.772683,
         "lon": 106.695417
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.1,
+      "reviewCount": 20,
       "popularityScore": 97,
-      "attributes": [],
+      "attributes": [
+        "wifi",
+        "yên tĩnh",
+        "học nhóm",
+        "làm việc",
+        "máy lạnh",
+        "mở cửa sớm",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "takeaway"
+      ],
       "tags": [
         "coffee_shop",
         "cafe",
         "vietnamese_restaurant"
       ],
       "description": "Quán cà phê tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-259BD6A9-15C7-4F6B-8EB4-80E70ED83CFA",
@@ -4623,17 +4706,22 @@
         "lat": 10.777015,
         "lon": 106.704425
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.4,
+      "reviewCount": 1109,
       "popularityScore": 100,
-      "attributes": [],
+      "attributes": [
+        "mở cửa khuya",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "gia đình"
+      ],
       "tags": [
         "vietnamese_restaurant",
         "restaurant",
         "bar"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-2DB8EEEB-3E9C-4AC5-B565-6D14C5E27958",
@@ -4671,17 +4759,22 @@
         "lat": 10.767597,
         "lon": 106.694037
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.6,
+      "reviewCount": 1172,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "bãi đỗ xe",
+        "gia đình",
+        "view đẹp",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-2DE8632A-46E2-434A-8580-E109AFA37A3D",
@@ -4870,17 +4963,20 @@
         "lat": 10.768355,
         "lon": 106.692708
       },
-      "rating": 0,
+      "rating": 4.1,
       "reviewCount": 0,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "bãi đỗ xe",
+        "view đẹp"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-2F6AEB11-61E7-43F6-9F12-32EF459317E2",
@@ -5129,8 +5225,8 @@
         "lat": 10.791248,
         "lon": 106.705185
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.8,
+      "reviewCount": 51,
       "popularityScore": 99,
       "attributes": [],
       "tags": [
@@ -5139,7 +5235,7 @@
         "restaurant"
       ],
       "description": "Quán cà phê tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-32203785-FF04-4F0D-B371-03C5E8D3B22B",
@@ -5440,17 +5536,21 @@
         "lat": 10.78864,
         "lon": 106.699254
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4,
+      "reviewCount": 541,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "ngoài trời",
+        "phù hợp hẹn hò",
+        "món Việt"
+      ],
       "tags": [
         "vietnamese_restaurant",
         "restaurant",
         "asian_restaurant"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-351A19C8-2069-45E8-BEB6-256688195274",
@@ -5604,17 +5704,23 @@
         "lat": 10.77885,
         "lon": 106.704197
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.1,
+      "reviewCount": 1796,
       "popularityScore": 100,
-      "attributes": [],
+      "attributes": [
+        "gia đình",
+        "view đẹp",
+        "hồ bơi",
+        "ăn sáng",
+        "buffet sáng"
+      ],
       "tags": [
         "hotel",
         "professional_services",
         "accommodation"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-36C9F454-F43B-4726-A813-F8BC88D22A80",
@@ -5708,7 +5814,7 @@
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-376CFDA9-3394-4030-84AE-D9041F5BC8FA",
@@ -5722,17 +5828,20 @@
         "lat": 10.771746,
         "lon": 106.703853
       },
-      "rating": 0,
+      "rating": 4.5,
       "reviewCount": 0,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "hồ bơi",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-37B3926B-AEBB-4AC4-A3DA-D2ECDA69A0EF",
@@ -5747,7 +5856,7 @@
         "lon": 106.682869
       },
       "rating": 4.5,
-      "reviewCount": 1072,
+      "reviewCount": 2803,
       "popularityScore": 99,
       "attributes": [
         "yên tĩnh",
@@ -5756,7 +5865,8 @@
         "view đẹp",
         "hồ bơi",
         "ăn sáng",
-        "buffet sáng"
+        "buffet sáng",
+        "gia đình"
       ],
       "tags": [
         "hotel",
@@ -5991,17 +6101,22 @@
         "lat": 10.77897,
         "lon": 106.704072
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.2,
+      "reviewCount": 446,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "bãi đỗ xe",
+        "view đẹp",
+        "hồ bơi",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "cafe"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-39B4C72C-4797-4308-9E31-CA190524F3C6",
@@ -6039,17 +6154,26 @@
         "lat": 10.764432,
         "lon": 106.695094
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4,
+      "reviewCount": 8,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "mở cửa khuya",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "phù hợp hẹn hò",
+        "gia đình",
+        "món Việt"
+      ],
       "tags": [
         "restaurant",
         "bar_and_grill_restaurant",
         "asian_restaurant"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-3A241E49-86CA-4051-B30C-EF5813E450D1",
@@ -6063,17 +6187,22 @@
         "lat": 10.768387,
         "lon": 106.693654
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4,
+      "reviewCount": 172,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "yên tĩnh",
+        "bãi đỗ xe",
+        "gia đình",
+        "view đẹp"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-3A413F58-D53D-44CC-A3C4-B17918C0D93F",
@@ -6558,17 +6687,20 @@
         "lat": 10.771503,
         "lon": 106.694923
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.2,
+      "reviewCount": 3437,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "view đẹp",
+        "hồ bơi"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-3E5F9957-6530-4F61-8A12-8F6847745A1D",
@@ -6942,17 +7074,21 @@
         "lat": 10.781997,
         "lon": 106.704649
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.5,
+      "reviewCount": 8505,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "view đẹp",
+        "hồ bơi",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-432DEB29-D0E0-4944-8887-9F611D023422",
@@ -7379,17 +7515,25 @@
         "lat": 10.769226,
         "lon": 106.690435
       },
-      "rating": 0,
+      "rating": 3.8,
       "reviewCount": 0,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "mở cửa khuya",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "gia đình",
+        "món Việt"
+      ],
       "tags": [
         "restaurant",
         "asian_restaurant",
         "vietnamese_restaurant"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-460DC86F-4EC2-44BA-A986-E89A33A42ACC",
@@ -7818,14 +7962,21 @@
       "rating": 0,
       "reviewCount": 0,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "wifi",
+        "yên tĩnh",
+        "học nhóm",
+        "làm việc",
+        "mở cửa khuya",
+        "ngoài trời"
+      ],
       "tags": [
         "restaurant",
         "japanese_restaurant",
         "cafe"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-4B921559-8EF0-4DD8-9212-78097BCA8BCE",
@@ -8523,17 +8674,24 @@
         "lat": 10.76896,
         "lon": 106.701624
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4,
+      "reviewCount": 24,
       "popularityScore": 94,
-      "attributes": [],
+      "attributes": [
+        "wifi",
+        "yên tĩnh",
+        "máy lạnh",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "takeaway"
+      ],
       "tags": [
         "cafe",
         "coffee_shop",
         "tea_room"
       ],
       "description": "Quán cà phê tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-539CDF1B-0BF1-425F-B0BA-4045041D274B",
@@ -8709,17 +8867,26 @@
         "lat": 10.772394,
         "lon": 106.704332
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.7,
+      "reviewCount": 43,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "mở cửa khuya",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "phù hợp hẹn hò",
+        "gia đình",
+        "món Việt"
+      ],
       "tags": [
         "vietnamese_restaurant",
         "restaurant",
         "diner"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-56537320-15D4-48D7-846B-E7513C0D1FA2",
@@ -8835,17 +9002,23 @@
         "lat": 10.777907,
         "lon": 106.706926
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.1,
+      "reviewCount": 38,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "bãi đỗ xe",
+        "gia đình",
+        "view đẹp",
+        "hồ bơi",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "travel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-57B67249-6B5D-4A2D-BDC0-5894C1B737B4",
@@ -8931,16 +9104,20 @@
         "lat": 10.775814,
         "lon": 106.705083
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.7,
+      "reviewCount": 54,
       "popularityScore": 100,
-      "attributes": [],
+      "attributes": [
+        "mở cửa khuya",
+        "đặt bàn",
+        "món Việt"
+      ],
       "tags": [
         "vietnamese_restaurant",
         "cocktail_bar"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-58465EF2-A3ED-4952-A301-20056980414C",
@@ -9073,17 +9250,26 @@
         "lat": 10.785847,
         "lon": 106.701071
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.6,
+      "reviewCount": 147,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "mở cửa khuya",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "phù hợp hẹn hò",
+        "gia đình",
+        "món Việt"
+      ],
       "tags": [
         "diner",
         "vietnamese_restaurant",
         "restaurant"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-59710C3A-082A-40E7-B24E-834A081BA5B1",
@@ -9398,17 +9584,21 @@
         "lat": 10.773775,
         "lon": 106.696619
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4,
+      "reviewCount": 74,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "view đẹp",
+        "hồ bơi",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-5DE58901-645D-418F-B8E2-E899F06D56E0",
@@ -9631,7 +9821,7 @@
         "lat": 10.773439,
         "lon": 106.703937
       },
-      "rating": 3.7,
+      "rating": 4.2,
       "reviewCount": 109,
       "popularityScore": 99,
       "attributes": [
@@ -9644,7 +9834,10 @@
         "giá hợp lý",
         "ngoài trời",
         "bãi đỗ xe",
-        "takeaway"
+        "takeaway",
+        "cao cấp",
+        "mở cửa khuya",
+        "mở cửa sớm"
       ],
       "tags": [
         "coffee_shop",
@@ -9832,17 +10025,24 @@
         "lat": 10.785158,
         "lon": 106.700966
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3,
+      "reviewCount": 12,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "mở cửa khuya",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "món Việt"
+      ],
       "tags": [
         "restaurant",
         "diner",
         "vietnamese_restaurant"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-622C964D-FF3B-4D92-AF09-54B4730442FF",
@@ -10059,17 +10259,22 @@
         "lat": 10.77261,
         "lon": 106.694823
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.3,
+      "reviewCount": 957,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "yên tĩnh",
+        "bãi đỗ xe",
+        "view đẹp",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "motel",
         "hotel_supply_service"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-6353DF9A-2372-424F-8726-BCA4B7FB960E",
@@ -10086,14 +10291,19 @@
       "rating": 0,
       "reviewCount": 0,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "giá hợp lý",
+        "bãi đỗ xe",
+        "hồ bơi",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-638997D5-6285-4A12-A753-53EB71E66139",
@@ -10107,17 +10317,21 @@
         "lat": 10.768135,
         "lon": 106.694609
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.3,
+      "reviewCount": 274,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "yên tĩnh",
+        "hồ bơi",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-6398127B-91E7-4104-9DFE-3337D3103576",
@@ -10227,12 +10441,11 @@
         "lat": 10.784049,
         "lon": 106.702409
       },
-      "rating": 4.3,
-      "reviewCount": 1806,
+      "rating": 4.5,
+      "reviewCount": 3733,
       "popularityScore": 99,
       "attributes": [
         "yên tĩnh",
-        "cao cấp",
         "bãi đỗ xe",
         "gia đình",
         "view đẹp",
@@ -10284,17 +10497,24 @@
         "lat": 10.782371,
         "lon": 106.696502
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.5,
+      "reviewCount": 113,
       "popularityScore": 100,
-      "attributes": [],
+      "attributes": [
+        "bãi đỗ xe",
+        "gia đình",
+        "view đẹp",
+        "hồ bơi",
+        "ăn sáng",
+        "buffet sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "service_apartments"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-65D110A0-608E-4E70-B9EB-463B46CE4C72",
@@ -10728,17 +10948,22 @@
         "lat": 10.771498,
         "lon": 106.69714
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.2,
+      "reviewCount": 170,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "gia đình",
+        "view đẹp",
+        "hồ bơi",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-6A814999-C75F-4152-9AC7-410D7BC9B3EF",
@@ -11224,10 +11449,15 @@
         "lat": 10.769788,
         "lon": 106.697205
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 5,
+      "reviewCount": 69,
       "popularityScore": 97,
-      "attributes": [],
+      "attributes": [
+        "wifi",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "takeaway"
+      ],
       "tags": [
         "cafe",
         "french_restaurant",
@@ -11235,7 +11465,7 @@
         "restaurant"
       ],
       "description": "Quán cà phê tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-6FBEBF27-C8FD-4B1E-892D-F750B6C05301",
@@ -11249,17 +11479,21 @@
         "lat": 10.770541,
         "lon": 106.693696
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.5,
+      "reviewCount": 985,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "bãi đỗ xe",
+        "ăn sáng",
+        "buffet sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-6FE4B1D1-7F96-43EC-AE12-F31D4F8AEA7C",
@@ -11388,16 +11622,18 @@
         "lat": 10.772682,
         "lon": 106.696739
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.7,
+      "reviewCount": 1372,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "món Việt"
+      ],
       "tags": [
         "vietnamese_restaurant",
         "asian_restaurant"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-714030F2-182E-439B-892A-4BBCCC98A9B7",
@@ -11504,17 +11740,19 @@
         "lat": 10.76948,
         "lon": 106.690567
       },
-      "rating": 0,
+      "rating": 3.8,
       "reviewCount": 0,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "bãi đỗ xe"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-71D0B8AF-1227-4D36-BE42-2887CF19989B",
@@ -11528,18 +11766,20 @@
         "lat": 10.776541,
         "lon": 106.699365
       },
-      "rating": 3.7,
-      "reviewCount": 212,
+      "rating": 4,
+      "reviewCount": 141,
       "popularityScore": 99,
       "attributes": [
         "wifi",
-        "yên tĩnh",
-        "học nhóm",
-        "làm việc",
-        "ổ cắm",
         "máy lạnh",
         "giá hợp lý",
-        "mở cửa khuya"
+        "mở cửa khuya",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "takeaway",
+        "gia đình",
+        "hồ bơi",
+        "ăn sáng"
       ],
       "tags": [
         "park",
@@ -12243,7 +12483,8 @@
         "cao cấp",
         "ngoài trời",
         "bãi đỗ xe",
-        "takeaway"
+        "takeaway",
+        "giá hợp lý"
       ],
       "tags": [
         "cafe",
@@ -12265,7 +12506,7 @@
         "lat": 10.772414,
         "lon": 106.693023
       },
-      "rating": 0,
+      "rating": 4.7,
       "reviewCount": 0,
       "popularityScore": 98,
       "attributes": [],
@@ -12275,7 +12516,7 @@
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-789804C9-76E8-48C6-9CE2-50A24D77A0B2",
@@ -12431,17 +12672,25 @@
         "lat": 10.77948,
         "lon": 106.69513
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.9,
+      "reviewCount": 1093,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "yên tĩnh",
+        "bãi đỗ xe",
+        "gia đình",
+        "view đẹp",
+        "hồ bơi",
+        "ăn sáng",
+        "buffet sáng"
+      ],
       "tags": [
         "hotel",
         "eat_and_drink",
         "restaurant"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-7ADE5905-DA4A-4AB3-96C4-E5DF746CFC61",
@@ -12477,17 +12726,26 @@
         "lat": 10.773277,
         "lon": 106.69751
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.7,
+      "reviewCount": 14,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "mở cửa khuya",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "gia đình",
+        "view đẹp",
+        "món Việt"
+      ],
       "tags": [
         "vietnamese_restaurant",
         "restaurant",
         "barbecue_restaurant"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-7BA97B3F-6072-4250-AE50-50D0FF5FC8EC",
@@ -12501,8 +12759,8 @@
         "lat": 10.769119,
         "lon": 106.689989
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.2,
+      "reviewCount": 459,
       "popularityScore": 98,
       "attributes": [],
       "tags": [
@@ -12511,7 +12769,7 @@
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-7C1A4846-E967-4605-915E-4D9EB551CDB7",
@@ -12597,13 +12855,22 @@
       "rating": 0,
       "reviewCount": 0,
       "popularityScore": 94,
-      "attributes": [],
+      "attributes": [
+        "wifi",
+        "học nhóm",
+        "làm việc",
+        "máy lạnh",
+        "mở cửa sớm",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "takeaway"
+      ],
       "tags": [
         "coffee_shop",
         "cafe"
       ],
       "description": "Quán cà phê tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-7CA83CDE-4012-4715-9FB7-74F10839B5FF",
@@ -12650,7 +12917,7 @@
         "fast_food_restaurant"
       ],
       "description": "Quán cà phê tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-7D2ACBF3-9191-4FDB-AE34-2999FEC1F0BF",
@@ -12808,14 +13075,16 @@
       "rating": 0,
       "reviewCount": 0,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "takeaway"
+      ],
       "tags": [
         "coffee_shop",
         "vegetarian_restaurant",
         "restaurant"
       ],
       "description": "Quán cà phê tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-7E2C9BD3-50E6-4D6B-A1E7-D0D557D5F1EA",
@@ -13151,7 +13420,7 @@
         "lat": 10.775551,
         "lon": 106.704003
       },
-      "rating": 4.5,
+      "rating": 4.6,
       "reviewCount": 9486,
       "popularityScore": 100,
       "attributes": [
@@ -13312,17 +13581,26 @@
         "lat": 10.773625,
         "lon": 106.698397
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.4,
+      "reviewCount": 51,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "phù hợp hẹn hò",
+        "gia đình",
+        "view đẹp",
+        "món Việt"
+      ],
       "tags": [
         "vietnamese_restaurant",
         "asian_restaurant",
         "restaurant"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-834E33E7-1CAA-4730-ADC4-0DAC06BC6FFA",
@@ -13489,7 +13767,7 @@
         "lon": 106.698063
       },
       "rating": 5,
-      "reviewCount": 2,
+      "reviewCount": 12,
       "popularityScore": 98,
       "attributes": [
         "wifi",
@@ -13500,7 +13778,9 @@
         "mở cửa khuya",
         "mở cửa sớm",
         "bãi đỗ xe",
-        "takeaway"
+        "takeaway",
+        "đặt bàn",
+        "món Việt"
       ],
       "tags": [
         "vietnamese_restaurant",
@@ -13570,17 +13850,19 @@
         "lat": 10.779048,
         "lon": 106.704594
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.2,
+      "reviewCount": 393,
       "popularityScore": 100,
-      "attributes": [],
+      "attributes": [
+        "hồ bơi"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-86C65A0F-8213-44C2-B094-64A180272BFD",
@@ -13760,16 +14042,24 @@
         "lat": 10.791447,
         "lon": 106.691273
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.3,
+      "reviewCount": 100,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "mở cửa khuya",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "gia đình",
+        "món Việt"
+      ],
       "tags": [
         "restaurant",
         "vietnamese_restaurant"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-87A777BF-B968-495C-90B9-A4A345059A1A",
@@ -13834,14 +14124,17 @@
       "rating": 0,
       "reviewCount": 0,
       "popularityScore": 100,
-      "attributes": [],
+      "attributes": [
+        "hồ bơi",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "restaurant",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-87E877AB-277C-46DE-BD4B-3BEF176A38B3",
@@ -13972,17 +14265,24 @@
         "lat": 10.769895,
         "lon": 106.700573
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.8,
+      "reviewCount": 1520,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "mở cửa khuya",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "món Việt"
+      ],
       "tags": [
         "restaurant",
         "thai_restaurant",
         "diner"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-898ACB91-B9F4-4FEF-A1E9-A669A95FDFB8",
@@ -14049,17 +14349,22 @@
         "lat": 10.768987,
         "lon": 106.698297
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4,
+      "reviewCount": 95,
       "popularityScore": 100,
-      "attributes": [],
+      "attributes": [
+        "yên tĩnh",
+        "bãi đỗ xe",
+        "gia đình",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-8AAE9A45-BE22-4A3F-A9C5-A593C9183315",
@@ -14193,17 +14498,25 @@
         "lat": 10.771974,
         "lon": 106.703787
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.2,
+      "reviewCount": 25,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "mở cửa khuya",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "gia đình",
+        "món Việt"
+      ],
       "tags": [
         "diner",
         "restaurant",
         "fast_food_restaurant"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-8C100619-5BE3-4E11-9660-B7CB1FC41C04",
@@ -14690,17 +15003,24 @@
         "lat": 10.779236,
         "lon": 106.705099
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.3,
+      "reviewCount": 50,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "gia đình",
+        "món Việt"
+      ],
       "tags": [
         "diner",
         "vietnamese_restaurant",
         "asian_restaurant"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-92F38BA4-02D5-4384-8348-33BCF3584583",
@@ -14715,7 +15035,7 @@
         "lon": 106.704149
       },
       "rating": 4.3,
-      "reviewCount": 877,
+      "reviewCount": 878,
       "popularityScore": 100,
       "attributes": [
         "máy lạnh",
@@ -15300,15 +15620,20 @@
         "lat": 10.768541,
         "lon": 106.696121
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.7,
+      "reviewCount": 299,
       "popularityScore": 92,
-      "attributes": [],
+      "attributes": [
+        "wifi",
+        "mở cửa khuya",
+        "mở cửa sớm",
+        "bãi đỗ xe"
+      ],
       "tags": [
         "coffee_shop"
       ],
       "description": "Quán cà phê tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-9780EF14-6C3B-44EC-A36B-46BBCDE3A630",
@@ -15561,17 +15886,20 @@
         "lat": 10.766451,
         "lon": 106.692947
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.2,
+      "reviewCount": 12,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "yên tĩnh",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-99AF20DB-30EC-4766-BB74-238F8CAFC3BA",
@@ -15853,17 +16181,19 @@
         "lat": 10.784352,
         "lon": 106.695865
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4,
+      "reviewCount": 47,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "view đẹp"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "bar"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-9B7D7417-17F0-4DD9-B8FC-948B2DB65A88",
@@ -16044,17 +16374,23 @@
         "lat": 10.768187,
         "lon": 106.692584
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.2,
+      "reviewCount": 3016,
       "popularityScore": 100,
-      "attributes": [],
+      "attributes": [
+        "bãi đỗ xe",
+        "gia đình",
+        "view đẹp",
+        "ăn sáng",
+        "buffet sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-9CFE6EA4-6B2A-4E05-BDB8-969D87E35F8B",
@@ -16279,17 +16615,15 @@
         "lat": 10.768405,
         "lon": 106.698941
       },
-      "rating": 4.2,
-      "reviewCount": 2048,
+      "rating": 3.7,
+      "reviewCount": 167,
       "popularityScore": 100,
       "attributes": [
         "wifi",
-        "yên tĩnh",
         "học nhóm",
         "làm việc",
         "ổ cắm",
         "máy lạnh",
-        "giá hợp lý",
         "mở cửa khuya",
         "mở cửa sớm",
         "ngoài trời",
@@ -16351,7 +16685,8 @@
         "hồ bơi",
         "ăn sáng",
         "giá hợp lý",
-        "buffet sáng"
+        "buffet sáng",
+        "yên tĩnh"
       ],
       "tags": [
         "hotel",
@@ -16948,14 +17283,13 @@
         "lat": 10.770878,
         "lon": 106.69511
       },
-      "rating": 4.3,
-      "reviewCount": 5182,
+      "rating": 3.5,
+      "reviewCount": 214,
       "popularityScore": 100,
       "attributes": [
-        "cao cấp",
+        "giá hợp lý",
         "bãi đỗ xe",
         "gia đình",
-        "view đẹp",
         "hồ bơi",
         "ăn sáng",
         "buffet sáng"
@@ -17028,15 +17362,24 @@
         "lat": 10.769954,
         "lon": 106.688449
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.3,
+      "reviewCount": 23,
       "popularityScore": 97,
-      "attributes": [],
+      "attributes": [
+        "wifi",
+        "máy lạnh",
+        "giá hợp lý",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "takeaway",
+        "mở cửa khuya",
+        "mở cửa sớm"
+      ],
       "tags": [
         "coffee_shop"
       ],
       "description": "Quán cà phê tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-A7BC13D8-330B-4E8A-98F2-87C6504C394A",
@@ -17492,17 +17835,25 @@
         "lat": 10.776447,
         "lon": 106.702143
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.8,
+      "reviewCount": 43,
       "popularityScore": 97,
-      "attributes": [],
+      "attributes": [
+        "wifi",
+        "máy lạnh",
+        "mở cửa khuya",
+        "mở cửa sớm",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "takeaway"
+      ],
       "tags": [
         "shopping_center",
         "shopping",
         "cafe"
       ],
       "description": "Trung tâm thương mại tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-AD097819-F55A-4406-9BDF-16EE6774AF9E",
@@ -17943,9 +18294,9 @@
         "lat": 10.779235,
         "lon": 106.698934
       },
-      "rating": 4.3,
-      "reviewCount": 123,
-      "popularityScore": 96,
+      "rating": 4.5,
+      "reviewCount": 2548,
+      "popularityScore": 99,
       "attributes": [
         "máy lạnh",
         "cao cấp",
@@ -17955,7 +18306,11 @@
         "đặt bàn",
         "phù hợp hẹn hò",
         "view đẹp",
-        "món Việt"
+        "món Việt",
+        "wifi",
+        "ổ cắm",
+        "bãi đỗ xe",
+        "takeaway"
       ],
       "tags": [
         "cafe",
@@ -18198,7 +18553,9 @@
         "bãi đỗ xe",
         "view đẹp",
         "ăn sáng",
-        "buffet sáng"
+        "buffet sáng",
+        "gia đình",
+        "hồ bơi"
       ],
       "tags": [
         "hotel",
@@ -18230,7 +18587,7 @@
         "internet_cafe"
       ],
       "description": "Quán cà phê tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-B1B3A621-617A-43BF-AEAC-274A77C47E00",
@@ -18482,7 +18839,7 @@
         "lon": 106.703384
       },
       "rating": 4.7,
-      "reviewCount": 542,
+      "reviewCount": 4512,
       "popularityScore": 100,
       "attributes": [
         "yên tĩnh",
@@ -18490,7 +18847,9 @@
         "bãi đỗ xe",
         "view đẹp",
         "hồ bơi",
-        "ăn sáng"
+        "ăn sáng",
+        "gia đình",
+        "buffet sáng"
       ],
       "tags": [
         "hotel",
@@ -18841,7 +19200,7 @@
         "lat": 10.772945,
         "lon": 106.706033
       },
-      "rating": 4.3,
+      "rating": 4.9,
       "reviewCount": 9012,
       "popularityScore": 99,
       "attributes": [
@@ -18849,7 +19208,10 @@
         "view đẹp",
         "hồ bơi",
         "ăn sáng",
-        "buffet sáng"
+        "buffet sáng",
+        "yên tĩnh",
+        "bãi đỗ xe",
+        "gia đình"
       ],
       "tags": [
         "hotel",
@@ -18942,7 +19304,7 @@
         "lat": 10.769494,
         "lon": 106.696122
       },
-      "rating": 4.8,
+      "rating": 4.9,
       "reviewCount": 5237,
       "popularityScore": 99,
       "attributes": [
@@ -18952,7 +19314,9 @@
         "giá hợp lý",
         "ngoài trời",
         "bãi đỗ xe",
-        "takeaway"
+        "takeaway",
+        "mở cửa khuya",
+        "mở cửa sớm"
       ],
       "tags": [
         "coffee_shop",
@@ -19525,17 +19889,22 @@
         "lat": 10.774397,
         "lon": 106.696819
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.6,
+      "reviewCount": 135,
       "popularityScore": 100,
-      "attributes": [],
+      "attributes": [
+        "yên tĩnh",
+        "bãi đỗ xe",
+        "gia đình",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-BF1598CC-77A2-4BC8-B9E5-BFC4238B8DEE",
@@ -19644,8 +20013,8 @@
         "lat": 10.779105,
         "lon": 106.703941
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.6,
+      "reviewCount": 2064,
       "popularityScore": 99,
       "attributes": [],
       "tags": [
@@ -19654,7 +20023,7 @@
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-C008E97E-FE6A-4912-B27F-CA216318EEE9",
@@ -19692,17 +20061,26 @@
         "lat": 10.772204,
         "lon": 106.691596
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.2,
+      "reviewCount": 15,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "mở cửa khuya",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "phù hợp hẹn hò",
+        "gia đình",
+        "món Việt"
+      ],
       "tags": [
         "restaurant",
         "hotel",
         "swimming_pool"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-C029B9F6-8FD9-4AD4-8AE4-94E4A352F498",
@@ -19764,17 +20142,19 @@
         "lat": 10.766789,
         "lon": 106.689499
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.5,
+      "reviewCount": 328,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "bed_and_breakfast"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-C0C5B6DF-D7CA-49CF-8DE0-65F6C7A0D536",
@@ -19788,17 +20168,26 @@
         "lat": 10.779344,
         "lon": 106.696381
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.1,
+      "reviewCount": 6,
       "popularityScore": 100,
-      "attributes": [],
+      "attributes": [
+        "wifi",
+        "yên tĩnh",
+        "máy lạnh",
+        "mở cửa khuya",
+        "mở cửa sớm",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "takeaway"
+      ],
       "tags": [
         "cafe",
         "coffee_shop",
         "vietnamese_restaurant"
       ],
       "description": "Quán cà phê tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-C1A0A697-F5B1-42FB-9799-AE0B61954AEF",
@@ -20276,17 +20665,24 @@
         "lat": 10.76949,
         "lon": 106.700106
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.8,
+      "reviewCount": 31,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "mở cửa khuya",
+        "ngoài trời",
+        "đặt bàn",
+        "phù hợp hẹn hò",
+        "gia đình",
+        "view đẹp"
+      ],
       "tags": [
         "restaurant",
         "asian_restaurant",
         "coffee_shop"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-C6F8C783-901B-485E-915D-8A966477B9A0",
@@ -20346,12 +20742,11 @@
         "lat": 10.774395,
         "lon": 106.706135
       },
-      "rating": 4.3,
-      "reviewCount": 868,
+      "rating": 4.4,
+      "reviewCount": 280,
       "popularityScore": 100,
       "attributes": [
-        "yên tĩnh",
-        "cao cấp",
+        "bãi đỗ xe",
         "gia đình",
         "view đẹp",
         "hồ bơi",
@@ -20659,16 +21054,23 @@
         "lat": 10.784933,
         "lon": 106.690774
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.8,
+      "reviewCount": 64,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "mở cửa khuya",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "phù hợp hẹn hò",
+        "gia đình",
+        "món Việt"
+      ],
       "tags": [
         "restaurant",
         "vietnamese_restaurant"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-CA8DC2ED-2ACC-48C8-943E-54DE2439815C",
@@ -20991,7 +21393,7 @@
         "lat": 10.768589,
         "lon": 106.694142
       },
-      "rating": 0,
+      "rating": 3,
       "reviewCount": 0,
       "popularityScore": 99,
       "attributes": [],
@@ -21001,7 +21403,7 @@
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-CD1D6731-2EFA-4A57-9B1E-94EBF1336F06",
@@ -21087,17 +21489,26 @@
         "lat": 10.777519,
         "lon": 106.69749
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4,
+      "reviewCount": 85,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "mở cửa khuya",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "phù hợp hẹn hò",
+        "gia đình",
+        "món Việt"
+      ],
       "tags": [
         "vietnamese_restaurant",
         "restaurant",
         "asian_restaurant"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-CDB53302-3001-4DA2-9296-234A01DE6520",
@@ -21407,17 +21818,22 @@
         "lat": 10.757262,
         "lon": 106.686195
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4,
+      "reviewCount": 33,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "gia đình",
+        "view đẹp",
+        "hồ bơi",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-D0133E44-3534-4698-B8C2-7A0CE7C6FF27",
@@ -21458,14 +21874,22 @@
       "rating": 0,
       "reviewCount": 0,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "mở cửa khuya",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "gia đình",
+        "món Việt"
+      ],
       "tags": [
         "vietnamese_restaurant",
         "restaurant",
         "diner"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-D046E41D-ABB6-4E41-9712-93D76A07912D",
@@ -23094,17 +23518,22 @@
         "lat": 10.777488,
         "lon": 106.705359
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.8,
+      "reviewCount": 661,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "bãi đỗ xe",
+        "view đẹp",
+        "hồ bơi",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-DF24B255-F2FB-4508-B77E-0C7427AFB8B2",
@@ -23660,17 +24089,22 @@
         "lat": 10.779191,
         "lon": 106.704613
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.9,
+      "reviewCount": 216,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "yên tĩnh",
+        "bãi đỗ xe",
+        "gia đình",
+        "ăn sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-E44F3BBD-44DF-466D-9CC8-3204C2B46F5E",
@@ -23951,17 +24385,22 @@
         "lat": 10.782494,
         "lon": 106.70495
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.8,
+      "reviewCount": 210,
       "popularityScore": 100,
-      "attributes": [],
+      "attributes": [
+        "bãi đỗ xe",
+        "hồ bơi",
+        "ăn sáng",
+        "buffet sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-E716ECFA-FAE6-4E44-A201-325CD23FE52B",
@@ -24294,7 +24733,7 @@
         "lat": 10.771779,
         "lon": 106.694065
       },
-      "rating": 4.2,
+      "rating": 4.3,
       "reviewCount": 5512,
       "popularityScore": 99,
       "attributes": [
@@ -24303,7 +24742,8 @@
         "view đẹp",
         "hồ bơi",
         "ăn sáng",
-        "buffet sáng"
+        "buffet sáng",
+        "giá hợp lý"
       ],
       "tags": [
         "hotel",
@@ -24452,17 +24892,23 @@
         "lat": 10.788089,
         "lon": 106.699089
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.6,
+      "reviewCount": 67,
       "popularityScore": 96,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "mở cửa khuya",
+        "mở cửa sớm",
+        "ngoài trời",
+        "bãi đỗ xe"
+      ],
       "tags": [
         "cafe",
         "coffee_shop",
         "restaurant"
       ],
       "description": "Quán cà phê tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-EBFA56A8-DA56-4A23-8867-C90865140AD6",
@@ -24734,17 +25180,26 @@
         "lat": 10.795854,
         "lon": 106.685259
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.9,
+      "reviewCount": 39,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "wifi",
+        "yên tĩnh",
+        "máy lạnh",
+        "mở cửa khuya",
+        "mở cửa sớm",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "takeaway"
+      ],
       "tags": [
         "cafe",
         "coffee_shop",
         "diner"
       ],
       "description": "Quán cà phê tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-EEAAD37E-66A1-4343-85FC-3D6919106129",
@@ -24875,17 +25330,25 @@
         "lat": 10.767754,
         "lon": 106.686494
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.5,
+      "reviewCount": 653,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "phù hợp hẹn hò",
+        "gia đình",
+        "món Việt"
+      ],
       "tags": [
         "vietnamese_restaurant",
         "fast_food_restaurant",
         "coffee_shop"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-EF96780F-4073-4388-97FE-2D5B771C3AA8",
@@ -25432,7 +25895,7 @@
         "lat": 10.766776,
         "lon": 106.689642
       },
-      "rating": 0,
+      "rating": 4.2,
       "reviewCount": 0,
       "popularityScore": 98,
       "attributes": [],
@@ -25442,7 +25905,7 @@
         "accommodation"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-F4E5ECE7-1E84-486D-BFCD-DC8B08BA49E9",
@@ -25510,17 +25973,26 @@
         "lat": 10.762893,
         "lon": 106.686948
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.8,
+      "reviewCount": 233,
       "popularityScore": 100,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "mở cửa khuya",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "phù hợp hẹn hò",
+        "gia đình",
+        "món Việt"
+      ],
       "tags": [
         "diner",
         "vietnamese_restaurant",
         "asian_restaurant"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-F5C4A3DD-2CF3-4536-943A-15E54E25C900",
@@ -25606,17 +26078,19 @@
         "lat": 10.766627,
         "lon": 106.690471
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.3,
+      "reviewCount": 107,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "bãi đỗ xe"
+      ],
       "tags": [
         "hotel",
         "hostel",
         "accommodation"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-F6419750-E2FB-40EC-B9A8-44EF0F555343",
@@ -25630,17 +26104,21 @@
         "lat": 10.778542,
         "lon": 106.704565
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.5,
+      "reviewCount": 1018,
       "popularityScore": 100,
-      "attributes": [],
+      "attributes": [
+        "gia đình",
+        "view đẹp",
+        "hồ bơi"
+      ],
       "tags": [
         "hotel",
         "motel",
         "accommodation"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-F67C5BC9-623C-499C-99A4-1A1276846DC4",
@@ -25943,17 +26421,26 @@
         "lat": 10.77246,
         "lon": 106.691449
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.2,
+      "reviewCount": 15,
       "popularityScore": 98,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "mở cửa khuya",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "phù hợp hẹn hò",
+        "gia đình",
+        "món Việt"
+      ],
       "tags": [
         "restaurant",
         "professional_services",
         "diner"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-F8BE66F0-F700-48F0-8A05-D819AB793593",
@@ -26211,17 +26698,23 @@
         "lat": 10.765057,
         "lon": 106.695789
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.1,
+      "reviewCount": 194,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "yên tĩnh",
+        "gia đình",
+        "view đẹp",
+        "ăn sáng",
+        "buffet sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-FC9CE974-0DFE-4DB5-9667-C0CD65B18A71",
@@ -26235,17 +26728,23 @@
         "lat": 10.777038,
         "lon": 106.70436
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 4.5,
+      "reviewCount": 69,
       "popularityScore": 99,
-      "attributes": [],
+      "attributes": [
+        "yên tĩnh",
+        "gia đình",
+        "view đẹp",
+        "ăn sáng",
+        "buffet sáng"
+      ],
       "tags": [
         "hotel",
         "accommodation",
         "motel"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-FD106A55-031E-48A0-8607-374227A29CDD",
@@ -26262,14 +26761,21 @@
       "rating": 0,
       "reviewCount": 0,
       "popularityScore": 96,
-      "attributes": [],
+      "attributes": [
+        "wifi",
+        "máy lạnh",
+        "mở cửa sớm",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "takeaway"
+      ],
       "tags": [
         "coffee_shop",
         "cafe",
         "restaurant"
       ],
       "description": "Quán cà phê tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-FD41B2AE-D4F9-4D8F-BEAC-4009FF3D0E30",
@@ -26283,17 +26789,25 @@
         "lat": 10.770426,
         "lon": 106.701271
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.7,
+      "reviewCount": 41,
       "popularityScore": 97,
-      "attributes": [],
+      "attributes": [
+        "máy lạnh",
+        "mở cửa khuya",
+        "ngoài trời",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "phù hợp hẹn hò",
+        "gia đình"
+      ],
       "tags": [
         "restaurant",
         "french_restaurant",
         "chinese_restaurant"
       ],
       "description": "Nhà hàng tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-FDA082CC-E5F8-47B4-BBE2-B26DC1BDAE1E",
@@ -26307,17 +26821,24 @@
         "lat": 10.764337,
         "lon": 106.691662
       },
-      "rating": 0,
-      "reviewCount": 0,
+      "rating": 3.9,
+      "reviewCount": 21,
       "popularityScore": 100,
-      "attributes": [],
+      "attributes": [
+        "cao cấp",
+        "bãi đỗ xe",
+        "view đẹp",
+        "hồ bơi",
+        "ăn sáng",
+        "buffet sáng"
+      ],
       "tags": [
         "hotel",
         "motel",
         "accommodation"
       ],
       "description": "Khách sạn tại Quận 1, TP.HCM. Nguồn: Overture Maps.",
-      "datasetTier": "open-skeleton"
+      "datasetTier": "open-enriched"
     },
     {
       "id": "OVT-FE56135B-0571-45F1-A4AC-E26992E52167",
@@ -26331,7 +26852,7 @@
         "lat": 10.771758,
         "lon": 106.702942
       },
-      "rating": 4.1,
+      "rating": 4.4,
       "reviewCount": 2308,
       "popularityScore": 99,
       "attributes": [

@@ -1,6 +1,6 @@
 # TASCO Atlas Conversation Scenario Evaluation
 
-Generated: 2026-07-11T19:03:29.861Z
+Generated: 2026-07-11T22:52:56.986Z
 
 Source of truth: `dataset.xlsx`, sheet `Conversation_Scenarios` (90 scenarios). Results use the deterministic dataset-backed `handleChat` path; OpenAI prose enhancement is intentionally excluded from ranking evaluation.
 
@@ -34,7 +34,7 @@ Source of truth: `dataset.xlsx`, sheet `Conversation_Scenarios` (90 scenarios). 
 | SYN007 | Clarification Dialog | 100% | PASS | None | None |
 | SYN008 | Clarification Dialog | 100% | PASS | None | None |
 | SYN009 | Clarification Dialog | 100% | PASS | POI004 Pizza 4P's Hai Bà Trưng; POI021 Nhà hàng Secret Garden | None |
-| SYN010 | Clarification Dialog | 100% | PASS | POI011 Maison de Tet Décor; POI010 Cộng Cà Phê Hồ Gươm; POI060 Cafe Mộc Hà Nội 60 | None |
+| SYN010 | Clarification Dialog | 100% | PASS | POI010 Cộng Cà Phê Hồ Gươm; POI011 Maison de Tet Décor; POI060 Cafe Mộc Hà Nội 60 | None |
 | SYN011 | Clarification Dialog | 100% | PASS | POI008 Galaxy Nguyễn Du; POI009 Galaxy Hotel Đà Nẵng | None |
 | SYN012 | Clarification Dialog | 100% | PASS | POI007 Vincom Center Đồng Khởi; POI016 CGV Vincom Bà Triệu | None |
 | SYN013 | Clarification Dialog | 100% | PASS | POI026 Sân bay Tân Sơn Nhất; POI027 Sân bay Nội Bài | None |

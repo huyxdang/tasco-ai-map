@@ -1,0 +1,50 @@
+[
+  {
+    "breakfast": true,
+    "breakfast_buffet": false,
+    "family_friendly": true,
+    "hotel_url": "https://www.booking.com/hotel/vn/symphony-hotel-ho-chi-minh.html",
+    "name": "Vilion Boutique Hotel Ben Thanh",
+    "nice_view": true,
+    "parking": "",
+    "pool": false,
+    "price_tier": "Budget",
+    "quiet": "",
+    "rating": 3.85,
+    "rating_source": "Trip.com",
+    "review_count": 14,
+    "street_address": "120 Lý Tự Trọng, Phường Bến Thành, Quận 1, Hồ Chí Minh"
+  },
+  {
+    "breakfast": "true",
+    "breakfast_buffet": "",
+    "family_friendly": "true",
+    "hotel_url": "https://www.booking.com/hotel/vn/gold-saigon.html",
+    "name": "Gold Hotel Saigon",
+    "nice_view": "",
+    "parking": "true",
+    "pool": "true",
+    "price_tier": "Mid-range",
+    "quiet": "",
+    "rating": "4.1",
+    "rating_source": "Booking.com",
+    "review_count": "1100",
+    "street_address": "37-39-41 Lê Anh Xuân, Phường Bến Thành, Quận 1, TP. Hồ Chí Minh"
+  },
+  {
+    "breakfast": true,
+    "breakfast_buffet": null,
+    "family_friendly": null,
+    "hotel_url": "https://www.booking.com/hotel/vn/ailen-boutique.html",
+    "name": "AILEN BOUTIQUE HOTEL",
+    "nice_view": true,
+    "parking": true,
+    "pool": null,
+    "price_tier": "Budget",
+    "quiet": null,
+    "rating": 4.05,
+    "rating_source": "Booking.com",
+    "review_count": 640,
+    "street_address": "283/27 Đường Phạm Ngũ Lão, Phường Phạm Ngũ Lão, Quận 1, Hồ Chí Minh, Vietnam"
+  }
+]

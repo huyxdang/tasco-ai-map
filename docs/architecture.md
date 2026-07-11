@@ -6,7 +6,7 @@ The prototype deliberately optimizes for a reliable overnight demo: one Next.js 
 
 ## Journey composition and revision
 
-`src/lib/journey.ts` is a pure deterministic commerce layer beside ranking. It accepts organically ranked POIs, attaches eligible fuel/dining/parking actions afterward, and never changes the ranker. Actions use stable hashes, integer VND arithmetic, exact recomputed totals, and visible simulation disclosures. The response carries only the prior query/location, selected POI IDs, action kinds, total, and revision number for the next turn.
+`src/lib/journey.ts` is a pure deterministic commerce layer beside ranking. It accepts organically ranked POIs, attaches eligible fuel/dining/parking actions afterward, and never changes the ranker. Actions use stable hashes, integer VND arithmetic, exact recomputed totals, and visible simulation disclosures. Ordered café → phở requests carry a typed stop category plus an optional strict cuisine/dish constraint beside the legacy dining action kind, so revisions cannot replace a café with a restaurant or a requested phở stop with unrelated food. Each leg is ranked from its own segment plus shared location/constraints. The response carries only the prior query/location, selected POI IDs, action kinds, optional ordered stop categories and index-aligned cuisines, total, and revision number for the next turn.
 
 A cheaper revision searches same-kind, same-city candidates, applies the score-floor utility guardrail, and accepts a replacement only if the complete total is strictly lower. Otherwise it returns `no_cheaper_option` with the unchanged bundle. OpenAI cannot mutate the structured journey. Browser confirmation locks on first activation, creates one session-local simulated VETC receipt, and triggers Route Theater when motion and map readiness permit.
 
@@ -28,6 +28,8 @@ flowchart LR
 ```
 
 The browser owns the presentation and current conversation. The server routes own deterministic interpretation, search, ranking, and response construction. Shared TypeScript types keep the UI, chat API, and `/v1` facade aligned.
+
+`SessionContext.recentQueries` keeps the current user turn plus the three prior user turns. Typed journey state carries ordered stops and strict cuisine/dish enums across refinements; an explicit new category/topic rebases the rolling context so stale café/restaurant or city text cannot leak into the new search. The optional NLU model may translate only supported café/restaurant and cuisine enums, but POI selection, hard dish matching, and ordering remain deterministic.
 
 ## Session and context management
 

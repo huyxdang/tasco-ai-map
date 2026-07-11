@@ -2,6 +2,8 @@ Date: 2026-07-11
 Status: active
 Question: How should TASCO Atlas implement the P1 Journey Checkout without weakening organic ranking or implying real commerce?
 Decision: Keep ranking authoritative and attach a deterministic 2–3 action simulated journey afterward. Carry compact journey state client-side, require a strictly lower total for cheaper revisions, confirm idempotently in the browser, create one simulated VETC receipt, and reuse Route Theater as the payoff.
+
+Extension (2026-07-12): explicit café → phở requests carry ordered `requestedCategories` plus index-aligned `requestedCuisines` beside the legacy dining action kind. Each leg ranks from its own segment and an explicit dish is a hard deterministic POI match, including during cheaper revisions. The client-carried context retains the current user turn plus three prior turns, but an explicit new topic rebases both history and constraints. The optional NLU translator may emit only the ordered stop and cuisine enums the deterministic engine supports; it still cannot choose POIs.
 Why: This proves route-to-commerce orchestration while remaining dataset-grounded, offline-capable, transparent, and achievable in the hackathon scope.
 Applies to: `src/lib/journey.ts`, chat/API contracts, Atlas journey UI, OpenAPI, docs, and focused tests.
 Tradeoff: Prices, availability, wallet confirmation, rewards, and receipt are demonstrations only; no fulfillment or durable transaction exists.

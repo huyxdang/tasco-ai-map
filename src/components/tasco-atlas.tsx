@@ -562,7 +562,6 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
         />
       ) : (
         <section className="atlas-live-sheet">
-          <div className="sheet-handle" />
           <div className="live-controls">
             <button className={`live-orb state-${voiceState}`} type="button" onClick={toggleMute} aria-label="Bật hoặc tắt micrô">
               {voiceState === "muted" ? <MicOff size={25} /> : voiceState === "speaking" ? <Volume2 size={25} /> : <Mic size={25} />}
@@ -664,13 +663,11 @@ function sourceLabel(tier?: string): string {
 }
 
 function RecommendationCard({ response, onOpen }: { response: ChatResponse; onOpen: () => void }) {
-  const [showReceipts, setShowReceipts] = useState(false);
-  const recommendation = response.recommendations[0];
-  const primary = recommendation?.poi;
+  const [expandedRecommendationIndex, setExpandedRecommendationIndex] = useState<number | null>(null);
   const journey = response.journey;
   const revised = journey?.revision.outcome === "cheaper";
   const animatedTotal = useAnimatedVnd(journey?.totalVnd ?? 0);
-  if (!primary || !recommendation) {
+  if (!response.recommendations.length) {
     return (
       <article className="live-recommendation">
         <header><span><Sparkles size={14} /> Gợi ý phù hợp nhất</span></header>
@@ -678,40 +675,69 @@ function RecommendationCard({ response, onOpen }: { response: ChatResponse; onOp
       </article>
     );
   }
-  const attributes = primary.attributes.slice(0, 2).join(" · ");
-  const scoreParts = Object.entries(recommendation.scoreBreakdown ?? {})
-    .filter(([key, value]) => value > 0 && SCORE_LABELS[key])
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 5);
-  const maxPart = scoreParts[0]?.[1] ?? 1;
+
+  const recommendationCount = response.recommendations.length;
   return (
-    <article className={`live-recommendation${revised ? " is-revised" : ""}`}>
-      <header><span><Sparkles size={14} /> Gợi ý phù hợp nhất</span>{revised ? <em><Check size={13} /> Đã thay đổi</em> : null}</header>
-      <div className="recommendation-title"><div><Utensils size={20} /></div><span><strong>{primary.name}</strong><small>{primary.category}{attributes ? ` · ${attributes}` : ""}</small></span></div>
-      <div className="recommendation-facts">
-        <span><MapPin size={14} /><strong>{primary.district}, {primary.city}</strong><small>vị trí</small></span>
-        <span><Clock3 size={14} /><strong>{primary.rating.toFixed(1)}/5</strong><small>đánh giá dữ liệu</small></span>
-        {journey ? <span><CreditCard size={14} /><strong className="is-counting">{animatedTotal.toLocaleString("vi-VN")} ₫</strong><small>tổng ước tính</small></span> : null}
-      </div>
-      {revised && journey ? <div className="savings-line"><Check size={15} /> Tiết kiệm {journey.savingsVnd.toLocaleString("vi-VN")} ₫ so với phương án trước</div> : null}
-      <button className="receipts-toggle" type="button" onClick={() => setShowReceipts((value) => !value)} aria-expanded={showReceipts}>
-        <ShieldCheck size={13} /> Vì sao gợi ý này? · {showReceipts ? "Ẩn" : "Xem điểm thành phần"}
-      </button>
-      {showReceipts ? (
-        <div className="receipts-panel">
-          {scoreParts.map(([key, value]) => (
-            <div className="receipts-row" key={key}>
-              <small>{SCORE_LABELS[key]}</small>
-              <i><b style={{ width: `${Math.round((value / maxPart) * 100)}%` }} /></i>
-              <em>{value.toFixed(2)}</em>
-            </div>
-          ))}
-          <p>{recommendation.reason}</p>
-          <small className="receipts-source"><ShieldCheck size={11} /> Nguồn: {sourceLabel(primary.datasetTier)} · {primary.id}</small>
-        </div>
-      ) : null}
-      {journey ? <button type="button" onClick={onOpen}><Navigation size={17} /> Chốt hành trình</button> : null}
-    </article>
+    <section className="live-recommendations" aria-labelledby="live-recommendations-heading">
+      <header className="recommendations-summary">
+        <span id="live-recommendations-heading"><Sparkles size={14} /> {recommendationCount} gợi ý phù hợp</span>
+        {revised ? <em><Check size={13} /> Đã thay đổi</em> : null}
+      </header>
+      <ol className="live-recommendation-list">
+        {response.recommendations.map((recommendation, index) => {
+          const primary = recommendation.poi;
+          const attributes = primary.attributes.slice(0, 2).join(" · ");
+          const scoreParts = Object.entries(recommendation.scoreBreakdown ?? {})
+            .filter(([key, value]) => value > 0 && SCORE_LABELS[key])
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 5);
+          const maxPart = scoreParts[0]?.[1] ?? 1;
+          const showReceipts = expandedRecommendationIndex === index;
+          const receiptsId = `recommendation-receipts-${index}`;
+          const titleId = `recommendation-title-${index}`;
+          return (
+            <li key={primary.id}>
+              <article className={`live-recommendation${revised && index === 0 ? " is-revised" : ""}`} aria-labelledby={titleId}>
+                <header>
+                  <span><Sparkles size={14} /> {index === 0 ? "Phù hợp nhất" : `Lựa chọn ${index + 1}`}</span>
+                  <em>{index + 1}/{recommendationCount}</em>
+                </header>
+                <div className="recommendation-title"><div><Utensils size={20} /></div><span><strong id={titleId}>{primary.name}</strong><small>{primary.category}{attributes ? ` · ${attributes}` : ""}</small></span></div>
+                <div className="recommendation-facts">
+                  <span><MapPin size={14} /><strong>{primary.district}, {primary.city}</strong><small>vị trí</small></span>
+                  <span><Clock3 size={14} /><strong>{primary.rating.toFixed(1)}/5</strong><small>đánh giá dữ liệu</small></span>
+                  {journey && index === 0 ? <span><CreditCard size={14} /><strong className="is-counting">{animatedTotal.toLocaleString("vi-VN")} ₫</strong><small>tổng ước tính</small></span> : null}
+                </div>
+                {revised && journey && index === 0 ? <div className="savings-line"><Check size={15} /> Tiết kiệm {journey.savingsVnd.toLocaleString("vi-VN")} ₫ so với phương án trước</div> : null}
+                <button
+                  className="receipts-toggle"
+                  type="button"
+                  onClick={() => setExpandedRecommendationIndex(showReceipts ? null : index)}
+                  aria-expanded={showReceipts}
+                  aria-controls={receiptsId}
+                >
+                  <ShieldCheck size={13} /> Vì sao gợi ý này? · {showReceipts ? "Ẩn" : "Xem điểm thành phần"}
+                </button>
+                {showReceipts ? (
+                  <div className="receipts-panel" id={receiptsId}>
+                    {scoreParts.map(([key, value]) => (
+                      <div className="receipts-row" key={key}>
+                        <small>{SCORE_LABELS[key]}</small>
+                        <i><b style={{ width: `${Math.round((value / maxPart) * 100)}%` }} /></i>
+                        <em>{value.toFixed(2)}</em>
+                      </div>
+                    ))}
+                    <p>{recommendation.reason}</p>
+                    <small className="receipts-source"><ShieldCheck size={11} /> Nguồn: {sourceLabel(primary.datasetTier)} · {primary.id}</small>
+                  </div>
+                ) : null}
+              </article>
+            </li>
+          );
+        })}
+      </ol>
+      {journey ? <button className="atlas-primary recommendations-journey-button" type="button" onClick={onOpen}><Navigation size={17} /> Chốt hành trình</button> : null}
+    </section>
   );
 }
 

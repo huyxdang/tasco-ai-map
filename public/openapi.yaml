@@ -667,6 +667,12 @@ components:
           type: string
         lastQuery:
           type: string
+        recentQueries:
+          type: array
+          maxItems: 4
+          description: Current user turn plus at most three prior user turns.
+          items:
+            type: string
         constraints:
           type: array
           items:
@@ -685,6 +691,19 @@ components:
         location: { type: string }
         selectedPoiIds: { type: array, items: { type: string }, minItems: 2, maxItems: 3 }
         actionKinds: { type: array, items: { type: string, enum: [fuel, dining, parking] }, minItems: 2, maxItems: 3 }
+        requestedCategories:
+          type: array
+          minItems: 2
+          maxItems: 3
+          items: { type: string, enum: [cafe, restaurant] }
+        requestedCuisines:
+          type: array
+          minItems: 2
+          maxItems: 3
+          description: Index-aligned cuisine constraints; null means that stop has no explicit cuisine.
+          items:
+            type: [string, "null"]
+            enum: [pho, vietnamese, italian, japanese, korean, null]
         totalVnd: { type: integer, minimum: 0 }
         revision: { type: integer, minimum: 0 }
 
@@ -702,6 +721,7 @@ components:
         location:
           $ref: "#/components/schemas/Coordinates"
         history:
+          description: Only the three latest prior user turns are interpreted; assistant turns do not enter deterministic ranking or journey state.
           oneOf:
             - type: string
             - type: array
@@ -794,6 +814,8 @@ components:
         id: { type: string }
         poiId: { type: string }
         kind: { type: string, enum: [fuel, dining, parking] }
+        requestedCategory: { type: string, enum: [cafe, restaurant] }
+        requestedCuisine: { type: string, enum: [pho, vietnamese, italian, japanese, korean] }
         miniApp: { type: string }
         cta: { type: string }
         reason: { type: string }

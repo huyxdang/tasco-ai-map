@@ -1,0 +1,20 @@
+[
+  {
+    "air_conditioned": true,
+    "cuisine": "International",
+    "family_friendly": true,
+    "foody_url": "https://www.foody.vn/ho-chi-minh/lotte-hotel-saigon-buffet-atrium-cafe",
+    "name": "Lotte Hotel Saigon - Buffet Atrium Café",
+    "nice_view": null,
+    "open_late": true,
+    "outdoor_seating": true,
+    "parking": true,
+    "price_tier": "Fine Dining",
+    "rating": 3.45,
+    "rating_source": "Foody",
+    "reservations": true,
+    "review_count": 806,
+    "romantic": true,
+    "street_address": "2A - 4A Tôn Đức Thắng, P. Bến Nghé, Quận 1, TP. HCM"
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "mode": "dry-run",
+  "generated_at": "2026-07-11T20:33:08.077Z",
+  "target_strict_usable_per_category": 100,
+  "invariants": {
+    "controller_lock": true,
+    "atomic_json_writes": true,
+    "model_roles": {
+      "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+      "investigate_subagent": "openai/gpt-oss-120b:nitro"
+    },
+    "successful_terminal_status": "live only",
+    "identity_dedupe": "canonical URL OR canonical venue name plus normalized street/house identity"
+  },
+  "categories": {
+    "cafes": {
+      "primary_key": "cafe_url",
+      "input_rows": 49,
+      "canonical_unique_rows": 49,
+      "strict_usable_rows": 46,
+      "invalid_rows_preserved": 3,
+      "duplicate_rows_collapsed": 0,
+      "duplicate_groups": [],
+      "post_reconciliation_duplicate_count": 0,
+      "invariant_errors": []
+    },
+    "restaurants": {
+      "primary_key": "foody_url",
+      "input_rows": 30,
+      "canonical_unique_rows": 30,
+      "strict_usable_rows": 28,
+      "invalid_rows_preserved": 2,
+      "duplicate_rows_collapsed": 0,
+      "duplicate_groups": [],
+      "post_reconciliation_duplicate_count": 0,
+      "invariant_errors": []
+    },
+    "hotels": {
+      "primary_key": "hotel_url",
+      "input_rows": 28,
+      "canonical_unique_rows": 28,
+      "strict_usable_rows": 26,
+      "invalid_rows_preserved": 2,
+      "duplicate_rows_collapsed": 0,
+      "duplicate_groups": [],
+      "post_reconciliation_duplicate_count": 0,
+      "invariant_errors": []
+    }
+  },
+  "passed": true
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "air_conditioned": "",
+    "cuisine": "Vietnamese",
+    "family_friendly": true,
+    "foody_url": "https://www.foody.vn/ho-chi-minh/bo-bia-hoang",
+    "name": "Bò Bía Hoàng",
+    "nice_view": "",
+    "open_late": false,
+    "outdoor_seating": true,
+    "parking": true,
+    "price_tier": "$",
+    "rating": "",
+    "rating_source": "",
+    "reservations": "",
+    "review_count": "",
+    "romantic": "",
+    "street_address": "14 Nguyễn Cảnh Chân, P. Cầu Kho, Quận 1, TP.HCM"
+  },
+  {
+    "air_conditioned": true,
+    "cuisine": "Vietnamese",
+    "family_friendly": true,
+    "foody_url": "https://www.foody.vn/ho-chi-minh/quan-an-gia-dinh-33-de-tham",
+    "name": "Quán Ăn Gia Đình 33 - Đề Thám",
+    "nice_view": null,
+    "open_late": true,
+    "outdoor_seating": true,
+    "parking": true,
+    "price_tier": "Budget",
+    "rating": 5,
+    "rating_source": "Foody",
+    "reservations": true,
+    "review_count": 1,
+    "romantic": null,
+    "street_address": "33 Đề Thám, Quận 1, TP.HCM"
+  }
+]

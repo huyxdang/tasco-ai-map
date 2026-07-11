@@ -4,7 +4,12 @@ import {
   composeJourney,
   isCheaperJourneyRequest,
   isJourneyIntent,
+  journeyStopLabel,
   journeyState,
+  journeyStopsFromState,
+  poiCategoriesForJourneyStop,
+  poiMatchesJourneyStop,
+  requestedJourneyStops,
   reviseJourneyCheaper,
 } from "./journey";
 import {
@@ -21,6 +26,7 @@ import type {
   ChatRequest,
   ChatResponse,
   Coordinates,
+  JourneyStopRequest,
   Poi,
   RankedPoi,
   Recommendation,
@@ -32,6 +38,9 @@ interface Ambiguity {
   candidateIds: string[];
   question: string;
 }
+
+const RECENT_USER_TURN_WINDOW = 4; // current turn + the three prior user turns
+const PRIOR_USER_TURN_WINDOW = RECENT_USER_TURN_WINDOW - 1;
 
 const LOCATION_CENTERS: Array<{
   phrases: string[];
@@ -109,18 +118,37 @@ function withoutAnchorPhrases(text: string, anchor: LocationAnchor): string {
   return result.replace(/\s+/g, " ").trim();
 }
 
-function conversationText(request: ChatRequest): string {
-  const history = Array.isArray(request.history)
-    ? request.history.map(({ role, content }) => `${role}: ${content}`).join("\n")
-    : request.history ?? "";
-  // Rolling multi-turn context: the last few user turns, not just the previous
-  // one, so a cuisine/location said three turns ago still shapes this turn.
+function historyUserTurns(request: ChatRequest): string[] {
+  if (Array.isArray(request.history)) {
+    return request.history
+      .filter(({ role }) => role === "user")
+      .map(({ content }) => content)
+      .filter(Boolean);
+  }
+  if (!request.history) return [];
+  return request.history
+    .split(/\r?\n/)
+    .flatMap((line) => {
+      const match = line.match(/^\s*(?:user|người dùng|nguoi dung)\s*:\s*(.+)$/i);
+      return match?.[1] ? [match[1]] : [];
+    });
+}
+
+export function priorUserTurns(request: ChatRequest): string[] {
   const recent = request.sessionContext?.recentQueries ?? [];
-  const previous = request.sessionContext?.lastQuery ?? "";
-  const contextTurns = [...new Set([...recent, previous])].filter(
-    (turn) => turn && turn !== request.message,
-  );
-  return [history, ...contextTurns, request.message, request.nluHint]
+  const previous = request.sessionContext?.lastQuery;
+  const turns = [
+    ...historyUserTurns(request),
+    ...recent,
+    ...(previous && !recent.includes(previous) ? [previous] : []),
+  ].filter((turn): turn is string => Boolean(turn));
+  return turns.slice(-PRIOR_USER_TURN_WINDOW);
+}
+
+function conversationText(request: ChatRequest): string {
+  // Deterministic interpretation sees only the current turn and three prior
+  // USER turns. Assistant prose and older client history never enter ranking.
+  return [...priorUserTurns(request), request.message, request.nluHint]
     .filter(Boolean)
     .join("\n");
 }
@@ -468,9 +496,13 @@ function sessionContext(
   intent: string,
   pendingClarification?: Ambiguity,
   journey?: SessionContext["journey"],
+  resetConversation = false,
 ): SessionContext {
-  const previousConstraints = request.sessionContext?.constraints ?? [];
+  const previousConstraints = resetConversation
+    ? []
+    : request.sessionContext?.constraints ?? [];
   const removalTarget = constraintRemovalTarget(request.message);
+  const priorTurns = priorUserTurns(request);
   return {
     sessionId:
       request.sessionId ??
@@ -495,9 +527,13 @@ function sessionContext(
           previousConstraints,
           constraintsFor([request.message, request.nluHint].filter(Boolean).join("\n")),
         ),
-    recentQueries: removalTarget
-      ? request.sessionContext?.recentQueries ?? []
-      : [...(request.sessionContext?.recentQueries ?? []), request.message].slice(-4),
+    recentQueries: resetConversation
+      ? [request.message]
+      : removalTarget
+        ? priorTurns
+        : [...priorTurns, request.message].slice(
+            -RECENT_USER_TURN_WINDOW,
+          ),
     ...(pendingClarification
       ? {
           pendingClarification: {
@@ -511,7 +547,7 @@ function sessionContext(
     // journey revision path.
     ...(journey
       ? { journey }
-      : request.sessionContext?.journey
+      : !resetConversation && request.sessionContext?.journey
         ? { journey: request.sessionContext.journey }
         : {}),
   };
@@ -563,27 +599,137 @@ export function handleChat(request: ChatRequest): ChatResponse {
   const combined = removalTarget
     ? conversationText({ ...request, message: "" })
     : conversationText(request);
+  const currentText = [request.message, request.nluHint].filter(Boolean).join("\n");
+  const carriedStops = request.sessionContext?.journey
+    ? journeyStopsFromState(request.sessionContext.journey)
+    : [];
+  const carriedStopCategories = carriedStops.map(({ category }) => category);
+  const currentStops = requestedJourneyStops(currentText);
+  const currentStopCategories = currentStops.map(({ category }) => category);
+  const currentCategoryConstraint = inferCategoryConstraint(currentText);
+  const carriedPoiCategories = new Set(
+    (carriedStopCategories ?? []).flatMap(poiCategoriesForJourneyStop),
+  );
+  const normalizedCurrent = normalizeText(request.message);
+  const namesExistingStop = /(?:chang|diem dung|diem dau|dau tien|thu hai|first stop|second stop|leg)/.test(
+    normalizedCurrent,
+  );
+  const startsFreshSearch = /(?:^|\s)(?:tim|kiem|goi y|de xuat|find|search|show|recommend)(?:\s|$)/.test(
+    normalizedCurrent,
+  );
+  const hasRefinementCue = /(?:^|\s)(?:hon|them|bot|doi|thay|phai|giu|uu tien|make|quieter|cheaper|closer|more|less)(?:\s|$)/.test(
+    normalizedCurrent,
+  );
+  const targetsCarriedStop =
+    currentCategoryConstraint.categories.length > 0 &&
+    currentCategoryConstraint.categories.every((category) =>
+      carriedPoiCategories.has(category),
+    );
+  const refinesExistingStop = Boolean(
+    carriedStops.length &&
+      currentStopCategories.length < 2 &&
+      targetsCarriedStop &&
+      !startsFreshSearch &&
+      (namesExistingStop || hasRefinementCue),
+  );
+  const changesCategory =
+    currentCategoryConstraint.hard &&
+    currentCategoryConstraint.categories.some(
+      (category) => !carriedPoiCategories.has(category),
+    );
+  const startsStandaloneCategoryRequest =
+    !refinesExistingStop &&
+    !namesExistingStop &&
+    currentStopCategories.length < 2 &&
+    currentCategoryConstraint.hard &&
+    currentCategoryConstraint.categories.length === 1;
+  const resetsOrderedJourney = Boolean(
+    carriedStopCategories?.length &&
+      (changesCategory || startsStandaloneCategoryRequest),
+  );
+  const explicitCurrentTopic = Boolean(
+    !resolved &&
+      !carriedStopCategories?.length &&
+      currentStopCategories.length < 2 &&
+      currentCategoryConstraint.hard,
+  );
+  const conversation = resetsOrderedJourney || explicitCurrentTopic
+    ? currentText
+    : combined;
   const intent =
     resolved && request.sessionContext?.lastIntent === "navigation"
       ? "navigation"
-      : detectIntent(combined);
+      : detectIntent(conversation);
   const origin = request.location ?? locationCenter(profile?.currentLocation);
   const explicitLocation = profile?.currentLocation;
+  const rankOrderedStops = (
+    stops: JourneyStopRequest[],
+    options: {
+      location?: string;
+      constraints?: string[];
+      origin?: Coordinates;
+      radiusMeters?: number;
+      limit?: number;
+    } = {},
+  ): RankedPoi[] =>
+    stops
+      .flatMap((stop) => {
+        const segment = "query" in stop && typeof stop.query === "string"
+          ? stop.query
+          : journeyStopLabel(stop);
+        const query = [
+          segment,
+          ...(options.constraints ?? []),
+          options.location,
+        ]
+          .filter(Boolean)
+          .join("\n");
+        return rankPois(query, {
+          profile,
+          origin: options.origin,
+          ...(options.radiusMeters !== undefined
+            ? { radiusMeters: options.radiusMeters }
+            : {}),
+          locationText: options.location || explicitLocation,
+          category: poiCategoriesForJourneyStop(stop.category),
+          hardCategory: true,
+          limit: options.limit ?? 80,
+        }).filter((candidate) => poiMatchesJourneyStop(candidate.poi, stop));
+      })
+      .filter(
+        (candidate, index, all) =>
+          all.findIndex((item) => item.poi.id === candidate.poi.id) === index,
+      );
 
-  if (isCheaperJourneyRequest(request.message) && request.sessionContext?.journey) {
+  if (
+    !resetsOrderedJourney &&
+    isCheaperJourneyRequest(request.message) &&
+    request.sessionContext?.journey
+  ) {
     const prior = request.sessionContext.journey;
-    const revisionRanked = rankPois(prior.query, {
-      profile,
-      origin: request.location,
-      locationText: prior.location || explicitLocation,
-      limit: 80,
-    });
+    const revisionStops = journeyStopsFromState(prior);
+    const revisionLocation = locationLabelFor(prior.query) || prior.location;
+    const revisionRanked = revisionStops.length >= 2
+      ? rankOrderedStops(revisionStops, {
+          location: revisionLocation || explicitLocation,
+          constraints: request.sessionContext.constraints,
+          origin: request.location,
+          // The prior selections must remain present even if a large open pack
+          // has more than 80 candidates for one stop.
+          limit: pois.length,
+        })
+      : rankPois(prior.query, {
+          profile,
+          origin: request.location,
+          locationText: prior.location || explicitLocation,
+          limit: 80,
+        });
     const journey = reviseJourneyCheaper(prior, revisionRanked);
     if (journey) {
-      const actionIds = new Set(journey.actions.map((item) => item.poiId));
-      const recommendations = revisionRanked
-        .filter((item) => actionIds.has(item.poi.id))
-        .map(toRecommendation);
+      const recommendations = journey.actions.flatMap((action) => {
+        const ranked = revisionRanked.find((item) => item.poi.id === action.poiId);
+        return ranked ? [toRecommendation(ranked)] : [];
+      });
       return {
         intent: "journey_revision",
         assistantResponse: journey.revision.message,
@@ -603,7 +749,7 @@ export function handleChat(request: ChatRequest): ChatResponse {
   }
 
   if (intent === "navigation") {
-    const references = routeReferences(combined);
+    const references = routeReferences(conversation);
     const destination = resolved ?? references.destination;
     const routeOrigin = references.origin?.coordinates ?? origin;
     if (destination && routeOrigin) {
@@ -660,9 +806,9 @@ export function handleChat(request: ChatRequest): ChatResponse {
   }
 
   if (intent === "explanation") {
-    const poi = resolvePoiReference(combined);
+    const poi = resolvePoiReference(conversation);
     if (poi) {
-      const ranked = rankPois(combined, { profile, limit: 1 }).find(
+      const ranked = rankPois(conversation, { profile, limit: 1 }).find(
         (candidate) => candidate.poi.id === poi.id,
       );
       const fallback: RankedPoi = {
@@ -692,16 +838,52 @@ export function handleChat(request: ChatRequest): ChatResponse {
     }
   }
 
-  const anchor = locationAnchorFor(combined);
-  const searchText = anchor ? withoutAnchorPhrases(combined, anchor) : combined;
+  const anchor = locationAnchorFor(conversation);
+  const searchText = anchor ? withoutAnchorPhrases(conversation, anchor) : conversation;
   const categoryConstraint = inferCategoryConstraint(searchText);
+  // Explicit request.history can seed a journey. Once client-carried state
+  // exists, only that typed state may carry it; old text must not resurrect a
+  // journey after the user switches to a new topic.
+  const contextualStops =
+    request.sessionContext ||
+    currentStopCategories.length > 0 ||
+    currentCategoryConstraint.categories.length > 0
+      ? []
+      : requestedJourneyStops(priorUserTurns(request).join("\n"));
+  const orderedStops: JourneyStopRequest[] =
+    resetsOrderedJourney
+      ? []
+      : currentStops.length >= 2
+        ? currentStops
+        : carriedStops.length
+          ? carriedStops
+          : contextualStops;
+  const hasOrderedJourney = orderedStops.length >= 2;
+  const currentLocation = locationLabelFor(currentText);
+  const carriedLocation = request.sessionContext?.journey
+    ? locationLabelFor(request.sessionContext.journey.query) ||
+      request.sessionContext.journey.location
+    : undefined;
+  const orderedLocation = currentLocation || carriedLocation || explicitLocation;
+  const orderedConstraints = resolveConstraintConflicts(
+    request.sessionContext?.constraints ?? [],
+    constraintsFor(currentText),
+  );
+  const rankingText = searchText;
 
   // Clarification-first: a bare or empty request gets a question, not a guess.
   // Qualifiers (attributes, budgets, purpose phrases), an explicit area, a named
   // place, GPS, or an in-flight clarification all count as enough information.
   const slotQuestion =
     intent === "search" || intent === "recommendation"
-      ? clarificationQuestionFor(request, combined, searchText, Boolean(anchor), categoryConstraint.categories)
+      ? clarificationQuestionFor(
+          request,
+          conversation,
+          searchText,
+          Boolean(anchor),
+          categoryConstraint.categories,
+          hasOrderedJourney,
+        )
       : undefined;
   if (slotQuestion) {
     return {
@@ -711,7 +893,13 @@ export function handleChat(request: ChatRequest): ChatResponse {
       quickReplies: slotQuestion.quickReplies,
       confidence: 0.9,
       mapAction: { type: "clarify", query: request.message, poiIds: [] },
-      sessionContext: sessionContext(request, "clarification_required"),
+      sessionContext: sessionContext(
+        request,
+        "clarification_required",
+        undefined,
+        undefined,
+        resetsOrderedJourney || explicitCurrentTopic,
+      ),
       privacy,
     };
   }
@@ -720,16 +908,26 @@ export function handleChat(request: ChatRequest): ChatResponse {
   const hardCategory =
     categoryConstraint.hard &&
     intent !== "planning" &&
-    !isJourneyIntent(request.message);
-  const ranked = rankPois(searchText, {
-    profile,
-    origin: anchor?.poi.coordinates ?? request.location,
-    ...(anchor ? { radiusMeters: NEAR_ANCHOR_RADIUS_METERS } : {}),
-    locationText: explicitLocation,
-    category: categoryConstraint.categories,
-    hardCategory,
-    limit: 80,
-  });
+    !isJourneyIntent(conversation) &&
+    !hasOrderedJourney;
+  const rankForCategories = (categories: string[], enforceCategory: boolean) =>
+    rankPois(rankingText, {
+      profile,
+      origin: anchor?.poi.coordinates ?? request.location,
+      ...(anchor ? { radiusMeters: NEAR_ANCHOR_RADIUS_METERS } : {}),
+      locationText: currentLocation || explicitLocation,
+      category: categories,
+      hardCategory: enforceCategory,
+      limit: 80,
+    });
+  const ranked = hasOrderedJourney
+    ? rankOrderedStops(orderedStops, {
+        location: orderedLocation,
+        constraints: orderedConstraints,
+        origin: anchor?.poi.coordinates ?? request.location,
+        ...(anchor ? { radiusMeters: NEAR_ANCHOR_RADIUS_METERS } : {}),
+      })
+    : rankForCategories(categoryConstraint.categories, hardCategory);
   const pool = ranked.filter(
     (item) =>
       item.poi.id !== anchor?.poi.id && !isAvoidedByProfile(item.poi, profile),
@@ -737,11 +935,31 @@ export function handleChat(request: ChatRequest): ChatResponse {
   let selected =
     intent === "planning" ? diversified(pool, 4) : pool.slice(0, 3);
   let recommendations = selected.map(toRecommendation);
-  const journey = composeJourney(request.message, pool, recommendations);
+  const journeyQuery = hasOrderedJourney
+    ? [
+        orderedStops.map(journeyStopLabel).join(" rồi "),
+        ...orderedConstraints,
+        orderedLocation,
+      ]
+        .filter(Boolean)
+        .join("\n")
+    : request.message;
+  const journey = composeJourney(
+    journeyQuery,
+    pool,
+    recommendations,
+    orderedStops,
+  );
+  const incompleteOrderedJourney = hasOrderedJourney && !journey;
   if (journey) {
-    const actionIds = new Set(journey.actions.map((item) => item.poiId));
-    selected = pool.filter((item) => actionIds.has(item.poi.id));
+    selected = journey.actions.flatMap((action) => {
+      const ranked = pool.find((item) => item.poi.id === action.poiId);
+      return ranked ? [ranked] : [];
+    });
     recommendations = selected.map(toRecommendation);
+  } else if (incompleteOrderedJourney) {
+    selected = [];
+    recommendations = [];
   }
   const topScore = recommendations[0]?.score ?? 0;
   const confidence = Number(
@@ -754,7 +972,9 @@ export function handleChat(request: ChatRequest): ChatResponse {
       : journey
         ? `Tôi đã ghép một hành trình gồm ${journey.actions.length} dịch vụ: ${names}. Hãy xem từng khoản trước khi xác nhận.`
       : `Tôi tìm được ${recommendations.length} lựa chọn phù hợp nhất: ${names}. Mỗi gợi ý kèm lý do và điểm thành phần để bạn kiểm tra.`
-    : noMatchResponse(categoryConstraint.categories, anchor, constraintsFor(request.message), locationLabelFor(searchText));
+    : incompleteOrderedJourney
+      ? incompleteOrderedJourneyResponse(orderedStops, pool)
+      : noMatchResponse(categoryConstraint.categories, anchor, constraintsFor(request.message), locationLabelFor(searchText));
 
   return {
     intent,
@@ -762,7 +982,7 @@ export function handleChat(request: ChatRequest): ChatResponse {
     recommendations,
     confidence,
     mapAction: {
-      type: intent === "planning" ? "plan" : "search",
+      type: intent === "planning" || hasOrderedJourney ? "plan" : "search",
       query: request.message,
       poiIds: recommendations.map(({ poi }) => poi.id),
       ...(anchor
@@ -771,10 +991,37 @@ export function handleChat(request: ChatRequest): ChatResponse {
           ? { center: recommendations[0].poi.coordinates, zoom: 13 }
           : {}),
     },
-    sessionContext: sessionContext(request, intent, undefined, journey ? journeyState(request.message, journey) : undefined),
+    sessionContext: sessionContext(
+      request,
+      intent,
+      undefined,
+      journey ? journeyState(journeyQuery, journey) : undefined,
+      resetsOrderedJourney || explicitCurrentTopic || incompleteOrderedJourney,
+    ),
     ...(journey ? { journey } : {}),
     privacy,
   };
+}
+
+function incompleteOrderedJourneyResponse(
+  stops: JourneyStopRequest[],
+  pool: RankedPoi[],
+): string {
+  const remaining = [...pool];
+  const missing: JourneyStopRequest[] = [];
+  for (const stop of stops) {
+    const index = remaining.findIndex((item) =>
+      poiMatchesJourneyStop(item.poi, stop),
+    );
+    if (index < 0) missing.push(stop);
+    else remaining.splice(index, 1);
+  }
+  const orderedLabels = stops
+    .map(journeyStopLabel)
+    .join(" → ");
+  const missingLabels = [...new Set(missing.map(journeyStopLabel))]
+    .join(", ");
+  return `Trong bộ dữ liệu TASCO hiện chưa đủ địa điểm để tạo trọn hành trình ${orderedLabels}${missingLabels ? `; còn thiếu ${missingLabels}` : ""}. Tôi không bỏ âm thầm chặng nào; bạn có thể đổi khu vực hoặc loại điểm dừng.`;
 }
 
 function mentionsKnownPoi(text: string): boolean {
@@ -796,9 +1043,10 @@ function clarificationQuestionFor(
   searchText: string,
   hasAnchor: boolean,
   categories: string[],
+  hasOrderedJourney: boolean,
 ): { question: string; quickReplies: string[] } | undefined {
   if (request.sessionContext?.lastIntent === "clarification_required") return undefined;
-  if (isJourneyIntent(request.message)) return undefined;
+  if (hasOrderedJourney || isJourneyIntent(combined)) return undefined;
   if (mentionsKnownPoi(combined)) return undefined;
   const hasLocation = hasAnchor || Boolean(request.location) || queryLocationSignal(searchText);
   const hasQualifier =

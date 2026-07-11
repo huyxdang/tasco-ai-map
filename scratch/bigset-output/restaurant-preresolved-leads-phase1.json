@@ -1,0 +1,51 @@
+[
+  {
+    "open_pack_id": "OVT-FD41B2AE-D4F9-4D8F-BEAC-4009FF3D0E30",
+    "name": "Nhà Hàng Thiên Nam",
+    "address": "55 Đường Nam Kỳ Khởi Nghĩa, Quận 1",
+    "resolved_url": "https://www.foody.vn/ho-chi-minh/nha-hang-thien-nam-am-thuc-hoa-phap",
+    "resolved_source": "TinyFish exact-name/address result with matching house number"
+  },
+  {
+    "open_pack_id": "OVT-A3B4A3F7-D063-4D55-8C7D-4FC40D61EBB3",
+    "name": "Bún Riêu Cua",
+    "address": "199 Đường Hoàng Sa, Quận 1",
+    "resolved_url": "https://www.facebook.com/199hoangsa/?locale=vi_VN",
+    "resolved_source": "TinyFish exact-name/address result with matching house number"
+  },
+  {
+    "open_pack_id": "OVT-3D0B7FBB-F7B8-4504-9ECF-4A680F5C72DA",
+    "name": "Lẩu Bò Quang Khải",
+    "address": "60 Đường Hồ Hảo Hớn, Quận 1",
+    "resolved_url": "https://www.foody.vn/ho-chi-minh/lau-bo-quang-khai-ho-hao-hon",
+    "resolved_source": "TinyFish exact-name/address result with matching house number"
+  },
+  {
+    "open_pack_id": "OVT-C66345B1-D9F6-474E-9B62-232EDE90BA64",
+    "name": "Propaganda Saigon",
+    "address": "21 Đường Hàn Thuyên, Quận 1",
+    "resolved_url": "https://www.foody.vn/ho-chi-minh/propaganda-saigon",
+    "resolved_source": "TinyFish exact-name/address result with matching house number"
+  },
+  {
+    "open_pack_id": "OVT-6A962BF2-278A-4AF8-9E07-D98751C87F14",
+    "name": "Ốc Ghe",
+    "address": "34 Đường Mạc Đĩnh Chi, Quận 1",
+    "resolved_url": "https://www.foody.vn/ho-chi-minh/oc-ghe",
+    "resolved_source": "TinyFish exact-name/address result with matching house number"
+  },
+  {
+    "open_pack_id": "OVT-8B9128EC-5FE2-4EC9-B7CE-C66BBAC80FCA",
+    "name": "Bún Riêu Gánh Bến Thành",
+    "address": "4 Đường Phan Bội Châu, Quận 1",
+    "resolved_url": "https://riviu.vn/bun-rieu-ganh-ben-thanh-phan-boi-chau",
+    "resolved_source": "TinyFish exact-name/address result with matching house number"
+  },
+  {
+    "open_pack_id": "OVT-65EE2088-017E-47EB-8902-6904583F80EF",
+    "name": "Bếp Huế",
+    "address": "89 Đường Thạch Thị Thanh, Quận 1",
+    "resolved_url": "https://www.foody.vn/ho-chi-minh/bep-hue",
+    "resolved_source": "TinyFish exact-name/address result with matching house number"
+  }
+]

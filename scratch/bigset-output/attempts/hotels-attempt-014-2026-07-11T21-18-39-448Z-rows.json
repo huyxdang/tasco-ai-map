@@ -1,0 +1,34 @@
+[
+  {
+    "breakfast": "true",
+    "breakfast_buffet": "true",
+    "family_friendly": "",
+    "hotel_url": "https://www.booking.com/hotel/vn/acnos.html",
+    "name": "Acnos Hotel",
+    "nice_view": "",
+    "parking": "true",
+    "pool": "",
+    "price_tier": "Mid-range",
+    "quiet": "",
+    "rating": "3.5",
+    "rating_source": "Booking.com",
+    "review_count": "985",
+    "street_address": "18-20 Đường Nguyễn Thị Nghĩa, Quận 1, TP. Hồ Chí Minh"
+  },
+  {
+    "breakfast": true,
+    "breakfast_buffet": true,
+    "family_friendly": true,
+    "hotel_url": "https://www.booking.com/hotel/vn/avanti.vi.html",
+    "name": "Avanti Hotel",
+    "nice_view": true,
+    "parking": false,
+    "pool": false,
+    "price_tier": "Mid-range",
+    "quiet": true,
+    "rating": 4.1,
+    "rating_source": "Kayak",
+    "review_count": 2989,
+    "street_address": "186 - 188 Đường Lê Thánh Tôn, Quận 1, TP. Hồ Chí Minh"
+  }
+]

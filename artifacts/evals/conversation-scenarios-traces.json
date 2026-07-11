@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T19:03:29.861Z",
+  "generatedAt": "2026-07-11T22:52:56.986Z",
   "source": "dataset.xlsx#Conversation_Scenarios + synthetic-scenarios",
   "scenarioCount": 90,
   "passed": 90,
@@ -58,11 +58,11 @@
               "wifi",
               "đông khách"
             ],
-            "score": 0.5213,
+            "score": 0.7074,
             "scoreBreakdown": {
-              "textMatch": 0.0982,
+              "textMatch": 0.1543,
               "categoryMatch": 0.2,
-              "locationMatch": 0,
+              "locationMatch": 0.13,
               "attributeMatch": 0.0333,
               "preferenceMatch": 0,
               "quality": 0.0602,
@@ -86,9 +86,9 @@
               "healthy",
               "view hồ"
             ],
-            "score": 0.5122,
+            "score": 0.5963,
             "scoreBreakdown": {
-              "textMatch": 0.1473,
+              "textMatch": 0.2314,
               "categoryMatch": 0.2,
               "locationMatch": 0,
               "attributeMatch": 0.0333,
@@ -114,9 +114,9 @@
               "phù hợp hẹn hò",
               "đặt bàn"
             ],
-            "score": 0.4412,
+            "score": 0.4973,
             "scoreBreakdown": {
-              "textMatch": 0.0982,
+              "textMatch": 0.1543,
               "categoryMatch": 0.2,
               "locationMatch": 0,
               "attributeMatch": 0,
@@ -137,6 +137,7 @@
           "lastQuery": "Gần Hồ Hoàn Kiếm.",
           "constraints": [],
           "recentQueries": [
+            "Tôi muốn tìm một quán cà phê yên tĩnh.",
             "Gần Hồ Hoàn Kiếm."
           ]
         }
@@ -515,9 +516,9 @@
               "đặt bàn",
               "đồ Ý"
             ],
-            "score": 0.429,
+            "score": 0.4388,
             "scoreBreakdown": {
-              "textMatch": 0.0982,
+              "textMatch": 0.108,
               "categoryMatch": 0.2,
               "locationMatch": 0,
               "attributeMatch": 0,
@@ -543,9 +544,9 @@
               "đông khách",
               "giá vừa"
             ],
-            "score": 0.4018,
+            "score": 0.3822,
             "scoreBreakdown": {
-              "textMatch": 0.0736,
+              "textMatch": 0.054,
               "categoryMatch": 0.2,
               "locationMatch": 0,
               "attributeMatch": 0,
@@ -571,9 +572,9 @@
               "du lịch",
               "gia đình"
             ],
-            "score": 0.4007,
+            "score": 0.3811,
             "scoreBreakdown": {
-              "textMatch": 0.0736,
+              "textMatch": 0.054,
               "categoryMatch": 0.2,
               "locationMatch": 0,
               "attributeMatch": 0,
@@ -1629,9 +1630,9 @@
               "đặt bàn",
               "đồ Ý"
             ],
-            "score": 0.5906,
+            "score": 0.7641,
             "scoreBreakdown": {
-              "textMatch": 0.0964,
+              "textMatch": 0.27,
               "categoryMatch": 0.2,
               "locationMatch": 0.13,
               "attributeMatch": 0.0333,
@@ -1657,9 +1658,9 @@
               "view đẹp",
               "gia đình"
             ],
-            "score": 0.5851,
+            "score": 0.7587,
             "scoreBreakdown": {
-              "textMatch": 0.0964,
+              "textMatch": 0.27,
               "categoryMatch": 0.2,
               "locationMatch": 0.13,
               "attributeMatch": 0.0333,
@@ -1682,6 +1683,7 @@
             "gia đình"
           ],
           "recentQueries": [
+            "Tìm nhà hàng.",
             "Ở Quận 1, cho gia đình."
           ]
         }
@@ -1738,8 +1740,8 @@
           "type": "search",
           "query": "Gần Hồ Gươm, yên tĩnh.",
           "poiIds": [
-            "POI011",
             "POI010",
+            "POI011",
             "POI060"
           ],
           "center": {
@@ -1748,8 +1750,36 @@
           },
           "zoom": 13
         },
-        "assistantResponse": "Tôi tìm được 3 lựa chọn phù hợp nhất: Maison de Tet Décor, Cộng Cà Phê Hồ Gươm, Cafe Mộc Hà Nội 60. Mỗi gợi ý kèm lý do và điểm thành phần để bạn kiểm tra.",
+        "assistantResponse": "Tôi tìm được 3 lựa chọn phù hợp nhất: Cộng Cà Phê Hồ Gươm, Maison de Tet Décor, Cafe Mộc Hà Nội 60. Mỗi gợi ý kèm lý do và điểm thành phần để bạn kiểm tra.",
         "recommendations": [
+          {
+            "id": "POI010",
+            "name": "Cộng Cà Phê Hồ Gươm",
+            "category": "Quán cà phê",
+            "city": "Hà Nội",
+            "district": "Hoàn Kiếm",
+            "attributes": [
+              "view hồ",
+              "du lịch",
+              "wifi",
+              "đông khách"
+            ],
+            "score": 0.7331,
+            "scoreBreakdown": {
+              "textMatch": 0.18,
+              "categoryMatch": 0.2,
+              "locationMatch": 0.13,
+              "attributeMatch": 0.0333,
+              "preferenceMatch": 0,
+              "quality": 0.0602,
+              "distance": 0.0646,
+              "featured": 0.025,
+              "budget": 0,
+              "avoidPenalty": 0,
+              "intentBoost": 0,
+              "nameMatch": 0
+            }
+          },
           {
             "id": "POI011",
             "name": "Maison de Tet Décor",
@@ -1771,34 +1801,6 @@
               "preferenceMatch": 0,
               "quality": 0.0611,
               "distance": 0.0055,
-              "featured": 0.025,
-              "budget": 0,
-              "avoidPenalty": 0,
-              "intentBoost": 0,
-              "nameMatch": 0
-            }
-          },
-          {
-            "id": "POI010",
-            "name": "Cộng Cà Phê Hồ Gươm",
-            "category": "Quán cà phê",
-            "city": "Hà Nội",
-            "district": "Hoàn Kiếm",
-            "attributes": [
-              "view hồ",
-              "du lịch",
-              "wifi",
-              "đông khách"
-            ],
-            "score": 0.6031,
-            "scoreBreakdown": {
-              "textMatch": 0.18,
-              "categoryMatch": 0.2,
-              "locationMatch": 0,
-              "attributeMatch": 0.0333,
-              "preferenceMatch": 0,
-              "quality": 0.0602,
-              "distance": 0.0646,
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
@@ -1859,7 +1861,7 @@
           "name": "category",
           "weight": 21,
           "passed": true,
-          "detail": "all recommendations must be Quán cà phê; got POI011, POI010, POI060"
+          "detail": "all recommendations must be Quán cà phê; got POI010, POI011, POI060"
         },
         {
           "name": "proximity",
@@ -1871,7 +1873,7 @@
           "name": "includes",
           "weight": 18,
           "passed": true,
-          "detail": "must include POI010; got POI011, POI010, POI060"
+          "detail": "must include POI010; got POI010, POI011, POI060"
         },
         {
           "name": "min_results",
@@ -5706,9 +5708,9 @@
               "đặt bàn",
               "đồ Ý"
             ],
-            "score": 0.4851,
+            "score": 0.4388,
             "scoreBreakdown": {
-              "textMatch": 0.1543,
+              "textMatch": 0.108,
               "categoryMatch": 0.2,
               "locationMatch": 0,
               "attributeMatch": 0,
@@ -5734,9 +5736,9 @@
               "đông khách",
               "giá vừa"
             ],
-            "score": 0.4439,
+            "score": 0.3822,
             "scoreBreakdown": {
-              "textMatch": 0.1157,
+              "textMatch": 0.054,
               "categoryMatch": 0.2,
               "locationMatch": 0,
               "attributeMatch": 0,
@@ -5762,9 +5764,9 @@
               "du lịch",
               "gia đình"
             ],
-            "score": 0.4428,
+            "score": 0.3811,
             "scoreBreakdown": {
-              "textMatch": 0.1157,
+              "textMatch": 0.054,
               "categoryMatch": 0.2,
               "locationMatch": 0,
               "attributeMatch": 0,
@@ -5789,7 +5791,6 @@
             "dưới 500k"
           ],
           "recentQueries": [
-            "Tìm nhà hàng.",
             "Món Ý, dưới 500k, gần trung tâm."
           ]
         }
@@ -6432,9 +6433,9 @@
               "yên tĩnh",
               "gần biển"
             ],
-            "score": 0.6618,
+            "score": 0.7003,
             "scoreBreakdown": {
-              "textMatch": 0.2314,
+              "textMatch": 0.27,
               "categoryMatch": 0.2,
               "locationMatch": 0.13,
               "attributeMatch": 0,
@@ -6460,9 +6461,9 @@
               "wifi",
               "giá hợp lý"
             ],
-            "score": 0.6593,
+            "score": 0.6979,
             "scoreBreakdown": {
-              "textMatch": 0.2314,
+              "textMatch": 0.27,
               "categoryMatch": 0.2,
               "locationMatch": 0.13,
               "attributeMatch": 0,
@@ -6483,7 +6484,6 @@
           "lastQuery": "Quán cà phê ở Hội An.",
           "constraints": [],
           "recentQueries": [
-            "Có gì hay không?",
             "Quán cà phê ở Hội An."
           ]
         }
@@ -7973,11 +7973,11 @@
               "wifi",
               "đông khách"
             ],
-            "score": 0.616,
+            "score": 0.746,
             "scoreBreakdown": {
               "textMatch": 0.1929,
               "categoryMatch": 0.2,
-              "locationMatch": 0,
+              "locationMatch": 0.13,
               "attributeMatch": 0.0333,
               "preferenceMatch": 0,
               "quality": 0.0602,

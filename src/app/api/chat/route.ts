@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { handleChat } from "../../../lib/chat";
+import { handleChat, priorUserTurns } from "../../../lib/chat";
 import { translateUtterance } from "../../../lib/nlu";
 import { enhanceChatResponse } from "../../../lib/openai";
 import { traceChatTurn } from "../../../lib/telemetry";
@@ -43,7 +43,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   // or touch ranking). The deterministic engine still decides everything.
   const nluHint = await translateUtterance(
     body.message,
-    body.sessionContext?.recentQueries ?? [],
+    priorUserTurns(body),
   );
   const deterministic = handleChat(nluHint ? { ...body, nluHint } : body);
   const enhanced = await enhanceChatResponse(body, deterministic);

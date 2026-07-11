@@ -67,6 +67,7 @@ await langfuse.shutdownAsync();
 // Verify server-side — a silent 401 must not masquerade as success. Ingestion
 // is asynchronous, so poll briefly before declaring failure.
 let total = 0;
+const expectedTotal = report.traces.length + 1; // one trace per scenario + summary
 for (let attempt = 0; attempt < 6; attempt++) {
   await new Promise((resolve) => setTimeout(resolve, attempt === 0 ? 2_000 : 5_000));
   const verify = await fetch(`${baseUrl}/api/public/traces?tags=${encodeURIComponent(runTag)}&limit=1`, {
@@ -75,10 +76,10 @@ for (let attempt = 0; attempt < 6; attempt++) {
   if (!verify.ok) continue;
   const body = await verify.json();
   total = body.meta?.totalItems ?? 0;
-  if (total > 0) break;
+  if (total >= expectedTotal) break;
 }
-if (total === 0) {
-  console.error(`VERIFICATION FAILED: Langfuse reports 0 traces for tag ${runTag} after polling.`);
+if (total < expectedTotal) {
+  console.error(`VERIFICATION FAILED: Langfuse reports ${total}/${expectedTotal} traces for tag ${runTag} after polling.`);
   process.exit(1);
 }
-console.log(`uploaded + verified: Langfuse holds ${total} traces for tag ${runTag} at ${baseUrl}`);
+console.log(`uploaded + verified: Langfuse holds ${total} traces for tag ${runTag} (expected at least ${expectedTotal}) at ${baseUrl}`);

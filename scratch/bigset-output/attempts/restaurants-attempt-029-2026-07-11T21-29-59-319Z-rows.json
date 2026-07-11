@@ -1,0 +1,20 @@
+[
+  {
+    "air_conditioned": true,
+    "cuisine": "French",
+    "family_friendly": true,
+    "foody_url": "https://www.foody.vn/ho-chi-minh/nha-hang-thien-nam-am-thuc-hoa-phap",
+    "name": "Nhà Hàng Thiên Nam",
+    "nice_view": "",
+    "open_late": true,
+    "outdoor_seating": true,
+    "parking": true,
+    "price_tier": "200,000đ - 550,000đ",
+    "rating": 3.7,
+    "rating_source": "foody.vn",
+    "reservations": true,
+    "review_count": 41,
+    "romantic": true,
+    "street_address": "55 Đường Nam Kỳ Khởi Nghĩa, Quận 1"
+  }
+]
