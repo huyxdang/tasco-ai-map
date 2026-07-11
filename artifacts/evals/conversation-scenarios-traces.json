@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T16:43:31.689Z",
+  "generatedAt": "2026-07-11T16:48:24.630Z",
   "source": "dataset.xlsx#Conversation_Scenarios + synthetic-scenarios",
   "scenarioCount": 90,
   "passed": 90,
@@ -70,7 +70,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -97,7 +98,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -124,7 +126,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -358,7 +361,8 @@
               "featured": 0.025,
               "budget": 0.048,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           },
           {
@@ -385,7 +389,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           },
           {
@@ -412,7 +417,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           }
         ],
@@ -512,7 +518,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -539,7 +546,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -566,7 +574,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -670,7 +679,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -696,7 +706,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -723,7 +734,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -750,7 +762,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": -0.075,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -883,7 +896,7 @@
               "ẩm thực",
               "biểu tượng thành phố"
             ],
-            "score": 0.4323,
+            "score": 0.7323,
             "scoreBreakdown": {
               "textMatch": 0.27,
               "categoryMatch": 0,
@@ -895,7 +908,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0.3
             }
           }
         ],
@@ -993,7 +1007,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -1020,7 +1035,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -1577,7 +1593,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -1604,7 +1621,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -1705,7 +1723,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -1732,7 +1751,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -1759,7 +1779,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -2330,7 +2351,7 @@
               "giải trí",
               "đặt vé"
             ],
-            "score": 0.9257,
+            "score": 1,
             "scoreBreakdown": {
               "textMatch": 0.27,
               "categoryMatch": 0.2,
@@ -2342,7 +2363,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.3
+              "intentBoost": 0.3,
+              "nameMatch": 0.3
             }
           }
         ],
@@ -2427,7 +2449,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -2454,7 +2477,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -2554,7 +2578,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -2581,7 +2606,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -2608,7 +2634,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -2709,7 +2736,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -2736,7 +2764,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -2763,7 +2792,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -2862,7 +2892,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -2889,7 +2920,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -2989,7 +3021,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -3015,7 +3048,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -3042,7 +3076,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -3150,7 +3185,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -3177,7 +3213,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -3204,7 +3241,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -3304,7 +3342,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.18
+              "intentBoost": 0.18,
+              "nameMatch": 0
             }
           },
           {
@@ -3331,7 +3370,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -3358,7 +3398,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -3462,7 +3503,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -3558,7 +3600,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -3656,7 +3699,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -3751,7 +3795,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -3837,7 +3882,7 @@
               "ẩm thực",
               "biểu tượng thành phố"
             ],
-            "score": 0.3423,
+            "score": 0.6423,
             "scoreBreakdown": {
               "textMatch": 0.18,
               "categoryMatch": 0,
@@ -3849,7 +3894,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0.3
             }
           },
           {
@@ -3876,7 +3922,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -3902,7 +3949,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -3988,7 +4036,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -4015,7 +4064,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -4042,7 +4092,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -4150,7 +4201,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": -0.05,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -4177,7 +4229,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": -0.05,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -4204,7 +4257,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": -0.05,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -4299,7 +4353,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -4401,7 +4456,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -4427,7 +4483,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -4454,7 +4511,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": -0.075,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -4562,7 +4620,8 @@
               "featured": 0.025,
               "budget": 0.048,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           },
           {
@@ -4589,7 +4648,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           },
           {
@@ -4616,7 +4676,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           }
         ],
@@ -4709,7 +4770,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.08
+              "intentBoost": 0.08,
+              "nameMatch": 0
             }
           },
           {
@@ -4736,7 +4798,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -4842,7 +4905,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.3
+              "intentBoost": 0.3,
+              "nameMatch": 0
             }
           }
         ],
@@ -4945,7 +5009,8 @@
               "featured": 0.025,
               "budget": 0.048,
               "avoidPenalty": -0.06,
-              "intentBoost": 0.25
+              "intentBoost": 0.25,
+              "nameMatch": 0
             }
           },
           {
@@ -4972,7 +5037,8 @@
               "featured": 0,
               "budget": 0.048,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -4999,7 +5065,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -5097,7 +5164,8 @@
               "featured": 0.025,
               "budget": 0.048,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           }
         ],
@@ -5193,7 +5261,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -5219,7 +5288,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -5246,7 +5316,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -5347,7 +5418,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -5374,7 +5446,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -5401,7 +5474,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -5502,7 +5576,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -5529,7 +5604,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -5556,7 +5632,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -5659,7 +5736,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -5686,7 +5764,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -5713,7 +5792,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -5819,7 +5899,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           },
           {
@@ -5846,7 +5927,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           }
         ],
@@ -5944,7 +6026,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           },
           {
@@ -5971,7 +6054,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           }
         ],
@@ -6070,7 +6154,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -6097,7 +6182,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -6197,7 +6283,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -6224,7 +6311,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -6344,7 +6432,7 @@
               "ẩm thực",
               "biểu tượng thành phố"
             ],
-            "score": 0.4323,
+            "score": 0.7323,
             "scoreBreakdown": {
               "textMatch": 0.27,
               "categoryMatch": 0,
@@ -6356,7 +6444,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0.3
             }
           }
         ],
@@ -6470,7 +6559,7 @@
               "đông khách",
               "giá vừa"
             ],
-            "score": 0.8848,
+            "score": 1,
             "scoreBreakdown": {
               "textMatch": 0.27,
               "categoryMatch": 0.2,
@@ -6482,7 +6571,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0.3
             }
           }
         ],
@@ -6596,7 +6686,7 @@
               "du lịch",
               "gia đình"
             ],
-            "score": 0.8838,
+            "score": 1,
             "scoreBreakdown": {
               "textMatch": 0.27,
               "categoryMatch": 0.2,
@@ -6608,7 +6698,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0.3
             }
           }
         ],
@@ -6722,7 +6813,7 @@
               "ẩm thực",
               "biểu tượng thành phố"
             ],
-            "score": 0.4323,
+            "score": 0.7323,
             "scoreBreakdown": {
               "textMatch": 0.27,
               "categoryMatch": 0,
@@ -6734,7 +6825,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0.3
             }
           }
         ],
@@ -6847,7 +6939,7 @@
               "giao thông",
               "24/7"
             ],
-            "score": 0.9811,
+            "score": 1,
             "scoreBreakdown": {
               "textMatch": 0.27,
               "categoryMatch": 0.2,
@@ -6859,7 +6951,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.35
+              "intentBoost": 0.35,
+              "nameMatch": 0.3
             }
           }
         ],
@@ -7054,7 +7147,7 @@
               "gia đình",
               "view đẹp"
             ],
-            "score": 0.9844,
+            "score": 1,
             "scoreBreakdown": {
               "textMatch": 0.27,
               "categoryMatch": 0.2,
@@ -7066,7 +7159,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.35
+              "intentBoost": 0.35,
+              "nameMatch": 0.3
             }
           }
         ],
@@ -7180,7 +7274,7 @@
               "24/7",
               "bãi đỗ xe"
             ],
-            "score": 0.6278,
+            "score": 0.9278,
             "scoreBreakdown": {
               "textMatch": 0.27,
               "categoryMatch": 0.2,
@@ -7192,7 +7286,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0.3
             }
           }
         ],
@@ -7677,7 +7772,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -7704,7 +7800,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -7731,7 +7828,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -7830,7 +7928,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -7857,7 +7956,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -7949,7 +8049,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -7975,7 +8076,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -8002,7 +8104,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -8108,7 +8211,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8136,7 +8240,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8163,7 +8268,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -8265,7 +8371,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -8419,7 +8526,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8446,7 +8554,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -8538,7 +8647,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8565,7 +8675,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8592,7 +8703,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -8683,7 +8795,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8710,7 +8823,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8737,7 +8851,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -8824,7 +8939,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8851,7 +8967,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8878,7 +8995,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8905,7 +9023,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -9004,7 +9123,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9031,7 +9151,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9059,7 +9180,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9085,7 +9207,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -9184,7 +9307,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9211,7 +9335,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9238,7 +9363,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9265,7 +9391,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -9358,7 +9485,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9385,7 +9513,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9412,7 +9541,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9439,7 +9569,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -9537,7 +9668,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9564,7 +9696,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9592,7 +9725,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -9679,7 +9813,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.08
+              "intentBoost": 0.08,
+              "nameMatch": 0
             }
           },
           {
@@ -9706,7 +9841,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.08
+              "intentBoost": 0.08,
+              "nameMatch": 0
             }
           },
           {
@@ -9733,7 +9869,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.08
+              "intentBoost": 0.08,
+              "nameMatch": 0
             }
           }
         ],
@@ -9832,7 +9969,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9859,7 +9997,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -9957,7 +10096,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9983,7 +10123,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -10010,7 +10151,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -10111,7 +10253,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -10138,7 +10281,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -10165,7 +10309,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -10259,7 +10404,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           },
           {
@@ -10286,7 +10432,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           },
           {
@@ -10313,7 +10460,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -10413,7 +10561,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           },
           {
@@ -10440,7 +10589,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           },
           {
@@ -10467,7 +10617,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -10559,7 +10710,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -10586,7 +10738,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -10613,7 +10766,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -10720,7 +10874,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -10748,7 +10903,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -10775,7 +10931,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],

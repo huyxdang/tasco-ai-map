@@ -11,6 +11,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:eval": "vitest run tests/conversation-scenarios-eval.test.ts --reporter=verbose",
+    "test:eval:open": "TASCO_DATASET_PACK=open vitest run tests/open-holdout.test.ts --reporter=verbose",
+    "dev:open": "TASCO_DATASET_PACK=open next dev --turbopack",
     "test:watch": "vitest"
   },
   "dependencies": {

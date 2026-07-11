@@ -515,6 +515,12 @@ export function rankPois(query: string, options: RankOptions = {}): RankedPoi[] 
         : clamp(1 - distanceMeters / Math.max(options.radiusMeters ?? 20_000, 1));
     const featured = poi.datasetTier === "featured" ? 1 : 0;
     const special = specialBoost(query, poi);
+    // Pack-agnostic named-place signal: the user typed this venue's exact name.
+    const normalizedName = normalizeText(poi.name);
+    const nameMatch =
+      normalizedName.length >= 8 && normalizedName.includes(" ") && expandAliases(query).includes(normalizedName)
+        ? 0.3
+        : 0;
     const rawScore =
       0.04 +
       textMatch * 0.27 +
@@ -527,7 +533,8 @@ export function rankPois(query: string, options: RankOptions = {}): RankedPoi[] 
       featured * 0.025 +
       budget * 0.08 +
       avoidance +
-      special;
+      special +
+      nameMatch;
 
     return {
       poi,
@@ -544,6 +551,7 @@ export function rankPois(query: string, options: RankOptions = {}): RankedPoi[] 
         budget: roundScore(budget * 0.08),
         avoidPenalty: roundScore(avoidance),
         intentBoost: roundScore(special),
+        nameMatch: roundScore(nameMatch),
       },
       distanceMeters,
       matchedTerms,

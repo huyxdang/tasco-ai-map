@@ -213,7 +213,9 @@ function resolvePoiReference(value: string): Poi | undefined {
   const alias = POI_ALIASES.find(({ phrases }) =>
     phrases.some((phrase) => normalized.includes(phrase)),
   );
-  if (alias) return getPoiById(alias.poiId);
+  // Alias IDs are workbook-bound; under another pack fall through to name matching.
+  const aliasPoi = alias ? getPoiById(alias.poiId) : undefined;
+  if (aliasPoi) return aliasPoi;
 
   const exact = pois.find((poi) => {
     const name = normalizeText(poi.name);
@@ -716,7 +718,12 @@ function mentionsKnownPoi(text: string): boolean {
   if (POI_ALIASES.some(({ phrases }) => phrases.some((phrase) => normalized.includes(phrase)))) {
     return true;
   }
-  return pois.some((poi) => normalized.includes(normalizeText(poi.name)));
+  // Only multi-word, reasonably long names count — a venue named "Nhà Hàng" must
+  // not make every generic restaurant request look like a named-place lookup.
+  return pois.some((poi) => {
+    const name = normalizeText(poi.name);
+    return name.length >= 8 && name.includes(" ") && normalized.includes(name);
+  });
 }
 
 function clarificationQuestionFor(
