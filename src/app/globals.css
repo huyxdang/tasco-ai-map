@@ -1378,7 +1378,7 @@ select:focus-visible {
   --atlas-text:#16232c; --atlas-text-strong:#0b1f2a; --atlas-text-secondary:#5b6b76;
   --atlas-text-muted:#7a8791; --atlas-green:#12934f; --atlas-green-dark:#0f7a45;
   --atlas-green-border:#bfe3cc; --atlas-border:#dce4ea; --atlas-red:#e23744;
-  --atlas-blue:#2e6fe8; --atlas-amber:#b45309;
+  --atlas-blue:#2e6fe8; --atlas-amber:#b45309; --atlas-green-darkest:#0b3b22;
 }
 html,body { background:var(--atlas-app-bg); color:var(--atlas-text); }
 body { font-family:"Be Vietnam Pro",var(--font-geist-sans),Geist,system-ui,sans-serif; }
@@ -1456,6 +1456,15 @@ button:focus-visible,input:focus-visible { outline:3px solid rgba(18,147,79,.28)
 .quick-replies button:hover { background:var(--atlas-surface-green); }
 .ended-notice { margin:10px 0 0; font-size:11.5px; font-weight:650; color:var(--atlas-green-dark); display:flex; align-items:center; gap:6px; }
 .recommendation-facts strong.is-counting { font-variant-numeric:tabular-nums; }
+.receipts-toggle { display:flex; align-items:center; gap:5px; margin:8px 0 0; padding:0; border:none; background:none; color:var(--atlas-green-dark); font-size:10.5px; font-weight:700; cursor:pointer; }
+.receipts-panel { margin-top:8px; padding:10px; border:1px solid var(--atlas-border); border-radius:12px; background:#fafaf8; }
+.receipts-row { display:grid; grid-template-columns:104px 1fr 34px; align-items:center; gap:7px; margin-bottom:5px; }
+.receipts-row small { font-size:9px; font-weight:650; color:var(--atlas-text-secondary); }
+.receipts-row i { display:block; height:5px; border-radius:999px; background:var(--atlas-surface-green); overflow:hidden; }
+.receipts-row i b { display:block; height:100%; border-radius:999px; background:var(--atlas-green); }
+.receipts-row em { font-size:9px; font-style:normal; font-variant-numeric:tabular-nums; color:var(--atlas-green-dark); text-align:right; }
+.receipts-panel p { margin:7px 0 5px; font-size:10px; line-height:1.45; color:var(--atlas-text-secondary); }
+.receipts-source { display:flex; align-items:center; gap:4px; font-size:8.5px; color:var(--atlas-text-secondary); }
 .empty-understanding { display:flex; align-items:center; gap:9px; margin:10px 0; padding:12px; border:1px dashed var(--atlas-border); border-radius:14px; color:var(--atlas-text-secondary); font-size:11px; line-height:1.4; }
 .empty-understanding svg { flex:none; color:var(--atlas-green); }
 .live-recommendation { margin:8px 0; padding:11px; border:1px solid var(--atlas-border); border-radius:16px; background:#fff; box-shadow:0 1px 4px rgba(15,35,50,.05); }
@@ -1530,6 +1539,44 @@ button:focus-visible,input:focus-visible { outline:3px solid rgba(18,147,79,.28)
 .theater-fallback svg { flex:none; }
 .theater-fallback span { display:grid; gap:2px; font-size:8px; line-height:1.35; }
 .theater-fallback strong { font-size:9px; }
+.receipt-theater-alt { display:flex; width:100%; min-height:44px; align-items:center; justify-content:center; gap:7px; margin-top:8px; border:1.5px solid var(--atlas-green-border); border-radius:14px; background:#fff; color:var(--atlas-green-dark); font-size:11px; font-weight:750; }
+.receipt-theater-alt:disabled { color:var(--atlas-text-muted); border-color:var(--atlas-border); }
+
+/* Driving mode (design §2.6) — dark-green instruction card over the map, next-stop strip, minimal voice sheet. */
+.atlas-driving-instruction { position:absolute; z-index:8; top:max(52px,calc(env(safe-area-inset-top) + 8px)); left:12px; right:12px; display:flex; align-items:center; gap:13px; padding:14px 16px; border-radius:18px; background:var(--atlas-green-darkest); box-shadow:0 8px 24px rgba(11,59,34,.35); }
+.driving-instruction-icon { display:grid; flex:none; place-items:center; color:#fff; }
+.driving-instruction-main { min-width:0; }
+.driving-instruction-main strong { display:block; color:#fff; font-size:20px; font-weight:800; line-height:1.15; }
+.driving-instruction-main small { display:block; overflow:hidden; margin-top:1px; color:var(--atlas-green-border); font-size:12.5px; text-overflow:ellipsis; white-space:nowrap; }
+.driving-instruction-eta { margin-left:auto; flex:none; text-align:right; }
+.driving-instruction-eta strong { display:block; color:#fff; font-size:16px; font-weight:800; font-variant-numeric:tabular-nums; }
+.driving-instruction-eta small { color:var(--atlas-green-border); font-size:10.5px; }
+.atlas-driving-next { position:absolute; z-index:8; top:max(134px,calc(env(safe-area-inset-top) + 90px)); left:12px; right:12px; display:flex; align-items:center; gap:10px; padding:10px 14px; border-radius:14px; background:#fff; box-shadow:0 3px 12px rgba(15,35,50,.12); }
+.driving-next-icon { display:grid; width:26px; height:26px; flex:none; place-items:center; border-radius:8px; background:var(--atlas-surface-soft); color:var(--atlas-green-dark); }
+.driving-next-name { overflow:hidden; min-width:0; color:var(--atlas-text); font-size:12.5px; font-weight:700; text-overflow:ellipsis; white-space:nowrap; }
+.driving-next-time { margin-left:auto; flex:none; color:var(--atlas-text-secondary); font-size:11.5px; font-weight:600; }
+.atlas-driving-paused { position:absolute; z-index:8; top:max(186px,calc(env(safe-area-inset-top) + 142px)); left:12px; right:12px; padding:9px 13px; border:1px solid #f0dcb2; border-radius:12px; background:#fdf3e3; color:#8a5a00; font-size:12px; font-weight:700; }
+.atlas-driving-sheet { position:absolute; z-index:9; right:0; bottom:0; left:0; max-height:64dvh; padding:12px 16px max(20px,env(safe-area-inset-bottom)); overflow-y:auto; border-radius:25px 25px 0 0; background:#fff; box-shadow:0 -8px 30px rgba(15,35,50,.14); }
+.atlas-driving-sheet .sheet-handle { margin-bottom:10px; }
+.driving-log { display:grid; gap:6px; margin-bottom:10px; }
+.driving-bubble { max-width:86%; padding:8px 12px; font-size:12.5px; line-height:1.45; }
+.driving-bubble.is-user { justify-self:end; border-radius:14px 14px 4px 14px; background:var(--atlas-text-strong); color:#fff; }
+.driving-bubble.is-atlas { justify-self:start; border:1px solid #e2eee6; border-radius:14px 14px 14px 4px; background:var(--atlas-surface-soft); color:var(--atlas-text); }
+.driving-controls { display:flex; align-items:center; gap:14px; }
+.driving-side { display:grid; width:62px; height:62px; flex:none; place-items:center; gap:2px; border:1.5px solid var(--atlas-border); border-radius:50%; background:#fff; color:var(--atlas-text); }
+.driving-side span { font-size:9px; font-weight:800; color:var(--atlas-text-secondary); }
+.driving-side.is-end { border-color:#f0c8cc; color:#b02a36; }
+.driving-side.is-end span { color:#b02a36; }
+.driving-mic-wrap { display:grid; flex:1; justify-items:center; gap:5px; }
+.driving-orb { display:grid; width:74px; height:74px; place-items:center; border:0; border-radius:50%; background:var(--atlas-green); color:#fff; box-shadow:0 6px 18px rgba(18,147,79,.35); animation:atlas-pulse 1.7s infinite; }
+.driving-orb.is-muted { background:var(--atlas-text-strong); animation:none; }
+.driving-mic-wrap small { color:var(--atlas-text-secondary); font-size:11px; font-weight:700; text-align:center; }
+.driving-cmds { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:14px; }
+.driving-cmds button { padding:11px 14px; border:1.5px solid var(--atlas-border); border-radius:999px; background:#fbfdfe; color:var(--atlas-text); font-size:12.5px; font-weight:700; }
+.driving-cmds button:hover { border-color:var(--atlas-green); color:var(--atlas-green-dark); }
+.driving-composer { margin-top:12px; }
+.driving-disclosure { display:flex; align-items:center; justify-content:center; gap:5px; margin-top:11px; color:var(--atlas-text-muted); font-size:9px; }
+.driving-disclosure svg { flex:none; color:var(--atlas-green); }
 
 .vetc-home { overflow-y:auto; padding-bottom:24px; }
 .vetc-hero { min-height:230px; padding:max(28px,env(safe-area-inset-top)) 16px 28px; background:linear-gradient(145deg,#9ed2b1,#cce8d6); color:#fff; }

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import { handleChat } from "../../../lib/chat";
 import { enhanceChatResponse } from "../../../lib/openai";
+import { traceChatTurn } from "../../../lib/telemetry";
 import type { ChatRequest } from "../../../lib/types";
 
 function isChatRequest(value: unknown): value is ChatRequest {
@@ -35,6 +36,9 @@ export async function POST(request: Request): Promise<NextResponse> {
     );
   }
 
+  const startedAt = Date.now();
   const deterministic = handleChat(body);
-  return NextResponse.json(await enhanceChatResponse(body, deterministic));
+  const enhanced = await enhanceChatResponse(body, deterministic);
+  traceChatTurn(body, enhanced, Date.now() - startedAt);
+  return NextResponse.json(enhanced);
 }

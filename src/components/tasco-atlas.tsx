@@ -21,6 +21,7 @@ import {
   MicOff,
   Navigation,
   ParkingCircle,
+  Pause,
   Play,
   ReceiptText,
   Send,
@@ -33,9 +34,10 @@ import {
 import dynamic from "next/dynamic";
 import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 
-import type { ChatResponse, Journey, Poi, UserProfile } from "@/lib/types";
+import type { ChatResponse, Coordinates, Journey, JourneyActionKind, Poi, UserProfile } from "@/lib/types";
 import { isConfirmedSpeech, setAudioTracksMuted } from "@/lib/realtime";
 import { routeTheaterAvailability } from "@/lib/route-theater";
+import { buildRoutes } from "@/lib/routing";
 import { startScribeSession, type SttSession } from "@/lib/stt-client";
 import { playGroundedSpeech, type TtsPlayback } from "@/lib/tts-client";
 
@@ -45,11 +47,42 @@ const MapView = dynamic(
 );
 
 type TascoAtlasProps = { initialPois: Poi[]; profiles: UserProfile[] };
-type Screen = "home" | "session" | "live" | "checkout" | "receipt";
+type Screen = "home" | "session" | "live" | "checkout" | "receipt" | "driving";
 type VoiceState = "idle" | "listening" | "thinking" | "speaking" | "interrupted" | "muted";
 type DemoStage = 0 | 1 | 2 | 3;
 type MapMode = "2d" | "3d";
 type SimulatedReceipt = { id: string; journey: Journey; confirmedAt: string };
+type DriveStop = { poi: Poi; kind: JourneyActionKind };
+type DriveLogEntry = { id: string; who: "user" | "atlas"; text: string };
+type DriveState = {
+  total: number;
+  index: number;
+  nextStop: DriveStop;
+  isFinalStop: boolean;
+  legDistanceMeters: number;
+  legSeconds: number;
+  remainingSeconds: number;
+};
+
+// Simulated-navigation origin: the user's location in central HCMC (the map's
+// default center). Disclosed as "mô phỏng" — it only seeds the deterministic
+// route math (buildRoutes) that produces every distance/ETA shown while driving.
+const DRIVING_ORIGIN: Coordinates = { lat: 10.7758, lon: 106.7002 };
+// Complex asks while the car is moving are deferred, per design §2.6.
+const DRIVING_DEFERRAL =
+  "Tôi có thể giúp bạn lập kế hoạch chi tiết khi xe đã dừng. Hiện tại tôi sẽ giữ tuyến đường an toàn.";
+
+function formatDriveDistance(meters: number) {
+  if (meters >= 1_000) return `${(meters / 1_000).toFixed(1).replace(".", ",")} km`;
+  return `${Math.max(10, Math.round(meters / 10) * 10)} m`;
+}
+function formatDriveMinutes(seconds: number) {
+  return Math.max(1, Math.round(seconds / 60));
+}
+function driveClock(offsetSeconds: number) {
+  return new Date(Date.now() + offsetSeconds * 1_000)
+    .toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" });
+}
 
 const SCRIPT = {
   first: "Tối nay bốn người muốn ăn món Việt gần trung tâm, dễ đỗ xe.",
@@ -100,6 +133,11 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
   // keeps demo stepping outside the customer sheet.
   const [showDemoRail, setShowDemoRail] = useState(false);
   const [sessionEnded, setSessionEnded] = useState(false);
+  // Driving mode (design §2.6 / Step 7): simulated progression through the
+  // confirmed journey's ordered stops, with pause/resume and canned commands.
+  const [driveStopIndex, setDriveStopIndex] = useState(0);
+  const [drivePaused, setDrivePaused] = useState(false);
+  const [driveLog, setDriveLog] = useState<DriveLogEntry[]>([]);
 
   useEffect(() => { sessionIdRef.current = newSessionId(); }, []);
   useEffect(() => {
@@ -134,6 +172,59 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
     if (!journeyStops || journeyStops.length < 2) return [];
     return journeyStops.map((poi) => [poi.coordinates.lon, poi.coordinates.lat] as [number, number]);
   }, [latestResponse]);
+
+  // The confirmed journey's ordered stops, resolved back to their POIs so the
+  // driving screen can speak real names and route between real coordinates.
+  const driveStops = useMemo<DriveStop[]>(() => {
+    const journey = latestResponse?.journey;
+    if (!journey) return [];
+    return journey.actions.flatMap((action) => {
+      const poi = latestResponse?.recommendations.find((item) => item.poi.id === action.poiId)?.poi;
+      return poi ? [{ poi, kind: action.kind }] : [];
+    });
+  }, [latestResponse]);
+
+  // A single deterministic route from the simulated origin through every stop.
+  // Every distance/duration the driving UI shows is read from these maneuvers —
+  // nothing is a hardcoded literal (truth rule).
+  const driveRoute = useMemo(() => {
+    if (driveStops.length < 1) return null;
+    const locations = [DRIVING_ORIGIN, ...driveStops.map((stop) => stop.poi.coordinates)];
+    return buildRoutes({ locations, mode: "driving" }).routes[0] ?? null;
+  }, [driveStops]);
+
+  // Current-leg facts for the active stop index: distance/ETA to the next stop
+  // and the summed remaining duration to the final destination.
+  const drive = useMemo<DriveState | null>(() => {
+    if (!driveRoute || driveStops.length === 0) return null;
+    const total = driveStops.length;
+    const index = Math.min(Math.max(0, driveStopIndex), total - 1);
+    const legs = driveRoute.maneuvers; // one leg per stop (origin→stop0, stop0→stop1, …)
+    const currentLeg = legs[index];
+    const legDistanceMeters = currentLeg?.distanceMeters ?? 0;
+    const legSeconds = currentLeg?.durationSeconds ?? 0;
+    const remainingSeconds = legs.slice(index).reduce((sum, leg) => sum + leg.durationSeconds, 0);
+    return {
+      total,
+      index,
+      nextStop: driveStops[index],
+      isFinalStop: index >= total - 1,
+      legDistanceMeters,
+      legSeconds,
+      remainingSeconds,
+    };
+  }, [driveRoute, driveStops, driveStopIndex]);
+
+  // Simulated forward progress (timer-based like the 3D theater), paused by the
+  // pause control and only while the driving screen is on top.
+  useEffect(() => {
+    if (screen !== "driving" || drivePaused || !drive) return;
+    if (drive.index >= drive.total - 1) return;
+    const timer = window.setTimeout(() => {
+      setDriveStopIndex((index) => Math.min(drive.total - 1, index + 1));
+    }, 3_400);
+    return () => window.clearTimeout(timer);
+  }, [screen, drivePaused, drive]);
 
   function stopRealtime() {
     realtimeAttemptRef.current += 1;
@@ -199,6 +290,7 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
     utteranceRef.current = "";
     if (!isConfirmedSpeech(text)) return;
     cancelActiveResponseForBargeIn();
+    if (screen === "driving") { handleDrivingText(text); return; }
     setPartial(text);
     void handleUtterance(text);
   }
@@ -311,6 +403,7 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
   }
   function endSession() {
     stopRealtime(); setVoiceState("idle"); setScreen("session"); setStage(0); setPartial(""); setLatestResponse(null); setMapPois(defaultPois); setReceipt(null); confirmationLockRef.current = false;
+    setDriveLog([]); setDrivePaused(false); setDriveStopIndex(0);
     setSessionEnded(true);
   }
 
@@ -349,21 +442,128 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
     setTheaterFallback(""); setMapMode("3d"); setActiveStopIndex(-1); setIsTheaterPlaying(true);
   }
 
+  function startDriving() {
+    setIsTheaterPlaying(false);
+    setMapMode("2d");
+    setDriveLog([]);
+    setDrivePaused(false);
+    setDriveStopIndex(0);
+    // Reorder the map markers to the journey order so activeStopIndex lines up.
+    const stops = driveStops.map((stop) => stop.poi);
+    if (stops.length) { setMapPois(stops); setSelectedPoiId(stops[0].id); }
+    setActiveStopIndex(0);
+    setScreen("driving");
+  }
+
+  function endDriving() {
+    ttsRef.current?.stop();
+    responseActiveRef.current = false;
+    setDrivePaused(false);
+    setActiveStopIndex(-1);
+    setMapMode("2d");
+    setScreen("receipt");
+  }
+
+  // Spoken driving replies degrade gracefully: audio only when a live TTS
+  // session is realistic, otherwise the line stays on-screen text (truth rule).
+  async function speakDrivingLine(text: string) {
+    if (realtimeMode !== "realtime") return;
+    ttsRef.current?.stop();
+    responseActiveRef.current = true;
+    const playback = playGroundedSpeech(text);
+    ttsRef.current = playback;
+    await playback.done;
+    if (ttsRef.current === playback) responseActiveRef.current = false;
+  }
+
+  function pushDriveLine(who: DriveLogEntry["who"], text: string) {
+    setDriveLog((log) => [...log, { id: newSessionId(), who, text }].slice(-6));
+  }
+
+  function respondDriving(userText: string, atlasText: string) {
+    if (drivePaused) return;
+    pushDriveLine("user", userText);
+    window.setTimeout(() => {
+      pushDriveLine("atlas", atlasText);
+      void speakDrivingLine(atlasText);
+    }, 480);
+  }
+
+  // "Đọc điểm dừng tiếp theo" — next stop name + time, from the route legs.
+  function readNextStop() {
+    if (!drive) return;
+    respondDriving(
+      "Đọc điểm dừng tiếp theo.",
+      `Điểm dừng tiếp theo: ${drive.nextStop.poi.name} — còn ${formatDriveDistance(drive.legDistanceMeters)}, khoảng ${formatDriveMinutes(drive.legSeconds)} phút.`
+    );
+  }
+  // "Mấy giờ đến?" — ETA computed from summed leg durations.
+  function askDriveEta() {
+    if (!drive) return;
+    respondDriving(
+      "Mấy giờ đến?",
+      `Dự kiến đến nơi lúc ${driveClock(drive.remainingSeconds)} — còn khoảng ${formatDriveMinutes(drive.remainingSeconds)} phút.`
+    );
+  }
+  // "Lặp lại chỉ dẫn" — re-speak the current instruction.
+  function repeatDriveInstruction() {
+    if (!drive) return;
+    respondDriving(
+      "Lặp lại chỉ dẫn.",
+      `Đi tiếp ${formatDriveDistance(drive.legDistanceMeters)} đến ${drive.nextStop.poi.name}.`
+    );
+  }
+  // "Tìm cây xăng gần nhất" — deterministic /api/chat lookup; the journey state
+  // is left untouched (no setLatestResponse) so the active route stays intact.
+  async function findNearestFuel() {
+    if (drivePaused) return;
+    pushDriveLine("user", "Tìm cây xăng gần nhất.");
+    let line = "";
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId: sessionIdRef.current, message: "Tìm cây xăng gần nhất" })
+      });
+      if (response.ok) {
+        const payload = await response.json() as ChatResponse;
+        const poi = payload.recommendations?.[0]?.poi;
+        line = poi
+          ? `Trạm gần nhất: ${poi.name} — ${poi.district}, ${poi.city}. Tôi sẽ thêm làm điểm dừng khi xe đã dừng.`
+          : payload.assistantResponse;
+      }
+    } catch { /* fall through to the safe deferral line */ }
+    if (!line) line = DRIVING_DEFERRAL;
+    pushDriveLine("atlas", line);
+    void speakDrivingLine(line);
+  }
+
+  // Voice or typed free requests while driving: match a canned intent, else defer.
+  function handleDrivingText(text: string) {
+    const value = text.toLocaleLowerCase("vi");
+    if (value.includes("điểm dừng") || value.includes("tiếp theo")) return readNextStop();
+    if (value.includes("mấy giờ") || value.includes("bao lâu") || value.includes("khi nào")) return askDriveEta();
+    if (value.includes("lặp lại") || value.includes("nhắc lại") || value.includes("chỉ dẫn")) return repeatDriveInstruction();
+    if (value.includes("cây xăng") || value.includes("đổ xăng") || value.includes("trạm xăng")) return void findNearestFuel();
+    respondDriving(text, DRIVING_DEFERRAL);
+  }
+
   if (screen === "home") return <VetcHome onOpen={() => setScreen("session")} />;
 
   return (
     <main className="atlas-mobile-shell">
       <section className="atlas-map-layer" aria-label="Bản đồ TASCO Atlas">
-        <MapView pois={mapPois} mode={mapMode} selectedPoiId={selectedPoiId} routeCoordinates={routeCoordinates} activeStopIndex={activeStopIndex} onSelectPoi={(poi) => setSelectedPoiId(poi.id)} onReadyChange={setMapReady} />
+        <MapView pois={mapPois} mode={mapMode} selectedPoiId={screen === "driving" && drive ? drive.nextStop.poi.id : selectedPoiId} routeCoordinates={routeCoordinates} activeStopIndex={screen === "driving" && drive ? drive.index : activeStopIndex} onSelectPoi={(poi) => setSelectedPoiId(poi.id)} onReadyChange={setMapReady} />
         {/* 3D is receipt-stage Route Theater only (design §2.5) — no live map-mode toggle. */}
-        <div className="atlas-map-disclosure"><ShieldCheck size={13} /> Dữ liệu &amp; tuyến mô phỏng · {latestResponse?.journey?.actions.length ?? mapPois.length} điểm dừng</div>
+        {screen !== "driving" ? <div className="atlas-map-disclosure"><ShieldCheck size={13} /> Dữ liệu &amp; tuyến mô phỏng · {latestResponse?.journey?.actions.length ?? mapPois.length} điểm dừng</div> : null}
       </section>
 
-      <header className="atlas-floating-header">
-        <button type="button" onClick={() => { stopRealtime(); setScreen("home"); }} aria-label="Quay lại"><ArrowLeft size={20} /></button>
-        <div><strong>TASCO Atlas</strong><span><i /> Phiên trực tiếp</span></div>
-        <button type="button" onClick={() => setShowPrivacy((value) => !value)} aria-label="Thông tin quyền riêng tư"><ShieldCheck size={19} /></button>
-      </header>
+      {screen !== "driving" ? (
+        <header className="atlas-floating-header">
+          <button type="button" onClick={() => { stopRealtime(); setScreen("home"); }} aria-label="Quay lại"><ArrowLeft size={20} /></button>
+          <div><strong>TASCO Atlas</strong><span><i /> Phiên trực tiếp</span></div>
+          <button type="button" onClick={() => setShowPrivacy((value) => !value)} aria-label="Thông tin quyền riêng tư"><ShieldCheck size={19} /></button>
+        </header>
+      ) : null}
 
       {showPrivacy ? <aside className="atlas-privacy-card"><button type="button" onClick={() => setShowPrivacy(false)} aria-label="Đóng"><X size={16} /></button><strong>Quyền riêng tư phiên Atlas</strong><p>Micrô chỉ hoạt động sau khi bạn bấm bắt đầu. Không camera, không tài khoản VETC thật, không lưu âm thanh hay lịch sử sau phiên.</p><small>POI, tuyến, giá, ưu đãi và thanh toán đều là dữ liệu mô phỏng.</small></aside> : null}
 
@@ -381,7 +581,26 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
       ) : screen === "checkout" && latestResponse?.journey ? (
         <JourneyCheckout response={latestResponse} isConfirming={isConfirming} confirmed={Boolean(receipt)} onBack={() => setScreen("live")} onConfirm={confirmParking} onReceipt={() => setScreen("receipt")} />
       ) : screen === "receipt" && receipt ? (
-        <JourneyReceipt receipt={receipt} isTheaterPlaying={isTheaterPlaying} mapReady={mapReady} theaterFallback={theaterFallback} onTheater={playRouteTheater} onBack={() => setScreen("checkout")} />
+        <JourneyReceipt receipt={receipt} isTheaterPlaying={isTheaterPlaying} mapReady={mapReady} theaterFallback={theaterFallback} canDrive={driveStops.length >= 2} onTheater={playRouteTheater} onDrive={startDriving} onBack={() => setScreen("checkout")} />
+      ) : screen === "driving" && drive ? (
+        <JourneyDriving
+          drive={drive}
+          driveLog={driveLog}
+          paused={drivePaused}
+          voiceMuted={voiceState === "muted"}
+          realtimeMode={realtimeMode}
+          showComposer={realtimeMode === "scripted" || isTextMode}
+          input={input}
+          onInput={setInput}
+          onComposerSubmit={() => { if (input.trim()) { handleDrivingText(input.trim()); setInput(""); } }}
+          onMicTap={toggleMute}
+          onPauseToggle={() => setDrivePaused((value) => !value)}
+          onEnd={endDriving}
+          onReadNext={readNextStop}
+          onEta={askDriveEta}
+          onRepeat={repeatDriveInstruction}
+          onFuel={() => void findNearestFuel()}
+        />
       ) : (
         <section className="atlas-live-sheet">
           <div className="sheet-handle" />
@@ -470,12 +689,35 @@ function voiceSubline(state: VoiceState, mode: "connecting" | "realtime" | "scri
 // rating, location, journey totals, savings. Nothing here may be a literal:
 // the design contract says "the exact amount and place must come from
 // deterministic output, not from example copy."
+// Human labels for the deterministic score components — the "receipts" panel
+// renders only what the engine actually computed for this exact response.
+const SCORE_LABELS: Record<string, string> = {
+  textMatch: "Khớp nội dung",
+  categoryMatch: "Đúng loại địa điểm",
+  locationMatch: "Đúng khu vực",
+  attributeMatch: "Khớp tiêu chí",
+  preferenceMatch: "Hợp sở thích",
+  quality: "Chất lượng dữ liệu",
+  distance: "Khoảng cách",
+  budget: "Ngân sách",
+  nameMatch: "Gọi đúng tên",
+  intentBoost: "Phù hợp mục đích",
+};
+
+function sourceLabel(tier?: string): string {
+  if (tier === "open-enriched") return "Overture Maps · thuộc tính xác minh từ Foody/Google";
+  if (tier === "open-skeleton") return "Overture Maps (dữ liệu mở)";
+  return "Bộ dữ liệu TASCO";
+}
+
 function RecommendationCard({ response, onOpen }: { response: ChatResponse; onOpen: () => void }) {
-  const primary = response.recommendations[0]?.poi;
+  const [showReceipts, setShowReceipts] = useState(false);
+  const recommendation = response.recommendations[0];
+  const primary = recommendation?.poi;
   const journey = response.journey;
   const revised = journey?.revision.outcome === "cheaper";
   const animatedTotal = useAnimatedVnd(journey?.totalVnd ?? 0);
-  if (!primary) {
+  if (!primary || !recommendation) {
     return (
       <article className="live-recommendation">
         <header><span><Sparkles size={14} /> Gợi ý phù hợp nhất</span></header>
@@ -484,6 +726,11 @@ function RecommendationCard({ response, onOpen }: { response: ChatResponse; onOp
     );
   }
   const attributes = primary.attributes.slice(0, 2).join(" · ");
+  const scoreParts = Object.entries(recommendation.scoreBreakdown ?? {})
+    .filter(([key, value]) => value > 0 && SCORE_LABELS[key])
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 5);
+  const maxPart = scoreParts[0]?.[1] ?? 1;
   return (
     <article className={`live-recommendation${revised ? " is-revised" : ""}`}>
       <header><span><Sparkles size={14} /> Gợi ý phù hợp nhất</span>{revised ? <em><Check size={13} /> Đã thay đổi</em> : null}</header>
@@ -494,6 +741,22 @@ function RecommendationCard({ response, onOpen }: { response: ChatResponse; onOp
         {journey ? <span><CreditCard size={14} /><strong className="is-counting">{animatedTotal.toLocaleString("vi-VN")} ₫</strong><small>tổng ước tính</small></span> : null}
       </div>
       {revised && journey ? <div className="savings-line"><Check size={15} /> Tiết kiệm {journey.savingsVnd.toLocaleString("vi-VN")} ₫ so với phương án trước</div> : null}
+      <button className="receipts-toggle" type="button" onClick={() => setShowReceipts((value) => !value)} aria-expanded={showReceipts}>
+        <ShieldCheck size={13} /> Vì sao gợi ý này? · {showReceipts ? "Ẩn" : "Xem điểm thành phần"}
+      </button>
+      {showReceipts ? (
+        <div className="receipts-panel">
+          {scoreParts.map(([key, value]) => (
+            <div className="receipts-row" key={key}>
+              <small>{SCORE_LABELS[key]}</small>
+              <i><b style={{ width: `${Math.round((value / maxPart) * 100)}%` }} /></i>
+              <em>{value.toFixed(2)}</em>
+            </div>
+          ))}
+          <p>{recommendation.reason}</p>
+          <small className="receipts-source"><ShieldCheck size={11} /> Nguồn: {sourceLabel(primary.datasetTier)} · {primary.id}</small>
+        </div>
+      ) : null}
       {journey ? <button type="button" onClick={onOpen}><Navigation size={17} /> Chốt hành trình</button> : null}
     </article>
   );
@@ -523,7 +786,7 @@ function JourneyCheckout({ response, isConfirming, confirmed, onBack, onConfirm,
   </section>;
 }
 
-function JourneyReceipt({ receipt, isTheaterPlaying, mapReady, theaterFallback, onTheater, onBack }: { receipt: SimulatedReceipt; isTheaterPlaying: boolean; mapReady: boolean; theaterFallback: string; onTheater: () => void; onBack: () => void }) {
+function JourneyReceipt({ receipt, isTheaterPlaying, mapReady, theaterFallback, canDrive, onTheater, onDrive, onBack }: { receipt: SimulatedReceipt; isTheaterPlaying: boolean; mapReady: boolean; theaterFallback: string; canDrive: boolean; onTheater: () => void; onDrive: () => void; onBack: () => void }) {
   const parking = receipt.journey.actions.find((action) => action.kind === "parking");
   const payLater = receipt.journey.actions.filter((action) => action.kind !== "parking");
   return <section className="atlas-receipt-sheet">
@@ -534,9 +797,108 @@ function JourneyReceipt({ receipt, isTheaterPlaying, mapReady, theaterFallback, 
     <div className="receipt-later"><small>THANH TOÁN TẠI ĐỊA ĐIỂM</small>{payLater.map((action) => <span key={action.id}>{action.miniApp}<b>{action.finalPriceVnd.toLocaleString("vi-VN")} ₫</b></span>)}</div>
     <p><ShieldCheck size={14} /> Biên nhận, giá, ưu đãi và đặt chỗ đều là mô phỏng; không có giao dịch thật.</p>
     {!mapReady ? <div className="theater-fallback"><ShieldCheck size={15} /><span><strong>Bản đồ 3D chưa sẵn sàng</strong>{theaterFallback || "Biên nhận và hành trình mô phỏng vẫn hoạt động. Hãy thử lại trên thiết bị hỗ trợ WebGL."}</span></div> : null}
-    <button className="receipt-theater" type="button" onClick={onTheater} disabled={isTheaterPlaying || !mapReady}><Play size={17} />{isTheaterPlaying ? "Đang trình diễn tuyến 3D" : mapReady ? "Bắt đầu dẫn đường · Xem tuyến 3D" : "Xem tuyến 3D không khả dụng"}</button>
+    <button className="receipt-theater" type="button" onClick={onDrive} disabled={!canDrive}><Navigation size={17} /> Bắt đầu dẫn đường</button>
+    <button className="receipt-theater-alt" type="button" onClick={onTheater} disabled={isTheaterPlaying || !mapReady}><Play size={16} />{isTheaterPlaying ? "Đang trình diễn tuyến 3D" : mapReady ? "Xem tuyến 3D" : "Xem tuyến 3D không khả dụng"}</button>
     <small className="theater-disclosure">Tuyến và công trình 3D là hình ảnh mô phỏng.</small>
   </section>;
+}
+
+// Driving mode (design §2.6 / Step 7): dark-green instruction card, next-stop
+// strip, one big mic, pause/end, four canned commands. Every distance/ETA/name
+// is read from the deterministic route + journey POIs — no fabricated literals.
+function JourneyDriving({
+  drive, driveLog, paused, voiceMuted, realtimeMode, showComposer, input,
+  onInput, onComposerSubmit, onMicTap, onPauseToggle, onEnd, onReadNext, onEta, onRepeat, onFuel
+}: {
+  drive: DriveState;
+  driveLog: DriveLogEntry[];
+  paused: boolean;
+  voiceMuted: boolean;
+  realtimeMode: "connecting" | "realtime" | "scripted";
+  showComposer: boolean;
+  input: string;
+  onInput: (value: string) => void;
+  onComposerSubmit: () => void;
+  onMicTap: () => void;
+  onPauseToggle: () => void;
+  onEnd: () => void;
+  onReadNext: () => void;
+  onEta: () => void;
+  onRepeat: () => void;
+  onFuel: () => void;
+}) {
+  const { nextStop } = drive;
+  const commands: Array<{ label: string; run: () => void }> = [
+    { label: "Đọc điểm dừng tiếp theo", run: onReadNext },
+    { label: "Mấy giờ đến?", run: onEta },
+    { label: "Lặp lại chỉ dẫn", run: onRepeat },
+    { label: "Tìm cây xăng gần nhất", run: onFuel }
+  ];
+  const micSubline = realtimeMode === "realtime"
+    ? "Nói lệnh ngắn — Atlas trả lời bằng giọng"
+    : "Chạm lệnh ngắn — Atlas trả lời trên màn hình";
+  return (
+    <>
+      <div className="atlas-driving-instruction" role="status" aria-live="polite">
+        <span className="driving-instruction-icon"><Navigation size={22} /></span>
+        <div className="driving-instruction-main">
+          <strong>Đi tiếp {formatDriveDistance(drive.legDistanceMeters)}</strong>
+          <small>đến {nextStop.poi.name} · {nextStop.poi.district}</small>
+        </div>
+        <div className="driving-instruction-eta">
+          <strong>{driveClock(drive.remainingSeconds)}</strong>
+          <small>đến nơi</small>
+        </div>
+      </div>
+
+      <div className="atlas-driving-next">
+        <span className="driving-next-icon">{actionIcon(nextStop.kind)}</span>
+        <span className="driving-next-name">Tiếp theo: {nextStop.poi.name}</span>
+        <span className="driving-next-time">còn {formatDriveMinutes(drive.legSeconds)} phút</span>
+      </div>
+
+      {paused ? <div className="atlas-driving-paused">Đã tạm dừng dẫn đường — chạm nút Tiếp tục để đi tiếp.</div> : null}
+
+      <section className="atlas-driving-sheet">
+        <div className="sheet-handle" />
+        {driveLog.length ? (
+          <div className="driving-log">
+            {driveLog.map((entry) => (
+              <div key={entry.id} className={`driving-bubble is-${entry.who}`}>{entry.text}</div>
+            ))}
+          </div>
+        ) : null}
+        <div className="driving-controls">
+          <button type="button" className="driving-side" onClick={onPauseToggle}>
+            {paused ? <Play size={18} /> : <Pause size={18} />}
+            <span>{paused ? "Tiếp tục" : "Tạm dừng"}</span>
+          </button>
+          <div className="driving-mic-wrap">
+            <button type="button" className={`driving-orb${voiceMuted ? " is-muted" : ""}`} onClick={onMicTap} aria-label={voiceMuted ? "Bật micrô" : "Tắt micrô"}>
+              {voiceMuted ? <MicOff size={28} /> : <Mic size={28} />}
+            </button>
+            <small>{micSubline}</small>
+          </div>
+          <button type="button" className="driving-side is-end" onClick={onEnd}>
+            <CircleStop size={18} />
+            <span>Kết thúc</span>
+          </button>
+        </div>
+        <div className="driving-cmds">
+          {commands.map((command) => (
+            <button key={command.label} type="button" onClick={command.run}>{command.label}</button>
+          ))}
+        </div>
+        {showComposer ? (
+          <form className="atlas-composer driving-composer" onSubmit={(event) => { event.preventDefault(); onComposerSubmit(); }}>
+            <input aria-label="Nhập lệnh khi lái" value={input} onChange={(event) => onInput(event.target.value)} placeholder="Yêu cầu khác sẽ được hoãn khi xe đang chạy…" />
+            <button type="submit" disabled={!input.trim()} aria-label="Gửi"><Send size={18} /></button>
+          </form>
+        ) : null}
+        <small className="driving-disclosure"><ShieldCheck size={12} /> Điều hướng, tuyến và thời gian đều là mô phỏng — không phải chỉ dẫn thật.</small>
+      </section>
+    </>
+  );
 }
 
 function VetcHome({ onOpen }: { onOpen: () => void }) {
