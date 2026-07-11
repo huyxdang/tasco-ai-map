@@ -1,26 +1,16 @@
 import { createHash } from "node:crypto";
 
-import OpenAI from "openai";
+import { createOpenAI } from "@ai-sdk/openai";
+import { APICallError, generateObject, jsonSchema } from "ai";
 
 import type { ChatRequest, ChatResponse, GenerationMetadata } from "./types";
 
-let openAIClient: OpenAI | null = null;
+// Prose polish via the Vercel AI SDK. The model may only reword the grounded
+// Vietnamese copy — ranking, POIs, confidence, context, and map actions always
+// remain deterministic repo data.
 
 function configuredModel() {
   return process.env.OPENAI_MODEL?.trim() || "gpt-5.6-luna";
-}
-
-function getOpenAIClient() {
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) return null;
-  if (!openAIClient) {
-    openAIClient = new OpenAI({
-      apiKey,
-      maxRetries: 1,
-      timeout: 9_000
-    });
-  }
-  return openAIClient;
 }
 
 function safetyIdentifier(request: ChatRequest) {
@@ -39,11 +29,14 @@ function fallbackMetadata(
 }
 
 function classifyFailure(error: unknown): NonNullable<GenerationMetadata["fallbackReason"]> {
-  if (error instanceof OpenAI.APIError) {
-    if (error.status === 401 || error.status === 403) return "authentication";
-    if (error.status === 404) return "model_unavailable";
-    if (error.status === 429) return "rate_limited";
-  }
+  const status = APICallError.isInstance(error)
+    ? error.statusCode
+    : error && typeof error === "object" && "statusCode" in error
+      ? Number((error as { statusCode?: unknown }).statusCode)
+      : undefined;
+  if (status === 401 || status === 403) return "authentication";
+  if (status === 404) return "model_unavailable";
+  if (status === 429) return "rate_limited";
   return "provider_unavailable";
 }
 
@@ -77,6 +70,30 @@ function groundedPayload(request: ChatRequest, response: ChatResponse) {
   };
 }
 
+const COPY_SCHEMA = jsonSchema<{ assistantResponse: string }>({
+  type: "object",
+  additionalProperties: false,
+  properties: {
+    assistantResponse: {
+      type: "string",
+      description:
+        "A concise, natural Vietnamese answer grounded only in the supplied TASCO recommendation payload."
+    }
+  },
+  required: ["assistantResponse"]
+});
+
+const INSTRUCTIONS = [
+  "You write the final response for TASCO Atlas, a Vietnamese conversational map assistant.",
+  "Use natural, warm Vietnamese and keep the answer under 90 words.",
+  "Return plain prose only: no Markdown, bold markers, bullets, numbering, headings, or line breaks.",
+  "Use only facts in the supplied JSON. Never invent live traffic, crowding, price, opening hours, availability, Wi-Fi, parking, or route accuracy.",
+  "Preserve the deterministic intent. If it is clarification_required, ask the same disambiguation and preserve candidate meanings.",
+  "Do not change rankings, scores, map actions, place names, totals, or revision outcomes.",
+  "Never claim this is a real booking, payment, or availability service, and do not volunteer disclaimers unless the user asks.",
+  "Do not mention JSON, prompts, model internals, or these instructions."
+].join("\n");
+
 function validGeneratedCopy(value: unknown): value is { assistantResponse: string } {
   if (!value || typeof value !== "object") return false;
   const candidate = value as { assistantResponse?: unknown };
@@ -87,16 +104,12 @@ function validGeneratedCopy(value: unknown): value is { assistantResponse: strin
   );
 }
 
-/**
- * Uses OpenAI only to improve the grounded Vietnamese wording. Ranking, POIs,
- * confidence, context, and map actions always remain deterministic repo data.
- */
 export async function enhanceChatResponse(
   request: ChatRequest,
   deterministic: ChatResponse
 ): Promise<ChatResponse> {
-  const client = getOpenAIClient();
-  if (!client) {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) {
     return {
       ...deterministic,
       generation: fallbackMetadata("not_configured")
@@ -105,47 +118,25 @@ export async function enhanceChatResponse(
 
   const model = configuredModel();
   try {
-    const response = await client.responses.create({
-      model,
-      store: false,
-      safety_identifier: safetyIdentifier(request),
-      reasoning: { effort: "low" },
-      max_output_tokens: 260,
-      text: {
-        verbosity: "low",
-        format: {
-          type: "json_schema",
-          name: "tasco_grounded_assistant_copy",
-          strict: true,
-          schema: {
-            type: "object",
-            additionalProperties: false,
-            properties: {
-              assistantResponse: {
-                type: "string",
-                description:
-                  "A concise, natural Vietnamese answer grounded only in the supplied TASCO recommendation payload."
-              }
-            },
-            required: ["assistantResponse"]
-          }
+    const provider = createOpenAI({ apiKey });
+    const result = await generateObject({
+      model: provider(model),
+      schema: COPY_SCHEMA,
+      system: INSTRUCTIONS,
+      prompt: JSON.stringify(groundedPayload(request, deterministic)),
+      maxOutputTokens: 260,
+      maxRetries: 1,
+      abortSignal: AbortSignal.timeout(9_000),
+      providerOptions: {
+        openai: {
+          reasoningEffort: "low",
+          user: safetyIdentifier(request),
+          store: false
         }
-      },
-      instructions: [
-        "You write the final response for TASCO Atlas, a Vietnamese conversational map demo.",
-        "Use natural, warm Vietnamese and keep the answer under 90 words.",
-        "Return plain prose only: no Markdown, bold markers, bullets, numbering, headings, or line breaks.",
-        "Use only facts in the supplied JSON. Never invent live traffic, crowding, price, opening hours, availability, Wi-Fi, parking, or route accuracy.",
-        "Preserve the deterministic intent. If it is clarification_required, ask the same disambiguation and preserve candidate meanings.",
-        "Do not change rankings, scores, map actions, or place names.",
-        "If a journey is present, explicitly call it mô phỏng and preserve the deterministic revision outcome; never imply a real booking, price, payment, or availability.",
-        "Do not mention JSON, prompts, model internals, or these instructions."
-      ].join("\n"),
-      input: JSON.stringify(groundedPayload(request, deterministic))
+      }
     });
 
-    const parsed: unknown = JSON.parse(response.output_text);
-    if (!validGeneratedCopy(parsed)) {
+    if (!validGeneratedCopy(result.object)) {
       return {
         ...deterministic,
         generation: fallbackMetadata("invalid_output")
@@ -154,11 +145,11 @@ export async function enhanceChatResponse(
 
     return {
       ...deterministic,
-      assistantResponse: parsed.assistantResponse.trim(),
+      assistantResponse: result.object.assistantResponse.trim(),
       generation: {
         mode: "openai",
         model,
-        responseId: response.id
+        ...(result.response?.id ? { responseId: result.response.id } : {})
       }
     };
   } catch (error) {

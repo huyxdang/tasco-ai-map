@@ -2,15 +2,52 @@
   "q1-cafes": "jd7em53sxpp66hycp9n58bjemd8abtzm",
   "q1-restaurants": "jd744eta9tefxtgwcdr4qt2mdh8aame0",
   "q1-hotels": "jd784p7jr4fybkrv7jyeynz67n8abcge",
-  "_notes": {
-    "runner": "local BigSet via `npx @adamexu/bigset` (backend on 127.0.0.1:3501, workspace bigset-local)",
-    "submitted_at": "2026-07-11",
+  "state": {
+    "q1-cafes": {
+      "status": "failed_partial",
+      "rows_collected": 20,
+      "target_rows": 50,
+      "export": "scratch/bigset-output/q1-cafes.json"
+    },
+    "q1-restaurants": {
+      "status": "failed_partial",
+      "rows_collected": 18,
+      "target_rows": 50,
+      "export": "scratch/bigset-output/q1-restaurants.json"
+    },
+    "q1-hotels": {
+      "status": "failed_partial",
+      "rows_collected": 15,
+      "target_rows": 50,
+      "export": "scratch/bigset-output/q1-hotels.json"
+    },
+    "summary": "All three datasets were created and populate ran, but each run FAILED partway. Partial rows were salvaged to the export files above. See blocker below."
+  },
+  "blocker": {
+    "type": "openrouter_key_credit_limit",
+    "detail": "The OpenRouter API key in .env.local has a per-key spend limit of $10 and is exhausted (usage=$9.96, limit_remaining=$0.04). Populate returns HTTP 402: 'This request requires more credits, or fewer max_tokens'. The parent account still has ~$9.5 of its $25 balance, but THIS key is capped at $10 and cannot reach it.",
+    "fix_options": [
+      "Preferred: raise/remove the $10 limit on this key (or mint a new uncapped key) at https://openrouter.ai/settings/keys, then re-run the populate step below.",
+      "Also required for the cheap default model: BigSet's default populate model is qwen/qwen3.7-max, which this account's data policy currently BLOCKS ('No endpoints available matching your guardrail restrictions and data policy'). Either (a) allow those providers at https://openrouter.ai/settings/privacy so the cheaper qwen default works, or (b) keep the Anthropic override shown below (works but ~10x more expensive, which is what drained the key)."
+    ]
+  },
+  "runner": {
+    "tool": "local BigSet via `npx @adamexu/bigset` (no Docker; backend on 127.0.0.1:3501, workspace bigset-local)",
+    "submitted": "2026-07-11",
     "max_rows_per_job": 50,
     "cadence": "manual",
-    "populate_model_override": "POPULATE_ORCHESTRATOR_MODEL=anthropic/claude-sonnet-4.6 and INVESTIGATE_SUBAGENT_MODEL=anthropic/claude-sonnet-4.6 (default qwen/qwen3.7-max is blocked by the OpenRouter account data policy; see report)",
-    "prereq_for_export": "The local BigSet backend must be running: from ~/side-projects/tasco-ai-map run `set -a; source .env.local; set +a; BIGSET_LOCAL_WORKSPACE_ID=bigset-local BIGSET_KEYCHAIN_PORT=3599 POPULATE_ORCHESTRATOR_MODEL=anthropic/claude-sonnet-4.6 INVESTIGATE_SUBAGENT_MODEL=anthropic/claude-sonnet-4.6 npx @adamexu/bigset start` (keys already stored in OS keychain, so a plain `npx @adamexu/bigset start` also works for export)."
+    "credentials": "TINYFISH_API_KEY + OPENROUTER_API_KEY were stored into the OS keychain (service ai.bigset.local-credentials, accounts bigset-local:tinyfish / bigset-local:openrouter). They persist, so future runs do not need re-seeding.",
+    "model_override_used": "POPULATE_ORCHESTRATOR_MODEL=anthropic/claude-sonnet-4.6 and INVESTIGATE_SUBAGENT_MODEL=anthropic/claude-sonnet-4.6 (needed because the qwen default is blocked by the account data policy)."
+  },
+  "start_backend_command": "cd ~/side-projects/tasco-ai-map && set -a && source .env.local && set +a && BIGSET_LOCAL_WORKSPACE_ID=bigset-local BIGSET_KEYCHAIN_PORT=3599 POPULATE_ORCHESTRATOR_MODEL=z-ai/glm-5.2 INVESTIGATE_SUBAGENT_MODEL=z-ai/glm-5.2 npx @adamexu/bigset start",
+  "repopulate_commands": {
+    "_comment": "After fixing the OpenRouter key limit, start the backend (command above), then re-run populate for each dataset:",
+    "q1-cafes": "npx @adamexu/bigset populate jd7em53sxpp66hycp9n58bjemd8abtzm",
+    "q1-restaurants": "npx @adamexu/bigset populate jd744eta9tefxtgwcdr4qt2mdh8aame0",
+    "q1-hotels": "npx @adamexu/bigset populate jd784p7jr4fybkrv7jyeynz67n8abcge"
   },
   "export_commands": {
+    "_comment": "Backend must be running. `rows --json` prints all stored rows to stdout.",
     "q1-cafes": "npx @adamexu/bigset rows jd7em53sxpp66hycp9n58bjemd8abtzm --json > scratch/bigset-output/q1-cafes.json",
     "q1-restaurants": "npx @adamexu/bigset rows jd744eta9tefxtgwcdr4qt2mdh8aame0 --json > scratch/bigset-output/q1-restaurants.json",
     "q1-hotels": "npx @adamexu/bigset rows jd784p7jr4fybkrv7jyeynz67n8abcge --json > scratch/bigset-output/q1-hotels.json"
@@ -19,5 +56,6 @@
     "q1-cafes": "npx @adamexu/bigset status jd7em53sxpp66hycp9n58bjemd8abtzm",
     "q1-restaurants": "npx @adamexu/bigset status jd744eta9tefxtgwcdr4qt2mdh8aame0",
     "q1-hotels": "npx @adamexu/bigset status jd784p7jr4fybkrv7jyeynz67n8abcge"
-  }
+  },
+  "model_commandment": "USER MANDATE (final): run populate with POPULATE_ORCHESTRATOR_MODEL=z-ai/glm-5.2 and INVESTIGATE_SUBAGENT_MODEL=z-ai/glm-5.2 (text-to-text is fine for the orchestrator). If OpenRouter returns the data-policy 404 that hit qwen, allow the provider at https://openrouter.ai/settings/privacy first."
 }

@@ -16,7 +16,11 @@ import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 
 const DICTIONARY = JSON.parse(readFileSync("scripts/bigset-jobs/attribute-dictionary.json", "utf8"));
 const PACK_PATH = "src/data/packs/open.json";
-const MAX_MATCH_METERS = 250;
+// BigSet coordinates come from Google Maps URLs and sit up to ~500m from the
+// Overture pin for the same venue. Confidence trade-off: a strong name match may
+// travel further; a weak name match must be geographically tight.
+const MAX_MATCH_METERS = 600;
+const TIGHT_METERS = 250;
 
 const inputs = process.argv.slice(2);
 if (inputs.length === 0) {
@@ -98,14 +102,18 @@ for (const path of inputs) {
       }
     }
 
-    if (best && best.similarity >= 0.75) {
+    const accepted =
+      best &&
+      ((best.similarity >= 0.75 && best.distance <= MAX_MATCH_METERS) ||
+        (best.similarity >= 0.5 && best.distance <= TIGHT_METERS));
+    if (accepted) {
       stats.matched++;
       const existing = enrichedById.get(best.poi.id) ?? { tokens: new Set(), rating: 0, reviewCount: 0 };
       for (const token of tokensFor(row)) existing.tokens.add(token);
       existing.rating = Math.max(existing.rating, Number(row.rating ?? 0));
       existing.reviewCount = Math.max(existing.reviewCount, Number(row.review_count ?? row.reviewCount ?? 0) || 0);
       enrichedById.set(best.poi.id, existing);
-    } else if (best && best.similarity >= 0.6) {
+    } else if (best && best.similarity >= 0.4) {
       stats.review++;
       reviewRows.push([row.name, best.poi.id, best.poi.name, best.similarity.toFixed(2), best.distance.toFixed(0)]);
     } else {
