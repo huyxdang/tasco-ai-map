@@ -222,6 +222,8 @@ export interface ChatResponse {
   assistantResponse: string;
   recommendations: Recommendation[];
   confidence: number;
+  /** Tappable answers for a clarification turn; each submits as a normal utterance. */
+  quickReplies?: string[];
   mapAction: MapAction;
   sessionContext?: SessionContext;
   privacy?: {

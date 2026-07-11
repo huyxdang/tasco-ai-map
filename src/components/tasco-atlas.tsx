@@ -99,6 +99,7 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
   // Demo chrome (scripted advance button) only appears with ?demo=1 — the design
   // keeps demo stepping outside the customer sheet.
   const [showDemoRail, setShowDemoRail] = useState(false);
+  const [sessionEnded, setSessionEnded] = useState(false);
 
   useEffect(() => { sessionIdRef.current = newSessionId(); }, []);
   useEffect(() => {
@@ -107,7 +108,6 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
     });
     return () => cancelAnimationFrame(frame);
   }, []);
-  useEffect(() => () => stopRealtime(), []);
   useEffect(() => {
     if (!isTheaterPlaying) return;
     const stopCount = latestResponse?.journey?.actions.length ?? 0;
@@ -144,6 +144,8 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
     sttRef.current = null;
     streamRef.current = null;
   }
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- unmount cleanup only
+  useEffect(() => () => stopRealtime(), []);
 
   function setMicrophoneMuted(muted: boolean) {
     setAudioTracksMuted(streamRef.current, muted);
@@ -217,11 +219,13 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
     onCommitted: handleCommittedTranscript,
     onError: handleSttError,
   });
-  sttHandlersRef.current = {
-    onPartial: handlePartialTranscript,
-    onCommitted: handleCommittedTranscript,
-    onError: handleSttError,
-  };
+  useEffect(() => {
+    sttHandlersRef.current = {
+      onPartial: handlePartialTranscript,
+      onCommitted: handleCommittedTranscript,
+      onError: handleSttError,
+    };
+  });
 
   async function startRealtime() {
     const attempt = realtimeAttemptRef.current + 1;
@@ -307,6 +311,7 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
   }
   function endSession() {
     stopRealtime(); setVoiceState("idle"); setScreen("session"); setStage(0); setPartial(""); setLatestResponse(null); setMapPois(defaultPois); setReceipt(null); confirmationLockRef.current = false;
+    setSessionEnded(true);
   }
 
   async function openJourney() {
@@ -368,7 +373,8 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
           <div className="start-orb"><Mic size={31} /></div>
           <h1>Bắt đầu phiên trò chuyện</h1>
           <p>Hãy cùng nhau nói về chuyến đi. Bạn có thể ngắt lời Atlas bất cứ lúc nào.</p>
-          <button className="atlas-primary" type="button" onClick={() => void startSession()}><Mic size={20} /> Bắt đầu trò chuyện</button>
+          {sessionEnded ? <p className="ended-notice"><CheckCircle2 size={14} /> Phiên đã kết thúc — bản ghi và ngữ cảnh đã được xoá.</p> : null}
+          <button className="atlas-primary" type="button" onClick={() => { setSessionEnded(false); void startSession(); }}><Mic size={20} /> Bắt đầu trò chuyện</button>
           <button className="atlas-text-link" type="button" onClick={() => { setIsTextMode(true); setScreen("live"); setVoiceState("listening"); }}>Không dùng giọng nói? <strong>Nhập bằng chữ</strong></button>
           <small><ShieldCheck size={13} /> Micrô chỉ được dùng trong phiên đang hoạt động và dừng ngay khi bạn kết thúc.</small>
         </section>
@@ -393,7 +399,16 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
           <p className="live-transcript">{partial || "Hãy nói tự nhiên về nơi bạn muốn đến…"}</p>
           {stage >= 3 ? <div className="interrupt-banner"><Check size={16} /><div><strong>Đã nghe yêu cầu mới</strong><span>Đã dừng nói khi bạn ngắt lời</span></div></div> : null}
 
-          {constraints.length ? <><div className="constraint-caption">Ràng buộc đã hiểu <span>Điều chỉnh bằng lời hoặc ô nhập</span></div><div className="constraint-chips">{constraints.map((item) => <span key={item}>{item}</span>)}</div></> : null}
+          {latestResponse?.intent === "clarification_required" && latestResponse.quickReplies?.length ? (
+            <div className="quick-replies">
+              {latestResponse.quickReplies.map((reply) => (
+                <button key={reply} type="button" onClick={() => void handleUtterance(reply)}>{reply}</button>
+              ))}
+            </div>
+          ) : null}
+          {constraints.length ? <><div className="constraint-caption">Ràng buộc đã hiểu <span>Điều chỉnh bằng lời hoặc ô nhập</span></div><div className="constraint-chips">{constraints.map((item) => (
+            <span key={item}>{item}<button type="button" aria-label={`Bỏ tiêu chí ${item}`} onClick={() => void handleUtterance(`Bỏ tiêu chí ${item}`)}><X size={11} /></button></span>
+          ))}</div></> : null}
           {latestResponse ? <RecommendationCard response={latestResponse} onOpen={() => void openJourney()} /> : <div className="empty-understanding"><Sparkles size={18} /><span>Atlas sẽ biến cuộc trò chuyện thành một kế hoạch duy nhất trên bản đồ.</span></div>}
 
           {(isTextMode || realtimeMode === "scripted") ? (
@@ -412,6 +427,32 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
       )}
     </main>
   );
+}
+
+// Animates a VND amount toward its real deterministic value (~650ms, design
+// §3.7). The displayed number always ends exactly at the engine's figure.
+function useAnimatedVnd(target: number): number {
+  const [display, setDisplay] = useState(target);
+  const previousRef = useRef(target);
+  useEffect(() => {
+    const from = previousRef.current;
+    previousRef.current = target;
+    if (from === target) return;
+    const reducedMotion =
+      typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const start = performance.now();
+    const duration = reducedMotion ? 1 : 650;
+    let frame = 0;
+    const tick = (now: number) => {
+      const progress = Math.min(1, (now - start) / duration);
+      const eased = 1 - (1 - progress) ** 3;
+      setDisplay(Math.round(from + (target - from) * eased));
+      if (progress < 1) frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [target]);
+  return display;
 }
 
 function voiceLabel(state: VoiceState) {
@@ -433,6 +474,7 @@ function RecommendationCard({ response, onOpen }: { response: ChatResponse; onOp
   const primary = response.recommendations[0]?.poi;
   const journey = response.journey;
   const revised = journey?.revision.outcome === "cheaper";
+  const animatedTotal = useAnimatedVnd(journey?.totalVnd ?? 0);
   if (!primary) {
     return (
       <article className="live-recommendation">
@@ -449,7 +491,7 @@ function RecommendationCard({ response, onOpen }: { response: ChatResponse; onOp
       <div className="recommendation-facts">
         <span><MapPin size={14} /><strong>{primary.district}, {primary.city}</strong><small>vị trí</small></span>
         <span><Clock3 size={14} /><strong>{primary.rating.toFixed(1)}/5</strong><small>đánh giá dữ liệu</small></span>
-        {journey ? <span><CreditCard size={14} /><strong>{journey.totalVnd.toLocaleString("vi-VN")} ₫</strong><small>tổng ước tính</small></span> : null}
+        {journey ? <span><CreditCard size={14} /><strong className="is-counting">{animatedTotal.toLocaleString("vi-VN")} ₫</strong><small>tổng ước tính</small></span> : null}
       </div>
       {revised && journey ? <div className="savings-line"><Check size={15} /> Tiết kiệm {journey.savingsVnd.toLocaleString("vi-VN")} ₫ so với phương án trước</div> : null}
       {journey ? <button type="button" onClick={onOpen}><Navigation size={17} /> Chốt hành trình</button> : null}

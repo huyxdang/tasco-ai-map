@@ -1448,7 +1448,14 @@ button:focus-visible,input:focus-visible { outline:3px solid rgba(18,147,79,.28)
 .interrupt-banner strong { font-size:10.5px; }
 .interrupt-banner span { font-size:9px; }
 .constraint-chips { display:flex; flex-wrap:wrap; gap:5px; margin:9px 0; }
-.constraint-chips span { padding:5px 8px; border:1px solid var(--atlas-green-border); border-radius:999px; background:var(--atlas-surface-green); color:var(--atlas-green-dark); font-size:9.5px; font-weight:650; animation:chip-in .22s ease both; }
+.constraint-chips span { display:inline-flex; align-items:center; gap:4px; padding:5px 8px; border:1px solid var(--atlas-green-border); border-radius:999px; background:var(--atlas-surface-green); color:var(--atlas-green-dark); font-size:9.5px; font-weight:650; animation:chip-in .22s ease both; }
+.constraint-chips span button { display:inline-flex; align-items:center; border:none; background:none; padding:0; margin:0; color:inherit; opacity:.65; cursor:pointer; }
+.constraint-chips span button:hover { opacity:1; }
+.quick-replies { display:flex; flex-wrap:wrap; gap:6px; margin:8px 0 2px; }
+.quick-replies button { padding:7px 11px; border:1.5px solid var(--atlas-green-border); border-radius:999px; background:#fff; color:var(--atlas-green-dark); font-size:11px; font-weight:700; cursor:pointer; animation:chip-in .22s ease both; }
+.quick-replies button:hover { background:var(--atlas-surface-green); }
+.ended-notice { margin:10px 0 0; font-size:11.5px; font-weight:650; color:var(--atlas-green-dark); display:flex; align-items:center; gap:6px; }
+.recommendation-facts strong.is-counting { font-variant-numeric:tabular-nums; }
 .empty-understanding { display:flex; align-items:center; gap:9px; margin:10px 0; padding:12px; border:1px dashed var(--atlas-border); border-radius:14px; color:var(--atlas-text-secondary); font-size:11px; line-height:1.4; }
 .empty-understanding svg { flex:none; color:var(--atlas-green); }
 .live-recommendation { margin:8px 0; padding:11px; border:1px solid var(--atlas-border); border-radius:16px; background:#fff; box-shadow:0 1px 4px rgba(15,35,50,.05); }

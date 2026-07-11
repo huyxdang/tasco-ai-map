@@ -1,0 +1,23 @@
+{
+  "q1-cafes": "jd7em53sxpp66hycp9n58bjemd8abtzm",
+  "q1-restaurants": "jd744eta9tefxtgwcdr4qt2mdh8aame0",
+  "q1-hotels": "jd784p7jr4fybkrv7jyeynz67n8abcge",
+  "_notes": {
+    "runner": "local BigSet via `npx @adamexu/bigset` (backend on 127.0.0.1:3501, workspace bigset-local)",
+    "submitted_at": "2026-07-11",
+    "max_rows_per_job": 50,
+    "cadence": "manual",
+    "populate_model_override": "POPULATE_ORCHESTRATOR_MODEL=anthropic/claude-sonnet-4.6 and INVESTIGATE_SUBAGENT_MODEL=anthropic/claude-sonnet-4.6 (default qwen/qwen3.7-max is blocked by the OpenRouter account data policy; see report)",
+    "prereq_for_export": "The local BigSet backend must be running: from ~/side-projects/tasco-ai-map run `set -a; source .env.local; set +a; BIGSET_LOCAL_WORKSPACE_ID=bigset-local BIGSET_KEYCHAIN_PORT=3599 POPULATE_ORCHESTRATOR_MODEL=anthropic/claude-sonnet-4.6 INVESTIGATE_SUBAGENT_MODEL=anthropic/claude-sonnet-4.6 npx @adamexu/bigset start` (keys already stored in OS keychain, so a plain `npx @adamexu/bigset start` also works for export)."
+  },
+  "export_commands": {
+    "q1-cafes": "npx @adamexu/bigset rows jd7em53sxpp66hycp9n58bjemd8abtzm --json > scratch/bigset-output/q1-cafes.json",
+    "q1-restaurants": "npx @adamexu/bigset rows jd744eta9tefxtgwcdr4qt2mdh8aame0 --json > scratch/bigset-output/q1-restaurants.json",
+    "q1-hotels": "npx @adamexu/bigset rows jd784p7jr4fybkrv7jyeynz67n8abcge --json > scratch/bigset-output/q1-hotels.json"
+  },
+  "status_commands": {
+    "q1-cafes": "npx @adamexu/bigset status jd7em53sxpp66hycp9n58bjemd8abtzm",
+    "q1-restaurants": "npx @adamexu/bigset status jd744eta9tefxtgwcdr4qt2mdh8aame0",
+    "q1-hotels": "npx @adamexu/bigset status jd784p7jr4fybkrv7jyeynz67n8abcge"
+  }
+}

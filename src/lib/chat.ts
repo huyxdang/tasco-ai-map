@@ -412,6 +412,15 @@ function budgetConstraintsFor(normalized: string): string[] {
   return constraints;
 }
 
+// "Bỏ tiêu chí X" removes a previously understood constraint — the chip × in the
+// UI sends exactly this phrase, and removal must recompute, not merely hide.
+function constraintRemovalTarget(message: string): string | undefined {
+  const match = expandAliases(message).match(
+    /(?:^|\s)(?:bo|xoa|huy)\s+(?:tieu chi\s+|dieu kien\s+|rang buoc\s+)(.+)$/,
+  );
+  return match?.[1]?.trim() || undefined;
+}
+
 function constraintsFor(query: string): string[] {
   const normalized = expandAliases(query);
   const known = KNOWN_CONSTRAINTS.filter(({ match }) =>
@@ -428,6 +437,7 @@ function sessionContext(
   journey?: SessionContext["journey"],
 ): SessionContext {
   const previousConstraints = request.sessionContext?.constraints ?? [];
+  const removalTarget = constraintRemovalTarget(request.message);
   return {
     sessionId:
       request.sessionId ??
@@ -437,10 +447,18 @@ function sessionContext(
       ? { profileId: request.profileId ?? request.sessionContext?.profileId }
       : {}),
     lastIntent: intent,
-    lastQuery: request.message,
-    constraints: [
-      ...new Set([...previousConstraints, ...constraintsFor(request.message)]),
-    ],
+    // A removal turn keeps the prior query as context — "Bỏ tiêu chí giá rẻ" is
+    // an edit to the request, not a new request.
+    lastQuery:
+      removalTarget && request.sessionContext?.lastQuery
+        ? request.sessionContext.lastQuery
+        : request.message,
+    constraints: removalTarget
+      ? previousConstraints.filter((item) => {
+          const normalized = normalizeText(item);
+          return !normalized.includes(removalTarget) && !removalTarget.includes(normalized);
+        })
+      : [...new Set([...previousConstraints, ...constraintsFor(request.message)])],
     ...(pendingClarification
       ? {
           pendingClarification: {
@@ -483,6 +501,7 @@ export function handleChat(request: ChatRequest): ChatResponse {
       intent: "clarification_required",
       assistantResponse: ambiguity.question,
       recommendations: rankedCandidates,
+      quickReplies: rankedCandidates.map(({ poi }) => poi.name),
       confidence: 0.99,
       mapAction: {
         type: "clarify",
@@ -499,7 +518,12 @@ export function handleChat(request: ChatRequest): ChatResponse {
     };
   }
 
-  const combined = conversationText(request);
+  // A constraint-removal turn re-runs the PREVIOUS request minus the constraint;
+  // the removal phrase itself must not leak into ranking text.
+  const removalTarget = constraintRemovalTarget(request.message);
+  const combined = removalTarget
+    ? conversationText({ ...request, message: "" })
+    : conversationText(request);
   const intent =
     resolved && request.sessionContext?.lastIntent === "navigation"
       ? "navigation"
@@ -643,8 +667,9 @@ export function handleChat(request: ChatRequest): ChatResponse {
   if (slotQuestion) {
     return {
       intent: "clarification_required",
-      assistantResponse: slotQuestion,
+      assistantResponse: slotQuestion.question,
       recommendations: [],
+      quickReplies: slotQuestion.quickReplies,
       confidence: 0.9,
       mapAction: { type: "clarify", query: request.message, poiIds: [] },
       sessionContext: sessionContext(request, "clarification_required"),
@@ -732,7 +757,7 @@ function clarificationQuestionFor(
   searchText: string,
   hasAnchor: boolean,
   categories: string[],
-): string | undefined {
+): { question: string; quickReplies: string[] } | undefined {
   if (request.sessionContext?.lastIntent === "clarification_required") return undefined;
   if (isJourneyIntent(request.message)) return undefined;
   if (mentionsKnownPoi(combined)) return undefined;
@@ -744,13 +769,22 @@ function clarificationQuestionFor(
     ? categories.join("/").toLowerCase()
     : undefined;
   if (!hasLocation && categoryLabel) {
-    return `Bạn muốn tìm ${categoryLabel} ở khu vực nào, và có tiêu chí gì thêm không (ví dụ: yên tĩnh, giá rẻ, cho nhóm)?`;
+    return {
+      question: `Bạn muốn tìm ${categoryLabel} ở khu vực nào, và có tiêu chí gì thêm không (ví dụ: yên tĩnh, giá rẻ, cho nhóm)?`,
+      quickReplies: ["Ở Quận 1", "Gần tôi", "Yên tĩnh, có wifi", "Giá rẻ"],
+    };
   }
   if (!hasLocation && !categoryLabel) {
-    return "Bạn muốn tìm loại địa điểm nào (quán cà phê, nhà hàng, khách sạn…), và ở khu vực nào?";
+    return {
+      question: "Bạn muốn tìm loại địa điểm nào (quán cà phê, nhà hàng, khách sạn…), và ở khu vực nào?",
+      quickReplies: ["Quán cà phê ở Quận 1", "Nhà hàng gần tôi", "Khách sạn ở Đà Nẵng"],
+    };
   }
   if (!categoryLabel) {
-    return "Bạn muốn tìm loại địa điểm nào ở khu vực đó — quán cà phê, nhà hàng, hay chỗ vui chơi?";
+    return {
+      question: "Bạn muốn tìm loại địa điểm nào ở khu vực đó — quán cà phê, nhà hàng, hay chỗ vui chơi?",
+      quickReplies: ["Quán cà phê", "Nhà hàng", "Chỗ vui chơi"],
+    };
   }
   return undefined;
 }
