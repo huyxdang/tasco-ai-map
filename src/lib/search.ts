@@ -136,6 +136,26 @@ const CATEGORY_HINTS: Array<{ phrases: string[]; categories: string[]; hard?: bo
   },
 ];
 
+// Defense in depth against mislabeled data: a POI whose pin contradicts its
+// declared city by more than this distance can never be recommended, even if a
+// future dataset regression reintroduces corrupt coordinates.
+const CITY_CENTERS: Record<string, Coordinates> = {
+  "tp hcm": { lat: 10.7769, lon: 106.7009 },
+  "ha noi": { lat: 21.0285, lon: 105.8542 },
+  "da nang": { lat: 16.0544, lon: 108.2022 },
+  "da lat": { lat: 11.9404, lon: 108.4383 },
+  "hoi an": { lat: 15.8801, lon: 108.338 },
+  "nha trang": { lat: 12.2388, lon: 109.1967 },
+  "quang nam": { lat: 15.8801, lon: 108.338 },
+};
+const MAX_METERS_FROM_DECLARED_CITY = 30_000;
+
+export function hasCoherentCoordinates(poi: Poi): boolean {
+  const center = CITY_CENTERS[normalizeText(poi.city)];
+  if (!center) return true;
+  return haversineMeters(center, poi.coordinates) <= MAX_METERS_FROM_DECLARED_CITY;
+}
+
 const CITY_ALIASES: Array<{ phrases: string[]; city: string }> = [
   {
     phrases: ["tp hcm", "tphcm", "sai gon", "ho chi minh", "hcmc"],
@@ -430,6 +450,8 @@ export function rankPois(query: string, options: RankOptions = {}): RankedPoi[] 
       ? profileConstraint
       : { cities: [], districts: [] };
   const candidates = pois.filter((poi) => {
+    if (!hasCoherentCoordinates(poi)) return false;
+
     if (
       options.hardCategory &&
       requestedCategories.length > 0 &&

@@ -1,6 +1,6 @@
 # TASCO Atlas Conversation Scenario Evaluation
 
-Generated: 2026-07-11T14:33:37.391Z
+Generated: 2026-07-11T15:42:27.610Z
 
 Source of truth: `dataset.xlsx`, sheet `Conversation_Scenarios` (90 scenarios). Results use the deterministic dataset-backed `handleChat` path; OpenAI prose enhancement is intentionally excluded from ranking evaluation.
 
@@ -17,7 +17,7 @@ Source of truth: `dataset.xlsx`, sheet `Conversation_Scenarios` (90 scenarios). 
 
 | ID | Category | Score | Status | Returned POIs | Failure layers |
 |---|---|---:|---|---|---|
-| S001 | Conversational Search | 100% | PASS | POI010 Cộng Cà Phê Hồ Gươm; POI011 Maison de Tet Décor | None |
+| S001 | Conversational Search | 100% | PASS | POI010 Cộng Cà Phê Hồ Gươm; POI011 Maison de Tet Décor; POI060 Cafe Mộc Hà Nội 60 | None |
 | S002 | Clarification Dialog | 100% | PASS | POI008 Galaxy Nguyễn Du; POI009 Galaxy Hotel Đà Nẵng | None |
 | S003 | Recommendation Request | 100% | PASS | POI005 Rooftop Chill Skybar; POI004 Pizza 4P's Hai Bà Trưng; POI021 Nhà hàng Secret Garden | None |
 | S004 | Multi-turn Search | 100% | PASS | POI004 Pizza 4P's Hai Bà Trưng; POI018 Phở Thìn Lò Đúc; POI019 Bún Chả Hương Liên | None |
@@ -34,7 +34,7 @@ Source of truth: `dataset.xlsx`, sheet `Conversation_Scenarios` (90 scenarios). 
 | SYN007 | Clarification Dialog | 100% | PASS | None | None |
 | SYN008 | Clarification Dialog | 100% | PASS | None | None |
 | SYN009 | Clarification Dialog | 100% | PASS | POI004 Pizza 4P's Hai Bà Trưng; POI021 Nhà hàng Secret Garden | None |
-| SYN010 | Clarification Dialog | 100% | PASS | POI011 Maison de Tet Décor; POI010 Cộng Cà Phê Hồ Gươm | None |
+| SYN010 | Clarification Dialog | 100% | PASS | POI011 Maison de Tet Décor; POI010 Cộng Cà Phê Hồ Gươm; POI060 Cafe Mộc Hà Nội 60 | None |
 | SYN011 | Clarification Dialog | 100% | PASS | POI008 Galaxy Nguyễn Du; POI009 Galaxy Hotel Đà Nẵng | None |
 | SYN012 | Clarification Dialog | 100% | PASS | POI007 Vincom Center Đồng Khởi; POI016 CGV Vincom Bà Triệu | None |
 | SYN013 | Clarification Dialog | 100% | PASS | POI026 Sân bay Tân Sơn Nhất; POI027 Sân bay Nội Bài | None |
@@ -64,7 +64,7 @@ Source of truth: `dataset.xlsx`, sheet `Conversation_Scenarios` (90 scenarios). 
 | SYN037 | Multi-turn Search | 100% | PASS | POI013 Khách sạn Sala Đà Nẵng Beach; POI009 Galaxy Hotel Đà Nẵng; POI049 Khách sạn Sao Việt Đà Nẵng 49 | None |
 | SYN038 | Multi-turn Search | 100% | PASS | POI076 Cafe Mộc Đà Lạt 76; POI063 Cafe Mộc Đà Lạt 63; POI031 Cafe Mộc Đà Lạt 31 | None |
 | SYN039 | Multi-turn Search | 100% | PASS | POI004 Pizza 4P's Hai Bà Trưng; POI018 Phở Thìn Lò Đúc; POI019 Bún Chả Hương Liên | None |
-| SYN040 | Multi-turn Search | 100% | PASS | POI011 Maison de Tet Décor; POI010 Cộng Cà Phê Hồ Gươm | None |
+| SYN040 | Multi-turn Search | 100% | PASS | POI011 Maison de Tet Décor; POI010 Cộng Cà Phê Hồ Gươm; POI060 Cafe Mộc Hà Nội 60 | None |
 | SYN041 | Multi-turn Search | 100% | PASS | POI018 Phở Thìn Lò Đúc; POI019 Bún Chả Hương Liên | None |
 | SYN042 | Multi-turn Search | 100% | PASS | POI004 Pizza 4P's Hai Bà Trưng; POI021 Nhà hàng Secret Garden | None |
 | SYN043 | Multi-turn Search | 100% | PASS | POI045 Khách sạn Sao Việt Nha Trang 45; POI065 Khách sạn Sao Việt Nha Trang 65 | None |
@@ -85,7 +85,7 @@ Source of truth: `dataset.xlsx`, sheet `Conversation_Scenarios` (90 scenarios). 
 | SYN058 | Honest No-match | 100% | PASS | None | None |
 | SYN059 | Honest No-match | 100% | PASS | None | None |
 | SYN060 | Honest No-match | 100% | PASS | None | None |
-| SYN061 | Voice-like Query | 100% | PASS | POI010 Cộng Cà Phê Hồ Gươm; POI011 Maison de Tet Décor | None |
+| SYN061 | Voice-like Query | 100% | PASS | POI010 Cộng Cà Phê Hồ Gươm; POI011 Maison de Tet Décor; POI060 Cafe Mộc Hà Nội 60 | None |
 | SYN062 | Voice-like Query | 100% | PASS | POI018 Phở Thìn Lò Đúc; POI019 Bún Chả Hương Liên | None |
 | SYN063 | Voice-like Query | 100% | PASS | POI013 Khách sạn Sala Đà Nẵng Beach; POI009 Galaxy Hotel Đà Nẵng; POI049 Khách sạn Sao Việt Đà Nẵng 49 | None |
 | SYN064 | Voice-like Query | 100% | PASS | POI017 Trung Nguyên Legend Café Lý Tự Trọng; POI001 The Workshop Coffee; POI002 Highlands Coffee Nguyễn Huệ | None |

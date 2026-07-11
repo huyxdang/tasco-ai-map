@@ -872,8 +872,8 @@
       "district": "Đống Đa",
       "address": "31 Đường Trung Tâm, Đà Lạt",
       "coordinates": {
-        "lat": 11.77467,
-        "lon": 108.65851
+        "lat": 11.933796,
+        "lon": 108.44082
       },
       "rating": 4.1,
       "reviewCount": 2552,
@@ -901,8 +901,8 @@
       "district": "Quận 7",
       "address": "32 Đường Trung Tâm, Hội An",
       "coordinates": {
-        "lat": 14.254498,
-        "lon": 105.522142
+        "lat": 15.884107,
+        "lon": 108.350822
       },
       "rating": 4.6,
       "reviewCount": 1821,
@@ -930,8 +930,8 @@
       "district": "Đống Đa",
       "address": "33 Đường Trung Tâm, Đà Nẵng",
       "coordinates": {
-        "lat": 19.22033,
-        "lon": 108.04272
+        "lat": 16.066388,
+        "lon": 108.203745
       },
       "rating": 4.1,
       "reviewCount": 662,
@@ -959,8 +959,8 @@
       "district": "Hải Châu",
       "address": "34 Đường Trung Tâm, Hà Nội",
       "coordinates": {
-        "lat": 17.182314,
-        "lon": 108.346686
+        "lat": 21.02565,
+        "lon": 105.853229
       },
       "rating": 4.2,
       "reviewCount": 2677,
@@ -988,8 +988,8 @@
       "district": "Hải Châu",
       "address": "35 Đường Trung Tâm, TP.HCM",
       "coordinates": {
-        "lat": 21.087507,
-        "lon": 106.83236
+        "lat": 10.782111,
+        "lon": 106.696945
       },
       "rating": 4.3,
       "reviewCount": 1396,
@@ -1017,8 +1017,8 @@
       "district": "Ba Đình",
       "address": "36 Đường Trung Tâm, Hội An",
       "coordinates": {
-        "lat": 10.823977,
-        "lon": 108.01376
+        "lat": 15.885806,
+        "lon": 108.340641
       },
       "rating": 4,
       "reviewCount": 2922,
@@ -1046,8 +1046,8 @@
       "district": "Hải Châu",
       "address": "37 Đường Trung Tâm, Nha Trang",
       "coordinates": {
-        "lat": 15.497977,
-        "lon": 107.898319
+        "lat": 12.230598,
+        "lon": 109.195974
       },
       "rating": 4,
       "reviewCount": 1353,
@@ -1075,8 +1075,8 @@
       "district": "Đống Đa",
       "address": "38 Đường Trung Tâm, Đà Nẵng",
       "coordinates": {
-        "lat": 11.126672,
-        "lon": 106.025951
+        "lat": 16.061719,
+        "lon": 108.200873
       },
       "rating": 4,
       "reviewCount": 1018,
@@ -1104,8 +1104,8 @@
       "district": "Quận 7",
       "address": "39 Đường Trung Tâm, Đà Nẵng",
       "coordinates": {
-        "lat": 10.410934,
-        "lon": 107.675169
+        "lat": 16.049341,
+        "lon": 108.198941
       },
       "rating": 4.6,
       "reviewCount": 1099,
@@ -1133,8 +1133,8 @@
       "district": "Tây Hồ",
       "address": "40 Đường Trung Tâm, Hà Nội",
       "coordinates": {
-        "lat": 13.419828,
-        "lon": 105.052471
+        "lat": 21.038704,
+        "lon": 105.861541
       },
       "rating": 4.5,
       "reviewCount": 265,
@@ -1162,8 +1162,8 @@
       "district": "Quận 7",
       "address": "41 Đường Trung Tâm, Đà Nẵng",
       "coordinates": {
-        "lat": 10.149241,
-        "lon": 107.048228
+        "lat": 16.051816,
+        "lon": 108.194858
       },
       "rating": 4,
       "reviewCount": 193,
@@ -1191,8 +1191,8 @@
       "district": "Ba Đình",
       "address": "42 Đường Trung Tâm, Nha Trang",
       "coordinates": {
-        "lat": 17.406636,
-        "lon": 108.203826
+        "lat": 12.232684,
+        "lon": 109.190556
       },
       "rating": 4.5,
       "reviewCount": 1432,
@@ -1220,8 +1220,8 @@
       "district": "Đống Đa",
       "address": "43 Đường Trung Tâm, Đà Lạt",
       "coordinates": {
-        "lat": 18.026528,
-        "lon": 107.805402
+        "lat": 11.948266,
+        "lon": 108.436694
       },
       "rating": 4.6,
       "reviewCount": 257,
@@ -1249,8 +1249,8 @@
       "district": "Quận 1",
       "address": "44 Đường Trung Tâm, Đà Nẵng",
       "coordinates": {
-        "lat": 17.539114,
-        "lon": 105.550492
+        "lat": 16.047316,
+        "lon": 108.201009
       },
       "rating": 4.3,
       "reviewCount": 2109,
@@ -1278,8 +1278,8 @@
       "district": "Quận 7",
       "address": "45 Đường Trung Tâm, Nha Trang",
       "coordinates": {
-        "lat": 21.292789,
-        "lon": 108.712561
+        "lat": 12.242323,
+        "lon": 109.18899
       },
       "rating": 4.1,
       "reviewCount": 759,
@@ -1307,8 +1307,8 @@
       "district": "Hải Châu",
       "address": "46 Đường Trung Tâm, Đà Nẵng",
       "coordinates": {
-        "lat": 16.553201,
-        "lon": 106.438999
+        "lat": 16.064122,
+        "lon": 108.204481
       },
       "rating": 3.8,
       "reviewCount": 1620,
@@ -1365,8 +1365,8 @@
       "district": "Đống Đa",
       "address": "48 Đường Trung Tâm, Đà Lạt",
       "coordinates": {
-        "lat": 21.968411,
-        "lon": 106.601454
+        "lat": 11.938097,
+        "lon": 108.443861
       },
       "rating": 4,
       "reviewCount": 554,
@@ -1394,8 +1394,8 @@
       "district": "Sơn Trà",
       "address": "49 Đường Trung Tâm, Đà Nẵng",
       "coordinates": {
-        "lat": 18.764326,
-        "lon": 105.208487
+        "lat": 16.056108,
+        "lon": 108.20767
       },
       "rating": 4.2,
       "reviewCount": 1185,
@@ -1423,8 +1423,8 @@
       "district": "Hải Châu",
       "address": "50 Đường Trung Tâm, Đà Nẵng",
       "coordinates": {
-        "lat": 11.961205,
-        "lon": 108.916268
+        "lat": 16.063784,
+        "lon": 108.207138
       },
       "rating": 4.2,
       "reviewCount": 2319,
@@ -1452,8 +1452,8 @@
       "district": "Hoàn Kiếm",
       "address": "51 Đường Trung Tâm, Đà Lạt",
       "coordinates": {
-        "lat": 13.963496,
-        "lon": 107.729436
+        "lat": 11.946135,
+        "lon": 108.445493
       },
       "rating": 4.5,
       "reviewCount": 805,
@@ -1481,8 +1481,8 @@
       "district": "Tây Hồ",
       "address": "52 Đường Trung Tâm, Đà Nẵng",
       "coordinates": {
-        "lat": 19.942875,
-        "lon": 107.887697
+        "lat": 16.048216,
+        "lon": 108.207922
       },
       "rating": 4,
       "reviewCount": 947,
@@ -1510,8 +1510,8 @@
       "district": "Hoàn Kiếm",
       "address": "53 Đường Trung Tâm, Đà Nẵng",
       "coordinates": {
-        "lat": 18.532017,
-        "lon": 106.740695
+        "lat": 16.044747,
+        "lon": 108.199805
       },
       "rating": 4.4,
       "reviewCount": 2706,
@@ -1539,8 +1539,8 @@
       "district": "Hải Châu",
       "address": "54 Đường Trung Tâm, Đà Lạt",
       "coordinates": {
-        "lat": 12.877223,
-        "lon": 106.605391
+        "lat": 11.949671,
+        "lon": 108.430865
       },
       "rating": 4.6,
       "reviewCount": 2385,
@@ -1568,8 +1568,8 @@
       "district": "Tây Hồ",
       "address": "55 Đường Trung Tâm, Hội An",
       "coordinates": {
-        "lat": 12.950419,
-        "lon": 105.137388
+        "lat": 15.884288,
+        "lon": 108.34362
       },
       "rating": 4.4,
       "reviewCount": 107,
@@ -1597,8 +1597,8 @@
       "district": "Quận 1",
       "address": "56 Đường Trung Tâm, Đà Lạt",
       "coordinates": {
-        "lat": 12.461173,
-        "lon": 108.821817
+        "lat": 11.939256,
+        "lon": 108.44334
       },
       "rating": 4,
       "reviewCount": 1829,
@@ -1626,8 +1626,8 @@
       "district": "Tây Hồ",
       "address": "57 Đường Trung Tâm, Hội An",
       "coordinates": {
-        "lat": 14.506114,
-        "lon": 106.007878
+        "lat": 15.872796,
+        "lon": 108.346228
       },
       "rating": 4.5,
       "reviewCount": 791,
@@ -1655,8 +1655,8 @@
       "district": "Sơn Trà",
       "address": "58 Đường Trung Tâm, Hà Nội",
       "coordinates": {
-        "lat": 19.589912,
-        "lon": 106.334785
+        "lat": 21.029366,
+        "lon": 105.851086
       },
       "rating": 4.1,
       "reviewCount": 892,
@@ -1684,8 +1684,8 @@
       "district": "Hoàn Kiếm",
       "address": "59 Đường Trung Tâm, Đà Nẵng",
       "coordinates": {
-        "lat": 19.556747,
-        "lon": 108.961715
+        "lat": 16.057976,
+        "lon": 108.199959
       },
       "rating": 4.5,
       "reviewCount": 2983,
@@ -1713,8 +1713,8 @@
       "district": "Đống Đa",
       "address": "60 Đường Trung Tâm, Hà Nội",
       "coordinates": {
-        "lat": 13.123086,
-        "lon": 108.261335
+        "lat": 21.029979,
+        "lon": 105.865308
       },
       "rating": 4.4,
       "reviewCount": 1992,
@@ -1742,8 +1742,8 @@
       "district": "Hoàn Kiếm",
       "address": "61 Đường Trung Tâm, Đà Lạt",
       "coordinates": {
-        "lat": 12.372561,
-        "lon": 108.128465
+        "lat": 11.934318,
+        "lon": 108.437608
       },
       "rating": 4,
       "reviewCount": 1196,
@@ -1771,8 +1771,8 @@
       "district": "Tây Hồ",
       "address": "62 Đường Trung Tâm, TP.HCM",
       "coordinates": {
-        "lat": 11.507209,
-        "lon": 108.461129
+        "lat": 10.776134,
+        "lon": 106.697117
       },
       "rating": 4.6,
       "reviewCount": 811,
@@ -1800,8 +1800,8 @@
       "district": "Sơn Trà",
       "address": "63 Đường Trung Tâm, Đà Lạt",
       "coordinates": {
-        "lat": 12.596824,
-        "lon": 105.83694
+        "lat": 11.936517,
+        "lon": 108.429532
       },
       "rating": 4.1,
       "reviewCount": 1549,
@@ -1829,8 +1829,8 @@
       "district": "Hải Châu",
       "address": "64 Đường Trung Tâm, Hội An",
       "coordinates": {
-        "lat": 17.508133,
-        "lon": 105.60959
+        "lat": 15.88482,
+        "lon": 108.333951
       },
       "rating": 4.1,
       "reviewCount": 882,
@@ -1858,8 +1858,8 @@
       "district": "Hải Châu",
       "address": "65 Đường Trung Tâm, Nha Trang",
       "coordinates": {
-        "lat": 17.00924,
-        "lon": 108.162599
+        "lat": 12.244671,
+        "lon": 109.193846
       },
       "rating": 4,
       "reviewCount": 1088,
@@ -1887,8 +1887,8 @@
       "district": "Tây Hồ",
       "address": "66 Đường Trung Tâm, TP.HCM",
       "coordinates": {
-        "lat": 15.110312,
-        "lon": 108.651486
+        "lat": 10.772684,
+        "lon": 106.700847
       },
       "rating": 4,
       "reviewCount": 2230,
@@ -1916,8 +1916,8 @@
       "district": "Hải Châu",
       "address": "67 Đường Trung Tâm, Nha Trang",
       "coordinates": {
-        "lat": 18.744919,
-        "lon": 106.202209
+        "lat": 12.240645,
+        "lon": 109.203661
       },
       "rating": 4.5,
       "reviewCount": 1324,
@@ -1945,8 +1945,8 @@
       "district": "Sơn Trà",
       "address": "68 Đường Trung Tâm, Đà Nẵng",
       "coordinates": {
-        "lat": 12.064217,
-        "lon": 107.993788
+        "lat": 16.044857,
+        "lon": 108.194209
       },
       "rating": 4.1,
       "reviewCount": 1344,
@@ -1974,8 +1974,8 @@
       "district": "Sơn Trà",
       "address": "69 Đường Trung Tâm, TP.HCM",
       "coordinates": {
-        "lat": 17.278887,
-        "lon": 106.639291
+        "lat": 10.774241,
+        "lon": 106.71139
       },
       "rating": 3.9,
       "reviewCount": 2371,
@@ -2003,8 +2003,8 @@
       "district": "Hoàn Kiếm",
       "address": "70 Đường Trung Tâm, Hà Nội",
       "coordinates": {
-        "lat": 13.827136,
-        "lon": 108.890692
+        "lat": 21.021297,
+        "lon": 105.864419
       },
       "rating": 4.4,
       "reviewCount": 628,
@@ -2032,8 +2032,8 @@
       "district": "Quận 1",
       "address": "71 Đường Trung Tâm, TP.HCM",
       "coordinates": {
-        "lat": 21.678351,
-        "lon": 106.673431
+        "lat": 10.773658,
+        "lon": 106.708697
       },
       "rating": 4,
       "reviewCount": 1915,
@@ -2061,8 +2061,8 @@
       "district": "Hoàn Kiếm",
       "address": "72 Đường Trung Tâm, TP.HCM",
       "coordinates": {
-        "lat": 18.355085,
-        "lon": 106.678138
+        "lat": 10.770762,
+        "lon": 106.70036
       },
       "rating": 4,
       "reviewCount": 1192,
@@ -2090,8 +2090,8 @@
       "district": "Hoàn Kiếm",
       "address": "73 Đường Trung Tâm, Đà Nẵng",
       "coordinates": {
-        "lat": 20.576006,
-        "lon": 106.908113
+        "lat": 16.062587,
+        "lon": 108.205744
       },
       "rating": 4.1,
       "reviewCount": 68,
@@ -2119,8 +2119,8 @@
       "district": "Đống Đa",
       "address": "74 Đường Trung Tâm, TP.HCM",
       "coordinates": {
-        "lat": 14.565382,
-        "lon": 107.599228
+        "lat": 10.772492,
+        "lon": 106.696038
       },
       "rating": 4.7,
       "reviewCount": 2805,
@@ -2148,8 +2148,8 @@
       "district": "Đống Đa",
       "address": "75 Đường Trung Tâm, Đà Nẵng",
       "coordinates": {
-        "lat": 20.941099,
-        "lon": 106.270907
+        "lat": 16.058013,
+        "lon": 108.196525
       },
       "rating": 4.6,
       "reviewCount": 218,
@@ -2177,8 +2177,8 @@
       "district": "Hải Châu",
       "address": "76 Đường Trung Tâm, Đà Lạt",
       "coordinates": {
-        "lat": 13.629296,
-        "lon": 107.343319
+        "lat": 11.943934,
+        "lon": 108.441759
       },
       "rating": 4.5,
       "reviewCount": 2772,
@@ -2206,8 +2206,8 @@
       "district": "Hải Châu",
       "address": "77 Đường Trung Tâm, Nha Trang",
       "coordinates": {
-        "lat": 13.399565,
-        "lon": 107.835328
+        "lat": 12.242008,
+        "lon": 109.197612
       },
       "rating": 4.6,
       "reviewCount": 1341,
@@ -2235,8 +2235,8 @@
       "district": "Hoàn Kiếm",
       "address": "78 Đường Trung Tâm, TP.HCM",
       "coordinates": {
-        "lat": 13.403413,
-        "lon": 107.437706
+        "lat": 10.773872,
+        "lon": 106.711734
       },
       "rating": 3.8,
       "reviewCount": 414,
@@ -2264,8 +2264,8 @@
       "district": "Tây Hồ",
       "address": "79 Đường Trung Tâm, Đà Lạt",
       "coordinates": {
-        "lat": 13.237298,
-        "lon": 107.807666
+        "lat": 11.929426,
+        "lon": 108.44346
       },
       "rating": 4.3,
       "reviewCount": 974,
@@ -2293,8 +2293,8 @@
       "district": "Đống Đa",
       "address": "80 Đường Trung Tâm, Đà Nẵng",
       "coordinates": {
-        "lat": 13.478821,
-        "lon": 108.110192
+        "lat": 16.058515,
+        "lon": 108.200896
       },
       "rating": 4.1,
       "reviewCount": 274,

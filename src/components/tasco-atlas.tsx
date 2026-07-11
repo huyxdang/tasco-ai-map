@@ -34,8 +34,10 @@ import dynamic from "next/dynamic";
 import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 
 import type { ChatResponse, Journey, Poi, UserProfile } from "@/lib/types";
-import { dispatchRealtimeServerEvent, groundedRealtimeResponse, isConfirmedSpeech, setAudioTracksMuted } from "@/lib/realtime";
+import { isConfirmedSpeech, setAudioTracksMuted } from "@/lib/realtime";
 import { routeTheaterAvailability } from "@/lib/route-theater";
+import { startScribeSession, type SttSession } from "@/lib/stt-client";
+import { playGroundedSpeech, type TtsPlayback } from "@/lib/tts-client";
 
 const MapView = dynamic(
   () => import("@/components/map-view").then((module) => module.MapView),
@@ -87,49 +89,59 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
   const [realtimeMode, setRealtimeMode] = useState<"connecting" | "realtime" | "scripted">("scripted");
   const sessionIdRef = useRef("tasco-demo");
   const contextRef = useRef<ChatResponse["sessionContext"]>(undefined);
-  const peerRef = useRef<RTCPeerConnection | null>(null);
+  const sttRef = useRef<SttSession | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const dataChannelRef = useRef<RTCDataChannel | null>(null);
   const confirmationLockRef = useRef(false);
   const realtimeAttemptRef = useRef(0);
-  const realtimeEventHandlerRef = useRef<(raw: string) => void>(() => undefined);
   const responseActiveRef = useRef(false);
   const utteranceRef = useRef("");
+  const ttsRef = useRef<TtsPlayback | null>(null);
+  // Demo chrome (scripted advance button) only appears with ?demo=1 — the design
+  // keeps demo stepping outside the customer sheet.
+  const [showDemoRail, setShowDemoRail] = useState(false);
 
   useEffect(() => { sessionIdRef.current = newSessionId(); }, []);
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      setShowDemoRail(new URLSearchParams(window.location.search).has("demo"));
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
   useEffect(() => () => stopRealtime(), []);
   useEffect(() => {
     if (!isTheaterPlaying) return;
     const stopCount = latestResponse?.journey?.actions.length ?? 0;
     if (!stopCount || activeStopIndex >= stopCount - 1) {
-      const done = window.setTimeout(() => setIsTheaterPlaying(false), 900);
+      const done = window.setTimeout(() => { setIsTheaterPlaying(false); setMapMode("2d"); }, 900);
       return () => window.clearTimeout(done);
     }
     const timer = window.setTimeout(() => setActiveStopIndex((index) => index + 1), activeStopIndex < 0 ? 200 : 1400);
     return () => window.clearTimeout(timer);
   }, [activeStopIndex, isTheaterPlaying, latestResponse?.journey?.actions.length]);
 
-  const constraints = stage >= 1
-    ? ["4 người", "Món Việt", "Gần trung tâm", "Dễ đỗ xe", ...(stage >= 2 ? ["Ngân sách khoảng 1.000.000 ₫"] : [])]
-    : [];
+  // Truth rules: chips are the deterministic engine's parsed constraints and the
+  // route line follows real journey stops (or top recommendations) — never a
+  // stage counter.
+  const constraints = latestResponse?.sessionContext?.constraints ?? [];
 
+  // A polyline only exists for an actual journey (ordered stops). Plain search
+  // results are independent suggestions — connecting them would draw a fake
+  // "route" across whatever cities the results span.
   const routeCoordinates = useMemo<[number, number][]>(() => {
-    const visible = mapPois.slice(0, stage >= 3 ? 3 : 2);
-    if (!visible.length) return [];
-    const first = visible[0];
-    return [[first.coordinates.lon - .003, first.coordinates.lat - .002], ...visible.map((poi) => [poi.coordinates.lon, poi.coordinates.lat] as [number, number])];
-  }, [mapPois, stage]);
+    const journeyStops = latestResponse?.journey?.actions
+      .map((action) => latestResponse.recommendations.find((item) => item.poi.id === action.poiId)?.poi)
+      .filter((poi): poi is Poi => Boolean(poi));
+    if (!journeyStops || journeyStops.length < 2) return [];
+    return journeyStops.map((poi) => [poi.coordinates.lon, poi.coordinates.lat] as [number, number]);
+  }, [latestResponse]);
 
   function stopRealtime() {
     realtimeAttemptRef.current += 1;
     responseActiveRef.current = false;
-    dataChannelRef.current?.close();
-    peerRef.current?.close();
-    streamRef.current?.getTracks().forEach((track) => track.stop());
-    if (audioRef.current) audioRef.current.srcObject = null;
-    dataChannelRef.current = null;
-    peerRef.current = null;
+    ttsRef.current?.stop();
+    ttsRef.current = null;
+    sttRef.current?.stop();
+    sttRef.current = null;
     streamRef.current = null;
   }
 
@@ -142,59 +154,74 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
     setMicrophoneMuted(voiceState !== "muted");
   }
 
-  function sendRealtimeEvent(event: Record<string, unknown>) {
-    const channel = dataChannelRef.current;
-    if (channel?.readyState === "open") channel.send(JSON.stringify(event));
-  }
-
-  function speakGrounded(response: ChatResponse) {
+  // Speaks the deterministic assistantResponse via ElevenLabs (/api/tts). OpenAI
+  // is transcription-only now and never produces audio.
+  async function speakGrounded(response: ChatResponse) {
     if (realtimeMode !== "realtime") {
       setVoiceState("listening");
       return;
     }
-    sendRealtimeEvent(groundedRealtimeResponse(response));
+    ttsRef.current?.stop();
+    responseActiveRef.current = true;
+    setVoiceState("speaking");
+    const playback = playGroundedSpeech(response.assistantResponse);
+    ttsRef.current = playback;
+    const played = await playback.done;
+    if (ttsRef.current === playback) {
+      responseActiveRef.current = false;
+      setVoiceState("listening");
+      if (!played) setNotice("Không phát được âm thanh — hãy kiểm tra quyền phát âm thanh của trình duyệt.");
+    }
   }
 
-  // A VAD speech_started alone (breath, mic bump, background noise) never stops the
-  // assistant. The active response is cancelled only once transcription confirms
-  // real words, so genuine barge-in still works.
+  // A noise blip never stops the assistant: Scribe's server VAD filters
+  // background audio at the source, and playback is cancelled only once a
+  // transcript confirms real words. Genuine barge-in still works instantly.
   function cancelActiveResponseForBargeIn() {
     if (!responseActiveRef.current) return;
-    sendRealtimeEvent({ type: "response.cancel" });
-    sendRealtimeEvent({ type: "output_audio_buffer.clear" });
+    ttsRef.current?.stop();
     responseActiveRef.current = false;
   }
 
-  function handleRealtimeEvent(raw: string) {
-    dispatchRealtimeServerEvent(raw, {
-      onSpeechStarted: () => {
-        utteranceRef.current = "";
-        if (!responseActiveRef.current) {
-          setVoiceState("listening");
-          setPartial("Đang nghe bạn nói…");
-        }
-      },
-      onTranscriptDelta: (delta) => {
-        utteranceRef.current += delta;
-        if (responseActiveRef.current && isConfirmedSpeech(utteranceRef.current)) {
-          cancelActiveResponseForBargeIn();
-          setVoiceState("listening");
-        }
-        setPartial(utteranceRef.current);
-      },
-      onTranscriptCompleted: (transcript) => {
-        utteranceRef.current = "";
-        if (!isConfirmedSpeech(transcript)) return;
-        cancelActiveResponseForBargeIn();
-        setPartial(transcript);
-        void handleUtterance(transcript);
-      },
-      onResponseCreated: () => { responseActiveRef.current = true; setVoiceState("speaking"); },
-      onOutputTranscriptDelta: (delta) => { if (delta) setNotice(`Atlas: ${delta}`); },
-      onResponseDone: () => { responseActiveRef.current = false; setVoiceState("listening"); }
-    });
+  function handlePartialTranscript(text: string) {
+    if (!text.trim()) return;
+    utteranceRef.current = text;
+    if (responseActiveRef.current && isConfirmedSpeech(text)) {
+      cancelActiveResponseForBargeIn();
+      setVoiceState("listening");
+    }
+    if (!responseActiveRef.current) setPartial(text);
   }
-  realtimeEventHandlerRef.current = handleRealtimeEvent;
+
+  function handleCommittedTranscript(text: string) {
+    utteranceRef.current = "";
+    if (!isConfirmedSpeech(text)) return;
+    cancelActiveResponseForBargeIn();
+    setPartial(text);
+    void handleUtterance(text);
+  }
+
+  function handleSttError() {
+    stopRealtime();
+    setRealtimeMode("scripted");
+    setVoiceState("listening");
+    setNotice("Đang dùng kịch bản demo ổn định. Bạn vẫn có thể nhập bằng chữ.");
+  }
+
+  // The Scribe session outlives many renders, so its callbacks must always run
+  // against the CURRENT render's closures. Handlers registered directly would
+  // freeze the first render's state (realtimeMode "connecting") and silently
+  // skip TTS forever — the exact "transcribes but never speaks" bug.
+  const sttHandlersRef = useRef({
+    onPartial: handlePartialTranscript,
+    onCommitted: handleCommittedTranscript,
+    onError: handleSttError,
+  });
+  sttHandlersRef.current = {
+    onPartial: handlePartialTranscript,
+    onCommitted: handleCommittedTranscript,
+    onError: handleSttError,
+  };
 
   async function startRealtime() {
     const attempt = realtimeAttemptRef.current + 1;
@@ -202,31 +229,19 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
     setRealtimeMode("connecting");
     setNotice("");
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+      const session = await startScribeSession({
+        onOpen: () => {
+          if (realtimeAttemptRef.current !== attempt) return;
+          setRealtimeMode("realtime");
+          setVoiceState("listening");
+        },
+        onPartial: (text) => { if (realtimeAttemptRef.current === attempt) sttHandlersRef.current.onPartial(text); },
+        onCommitted: (text) => { if (realtimeAttemptRef.current === attempt) sttHandlersRef.current.onCommitted(text); },
+        onError: () => { if (realtimeAttemptRef.current === attempt) sttHandlersRef.current.onError(); },
       });
-      if (realtimeAttemptRef.current !== attempt) { stream.getTracks().forEach((track) => track.stop()); return; }
-      const peer = new RTCPeerConnection();
-      const audio = document.createElement("audio");
-      audio.autoplay = true;
-      peer.ontrack = (event) => { audio.srcObject = event.streams[0]; };
-      stream.getTracks().forEach((track) => peer.addTrack(track, stream));
-      const channel = peer.createDataChannel("oai-events");
-      channel.addEventListener("message", (event) => realtimeEventHandlerRef.current(String(event.data)));
-      const offer = await peer.createOffer();
-      await peer.setLocalDescription(offer);
-      const response = await fetch("/api/realtime/session", {
-        method: "POST",
-        headers: { "Content-Type": "application/sdp", "X-TASCO-Session": sessionIdRef.current },
-        body: offer.sdp
-      });
-      if (realtimeAttemptRef.current !== attempt) { peer.close(); stream.getTracks().forEach((track) => track.stop()); return; }
-      if (!response.ok) throw new Error("Realtime unavailable");
-      await peer.setRemoteDescription({ type: "answer", sdp: await response.text() });
-      if (realtimeAttemptRef.current !== attempt) { peer.close(); stream.getTracks().forEach((track) => track.stop()); return; }
-      peerRef.current = peer; streamRef.current = stream; audioRef.current = audio; dataChannelRef.current = channel;
-      setRealtimeMode("realtime");
-      setVoiceState("listening");
+      if (realtimeAttemptRef.current !== attempt) { session.stop(); return; }
+      sttRef.current = session;
+      streamRef.current = session.stream;
     } catch {
       if (realtimeAttemptRef.current !== attempt) return;
       stopRealtime();
@@ -268,22 +283,21 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
     const normalized = message.toLocaleLowerCase("vi");
     setInput(""); setPartial(message);
     if (normalized.includes("gần hơn") || normalized.includes("rẻ hơn")) {
-      sendRealtimeEvent({ type: "response.cancel" });
-      sendRealtimeEvent({ type: "output_audio_buffer.clear" });
+      cancelActiveResponseForBargeIn();
       setVoiceState("interrupted"); setStage(3);
       const result = await queryDeterministic(message);
-      if (result) speakGrounded(result); else setVoiceState("listening");
+      if (result) void speakGrounded(result); else setVoiceState("listening");
       return;
     }
     if (stage === 0) {
       setStage(1); setVoiceState("thinking");
       const result = await queryDeterministic(message);
-      if (result) speakGrounded(result); else setVoiceState("listening");
+      if (result) void speakGrounded(result); else setVoiceState("listening");
       return;
     }
     setStage(2); setVoiceState("thinking");
     const result = await queryDeterministic(message);
-    if (result) speakGrounded(result); else setVoiceState("listening");
+    if (result) void speakGrounded(result); else setVoiceState("listening");
   }
 
   function submit(event: FormEvent) { event.preventDefault(); if (input.trim()) void handleUtterance(input.trim()); }
@@ -304,7 +318,7 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
     if (stage >= 3 && result?.journey?.revision.outcome === "composed") {
       result = await queryDeterministic(SCRIPT.interrupt);
     }
-    if (!result?.journey) { setNotice("Chưa đủ dữ liệu để tạo hành trình mô phỏng."); setVoiceState("listening"); return; }
+    if (!result?.journey) { setNotice("Chưa đủ dữ liệu để tạo hành trình."); setVoiceState("listening"); return; }
     setScreen("checkout");
   }
 
@@ -336,8 +350,8 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
     <main className="atlas-mobile-shell">
       <section className="atlas-map-layer" aria-label="Bản đồ TASCO Atlas">
         <MapView pois={mapPois} mode={mapMode} selectedPoiId={selectedPoiId} routeCoordinates={routeCoordinates} activeStopIndex={activeStopIndex} onSelectPoi={(poi) => setSelectedPoiId(poi.id)} onReadyChange={setMapReady} />
-        <div className="atlas-map-disclosure"><ShieldCheck size={13} /> Dữ liệu & tuyến mô phỏng</div>
-        <div className="atlas-mode-toggle" role="group" aria-label="Chế độ bản đồ"><button className={mapMode === "2d" ? "is-active" : ""} type="button" onClick={() => setMapMode("2d")}>2D</button><button className={mapMode === "3d" ? "is-active" : ""} type="button" onClick={() => mapReady && setMapMode("3d")} disabled={!mapReady}>3D</button></div>
+        {/* 3D is receipt-stage Route Theater only (design §2.5) — no live map-mode toggle. */}
+        <div className="atlas-map-disclosure"><ShieldCheck size={13} /> Dữ liệu &amp; tuyến mô phỏng · {latestResponse?.journey?.actions.length ?? mapPois.length} điểm dừng</div>
       </section>
 
       <header className="atlas-floating-header">
@@ -380,7 +394,7 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
           {stage >= 3 ? <div className="interrupt-banner"><Check size={16} /><div><strong>Đã nghe yêu cầu mới</strong><span>Đã dừng nói khi bạn ngắt lời</span></div></div> : null}
 
           {constraints.length ? <><div className="constraint-caption">Ràng buộc đã hiểu <span>Điều chỉnh bằng lời hoặc ô nhập</span></div><div className="constraint-chips">{constraints.map((item) => <span key={item}>{item}</span>)}</div></> : null}
-          {stage > 0 ? <RecommendationCard revised={stage >= 3} response={latestResponse} onOpen={() => void openJourney()} /> : <div className="empty-understanding"><Sparkles size={18} /><span>Atlas sẽ biến cuộc trò chuyện thành một kế hoạch duy nhất trên bản đồ.</span></div>}
+          {latestResponse ? <RecommendationCard response={latestResponse} onOpen={() => void openJourney()} /> : <div className="empty-understanding"><Sparkles size={18} /><span>Atlas sẽ biến cuộc trò chuyện thành một kế hoạch duy nhất trên bản đồ.</span></div>}
 
           {(isTextMode || realtimeMode === "scripted") ? (
             <form className="atlas-composer" onSubmit={submit}>
@@ -388,10 +402,12 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
               <button type="submit" disabled={!input.trim()} aria-label="Gửi"><Send size={18} /></button>
             </form>
           ) : null}
-          <button className="demo-next" type="button" onClick={advanceDemo} disabled={stage >= 3}>
-            {stage === 0 ? "Chạy câu mở đầu mẫu" : stage === 1 ? "Thêm ngân sách mẫu" : stage === 2 ? "Ngắt lời: gần hơn, rẻ hơn" : "Đã cập nhật tại chỗ"}
-            <ChevronRight size={17} />
-          </button>
+          {showDemoRail ? (
+            <button className="demo-next" type="button" onClick={advanceDemo} disabled={stage >= 3}>
+              {stage === 0 ? "Chạy câu mở đầu mẫu" : stage === 1 ? "Thêm ngân sách mẫu" : stage === 2 ? "Ngắt lời: gần hơn, rẻ hơn" : "Kịch bản demo đã chạy xong"}
+              <ChevronRight size={17} />
+            </button>
+          ) : null}
         </section>
       )}
     </main>
@@ -409,20 +425,34 @@ function voiceSubline(state: VoiceState, mode: "connecting" | "realtime" | "scri
   return mode === "realtime" ? "Âm thanh trực tiếp đang hoạt động" : "Sẵn sàng cho kịch bản demo";
 }
 
-function RecommendationCard({ revised, response, onOpen }: { revised: boolean; response: ChatResponse | null; onOpen: () => void }) {
-  const deterministicName = response?.recommendations?.[0]?.poi.name;
+// Every value on this card comes from the deterministic response — name,
+// rating, location, journey totals, savings. Nothing here may be a literal:
+// the design contract says "the exact amount and place must come from
+// deterministic output, not from example copy."
+function RecommendationCard({ response, onOpen }: { response: ChatResponse; onOpen: () => void }) {
+  const primary = response.recommendations[0]?.poi;
+  const journey = response.journey;
+  const revised = journey?.revision.outcome === "cheaper";
+  if (!primary) {
+    return (
+      <article className="live-recommendation">
+        <header><span><Sparkles size={14} /> Gợi ý phù hợp nhất</span></header>
+        <p>{response.assistantResponse}</p>
+      </article>
+    );
+  }
+  const attributes = primary.attributes.slice(0, 2).join(" · ");
   return (
     <article className={`live-recommendation${revised ? " is-revised" : ""}`}>
       <header><span><Sparkles size={14} /> Gợi ý phù hợp nhất</span>{revised ? <em><Check size={13} /> Đã thay đổi</em> : null}</header>
-      <div className="recommendation-title"><div><Utensils size={20} /></div><span><strong>{revised ? "Quán Bụi — Lý Tự Trọng, Q.1" : deterministicName ?? "Nhà hàng Sông Quê — Thảo Điền"}</strong><small>Món Việt · Có chỗ đỗ xe · Mô phỏng</small></span></div>
+      <div className="recommendation-title"><div><Utensils size={20} /></div><span><strong>{primary.name}</strong><small>{primary.category}{attributes ? ` · ${attributes}` : ""}</small></span></div>
       <div className="recommendation-facts">
-        <span><MapPin size={14} /><strong>{revised ? "800 m" : "4,5 km"}</strong><small>khoảng cách</small></span>
-        <span><Clock3 size={14} /><strong>{revised ? "8 phút" : "22 phút"}</strong><small>tuyến mô phỏng</small></span>
-        <span><CreditCard size={14} /><strong>{revised ? "880.000 ₫" : "1.000.000 ₫"}</strong><small>ước tính 4 người</small></span>
+        <span><MapPin size={14} /><strong>{primary.district}, {primary.city}</strong><small>vị trí</small></span>
+        <span><Clock3 size={14} /><strong>{primary.rating.toFixed(1)}/5</strong><small>đánh giá dữ liệu</small></span>
+        {journey ? <span><CreditCard size={14} /><strong>{journey.totalVnd.toLocaleString("vi-VN")} ₫</strong><small>tổng ước tính</small></span> : null}
       </div>
-      {revised ? <div className="savings-line"><Check size={15} /> Tiết kiệm 120.000 ₫ · gần hơn 3,7 km</div> : null}
-      <p>Giá mô phỏng từ dữ liệu demo — không phải báo giá hoặc giữ chỗ thực tế.</p>
-      {revised ? <button type="button" onClick={onOpen}><Navigation size={17} /> Xem hành trình đề xuất</button> : null}
+      {revised && journey ? <div className="savings-line"><Check size={15} /> Tiết kiệm {journey.savingsVnd.toLocaleString("vi-VN")} ₫ so với phương án trước</div> : null}
+      {journey ? <button type="button" onClick={onOpen}><Navigation size={17} /> Chốt hành trình</button> : null}
     </article>
   );
 }
@@ -446,7 +476,7 @@ function JourneyCheckout({ response, isConfirming, confirmed, onBack, onConfirm,
     })}</ol>
     <div className="checkout-costs"><span><small>Chi phí ước tính toàn hành trình</small><strong>{journey.totalVnd.toLocaleString("vi-VN")} ₫</strong></span><span className="is-prepaid"><small>Thanh toán ngay · Đỗ xe 2 giờ</small><strong>{(parking?.finalPriceVnd ?? 0).toLocaleString("vi-VN")} ₫</strong></span></div>
     <p className="checkout-disclosure">Giá và giữ chỗ đều là mô phỏng. Không trừ tiền thật.</p>
-    <button className="checkout-confirm" type="button" onClick={confirmed ? onReceipt : onConfirm} disabled={isConfirming || !parking}>{confirmed ? "Xem biên nhận mô phỏng" : isConfirming ? "Đang xác nhận…" : `Xác nhận ${(parking?.finalPriceVnd ?? 0).toLocaleString("vi-VN")} ₫`}</button>
+    <button className="checkout-confirm" type="button" onClick={confirmed ? onReceipt : onConfirm} disabled={isConfirming || !parking}>{confirmed ? "Xem biên nhận" : isConfirming ? "Đang xác nhận…" : `Xác nhận ${(parking?.finalPriceVnd ?? 0).toLocaleString("vi-VN")} ₫`}</button>
     <button className="checkout-back" type="button" onClick={onBack}>Chưa, để tôi chỉnh lại</button>
   </section>;
 }

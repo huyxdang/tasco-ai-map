@@ -335,7 +335,23 @@ const KNOWN_CONSTRAINTS: Array<{ match: string; label: string }> = [
   { match: "toilet", label: "toilet" },
   { match: "ho boi", label: "hồ bơi" },
   { match: "bai do xe", label: "bãi đỗ xe" },
+  { match: "de do xe", label: "dễ đỗ xe" },
+  { match: "mon viet", label: "món Việt" },
+  { match: "am thuc viet", label: "món Việt" },
+  { match: "mon y", label: "món Ý" },
+  { match: "do y", label: "món Ý" },
+  { match: "gan trung tam", label: "gần trung tâm" },
 ];
+
+const PARTY_WORD_DIGITS: Record<string, string> = {
+  hai: "2", ba: "3", bon: "4", nam: "5", sau: "6", bay: "7", tam: "8", chin: "9", muoi: "10",
+};
+
+function partySizeConstraint(normalized: string): string | undefined {
+  const match = normalized.match(/(^|\s)(\d{1,2}|hai|ba|bon|nam|sau|bay|tam|chin|muoi)\s+nguoi(\s|$)/);
+  if (!match) return undefined;
+  return `${PARTY_WORD_DIGITS[match[2]] ?? match[2]} người`;
+}
 
 const BUDGET_PREFIX_LABELS: Record<string, string> = {
   duoi: "dưới",
@@ -399,7 +415,8 @@ function constraintsFor(query: string): string[] {
   const known = KNOWN_CONSTRAINTS.filter(({ match }) =>
     normalized.includes(match),
   ).map(({ label }) => label);
-  return [...new Set([...known, ...budgetConstraintsFor(normalized)])];
+  const party = partySizeConstraint(normalized);
+  return [...new Set([...known, ...(party ? [party] : []), ...budgetConstraintsFor(normalized)])];
 }
 
 function sessionContext(
@@ -430,7 +447,14 @@ function sessionContext(
           },
         }
       : {}),
-    ...(journey ? { journey } : {}),
+    // A refinement turn that composes no new journey must not wipe the active
+    // one — otherwise the next "rẻ hơn" falls to raw search instead of the
+    // journey revision path.
+    ...(journey
+      ? { journey }
+      : request.sessionContext?.journey
+        ? { journey: request.sessionContext.journey }
+        : {}),
   };
 }
 
@@ -525,7 +549,7 @@ export function handleChat(request: ChatRequest): ChatResponse {
       const ranked = rankPois(destination.name, { profile, limit: 1 })[0];
       return {
         intent,
-        assistantResponse: `Đã tạo tuyến mô phỏng đến ${destination.name}: khoảng ${(
+        assistantResponse: `Đã tạo tuyến đến ${destination.name}: khoảng ${(
           route.summary.distanceMeters / 1_000
         ).toFixed(1)} km, ${Math.max(
           1,
@@ -662,7 +686,7 @@ export function handleChat(request: ChatRequest): ChatResponse {
     ? intent === "planning"
       ? `Gợi ý lịch trình gọn: ${names}. Tôi đã đa dạng loại địa điểm và xếp hạng theo tiêu chí của bạn.`
       : journey
-        ? `Tôi đã ghép một hành trình mô phỏng gồm ${journey.actions.length} dịch vụ từ các POI phù hợp: ${names}. Hãy xem từng khoản trước khi xác nhận.`
+        ? `Tôi đã ghép một hành trình gồm ${journey.actions.length} dịch vụ: ${names}. Hãy xem từng khoản trước khi xác nhận.`
       : `Tôi tìm được ${recommendations.length} lựa chọn phù hợp nhất: ${names}. Mỗi gợi ý kèm lý do và điểm thành phần để bạn kiểm tra.`
     : noMatchResponse(categoryConstraint.categories, anchor, constraintsFor(request.message), locationLabelFor(searchText));
 

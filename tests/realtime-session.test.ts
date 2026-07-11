@@ -1,93 +1,97 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import { POST } from "../src/app/api/realtime/session/route";
-import { dispatchRealtimeServerEvent, groundedRealtimeResponse, isConfirmedSpeech, setAudioTracksMuted } from "../src/lib/realtime";
-import type { ChatResponse } from "../src/lib/types";
+import { POST as POST_STT_TOKEN } from "../src/app/api/stt/token/route";
+import { POST as POST_TTS } from "../src/app/api/tts/route";
+import { isConfirmedSpeech, setAudioTracksMuted } from "../src/lib/realtime";
 import { routeTheaterAvailability } from "../src/lib/route-theater";
 
-describe("Realtime session endpoint", () => {
+// The voice stack is fully ElevenLabs: Scribe v2 Realtime STT behind
+// /api/stt/token (single-use tokens) and Flash v2.5 TTS behind /api/tts.
+// Both endpoints hold the API key server-side and fail closed without it.
+describe("ElevenLabs voice endpoints", () => {
   afterEach(() => {
     vi.unstubAllEnvs();
     vi.unstubAllGlobals();
   });
 
-  it("fails closed without exposing or requiring a client-side API key", async () => {
-    vi.stubEnv("OPENAI_API_KEY", "");
-    const response = await POST(new Request("http://localhost/api/realtime/session", {
-      method: "POST",
-      headers: { "Content-Type": "application/sdp" },
-      body: "v=0"
-    }));
-
+  it("STT token endpoint fails closed without the ElevenLabs key", async () => {
+    vi.stubEnv("ELEVENLABS_API_KEY", "");
+    const response = await POST_STT_TOKEN();
     expect(response.status).toBe(503);
-    await expect(response.json()).resolves.toEqual({ error: "Realtime is not configured." });
   });
 
-  it("creates a transcription-first grounded session without returning the server key", async () => {
-    vi.stubEnv("OPENAI_API_KEY", "server-secret-key");
-    const upstreamFetch = vi.fn(async (_url: string | URL | Request, init?: RequestInit) => {
-      const form = init?.body as FormData;
-      const session = JSON.parse(String(form.get("session"))) as {
-        model: string;
-        audio: { input: { turn_detection: { create_response: boolean; interrupt_response: boolean } } };
-      };
-      expect(session.model).toBe("gpt-realtime-2.1");
-      expect(session.audio.input.turn_detection).toMatchObject({ create_response: false, interrupt_response: false });
-      expect(init?.headers).toMatchObject({ Authorization: "Bearer server-secret-key", "OpenAI-Safety-Identifier": "browser-session" });
-      expect(form.get("sdp")).toBe("v=0\r\no=tasco");
-      return new Response("v=0\r\no=openai-answer", { status: 200, headers: { "Content-Type": "application/sdp" } });
+  it("STT token endpoint mints a single-use realtime_scribe token without exposing the key", async () => {
+    vi.stubEnv("ELEVENLABS_API_KEY", "el-secret-key");
+    const upstreamFetch = vi.fn(async (url: string | URL | Request, init?: RequestInit) => {
+      expect(String(url)).toBe("https://api.elevenlabs.io/v1/single-use-token/realtime_scribe");
+      expect(init?.method).toBe("POST");
+      expect(init?.headers).toMatchObject({ "xi-api-key": "el-secret-key" });
+      return new Response(JSON.stringify({ token: "single-use-token" }), {
+        status: 200, headers: { "Content-Type": "application/json" }
+      });
     });
     vi.stubGlobal("fetch", upstreamFetch);
-
-    const response = await POST(new Request("http://localhost/api/realtime/session", {
-      method: "POST",
-      headers: { "Content-Type": "application/sdp", "X-TASCO-Session": "browser-session" },
-      body: "v=0\r\no=tasco"
-    }));
-
+    const response = await POST_STT_TOKEN();
     expect(response.status).toBe(200);
-    expect(await response.text()).toBe("v=0\r\no=openai-answer");
+    await expect(response.json()).resolves.toEqual({ token: "single-use-token" });
+    expect(JSON.stringify([...response.headers.entries()])).not.toContain("el-secret-key");
     expect(upstreamFetch).toHaveBeenCalledOnce();
-    expect(JSON.stringify([...response.headers.entries()])).not.toContain("server-secret-key");
   });
 
-  it("builds speech only from the deterministic chat response", () => {
-    const response = {
-      assistantResponse: "Đã đổi hành trình mô phỏng và tiết kiệm 120.000 ₫.",
-      recommendations: [], confidence: 1, intent: "journey_revision", mapAction: { type: "plan" }
-    } as ChatResponse;
-    const event = groundedRealtimeResponse(response);
-    const serialized = JSON.stringify(event);
-    expect(event.type).toBe("response.create");
-    expect(event.response.metadata.source).toBe("tasco-deterministic-chat");
-    expect(serialized).toContain(response.assistantResponse);
-    expect(serialized).toContain('"conversation":"none"');
+  it("STT token endpoint surfaces upstream failures as 502", async () => {
+    vi.stubEnv("ELEVENLABS_API_KEY", "el-secret-key");
+    vi.stubGlobal("fetch", vi.fn(async () => new Response("nope", { status: 401 })));
+    const response = await POST_STT_TOKEN();
+    expect(response.status).toBe(502);
   });
 
-  it("hard-mutes and explicitly re-enables every audio track", () => {
-    const tracks = [{ enabled: true }, { enabled: true }] as MediaStreamTrack[];
-    const stream = { getAudioTracks: () => tracks };
-    setAudioTracksMuted(stream, true);
-    expect(tracks.every((track) => !track.enabled)).toBe(true);
-    setAudioTracksMuted(stream, false);
-    expect(tracks.every((track) => track.enabled)).toBe(true);
+  it("TTS endpoint fails closed without the ElevenLabs key", async () => {
+    vi.stubEnv("ELEVENLABS_API_KEY", "");
+    const response = await POST_TTS(new Request("http://localhost/api/tts", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text: "Xin chào" })
+    }));
+    expect(response.status).toBe(503);
   });
 
-  it("dispatches provider events through the supplied current sink", () => {
-    const first = vi.fn();
-    const second = vi.fn();
-    dispatchRealtimeServerEvent(JSON.stringify({ type: "conversation.item.input_audio_transcription.completed", transcript: "first" }), {
-      onSpeechStarted: vi.fn(), onTranscriptDelta: vi.fn(), onTranscriptCompleted: first,
-      onResponseCreated: vi.fn(), onOutputTranscriptDelta: vi.fn(), onResponseDone: vi.fn()
+  it("TTS endpoint streams ElevenLabs audio without exposing the server key", async () => {
+    vi.stubEnv("ELEVENLABS_API_KEY", "el-secret-key");
+    const upstreamFetch = vi.fn(async (url: string | URL | Request, init?: RequestInit) => {
+      expect(String(url)).toContain("api.elevenlabs.io/v1/text-to-speech/");
+      expect(init?.headers).toMatchObject({ "xi-api-key": "el-secret-key" });
+      const body = JSON.parse(String(init?.body)) as { text: string; model_id: string; language_code: string };
+      expect(body.model_id).toBe("eleven_flash_v2_5");
+      expect(body.language_code).toBe("vi");
+      expect(body.text).toBe("Tôi tìm được 2 lựa chọn phù hợp nhất.");
+      return new Response(new Blob([new Uint8Array([1, 2, 3])]).stream(), {
+        status: 200, headers: { "Content-Type": "audio/mpeg" }
+      });
     });
-    dispatchRealtimeServerEvent(JSON.stringify({ type: "conversation.item.input_audio_transcription.completed", transcript: "latest" }), {
-      onSpeechStarted: vi.fn(), onTranscriptDelta: vi.fn(), onTranscriptCompleted: second,
-      onResponseCreated: vi.fn(), onOutputTranscriptDelta: vi.fn(), onResponseDone: vi.fn()
-    });
-    expect(first).toHaveBeenCalledWith("first");
-    expect(second).toHaveBeenCalledWith("latest");
+    vi.stubGlobal("fetch", upstreamFetch);
+    const response = await POST_TTS(new Request("http://localhost/api/tts", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text: "Tôi tìm được 2 lựa chọn phù hợp nhất." })
+    }));
+    expect(response.status).toBe(200);
+    expect(response.headers.get("Content-Type")).toBe("audio/mpeg");
+    expect(JSON.stringify([...response.headers.entries()])).not.toContain("el-secret-key");
+    expect(upstreamFetch).toHaveBeenCalledOnce();
   });
 
+  it("TTS endpoint rejects empty or malformed requests", async () => {
+    vi.stubEnv("ELEVENLABS_API_KEY", "el-secret-key");
+    const empty = await POST_TTS(new Request("http://localhost/api/tts", {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text: "  " })
+    }));
+    expect(empty.status).toBe(400);
+    const malformed = await POST_TTS(new Request("http://localhost/api/tts", {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: "not json"
+    }));
+    expect(malformed.status).toBe(400);
+  });
+});
+
+describe("voice UI guards", () => {
   it("confirms barge-in only on real words, never on noise artifacts", () => {
     expect(isConfirmedSpeech("gần hơn")).toBe(true);
     expect(isConfirmedSpeech("rẻ hơn một chút")).toBe(true);
@@ -100,24 +104,13 @@ describe("Realtime session endpoint", () => {
     expect(isConfirmedSpeech("hm")).toBe(false);
   });
 
-  it("keeps the session config non-interrupting at the VAD layer", async () => {
-    vi.stubEnv("OPENAI_API_KEY", "server-secret-key");
-    const upstreamFetch = vi.fn(async (_url: string | URL | Request, init?: RequestInit) => {
-      const form = init?.body as FormData;
-      const session = JSON.parse(String(form.get("session"))) as {
-        audio: { input: { turn_detection: { type: string; eagerness: string; create_response: boolean; interrupt_response: boolean } } };
-      };
-      expect(session.audio.input.turn_detection).toEqual({
-        type: "semantic_vad", eagerness: "low", create_response: false, interrupt_response: false,
-      });
-      return new Response("v=0", { status: 200, headers: { "Content-Type": "application/sdp" } });
-    });
-    vi.stubGlobal("fetch", upstreamFetch);
-    const response = await POST(new Request("http://localhost/api/realtime/session", {
-      method: "POST", headers: { "Content-Type": "application/sdp" }, body: "v=0"
-    }));
-    expect(response.status).toBe(200);
-    expect(upstreamFetch).toHaveBeenCalledOnce();
+  it("hard-mutes and explicitly re-enables every audio track", () => {
+    const tracks = [{ enabled: true }, { enabled: true }] as MediaStreamTrack[];
+    const stream = { getAudioTracks: () => tracks };
+    setAudioTracksMuted(stream, true);
+    expect(tracks.every((track) => !track.enabled)).toBe(true);
+    setAudioTracksMuted(stream, false);
+    expect(tracks.every((track) => track.enabled)).toBe(true);
   });
 
   it("starts Route Theater only when MapLibre reports ready", () => {

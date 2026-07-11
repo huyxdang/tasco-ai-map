@@ -97,7 +97,7 @@ function buildJourney(actions: JourneyAction[], state?: JourneySessionState, out
       number: revision,
       outcome,
       changedActionIds,
-      message: outcome === "cheaper" ? `Đã giảm tổng mô phỏng ${Math.max(0, (state?.totalVnd ?? totalVnd) - totalVnd).toLocaleString("vi-VN")} ₫ mà vẫn giữ loại dịch vụ và khu vực.` : outcome === "no_cheaper_option" ? "Không có lựa chọn rẻ hơn đủ điều kiện trong dữ liệu mẫu; hành trình hiện tại được giữ nguyên." : "Đã ghép các dịch vụ mô phỏng từ POI xếp hạng hữu cơ.",
+      message: outcome === "cheaper" ? `Đã giảm tổng chi phí ${Math.max(0, (state?.totalVnd ?? totalVnd) - totalVnd).toLocaleString("vi-VN")} ₫ mà vẫn giữ loại dịch vụ và khu vực.` : outcome === "no_cheaper_option" ? "Không có lựa chọn rẻ hơn đủ điều kiện trong dữ liệu mẫu; hành trình hiện tại được giữ nguyên." : "Đã ghép các dịch vụ từ những địa điểm phù hợp nhất.",
     },
   };
 }
