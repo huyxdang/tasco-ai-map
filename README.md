@@ -213,6 +213,7 @@ src/data/dataset.json     Runtime conversion of the supplied synthetic workbook
 public/openapi.yaml       OpenAPI 3.1 contract
 docs/architecture.md      Context, scoring, privacy, and mock/live boundaries
 docs/example-conversations.md
+design.md                 Locked mobile design contract and implementation acceptance criteria
 dataset.xlsx              Supplied synthetic data and evaluation workbook
 api_documentation.docx    Supplied TASCO API reference
 problem_statement.md      Hackathon challenge brief
@@ -230,6 +231,7 @@ problem_statement.md      Hackathon challenge brief
 ## Submission references
 
 - [Deliverables.md](Deliverables.md)
+- [Locked design contract](design.md)
 - [Example conversations](docs/example-conversations.md)
 - [Architecture and recommendation methodology](docs/architecture.md)
 - [OpenAPI contract](public/openapi.yaml)

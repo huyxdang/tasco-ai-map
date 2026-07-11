@@ -1,737 +1,465 @@
 "use client";
 
 import {
-  Box,
+  ArrowLeft,
+  Bell,
+  BatteryCharging,
+  Car,
+  Check,
+  CheckCircle2,
   ChevronRight,
   CircleStop,
-  LocateFixed,
-  Map as MapIcon,
+  Clock3,
+  CreditCard,
+  FileText,
+  Gift,
+  Grid2X2,
+  Link,
+  MapPin,
+  Menu,
   Mic,
+  MicOff,
   Navigation,
+  ParkingCircle,
   Play,
-  RotateCcw,
+  ReceiptText,
   Send,
   ShieldCheck,
-  BadgePercent,
-  CheckCircle2,
-  ReceiptText,
-  WalletCards,
   Sparkles,
-  Star,
-  UserRound,
+  Utensils,
   Volume2,
   X
 } from "lucide-react";
 import dynamic from "next/dynamic";
-import {
-  type FormEvent,
-  useEffect,
-  useMemo,
-  useRef,
-  useState
-} from "react";
+import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 
-import type {
-  ChatResponse,
-  Journey,
-  Poi,
-  Recommendation,
-  UserProfile
-} from "@/lib/types";
+import type { ChatResponse, Journey, Poi, UserProfile } from "@/lib/types";
+import { dispatchRealtimeServerEvent, groundedRealtimeResponse, setAudioTracksMuted } from "@/lib/realtime";
+import { routeTheaterAvailability } from "@/lib/route-theater";
 
 const MapView = dynamic(
   () => import("@/components/map-view").then((module) => module.MapView),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="map-loading">
-        <span />
-        Đang dựng bản đồ TASCO…
-      </div>
-    )
-  }
+  { ssr: false, loading: () => <div className="atlas-map-loading">Đang mở bản đồ…</div> }
 );
 
+type TascoAtlasProps = { initialPois: Poi[]; profiles: UserProfile[] };
+type Screen = "home" | "session" | "live" | "checkout" | "receipt";
+type VoiceState = "idle" | "listening" | "thinking" | "speaking" | "interrupted" | "muted";
+type DemoStage = 0 | 1 | 2 | 3;
 type MapMode = "2d" | "3d";
+type SimulatedReceipt = { id: string; journey: Journey; confirmedAt: string };
 
-type UiMessage = {
-  id: string;
-  role: "assistant" | "user";
-  content: string;
-  response?: ChatResponse;
+const SCRIPT = {
+  first: "Tối nay bốn người muốn ăn món Việt gần trung tâm, dễ đỗ xe.",
+  budget: "Nhưng đừng mắc quá. Khoảng một triệu thôi.",
+  interrupt: "Không, chỗ đó xa quá. Gần hơn và rẻ hơn một chút."
 };
 
-type TascoAtlasProps = {
-  initialPois: Poi[];
-  profiles: UserProfile[];
-};
-
-type SimulatedReceipt = {
-  id: string;
-  journey: Journey;
-};
-
-type SpeechResultEvent = {
-  results: ArrayLike<{ 0: { transcript: string } }>;
-};
-
-type SpeechRecognitionLike = {
-  lang: string;
-  interimResults: boolean;
-  continuous: boolean;
-  onresult: ((event: SpeechResultEvent) => void) | null;
-  onerror: (() => void) | null;
-  onend: (() => void) | null;
-  start: () => void;
-  stop: () => void;
-};
-
-type SpeechRecognitionConstructor = new () => SpeechRecognitionLike;
-
-const QUICK_PROMPTS = [
-  "Tôi lái xe ở TP.HCM, cần đổ xăng, ăn tối và bãi đỗ xe.",
-  "Tôi có 90 phút ở Quận 1: cà phê yên tĩnh rồi ăn tối có view.",
-  "Đưa tôi đến Galaxy.",
-  "Gợi ý nơi hẹn hò lãng mạn tối nay ở Quận 1.",
-  "Tôi lái xe đêm, cần nơi ăn khuya và đổ xăng."
-];
-
-function responseConfidence(response: ChatResponse) {
-  const raw = Number(response.confidence ?? 0);
-  return Math.round(raw <= 1 ? raw * 100 : raw);
-}
-
-function recommendationPois(recommendations: Recommendation[]) {
-  return recommendations.map((recommendation) => recommendation.poi).filter(Boolean);
-}
-
-function sessionId() {
-  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
-    return crypto.randomUUID();
-  }
-  return `demo-${Date.now().toString(36)}`;
+function newSessionId() {
+  return typeof crypto !== "undefined" && "randomUUID" in crypto
+    ? crypto.randomUUID()
+    : `tasco-${Date.now().toString(36)}`;
 }
 
 export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
   const defaultPois = useMemo(() => {
     const hcmc = initialPois.filter((poi) => poi.city === "TP.HCM");
-    return (hcmc.length ? hcmc : initialPois).slice(0, 12);
+    return (hcmc.length ? hcmc : initialPois).slice(0, 10);
   }, [initialPois]);
-
-  const [messages, setMessages] = useState<UiMessage[]>([
-    {
-      id: "welcome",
-      role: "assistant",
-      content:
-        "Chào Edward — nói cho tôi biết bạn đang đi đâu, đi với ai, và điều gì quan trọng. Tôi sẽ biến cuộc trò chuyện thành hành động trên bản đồ."
-    }
-  ]);
+  const [screen, setScreen] = useState<Screen>("home");
+  const [voiceState, setVoiceState] = useState<VoiceState>("idle");
+  const [stage, setStage] = useState<DemoStage>(0);
   const [input, setInput] = useState("");
-  const [isThinking, setIsThinking] = useState(false);
-  const [isListening, setIsListening] = useState(false);
-  const [selectedProfileId, setSelectedProfileId] = useState(profiles[0]?.id ?? "");
-  const [mapMode, setMapMode] = useState<MapMode>("2d");
-  const [mapPois, setMapPois] = useState<Poi[]>(defaultPois);
-  const [selectedPoiId, setSelectedPoiId] = useState<string | null>(
-    defaultPois[0]?.id ?? null
-  );
+  const [partial, setPartial] = useState("");
+  const [isTextMode, setIsTextMode] = useState(false);
   const [latestResponse, setLatestResponse] = useState<ChatResponse | null>(null);
+  const [mapMode, setMapMode] = useState<MapMode>("2d");
   const [activeStopIndex, setActiveStopIndex] = useState(-1);
   const [isTheaterPlaying, setIsTheaterPlaying] = useState(false);
-  const [showPrivacy, setShowPrivacy] = useState(false);
-  const [toast, setToast] = useState<string | null>(null);
-  const [journeyOpen, setJourneyOpen] = useState(false);
-  const [isConfirming, setIsConfirming] = useState(false);
   const [receipt, setReceipt] = useState<SimulatedReceipt | null>(null);
+  const [isConfirming, setIsConfirming] = useState(false);
+  const [showPrivacy, setShowPrivacy] = useState(false);
   const [mapReady, setMapReady] = useState(false);
-  const [liveStatus, setLiveStatus] = useState("");
-  const conversationRef = useRef<HTMLDivElement>(null);
-  const sessionRef = useRef("demo-session");
-  const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
-  const messageSequenceRef = useRef(0);
+  const [theaterFallback, setTheaterFallback] = useState("");
+  const [mapPois, setMapPois] = useState<Poi[]>(defaultPois);
+  const [selectedPoiId, setSelectedPoiId] = useState<string | null>(defaultPois[0]?.id ?? null);
+  const [notice, setNotice] = useState("");
+  const [realtimeMode, setRealtimeMode] = useState<"connecting" | "realtime" | "scripted">("scripted");
+  const sessionIdRef = useRef("tasco-demo");
+  const contextRef = useRef<ChatResponse["sessionContext"]>(undefined);
+  const peerRef = useRef<RTCPeerConnection | null>(null);
+  const streamRef = useRef<MediaStream | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const dataChannelRef = useRef<RTCDataChannel | null>(null);
   const confirmationLockRef = useRef(false);
-  const journeyCloseRef = useRef<HTMLButtonElement>(null);
+  const realtimeAttemptRef = useRef(0);
+  const realtimeEventHandlerRef = useRef<(raw: string) => void>(() => undefined);
+  const responseActiveRef = useRef(false);
 
-  const latestRecommendations = useMemo(
-    () => latestResponse?.recommendations ?? [],
-    [latestResponse]
-  );
-  const selectedPoi =
-    mapPois.find((poi) => poi.id === selectedPoiId) ?? mapPois[0] ?? null;
+  useEffect(() => { sessionIdRef.current = newSessionId(); }, []);
+  useEffect(() => () => stopRealtime(), []);
+  useEffect(() => {
+    if (!isTheaterPlaying) return;
+    const stopCount = latestResponse?.journey?.actions.length ?? 0;
+    if (!stopCount || activeStopIndex >= stopCount - 1) {
+      const done = window.setTimeout(() => setIsTheaterPlaying(false), 900);
+      return () => window.clearTimeout(done);
+    }
+    const timer = window.setTimeout(() => setActiveStopIndex((index) => index + 1), activeStopIndex < 0 ? 200 : 1400);
+    return () => window.clearTimeout(timer);
+  }, [activeStopIndex, isTheaterPlaying, latestResponse?.journey?.actions.length]);
 
-  const theaterPois = useMemo(
-    () => recommendationPois(latestRecommendations).slice(0, 4),
-    [latestRecommendations]
-  );
+  const constraints = stage >= 1
+    ? ["4 người", "Món Việt", "Gần trung tâm", "Dễ đỗ xe", ...(stage >= 2 ? ["Ngân sách khoảng 1.000.000 ₫"] : [])]
+    : [];
 
   const routeCoordinates = useMemo<[number, number][]>(() => {
-    if (!theaterPois.length) return [];
-    const visibleStops =
-      activeStopIndex >= 0
-        ? theaterPois.slice(0, Math.min(activeStopIndex + 1, theaterPois.length))
-        : theaterPois.slice(0, 2);
-    const first = theaterPois[0];
-    const origin: [number, number] = [
-      first.coordinates.lon - 0.0026,
-      first.coordinates.lat - 0.0019
-    ];
-    return [
-      origin,
-      ...visibleStops.map(
-        (poi): [number, number] => [poi.coordinates.lon, poi.coordinates.lat]
-      )
-    ];
-  }, [activeStopIndex, theaterPois]);
+    const visible = mapPois.slice(0, stage >= 3 ? 3 : 2);
+    if (!visible.length) return [];
+    const first = visible[0];
+    return [[first.coordinates.lon - .003, first.coordinates.lat - .002], ...visible.map((poi) => [poi.coordinates.lon, poi.coordinates.lat] as [number, number])];
+  }, [mapPois, stage]);
 
-  function nextMessageId(prefix: string) {
-    messageSequenceRef.current += 1;
-    return `${prefix}-${messageSequenceRef.current}`;
+  function stopRealtime() {
+    realtimeAttemptRef.current += 1;
+    responseActiveRef.current = false;
+    dataChannelRef.current?.close();
+    peerRef.current?.close();
+    streamRef.current?.getTracks().forEach((track) => track.stop());
+    if (audioRef.current) audioRef.current.srcObject = null;
+    dataChannelRef.current = null;
+    peerRef.current = null;
+    streamRef.current = null;
   }
 
-  useEffect(() => {
-    sessionRef.current = sessionId();
-  }, []);
+  function setMicrophoneMuted(muted: boolean) {
+    setAudioTracksMuted(streamRef.current, muted);
+    setVoiceState(muted ? "muted" : "listening");
+  }
 
-  useEffect(() => {
-    conversationRef.current?.scrollTo({
-      top: conversationRef.current.scrollHeight,
-      behavior: "smooth"
-    });
-  }, [isThinking, messages]);
+  function toggleMute() {
+    setMicrophoneMuted(voiceState !== "muted");
+  }
 
-  useEffect(() => {
-    if (!isTheaterPlaying || !theaterPois.length) return;
-    if (activeStopIndex >= theaterPois.length - 1) {
-      const finishTimer = window.setTimeout(() => setIsTheaterPlaying(false), 1100);
-      return () => window.clearTimeout(finishTimer);
+  function sendRealtimeEvent(event: Record<string, unknown>) {
+    const channel = dataChannelRef.current;
+    if (channel?.readyState === "open") channel.send(JSON.stringify(event));
+  }
+
+  function speakGrounded(response: ChatResponse) {
+    if (realtimeMode !== "realtime") {
+      setVoiceState("listening");
+      return;
     }
-    const timer = window.setTimeout(
-      () => setActiveStopIndex((index) => index + 1),
-      activeStopIndex < 0 ? 250 : 1650
-    );
-    return () => window.clearTimeout(timer);
-  }, [activeStopIndex, isTheaterPlaying, theaterPois.length]);
+    sendRealtimeEvent(groundedRealtimeResponse(response));
+  }
 
-  useEffect(() => {
-    if (!toast) return;
-    const timer = window.setTimeout(() => setToast(null), 2800);
-    return () => window.clearTimeout(timer);
-  }, [toast]);
+  function handleRealtimeEvent(raw: string) {
+    dispatchRealtimeServerEvent(raw, {
+      onSpeechStarted: () => {
+        if (responseActiveRef.current) {
+          sendRealtimeEvent({ type: "response.cancel" });
+          sendRealtimeEvent({ type: "output_audio_buffer.clear" });
+        }
+        setVoiceState("listening");
+        setPartial("Đang nghe bạn nói…");
+      },
+      onTranscriptDelta: (delta) => setPartial((current) => current + delta),
+      onTranscriptCompleted: (transcript) => { setPartial(transcript); void handleUtterance(transcript); },
+      onResponseCreated: () => { responseActiveRef.current = true; setVoiceState("speaking"); },
+      onOutputTranscriptDelta: (delta) => { if (delta) setNotice(`Atlas: ${delta}`); },
+      onResponseDone: () => { responseActiveRef.current = false; setVoiceState("listening"); }
+    });
+  }
+  realtimeEventHandlerRef.current = handleRealtimeEvent;
 
-  async function submitMessage(message: string) {
-    const trimmed = message.trim();
-    if (!trimmed || isThinking) return;
+  async function startRealtime() {
+    const attempt = realtimeAttemptRef.current + 1;
+    realtimeAttemptRef.current = attempt;
+    setRealtimeMode("connecting");
+    setNotice("");
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      if (realtimeAttemptRef.current !== attempt) { stream.getTracks().forEach((track) => track.stop()); return; }
+      const peer = new RTCPeerConnection();
+      const audio = document.createElement("audio");
+      audio.autoplay = true;
+      peer.ontrack = (event) => { audio.srcObject = event.streams[0]; };
+      stream.getTracks().forEach((track) => peer.addTrack(track, stream));
+      const channel = peer.createDataChannel("oai-events");
+      channel.addEventListener("message", (event) => realtimeEventHandlerRef.current(String(event.data)));
+      const offer = await peer.createOffer();
+      await peer.setLocalDescription(offer);
+      const response = await fetch("/api/realtime/session", {
+        method: "POST",
+        headers: { "Content-Type": "application/sdp", "X-TASCO-Session": sessionIdRef.current },
+        body: offer.sdp
+      });
+      if (realtimeAttemptRef.current !== attempt) { peer.close(); stream.getTracks().forEach((track) => track.stop()); return; }
+      if (!response.ok) throw new Error("Realtime unavailable");
+      await peer.setRemoteDescription({ type: "answer", sdp: await response.text() });
+      if (realtimeAttemptRef.current !== attempt) { peer.close(); stream.getTracks().forEach((track) => track.stop()); return; }
+      peerRef.current = peer; streamRef.current = stream; audioRef.current = audio; dataChannelRef.current = channel;
+      setRealtimeMode("realtime");
+      setVoiceState("listening");
+    } catch {
+      if (realtimeAttemptRef.current !== attempt) return;
+      stopRealtime();
+      setRealtimeMode("scripted");
+      setVoiceState("listening");
+      setNotice("Đang dùng kịch bản demo ổn định. Bạn vẫn có thể nhập bằng chữ.");
+    }
+  }
 
-    const userMessage: UiMessage = {
-      id: nextMessageId("user"),
-      role: "user",
-      content: trimmed
-    };
-    setMessages((current) => [...current, userMessage]);
-    setInput("");
-    setIsThinking(true);
-    setActiveStopIndex(-1);
-    setIsTheaterPlaying(false);
+  async function startSession() {
+    setScreen("live");
+    setStage(0);
+    setPartial("");
+    await startRealtime();
+  }
 
+  async function queryDeterministic(message: string, options?: { cleanJourneyContext?: boolean }): Promise<ChatResponse | null> {
     try {
       const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          sessionId: sessionRef.current,
-          message: trimmed,
-          profileId: selectedProfileId,
-          history: messages.slice(-10).map((item) => ({
-            role: item.role,
-            content: item.content
-          })),
-          sessionContext: latestResponse?.sessionContext
+          sessionId: sessionIdRef.current,
+          ...(options?.cleanJourneyContext ? {} : { profileId: profiles[0]?.id, sessionContext: contextRef.current }),
+          message
         })
       });
-
-      if (!response.ok) {
-        throw new Error(`Chat request failed with ${response.status}`);
-      }
-
-      const payload = (await response.json()) as ChatResponse;
-      const assistantMessage: UiMessage = {
-        id: nextMessageId("assistant"),
-        role: "assistant",
-        content: payload.assistantResponse,
-        response: payload
-      };
-      const resultPois = recommendationPois(payload.recommendations ?? []);
-      setMessages((current) => [...current, assistantMessage]);
+      if (!response.ok) return null;
+      const payload = await response.json() as ChatResponse;
+      contextRef.current = payload.sessionContext;
       setLatestResponse(payload);
-      setReceipt(null);
-      confirmationLockRef.current = false;
-      if (payload.journey) {
-        setJourneyOpen(true);
-        setLiveStatus(payload.journey.revision.message);
-        window.setTimeout(() => journeyCloseRef.current?.focus(), 0);
-      } else {
-        setJourneyOpen(false);
-      }
-      if (resultPois.length) {
-        setMapPois(resultPois);
-        setSelectedPoiId(resultPois[0].id);
-      }
-    } catch {
-      setMessages((current) => [
-        ...current,
-        {
-          id: nextMessageId("assistant-error"),
-          role: "assistant",
-          content:
-            "Tôi không kết nối được với bộ máy đề xuất. Hãy thử lại — dữ liệu demo của bạn vẫn chưa được lưu ở đâu cả."
-        }
-      ]);
-    } finally {
-      setIsThinking(false);
-    }
+      const pois = payload.recommendations?.map((item) => item.poi).filter(Boolean) ?? [];
+      if (pois.length) { setMapPois(pois); setSelectedPoiId(pois[0].id); }
+      return payload;
+    } catch { /* The scripted visual fallback remains authoritative for the demo. */ }
+    return null;
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    void submitMessage(input);
-  }
-
-  function toggleVoice() {
-    if (isListening) {
-      recognitionRef.current?.stop();
-      setIsListening(false);
+  async function handleUtterance(message: string) {
+    const normalized = message.toLocaleLowerCase("vi");
+    setInput(""); setPartial(message);
+    if (normalized.includes("gần hơn") || normalized.includes("rẻ hơn")) {
+      sendRealtimeEvent({ type: "response.cancel" });
+      sendRealtimeEvent({ type: "output_audio_buffer.clear" });
+      setVoiceState("interrupted"); setStage(3);
+      const result = await queryDeterministic(message);
+      if (result) speakGrounded(result); else setVoiceState("listening");
       return;
     }
-
-    const speechWindow = window as typeof window & {
-      SpeechRecognition?: SpeechRecognitionConstructor;
-      webkitSpeechRecognition?: SpeechRecognitionConstructor;
-    };
-    const Recognition =
-      speechWindow.SpeechRecognition ?? speechWindow.webkitSpeechRecognition;
-    if (!Recognition) {
-      setToast("Trình duyệt này chưa hỗ trợ nhập giọng nói.");
+    if (stage === 0) {
+      setStage(1); setVoiceState("thinking");
+      const result = await queryDeterministic(message);
+      if (result) speakGrounded(result); else setVoiceState("listening");
       return;
     }
-
-    const recognition = new Recognition();
-    recognition.lang = "vi-VN";
-    recognition.interimResults = false;
-    recognition.continuous = false;
-    recognition.onresult = (event) => {
-      const transcript = event.results[0]?.[0]?.transcript ?? "";
-      setInput(transcript);
-      setToast("Đã nhận giọng nói — kiểm tra rồi gửi.");
-    };
-    recognition.onerror = () => setToast("Không nghe rõ. Hãy thử lại.");
-    recognition.onend = () => setIsListening(false);
-    recognitionRef.current = recognition;
-    setIsListening(true);
-    recognition.start();
+    setStage(2); setVoiceState("thinking");
+    const result = await queryDeterministic(message);
+    if (result) speakGrounded(result); else setVoiceState("listening");
   }
 
-  function playRouteTheater() {
-    if (!theaterPois.length) return;
-    setMapMode("3d");
-    setActiveStopIndex(-1);
-    setIsTheaterPlaying(true);
-    setToast("3D Route Theater đang biến lý do thành hành động bản đồ.");
+  function submit(event: FormEvent) { event.preventDefault(); if (input.trim()) void handleUtterance(input.trim()); }
+  function advanceDemo() {
+    const next = stage === 0 ? SCRIPT.first : stage === 1 ? SCRIPT.budget : SCRIPT.interrupt;
+    void handleUtterance(next);
+  }
+  function endSession() {
+    stopRealtime(); setVoiceState("idle"); setScreen("session"); setStage(0); setPartial(""); setLatestResponse(null); setMapPois(defaultPois); setReceipt(null); confirmationLockRef.current = false;
   }
 
-  function confirmJourney() {
+  async function openJourney() {
+    let result = latestResponse;
+    if (!result?.journey) {
+      setVoiceState("thinking");
+      result = await queryDeterministic("Tôi lái xe ở TP.HCM, cần đổ xăng, ăn tối và bãi đỗ xe.", { cleanJourneyContext: true });
+    }
+    if (stage >= 3 && result?.journey?.revision.outcome === "composed") {
+      result = await queryDeterministic(SCRIPT.interrupt);
+    }
+    if (!result?.journey) { setNotice("Chưa đủ dữ liệu để tạo hành trình mô phỏng."); setVoiceState("listening"); return; }
+    setScreen("checkout");
+  }
+
+  function confirmParking() {
     const journey = latestResponse?.journey;
     if (!journey || confirmationLockRef.current) return;
     confirmationLockRef.current = true;
     setIsConfirming(true);
-    setLiveStatus("Đang xác nhận mô phỏng bằng ví VETC…");
     window.setTimeout(() => {
-      const confirmed: Journey = {
-        ...journey,
-        actions: journey.actions.map((item) => ({ ...item, status: "confirmed" })),
-      };
-      setReceipt({ id: `VETC-MP-${journey.id.slice(-6).toUpperCase()}`, journey: confirmed });
+      const confirmed = { ...journey, actions: journey.actions.map((action) => action.kind === "parking" ? { ...action, status: "confirmed" as const } : action) };
+      setReceipt({ id: `VETC-MP-${journey.id.slice(-6).toUpperCase()}`, journey: confirmed, confirmedAt: new Date().toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }) });
       setIsConfirming(false);
-      setLiveStatus("Đã tạo một biên nhận VETC mô phỏng.");
-      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (reducedMotion) {
-        setMapMode("3d");
-        setToast("Đã xác nhận. Chuyển động giảm: nhấn Trình diễn khi bạn sẵn sàng.");
-      } else if (mapReady) {
-        playRouteTheater();
-      } else {
-        setToast("Đã xác nhận; bản đồ chưa sẵn sàng. Bạn có thể chạy Trình diễn thủ công.");
-      }
+      setScreen("receipt");
     }, 350);
   }
 
-  function clearConversation() {
-    sessionRef.current = sessionId();
-    setMessages([
-      {
-        id: nextMessageId("welcome"),
-        role: "assistant",
-        content:
-          "Phiên cũ đã được xoá khỏi bộ nhớ tạm. Bạn muốn khám phá điều gì tiếp theo?"
-      }
-    ]);
-    setLatestResponse(null);
-    setMapPois(defaultPois);
-    setSelectedPoiId(defaultPois[0]?.id ?? null);
-    setActiveStopIndex(-1);
-    setIsTheaterPlaying(false);
-    setJourneyOpen(false);
-    setReceipt(null);
-    setIsConfirming(false);
-    confirmationLockRef.current = false;
+  function playRouteTheater() {
+    const availability = routeTheaterAvailability(mapReady);
+    if (!availability.canPlay) {
+      setTheaterFallback(availability.message);
+      return;
+    }
+    setTheaterFallback(""); setMapMode("3d"); setActiveStopIndex(-1); setIsTheaterPlaying(true);
   }
 
+  if (screen === "home") return <VetcHome onOpen={() => setScreen("session")} />;
+
   return (
-    <main className="atlas-shell">
-      <aside className="conversation-panel">
-        <header className="brand-header">
-          <div className="brand-lockup">
-            <div className="brand-mark" aria-hidden="true">
-              <span />
-              <Navigation size={17} strokeWidth={2.6} />
-            </div>
-            <div>
-              <p>TASCO</p>
-              <h1>Atlas</h1>
-            </div>
-          </div>
-          <button
-            className="icon-button"
-            type="button"
-            onClick={clearConversation}
-            aria-label="Xoá cuộc trò chuyện"
-            title="Xoá cuộc trò chuyện"
-          >
-            <RotateCcw size={17} />
-          </button>
-        </header>
-
-        <div className="profile-strip">
-          <UserRound size={16} />
-          <label htmlFor="profile-select">Bối cảnh</label>
-          <select
-            id="profile-select"
-            value={selectedProfileId}
-            onChange={(event) => {
-              setSelectedProfileId(event.target.value);
-              setJourneyOpen(false);
-              setReceipt(null);
-              setLatestResponse(null);
-            }}
-          >
-            {profiles.map((profile) => (
-              <option key={profile.id} value={profile.id}>
-                {profile.persona} · {profile.currentLocation}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="conversation-scroll" ref={conversationRef}>
-          <div className="session-note">
-            <ShieldCheck size={15} />
-            <span>Demo riêng tư</span>
-            Dữ liệu tổng hợp · không camera · không tài khoản
-          </div>
-
-          {messages.map((message) => (
-            <article
-              className={`message ${message.role === "user" ? "message-user" : "message-assistant"}`}
-              key={message.id}
-            >
-              {message.role === "assistant" ? (
-                <div className="assistant-avatar" aria-hidden="true">
-                  <Sparkles size={14} />
-                </div>
-              ) : null}
-              <div className="message-body">
-                <p>{message.content}</p>
-                {message.response ? (
-                  <>
-                    <div className="response-meta">
-                      <span>{message.response.intent}</span>
-                      <i />
-                      <span>{responseConfidence(message.response)}% tin cậy</span>
-                      <i />
-                      <span>
-                        {message.response.generation?.mode === "openai"
-                          ? "OpenAI grounded"
-                          : "Local fallback"}
-                      </span>
-                    </div>
-                    {message.response.recommendations?.length ? (
-                      <div className="recommendation-list">
-                        {message.response.recommendations.slice(0, 4).map((recommendation, index) => (
-                          <button
-                            className={`recommendation-card${
-                              selectedPoiId === recommendation.poi.id ? " is-active" : ""
-                            }`}
-                            type="button"
-                            key={recommendation.poi.id}
-                            onClick={() => {
-                              setSelectedPoiId(recommendation.poi.id);
-                              setMapPois(recommendationPois(message.response?.recommendations ?? []));
-                            }}
-                          >
-                            <span className="recommendation-rank">{index + 1}</span>
-                            <span className="recommendation-copy">
-                              <strong>{recommendation.poi.name}</strong>
-                              <small>{recommendation.reason}</small>
-                              <em>
-                                <Star size={12} fill="currentColor" />
-                                {recommendation.poi.rating.toFixed(1)}
-                                <b>
-                                  {Math.round(
-                                    recommendation.score <= 1
-                                      ? recommendation.score * 100
-                                      : recommendation.score
-                                  )}{" "}
-                                  điểm phù hợp
-                                </b>
-                              </em>
-                            </span>
-                            <ChevronRight size={16} />
-                          </button>
-                        ))}
-                      </div>
-                    ) : null}
-                  </>
-                ) : null}
-              </div>
-            </article>
-          ))}
-
-          {isThinking ? (
-            <div className="thinking-row" role="status">
-              <span /><span /><span />
-              Đang đọc bối cảnh và xếp hạng…
-            </div>
-          ) : null}
-
-          {messages.length === 1 ? (
-            <div className="quick-prompts">
-              <p>Thử một tình huống</p>
-              {QUICK_PROMPTS.map((prompt) => (
-                <button type="button" key={prompt} onClick={() => void submitMessage(prompt)}>
-                  <Sparkles size={13} />
-                  <span>{prompt}</span>
-                  <ChevronRight size={14} />
-                </button>
-              ))}
-            </div>
-          ) : null}
-        </div>
-
-        <div className="composer-wrap">
-          <form className="composer" onSubmit={handleSubmit}>
-            <textarea
-              aria-label="Nhắn cho trợ lý bản đồ"
-              placeholder="Bạn muốn đi đâu, với ai, khi nào?"
-              value={input}
-              rows={1}
-              onChange={(event) => setInput(event.target.value)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" && !event.shiftKey) {
-                  event.preventDefault();
-                  void submitMessage(input);
-                }
-              }}
-            />
-            <button
-              className={`voice-button${isListening ? " is-listening" : ""}`}
-              type="button"
-              onClick={toggleVoice}
-              aria-label={isListening ? "Dừng nghe" : "Nhập bằng giọng nói"}
-            >
-              {isListening ? <CircleStop size={18} /> : <Mic size={18} />}
-            </button>
-            <button
-              className="send-button"
-              type="submit"
-              disabled={!input.trim() || isThinking}
-              aria-label="Gửi"
-            >
-              <Send size={17} />
-            </button>
-          </form>
-          <p>Enter để gửi · Shift + Enter để xuống dòng</p>
-        </div>
-      </aside>
-
-      <section className="map-panel">
-        <MapView
-          pois={mapPois}
-          mode={mapMode}
-          selectedPoiId={selectedPoiId}
-          routeCoordinates={routeCoordinates}
-          activeStopIndex={activeStopIndex}
-          onSelectPoi={(poi) => setSelectedPoiId(poi.id)}
-          onReadyChange={setMapReady}
-        />
-
-        <div className="map-topbar">
-          <button
-            type="button"
-            className="privacy-button"
-            onClick={() => setShowPrivacy((current) => !current)}
-          >
-            <ShieldCheck size={15} />
-            Camera-free demo
-          </button>
-
-          <div className="mode-toggle" role="group" aria-label="Chế độ bản đồ">
-            <button
-              type="button"
-              className={mapMode === "2d" ? "is-active" : ""}
-              onClick={() => setMapMode("2d")}
-            >
-              <MapIcon size={15} />
-              2D
-            </button>
-            <button
-              type="button"
-              className={mapMode === "3d" ? "is-active" : ""}
-              onClick={() => setMapMode("3d")}
-            >
-              <Box size={15} />
-              3D
-            </button>
-          </div>
-        </div>
-
-        {showPrivacy ? (
-          <div className="privacy-popover">
-            <div>
-              <ShieldCheck size={20} />
-              <strong>Privacy by demo design</strong>
-              <button type="button" onClick={() => setShowPrivacy(false)} aria-label="Đóng">
-                <X size={16} />
-              </button>
-            </div>
-            <p>Phiên này chỉ dùng dữ liệu tổng hợp có sẵn trong repo.</p>
-            <ul>
-              <li>Không ảnh, khuôn mặt hay video</li>
-              <li>Không tài khoản hoặc lịch sử VETC thật</li>
-              <li>Ngữ cảnh chỉ sống trong bộ nhớ phiên demo</li>
-              <li>OpenAI chỉ viết lại câu trả lời đã được xếp hạng; yêu cầu dùng store=false</li>
-              <li>Tín hiệu điểm thưởng và tuyến đường đều được gắn nhãn mô phỏng</li>
-            </ul>
-          </div>
-        ) : null}
-
-        <div className="demo-signal">
-          <span />
-          SYNTHETIC DATA
-        </div>
-
-        <div className="sr-live" role="status" aria-live="polite">{liveStatus}</div>
-
-        {latestResponse?.journey ? (
-          <button className="journey-entry" type="button" onClick={() => setJourneyOpen(true)}>
-            <WalletCards size={17} />
-            <span><small>HÀNH TRÌNH TASCO · MÔ PHỎNG</small><strong>{latestResponse.journey.totalVnd.toLocaleString("vi-VN")} ₫</strong></span>
-            <ChevronRight size={16} />
-          </button>
-        ) : null}
-
-        {journeyOpen && latestResponse?.journey ? (
-          <section className="journey-sheet" role="dialog" aria-modal="true" aria-labelledby="journey-title">
-            <header>
-              <div><small>MÔ PHỎNG · KHÔNG TRỪ TIỀN THẬT</small><h2 id="journey-title">{latestResponse.journey.title}</h2></div>
-              <button ref={journeyCloseRef} type="button" onClick={() => setJourneyOpen(false)} aria-label="Đóng hành trình"><X size={18} /></button>
-            </header>
-            <p className={`journey-feedback outcome-${latestResponse.journey.revision.outcome}`}>
-              <BadgePercent size={15} /> {latestResponse.journey.revision.message}
-            </p>
-            <ol className="journey-actions">
-              {latestResponse.journey.actions.map((item) => {
-                const poi = latestResponse.recommendations.find(({ poi }) => poi.id === item.poiId)?.poi;
-                return <li key={item.id} className={latestResponse.journey?.revision.changedActionIds.includes(item.id) ? "is-changed" : ""}>
-                  <div><span>{item.miniApp}</span><small>Mô phỏng</small></div>
-                  <strong title={poi?.name}>{poi?.name ?? item.poiId}</strong>
-                  <p>{item.reason}</p>
-                  {item.sponsored ? <em>{item.sponsored.label} · {item.sponsored.disclosure}</em> : null}
-                  <footer><span><s>{item.originalPriceVnd.toLocaleString("vi-VN")} ₫</s><b>{item.finalPriceVnd.toLocaleString("vi-VN")} ₫</b></span><small>+{item.rewardPoints} điểm mô phỏng</small></footer>
-                </li>;
-              })}
-            </ol>
-            <div className="journey-total">
-              <span><small>Tiết kiệm mô phỏng {latestResponse.journey.savingsVnd.toLocaleString("vi-VN")} ₫</small><strong>Tổng</strong></span>
-              <b>{latestResponse.journey.totalVnd.toLocaleString("vi-VN")} ₫</b>
-            </div>
-            {receipt ? (
-              <article className="receipt-card">
-                <ReceiptText size={22} /><div><small>BIÊN NHẬN VETC · MÔ PHỎNG</small><strong>{receipt.id}</strong><span>{receipt.journey.actions.length} dịch vụ · {receipt.journey.totalVnd.toLocaleString("vi-VN")} ₫</span></div><CheckCircle2 size={22} />
-              </article>
-            ) : (
-              <button className="confirm-journey" type="button" onClick={confirmJourney} disabled={isConfirming}>
-                <WalletCards size={18} /> {isConfirming ? "Đang xác nhận…" : "Xác nhận bằng ví VETC · Mô phỏng"}
-              </button>
-            )}
-          </section>
-        ) : null}
-
-        {latestRecommendations.length ? (
-          <div className={`route-theater${isTheaterPlaying ? " is-playing" : ""}`}>
-            <div className="route-theater-icon">
-              {isTheaterPlaying ? <Volume2 size={18} /> : <Navigation size={18} />}
-            </div>
-            <div>
-              <small>WOW MODE</small>
-              <strong>
-                {isTheaterPlaying
-                  ? `Điểm ${Math.max(1, activeStopIndex + 1)} / ${theaterPois.length}`
-                  : "3D AI Route Theater"}
-              </strong>
-              <span>
-                {isTheaterPlaying
-                  ? theaterPois[Math.max(0, activeStopIndex)]?.name
-                  : "Xem AI biến lý do thành hành động bản đồ"}
-              </span>
-            </div>
-            <button type="button" onClick={playRouteTheater} disabled={isTheaterPlaying}>
-              <Play size={15} fill="currentColor" />
-              {isTheaterPlaying ? "Đang chạy" : "Trình diễn"}
-            </button>
-          </div>
-        ) : null}
-
-        {selectedPoi ? (
-          <article className="poi-detail-card">
-            <div className="poi-card-topline">
-              <span>{selectedPoi.category}</span>
-              <em>
-                <Star size={13} fill="currentColor" />
-                {selectedPoi.rating.toFixed(1)}
-              </em>
-            </div>
-            <h2>{selectedPoi.name}</h2>
-            <p>{selectedPoi.description}</p>
-            <div className="poi-tags">
-              {selectedPoi.attributes.slice(0, 3).map((attribute) => (
-                <span key={attribute}>{attribute}</span>
-              ))}
-            </div>
-            <footer>
-              <LocateFixed size={15} />
-              <span>{selectedPoi.address}</span>
-              <button
-                type="button"
-                onClick={() => setToast("Điều hướng đang dùng tuyến mô phỏng cho demo.")}
-              >
-                Đi
-                <ChevronRight size={14} />
-              </button>
-            </footer>
-          </article>
-        ) : null}
-
-        {toast ? <div className="toast" role="status">{toast}</div> : null}
+    <main className="atlas-mobile-shell">
+      <section className="atlas-map-layer" aria-label="Bản đồ TASCO Atlas">
+        <MapView pois={mapPois} mode={mapMode} selectedPoiId={selectedPoiId} routeCoordinates={routeCoordinates} activeStopIndex={activeStopIndex} onSelectPoi={(poi) => setSelectedPoiId(poi.id)} onReadyChange={setMapReady} />
+        <div className="atlas-map-disclosure"><ShieldCheck size={13} /> Dữ liệu & tuyến mô phỏng</div>
+        <div className="atlas-mode-toggle" role="group" aria-label="Chế độ bản đồ"><button className={mapMode === "2d" ? "is-active" : ""} type="button" onClick={() => setMapMode("2d")}>2D</button><button className={mapMode === "3d" ? "is-active" : ""} type="button" onClick={() => mapReady && setMapMode("3d")} disabled={!mapReady}>3D</button></div>
       </section>
+
+      <header className="atlas-floating-header">
+        <button type="button" onClick={() => { stopRealtime(); setScreen("home"); }} aria-label="Quay lại"><ArrowLeft size={20} /></button>
+        <div><strong>TASCO Atlas</strong><span><i /> Phiên trực tiếp</span></div>
+        <button type="button" onClick={() => setShowPrivacy((value) => !value)} aria-label="Thông tin quyền riêng tư"><ShieldCheck size={19} /></button>
+      </header>
+
+      {showPrivacy ? <aside className="atlas-privacy-card"><button type="button" onClick={() => setShowPrivacy(false)} aria-label="Đóng"><X size={16} /></button><strong>Quyền riêng tư phiên Atlas</strong><p>Micrô chỉ hoạt động sau khi bạn bấm bắt đầu. Không camera, không tài khoản VETC thật, không lưu âm thanh hay lịch sử sau phiên.</p><small>POI, tuyến, giá, ưu đãi và thanh toán đều là dữ liệu mô phỏng.</small></aside> : null}
+
+      {screen === "session" ? (
+        <section className="atlas-start-sheet">
+          <div className="sheet-handle" />
+          <div className="start-orb"><Mic size={31} /></div>
+          <h1>Bắt đầu phiên trò chuyện</h1>
+          <p>Hãy cùng nhau nói về chuyến đi. Bạn có thể ngắt lời Atlas bất cứ lúc nào.</p>
+          <button className="atlas-primary" type="button" onClick={() => void startSession()}><Mic size={20} /> Bắt đầu trò chuyện</button>
+          <button className="atlas-text-link" type="button" onClick={() => { setIsTextMode(true); setScreen("live"); setVoiceState("listening"); }}>Không dùng giọng nói? <strong>Nhập bằng chữ</strong></button>
+          <small><ShieldCheck size={13} /> Micrô chỉ được dùng trong phiên đang hoạt động và dừng ngay khi bạn kết thúc.</small>
+        </section>
+      ) : screen === "checkout" && latestResponse?.journey ? (
+        <JourneyCheckout response={latestResponse} isConfirming={isConfirming} confirmed={Boolean(receipt)} onBack={() => setScreen("live")} onConfirm={confirmParking} onReceipt={() => setScreen("receipt")} />
+      ) : screen === "receipt" && receipt ? (
+        <JourneyReceipt receipt={receipt} isTheaterPlaying={isTheaterPlaying} mapReady={mapReady} theaterFallback={theaterFallback} onTheater={playRouteTheater} onBack={() => setScreen("checkout")} />
+      ) : (
+        <section className="atlas-live-sheet">
+          <div className="sheet-handle" />
+          <div className="live-controls">
+            <button className={`live-orb state-${voiceState}`} type="button" onClick={toggleMute} aria-label="Bật hoặc tắt micrô">
+              {voiceState === "muted" ? <MicOff size={25} /> : voiceState === "speaking" ? <Volume2 size={25} /> : <Mic size={25} />}
+            </button>
+            <div className="live-status"><strong>{voiceLabel(voiceState)}</strong><span>{voiceSubline(voiceState, realtimeMode)}</span></div>
+            <button className="mute-control" type="button" onClick={toggleMute}><MicOff size={17} /><span>{voiceState === "muted" ? "Bật mic" : "Tắt mic"}</span></button>
+            <button className="end-control" type="button" onClick={endSession}><CircleStop size={17} /><span>Kết thúc</span></button>
+          </div>
+
+          {notice ? <p className="fallback-notice">{notice}</p> : null}
+          <div className="conversation-label"><span>Cuộc trò chuyện</span><small>Không nhận diện người nói</small></div>
+          <p className="live-transcript">{partial || "Hãy nói tự nhiên về nơi bạn muốn đến…"}</p>
+          {stage >= 3 ? <div className="interrupt-banner"><Check size={16} /><div><strong>Đã nghe yêu cầu mới</strong><span>Đã dừng nói khi bạn ngắt lời</span></div></div> : null}
+
+          {constraints.length ? <><div className="constraint-caption">Ràng buộc đã hiểu <span>Điều chỉnh bằng lời hoặc ô nhập</span></div><div className="constraint-chips">{constraints.map((item) => <span key={item}>{item}</span>)}</div></> : null}
+          {stage > 0 ? <RecommendationCard revised={stage >= 3} response={latestResponse} onOpen={() => void openJourney()} /> : <div className="empty-understanding"><Sparkles size={18} /><span>Atlas sẽ biến cuộc trò chuyện thành một kế hoạch duy nhất trên bản đồ.</span></div>}
+
+          {(isTextMode || realtimeMode === "scripted") ? (
+            <form className="atlas-composer" onSubmit={submit}>
+              <input aria-label="Nhập yêu cầu" value={input} onChange={(event) => setInput(event.target.value)} placeholder="Nhập yêu cầu của bạn…" />
+              <button type="submit" disabled={!input.trim()} aria-label="Gửi"><Send size={18} /></button>
+            </form>
+          ) : null}
+          <button className="demo-next" type="button" onClick={advanceDemo} disabled={stage >= 3}>
+            {stage === 0 ? "Chạy câu mở đầu mẫu" : stage === 1 ? "Thêm ngân sách mẫu" : stage === 2 ? "Ngắt lời: gần hơn, rẻ hơn" : "Đã cập nhật tại chỗ"}
+            <ChevronRight size={17} />
+          </button>
+        </section>
+      )}
     </main>
   );
 }
+
+function voiceLabel(state: VoiceState) {
+  return ({ idle: "Bắt đầu phiên trò chuyện", listening: "Atlas đang nghe", thinking: "Atlas đang tìm…", speaking: "Atlas đang nói", interrupted: "Đã nghe yêu cầu mới", muted: "Micrô đang tắt" })[state];
+}
+function voiceSubline(state: VoiceState, mode: "connecting" | "realtime" | "scripted") {
+  if (mode === "connecting") return "Đang kết nối phiên âm thanh…";
+  if (state === "speaking") return "Bạn có thể ngắt lời bất cứ lúc nào";
+  if (state === "thinking") return "Đang cập nhật gợi ý và tuyến";
+  if (state === "interrupted") return "Đang áp dụng yêu cầu mới";
+  return mode === "realtime" ? "Âm thanh trực tiếp đang hoạt động" : "Sẵn sàng cho kịch bản demo";
+}
+
+function RecommendationCard({ revised, response, onOpen }: { revised: boolean; response: ChatResponse | null; onOpen: () => void }) {
+  const deterministicName = response?.recommendations?.[0]?.poi.name;
+  return (
+    <article className={`live-recommendation${revised ? " is-revised" : ""}`}>
+      <header><span><Sparkles size={14} /> Gợi ý phù hợp nhất</span>{revised ? <em><Check size={13} /> Đã thay đổi</em> : null}</header>
+      <div className="recommendation-title"><div><Utensils size={20} /></div><span><strong>{revised ? "Quán Bụi — Lý Tự Trọng, Q.1" : deterministicName ?? "Nhà hàng Sông Quê — Thảo Điền"}</strong><small>Món Việt · Có chỗ đỗ xe · Mô phỏng</small></span></div>
+      <div className="recommendation-facts">
+        <span><MapPin size={14} /><strong>{revised ? "800 m" : "4,5 km"}</strong><small>khoảng cách</small></span>
+        <span><Clock3 size={14} /><strong>{revised ? "8 phút" : "22 phút"}</strong><small>tuyến mô phỏng</small></span>
+        <span><CreditCard size={14} /><strong>{revised ? "880.000 ₫" : "1.000.000 ₫"}</strong><small>ước tính 4 người</small></span>
+      </div>
+      {revised ? <div className="savings-line"><Check size={15} /> Tiết kiệm 120.000 ₫ · gần hơn 3,7 km</div> : null}
+      <p>Giá mô phỏng từ dữ liệu demo — không phải báo giá hoặc giữ chỗ thực tế.</p>
+      {revised ? <button type="button" onClick={onOpen}><Navigation size={17} /> Xem hành trình đề xuất</button> : null}
+    </article>
+  );
+}
+
+function actionIcon(kind: Journey["actions"][number]["kind"]) {
+  if (kind === "fuel") return <BatteryCharging size={18} />;
+  if (kind === "parking") return <ParkingCircle size={18} />;
+  return <Utensils size={18} />;
+}
+
+function JourneyCheckout({ response, isConfirming, confirmed, onBack, onConfirm, onReceipt }: { response: ChatResponse; isConfirming: boolean; confirmed: boolean; onBack: () => void; onConfirm: () => void; onReceipt: () => void }) {
+  const journey = response.journey!;
+  const parking = journey.actions.find((action) => action.kind === "parking");
+  return <section className="atlas-checkout-sheet">
+    <div className="sheet-handle" />
+    <header><button type="button" onClick={onBack}><ArrowLeft size={19} /></button><div><small>HÀNH TRÌNH MÔ PHỎNG</small><h1>Chốt hành trình</h1></div></header>
+    <p className="checkout-summary">Một hành trình theo thứ tự. Chỉ chỗ đỗ xe được thanh toán ngay; nhiên liệu và bữa ăn thanh toán tại địa điểm.</p>
+    <ol className="checkout-stops">{journey.actions.map((action, index) => {
+      const poi = response.recommendations.find((item) => item.poi.id === action.poiId)?.poi;
+      return <li key={action.id}><i>{index + 1}</i><span className="checkout-stop-icon">{actionIcon(action.kind)}</span><div><strong>{poi?.name ?? action.miniApp}</strong><small>{action.reason}</small><em>{action.kind === "parking" ? `Thanh toán ngay · ${action.finalPriceVnd.toLocaleString("vi-VN")} ₫` : `Thanh toán tại ${action.kind === "fuel" ? "trạm" : "quán"}`}</em></div></li>;
+    })}</ol>
+    <div className="checkout-costs"><span><small>Chi phí ước tính toàn hành trình</small><strong>{journey.totalVnd.toLocaleString("vi-VN")} ₫</strong></span><span className="is-prepaid"><small>Thanh toán ngay · Đỗ xe 2 giờ</small><strong>{(parking?.finalPriceVnd ?? 0).toLocaleString("vi-VN")} ₫</strong></span></div>
+    <p className="checkout-disclosure">Giá và giữ chỗ đều là mô phỏng. Không trừ tiền thật.</p>
+    <button className="checkout-confirm" type="button" onClick={confirmed ? onReceipt : onConfirm} disabled={isConfirming || !parking}>{confirmed ? "Xem biên nhận mô phỏng" : isConfirming ? "Đang xác nhận…" : `Xác nhận ${(parking?.finalPriceVnd ?? 0).toLocaleString("vi-VN")} ₫`}</button>
+    <button className="checkout-back" type="button" onClick={onBack}>Chưa, để tôi chỉnh lại</button>
+  </section>;
+}
+
+function JourneyReceipt({ receipt, isTheaterPlaying, mapReady, theaterFallback, onTheater, onBack }: { receipt: SimulatedReceipt; isTheaterPlaying: boolean; mapReady: boolean; theaterFallback: string; onTheater: () => void; onBack: () => void }) {
+  const parking = receipt.journey.actions.find((action) => action.kind === "parking");
+  const payLater = receipt.journey.actions.filter((action) => action.kind !== "parking");
+  return <section className="atlas-receipt-sheet">
+    <div className="sheet-handle" />
+    <header><button type="button" onClick={onBack}><ArrowLeft size={19} /></button><div><CheckCircle2 size={28} /><span><small>BIÊN NHẬN VETC — MÔ PHỎNG</small><h1>Đã giữ chỗ đỗ xe</h1></span></div></header>
+    <div className="receipt-id"><span><small>Mã hành trình</small><strong>{receipt.id}</strong></span><span><small>Xác nhận lúc</small><strong>{receipt.confirmedAt}</strong></span></div>
+    <article className="receipt-paid"><ReceiptText size={20} /><div><small>ĐÃ THANH TOÁN MÔ PHỎNG</small><strong>{parking?.miniApp ?? "Bãi đỗ xe"} · 2 giờ</strong></div><b>{(parking?.finalPriceVnd ?? 0).toLocaleString("vi-VN")} ₫</b></article>
+    <div className="receipt-later"><small>THANH TOÁN TẠI ĐỊA ĐIỂM</small>{payLater.map((action) => <span key={action.id}>{action.miniApp}<b>{action.finalPriceVnd.toLocaleString("vi-VN")} ₫</b></span>)}</div>
+    <p><ShieldCheck size={14} /> Biên nhận, giá, ưu đãi và đặt chỗ đều là mô phỏng; không có giao dịch thật.</p>
+    {!mapReady ? <div className="theater-fallback"><ShieldCheck size={15} /><span><strong>Bản đồ 3D chưa sẵn sàng</strong>{theaterFallback || "Biên nhận và hành trình mô phỏng vẫn hoạt động. Hãy thử lại trên thiết bị hỗ trợ WebGL."}</span></div> : null}
+    <button className="receipt-theater" type="button" onClick={onTheater} disabled={isTheaterPlaying || !mapReady}><Play size={17} />{isTheaterPlaying ? "Đang trình diễn tuyến 3D" : mapReady ? "Bắt đầu dẫn đường · Xem tuyến 3D" : "Xem tuyến 3D không khả dụng"}</button>
+    <small className="theater-disclosure">Tuyến và công trình 3D là hình ảnh mô phỏng.</small>
+  </section>;
+}
+
+function VetcHome({ onOpen }: { onOpen: () => void }) {
+  return (
+    <main className="vetc-home">
+      <header className="vetc-hero"><div className="vetc-top"><button aria-label="Menu"><Menu size={21} /></button><strong>vetc</strong><button aria-label="Thông báo"><Bell size={21} /><i /></button></div></header>
+      <section className="vetc-services"><div className="service-grid">
+        <Service icon={<CreditCard size={23} />} title="Nạp tiền" />
+        <Service icon={<Gift size={23} />} title="My Loyalty" />
+        <Service icon={<Link size={23} />} title="Liên kết ngân hàng" />
+        <Service icon={<FileText size={23} />} title="Ví giấy tờ" badge />
+        <button className="atlas-entry" type="button" onClick={onOpen}><i>Mới</i><span className="service-icon"><MapPin size={23} /><Sparkles size={12} /></span><strong>Đi đâu?</strong><small>TASCO AI</small></button>
+        <Service icon={<Car size={23} />} title="Cứu hộ toàn quốc" badge />
+        <Service icon={<BatteryCharging size={23} />} title="Trạm sạc" />
+        <Service icon={<Grid2X2 size={23} />} title="Tất cả" />
+      </div></section>
+      <section className="vetc-alert"><span>!</span><p>Giấy tờ của bạn đã hết hạn, vui lòng cập nhật giấy tờ mới</p><button type="button">Cập nhật ngay</button></section>
+      <section className="vehicle-card"><div><Car size={21} /><span><small>Phương tiện</small><strong>50A-123.45</strong></span></div><em>Đang hoạt động</em></section>
+      <section className="vetc-video"><strong>▶&nbsp; VETC Video</strong><div><span>Video demo</span><span>Video demo</span><span>Video demo</span></div></section>
+    </main>
+  );
+}
+function Service({ icon, title, badge = false }: { icon: React.ReactNode; title: string; badge?: boolean }) { return <button type="button">{badge ? <i>Mới</i> : null}<span className="service-icon">{icon}</span><strong>{title}</strong></button>; }
