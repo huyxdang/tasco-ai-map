@@ -120,7 +120,9 @@ function conversationText(request: ChatRequest): string {
   const contextTurns = [...new Set([...recent, previous])].filter(
     (turn) => turn && turn !== request.message,
   );
-  return [history, ...contextTurns, request.message].filter(Boolean).join("\n");
+  return [history, ...contextTurns, request.message, request.nluHint]
+    .filter(Boolean)
+    .join("\n");
 }
 
 function ambiguityFor(message: string): Ambiguity | undefined {
@@ -489,7 +491,10 @@ function sessionContext(
           const normalized = normalizeText(item);
           return !normalized.includes(removalTarget) && !removalTarget.includes(normalized);
         })
-      : resolveConstraintConflicts(previousConstraints, constraintsFor(request.message)),
+      : resolveConstraintConflicts(
+          previousConstraints,
+          constraintsFor([request.message, request.nluHint].filter(Boolean).join("\n")),
+        ),
     recentQueries: removalTarget
       ? request.sessionContext?.recentQueries ?? []
       : [...(request.sessionContext?.recentQueries ?? []), request.message].slice(-4),

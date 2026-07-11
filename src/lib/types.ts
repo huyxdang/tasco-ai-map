@@ -199,6 +199,8 @@ export interface ChatMessage {
 
 export interface ChatRequest {
   message: string;
+  /** Canonical Vietnamese constraint hint from the NLU translator (LLM parses, never decides). */
+  nluHint?: string;
   profileId?: string;
   location?: Coordinates;
   history?: ChatMessage[] | string;

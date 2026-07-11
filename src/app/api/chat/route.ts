@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { handleChat } from "../../../lib/chat";
+import { translateUtterance } from "../../../lib/nlu";
 import { enhanceChatResponse } from "../../../lib/openai";
 import { traceChatTurn } from "../../../lib/telemetry";
 import type { ChatRequest } from "../../../lib/types";
@@ -37,7 +38,14 @@ export async function POST(request: Request): Promise<NextResponse> {
   }
 
   const startedAt = Date.now();
-  const deterministic = handleChat(body);
+  // Primary NLU: the LLM translates any human phrasing into canonical
+  // Vietnamese constraint language (strict enum schema — it cannot name venues
+  // or touch ranking). The deterministic engine still decides everything.
+  const nluHint = await translateUtterance(
+    body.message,
+    body.sessionContext?.recentQueries ?? [],
+  );
+  const deterministic = handleChat(nluHint ? { ...body, nluHint } : body);
   const enhanced = await enhanceChatResponse(body, deterministic);
   traceChatTurn(body, enhanced, Date.now() - startedAt);
   return NextResponse.json(enhanced);

@@ -12,12 +12,25 @@ export function setAudioTracksMuted(stream: AudioTrackSource | null, muted: bool
 // breath or a bump on the microphone cannot stop the assistant mid-sentence.
 // Two word-like tokens, or one reasonably long word, count as real speech.
 export function isConfirmedSpeech(transcript: string): boolean {
-  const tokens = transcript
+  const tokens = wordTokens(transcript);
+  if (tokens.length >= 2) return true;
+  return tokens.some((token) => token.length >= 4);
+}
+
+// Interrupting active playback demands MORE evidence than opening a turn:
+// in a noisy room, stray transcribed words (TV, other people) must not stop
+// the assistant — three word tokens or two substantial ones.
+export function isConfirmedBargeIn(transcript: string): boolean {
+  const tokens = wordTokens(transcript);
+  if (tokens.length >= 3) return true;
+  return tokens.length === 2 && tokens.join("").length >= 8;
+}
+
+function wordTokens(transcript: string): string[] {
+  return transcript
     .split(/\s+/)
     .map((token) => token.replace(/[^\p{L}\p{N}]/gu, ""))
     .filter((token) => token.length > 0);
-  if (tokens.length >= 2) return true;
-  return tokens.some((token) => token.length >= 4);
 }
 
 // Speech synthesis moved to ElevenLabs (/api/tts + src/lib/tts-client.ts). The

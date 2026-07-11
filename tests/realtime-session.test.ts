@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { POST as POST_STT_TOKEN } from "../src/app/api/stt/token/route";
 import { POST as POST_TTS } from "../src/app/api/tts/route";
-import { isConfirmedSpeech, setAudioTracksMuted } from "../src/lib/realtime";
+import { isConfirmedBargeIn, isConfirmedSpeech, setAudioTracksMuted } from "../src/lib/realtime";
 import { routeTheaterAvailability } from "../src/lib/route-theater";
 
 // The voice stack is fully ElevenLabs: Scribe v2 Realtime STT behind
@@ -102,6 +102,17 @@ describe("voice UI guards", () => {
     expect(isConfirmedSpeech("ừm")).toBe(false);
     expect(isConfirmedSpeech("...")).toBe(false);
     expect(isConfirmedSpeech("hm")).toBe(false);
+  });
+
+  it("demands more evidence to interrupt playback than to open a turn", () => {
+    expect(isConfirmedBargeIn("gần hơn và rẻ hơn")).toBe(true);
+    expect(isConfirmedBargeIn("dừng lại đi")).toBe(true);
+    expect(isConfirmedBargeIn("khoan đã nhé")).toBe(true);
+    // Two short stray words (TV, other people) must NOT stop the assistant.
+    expect(isConfirmedBargeIn("à ừm")).toBe(false);
+    expect(isConfirmedBargeIn("ok la")).toBe(false);
+    expect(isConfirmedBargeIn("gần hơn")).toBe(true);
+    expect(isConfirmedBargeIn("khoan")).toBe(false);
   });
 
   it("hard-mutes and explicitly re-enables every audio track", () => {

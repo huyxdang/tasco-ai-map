@@ -19,16 +19,28 @@ export interface SttSession {
 
 const TARGET_SAMPLE_RATE = 16_000;
 
+// Domain vocabulary biases Scribe toward the words our users actually say —
+// venue types, districts, landmarks, and the demo's key phrases.
+const KEYTERMS = [
+  "quán cà phê", "nhà hàng", "khách sạn", "trạm xăng", "bãi đỗ xe", "công viên",
+  "Quận 1", "Sài Gòn", "Hà Nội", "Đà Nẵng", "Hồ Gươm", "Chợ Bến Thành",
+  "Tân Sơn Nhất", "phở", "bún chả", "món Việt", "món Ý", "gần đây", "yên tĩnh",
+  "wifi", "giá rẻ", "mở cửa khuya", "học nhóm", "hẹn hò", "đặt bàn", "gần hơn",
+  "rẻ hơn", "đổ xăng", "ăn tối", "gần trung tâm", "dễ đỗ xe",
+];
+
 const WS_PARAMS = new URLSearchParams({
   model_id: "scribe_v2_realtime",
   language_code: "vi",
   audio_format: "pcm_16000",
   commit_strategy: "vad",
-  vad_threshold: "0.6",
+  // Raised after real-world QA: noisy rooms were still sneaking through.
+  vad_threshold: "0.75",
   vad_silence_threshold_secs: "1.2",
-  min_speech_duration_ms: "200",
+  min_speech_duration_ms: "300",
   filter_background_audio: "true",
 });
+for (const term of KEYTERMS) WS_PARAMS.append("keyterms", term);
 
 function downsampleTo16k(input: Float32Array, inputRate: number): Int16Array {
   const ratio = inputRate / TARGET_SAMPLE_RATE;

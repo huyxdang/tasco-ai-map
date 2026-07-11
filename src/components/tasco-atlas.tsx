@@ -35,7 +35,7 @@ import dynamic from "next/dynamic";
 import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 
 import type { ChatResponse, Coordinates, Journey, JourneyActionKind, Poi, UserProfile } from "@/lib/types";
-import { isConfirmedSpeech, setAudioTracksMuted } from "@/lib/realtime";
+import { isConfirmedBargeIn, isConfirmedSpeech, setAudioTracksMuted } from "@/lib/realtime";
 import { routeTheaterAvailability } from "@/lib/route-theater";
 import { buildRoutes } from "@/lib/routing";
 import { startScribeSession, type SttSession } from "@/lib/stt-client";
@@ -279,7 +279,7 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
   function handlePartialTranscript(text: string) {
     if (!text.trim()) return;
     utteranceRef.current = text;
-    if (responseActiveRef.current && isConfirmedSpeech(text)) {
+    if (responseActiveRef.current && isConfirmedBargeIn(text)) {
       cancelActiveResponseForBargeIn();
       setVoiceState("listening");
     }
