@@ -34,7 +34,7 @@ import dynamic from "next/dynamic";
 import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 
 import type { ChatResponse, Journey, Poi, UserProfile } from "@/lib/types";
-import { dispatchRealtimeServerEvent, groundedRealtimeResponse, setAudioTracksMuted } from "@/lib/realtime";
+import { dispatchRealtimeServerEvent, groundedRealtimeResponse, isConfirmedSpeech, setAudioTracksMuted } from "@/lib/realtime";
 import { routeTheaterAvailability } from "@/lib/route-theater";
 
 const MapView = dynamic(
@@ -95,6 +95,7 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
   const realtimeAttemptRef = useRef(0);
   const realtimeEventHandlerRef = useRef<(raw: string) => void>(() => undefined);
   const responseActiveRef = useRef(false);
+  const utteranceRef = useRef("");
 
   useEffect(() => { sessionIdRef.current = newSessionId(); }, []);
   useEffect(() => () => stopRealtime(), []);
@@ -154,18 +155,40 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
     sendRealtimeEvent(groundedRealtimeResponse(response));
   }
 
+  // A VAD speech_started alone (breath, mic bump, background noise) never stops the
+  // assistant. The active response is cancelled only once transcription confirms
+  // real words, so genuine barge-in still works.
+  function cancelActiveResponseForBargeIn() {
+    if (!responseActiveRef.current) return;
+    sendRealtimeEvent({ type: "response.cancel" });
+    sendRealtimeEvent({ type: "output_audio_buffer.clear" });
+    responseActiveRef.current = false;
+  }
+
   function handleRealtimeEvent(raw: string) {
     dispatchRealtimeServerEvent(raw, {
       onSpeechStarted: () => {
-        if (responseActiveRef.current) {
-          sendRealtimeEvent({ type: "response.cancel" });
-          sendRealtimeEvent({ type: "output_audio_buffer.clear" });
+        utteranceRef.current = "";
+        if (!responseActiveRef.current) {
+          setVoiceState("listening");
+          setPartial("Đang nghe bạn nói…");
         }
-        setVoiceState("listening");
-        setPartial("Đang nghe bạn nói…");
       },
-      onTranscriptDelta: (delta) => setPartial((current) => current + delta),
-      onTranscriptCompleted: (transcript) => { setPartial(transcript); void handleUtterance(transcript); },
+      onTranscriptDelta: (delta) => {
+        utteranceRef.current += delta;
+        if (responseActiveRef.current && isConfirmedSpeech(utteranceRef.current)) {
+          cancelActiveResponseForBargeIn();
+          setVoiceState("listening");
+        }
+        setPartial(utteranceRef.current);
+      },
+      onTranscriptCompleted: (transcript) => {
+        utteranceRef.current = "";
+        if (!isConfirmedSpeech(transcript)) return;
+        cancelActiveResponseForBargeIn();
+        setPartial(transcript);
+        void handleUtterance(transcript);
+      },
       onResponseCreated: () => { responseActiveRef.current = true; setVoiceState("speaking"); },
       onOutputTranscriptDelta: (delta) => { if (delta) setNotice(`Atlas: ${delta}`); },
       onResponseDone: () => { responseActiveRef.current = false; setVoiceState("listening"); }
@@ -179,7 +202,9 @@ export function TascoAtlas({ initialPois, profiles }: TascoAtlasProps) {
     setRealtimeMode("connecting");
     setNotice("");
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+      });
       if (realtimeAttemptRef.current !== attempt) { stream.getTracks().forEach((track) => track.stop()); return; }
       const peer = new RTCPeerConnection();
       const audio = document.createElement("audio");

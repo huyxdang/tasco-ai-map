@@ -50,6 +50,14 @@ const TOKEN_ALIASES: Record<string, string> = {
   "ho guom": "ho hoan kiem",
   "tan son nhat": "san bay tan son nhat",
   tsn: "san bay tan son nhat",
+  "where should we go": "nen di dau",
+  "where to go": "nen di dau",
+  "take me to": "dua toi den",
+  friends: "ban be",
+  "ban than": "ban be",
+  "ben thanh market": "cho ben thanh",
+  ks: "khach san",
+  bv: "benh vien",
 };
 
 export function normalizeText(value: string): string {
@@ -68,7 +76,13 @@ export function expandAliases(value: string): string {
   let result = normalizeText(value);
 
   for (const [from, to] of Object.entries(TOKEN_ALIASES)) {
-    if (result.includes(from)) {
+    // Short abbreviations (ks, bv, tsn) only expand as whole words; longer
+    // phrases keep substring matching so they work inside sentences.
+    const matched =
+      from.length <= 3
+        ? new RegExp(`(^|\\s)${from}(\\s|$)`).test(result)
+        : result.includes(from);
+    if (matched) {
       result += ` ${to}`;
     }
   }

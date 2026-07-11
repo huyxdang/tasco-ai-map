@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "test:eval": "vitest run tests/conversation-scenarios-eval.test.ts --reporter=verbose",
     "test:watch": "vitest"
   },
   "dependencies": {

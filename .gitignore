@@ -26,3 +26,4 @@ coverage/
 pnpm-debug.log*
 npm-debug.log*
 .gstack/
+~$*

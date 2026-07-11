@@ -13,7 +13,10 @@ const SESSION_CONFIG = {
     "Không tuyên bố đây là dịch vụ thật; mọi dữ liệu thương mại và tuyến đều là mô phỏng."
   ].join(" "),
   audio: {
-    input: { transcription: { model: "gpt-4o-mini-transcribe", language: "vi" }, turn_detection: { type: "semantic_vad", eagerness: "high", create_response: false, interrupt_response: false } },
+    // eagerness "low": tolerate pauses/breaths instead of chopping the user's turn
+    // on the slightest sound. Barge-in is confirmed client-side from transcribed
+    // words, never from raw VAD events.
+    input: { transcription: { model: "gpt-4o-mini-transcribe", language: "vi" }, turn_detection: { type: "semantic_vad", eagerness: "low", create_response: false, interrupt_response: false } },
     output: { voice: "marin" }
   }
 };

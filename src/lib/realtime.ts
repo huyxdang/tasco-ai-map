@@ -28,6 +28,18 @@ export function setAudioTracksMuted(stream: AudioTrackSource | null, muted: bool
   stream?.getAudioTracks().forEach((track) => { track.enabled = !muted; });
 }
 
+// Barge-in must be confirmed by transcribed words, never by raw VAD events, so a
+// breath or a bump on the microphone cannot stop the assistant mid-sentence.
+// Two word-like tokens, or one reasonably long word, count as real speech.
+export function isConfirmedSpeech(transcript: string): boolean {
+  const tokens = transcript
+    .split(/\s+/)
+    .map((token) => token.replace(/[^\p{L}\p{N}]/gu, ""))
+    .filter((token) => token.length > 0);
+  if (tokens.length >= 2) return true;
+  return tokens.some((token) => token.length >= 4);
+}
+
 export function groundedRealtimeResponse(response: ChatResponse) {
   const grounding = JSON.stringify({
     assistantResponse: response.assistantResponse,
