@@ -1,0 +1,2940 @@
+{
+  "source": {
+    "file": "dataset.xlsx",
+    "language": "vi",
+    "synthetic": true,
+    "generatedAt": "2026-07-11"
+  },
+  "pois": [
+    {
+      "id": "POI001",
+      "name": "The Workshop Coffee",
+      "category": "Quán cà phê",
+      "brand": "The Workshop",
+      "city": "TP.HCM",
+      "district": "Quận 1",
+      "address": "27 Ngô Đức Kế, Bến Nghé, Quận 1",
+      "coordinates": {
+        "lat": 10.7734,
+        "lon": 106.7041
+      },
+      "rating": 4.6,
+      "reviewCount": 1850,
+      "popularityScore": 92,
+      "attributes": [
+        "wifi",
+        "yên tĩnh",
+        "làm việc",
+        "ổ cắm",
+        "máy lạnh"
+      ],
+      "tags": [
+        "cafe làm việc",
+        "coffee",
+        "quiet",
+        "work-friendly"
+      ],
+      "description": "Quán cà phê chuyên specialty coffee, phù hợp làm việc và gặp đối tác.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI002",
+      "name": "Highlands Coffee Nguyễn Huệ",
+      "category": "Quán cà phê",
+      "brand": "Highlands Coffee",
+      "city": "TP.HCM",
+      "district": "Quận 1",
+      "address": "68 Nguyễn Huệ, Bến Nghé, Quận 1",
+      "coordinates": {
+        "lat": 10.7742,
+        "lon": 106.7039
+      },
+      "rating": 4.2,
+      "reviewCount": 2100,
+      "popularityScore": 88,
+      "attributes": [
+        "wifi",
+        "đông khách",
+        "mở cửa sớm",
+        "takeaway"
+      ],
+      "tags": [
+        "cafe",
+        "brand",
+        "nguyễn huệ"
+      ],
+      "description": "Chi nhánh Highlands Coffee nằm trên phố đi bộ Nguyễn Huệ, thuận tiện gặp bạn bè.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI003",
+      "name": "Chợ Bến Thành",
+      "category": "Chợ",
+      "brand": "Không",
+      "city": "TP.HCM",
+      "district": "Quận 1",
+      "address": "Đường Lê Lợi, Phường Bến Thành, Quận 1",
+      "coordinates": {
+        "lat": 10.7721,
+        "lon": 106.6983
+      },
+      "rating": 4.3,
+      "reviewCount": 12000,
+      "popularityScore": 98,
+      "attributes": [
+        "du lịch",
+        "mua sắm",
+        "ẩm thực",
+        "biểu tượng thành phố"
+      ],
+      "tags": [
+        "market",
+        "ben thanh",
+        "du lịch"
+      ],
+      "description": "Địa điểm biểu tượng tại trung tâm TP.HCM, phù hợp tham quan và mua quà.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI004",
+      "name": "Pizza 4P's Hai Bà Trưng",
+      "category": "Nhà hàng",
+      "brand": "Pizza 4P's",
+      "city": "TP.HCM",
+      "district": "Quận 1",
+      "address": "8/15 Lê Thánh Tôn, Quận 1",
+      "coordinates": {
+        "lat": 10.7801,
+        "lon": 106.7049
+      },
+      "rating": 4.7,
+      "reviewCount": 5400,
+      "popularityScore": 94,
+      "attributes": [
+        "phù hợp hẹn hò",
+        "gia đình",
+        "đặt bàn",
+        "đồ Ý"
+      ],
+      "tags": [
+        "pizza",
+        "italian",
+        "date",
+        "family"
+      ],
+      "description": "Nhà hàng Ý nổi tiếng với pizza phô mai tự làm, phù hợp hẹn hò và gia đình.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI005",
+      "name": "Rooftop Chill Skybar",
+      "category": "Bar/Rooftop",
+      "brand": "Chill Skybar",
+      "city": "TP.HCM",
+      "district": "Quận 1",
+      "address": "AB Tower, 76A Lê Lai, Quận 1",
+      "coordinates": {
+        "lat": 10.7708,
+        "lon": 106.6935
+      },
+      "rating": 4.4,
+      "reviewCount": 3900,
+      "popularityScore": 90,
+      "attributes": [
+        "view đẹp",
+        "hẹn hò",
+        "nightlife",
+        "cao cấp"
+      ],
+      "tags": [
+        "rooftop",
+        "date",
+        "view đẹp"
+      ],
+      "description": "Rooftop bar trung tâm thành phố, phù hợp hẹn hò và ngắm cảnh đêm.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI006",
+      "name": "Bệnh viện Bạch Mai",
+      "category": "Bệnh viện",
+      "brand": "Không",
+      "city": "Hà Nội",
+      "district": "Đống Đa",
+      "address": "78 Giải Phóng, Phương Mai, Đống Đa",
+      "coordinates": {
+        "lat": 21.0025,
+        "lon": 105.8404
+      },
+      "rating": 4,
+      "reviewCount": 3400,
+      "popularityScore": 91,
+      "attributes": [
+        "cấp cứu",
+        "đa khoa",
+        "24/7",
+        "bãi đỗ xe"
+      ],
+      "tags": [
+        "hospital",
+        "bach mai",
+        "cấp cứu"
+      ],
+      "description": "Bệnh viện đa khoa tuyến cuối, có nhiều chuyên khoa và dịch vụ cấp cứu.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI007",
+      "name": "Vincom Center Đồng Khởi",
+      "category": "Trung tâm thương mại",
+      "brand": "Vincom",
+      "city": "TP.HCM",
+      "district": "Quận 1",
+      "address": "72 Lê Thánh Tôn, Bến Nghé, Quận 1",
+      "coordinates": {
+        "lat": 10.7781,
+        "lon": 106.7017
+      },
+      "rating": 4.5,
+      "reviewCount": 8200,
+      "popularityScore": 96,
+      "attributes": [
+        "mua sắm",
+        "ăn uống",
+        "rạp phim",
+        "bãi đỗ xe"
+      ],
+      "tags": [
+        "mall",
+        "vincom",
+        "shopping"
+      ],
+      "description": "Trung tâm thương mại lớn tại trung tâm TP.HCM, có cửa hàng, nhà hàng và giải trí.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI008",
+      "name": "Galaxy Nguyễn Du",
+      "category": "Rạp chiếu phim",
+      "brand": "Galaxy Cinema",
+      "city": "TP.HCM",
+      "district": "Quận 1",
+      "address": "116 Nguyễn Du, Bến Thành, Quận 1",
+      "coordinates": {
+        "lat": 10.7749,
+        "lon": 106.6917
+      },
+      "rating": 4.1,
+      "reviewCount": 3100,
+      "popularityScore": 82,
+      "attributes": [
+        "rạp phim",
+        "giải trí",
+        "đặt vé"
+      ],
+      "tags": [
+        "cinema",
+        "galaxy"
+      ],
+      "description": "Rạp chiếu phim phổ biến tại trung tâm TP.HCM.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI009",
+      "name": "Galaxy Hotel Đà Nẵng",
+      "category": "Khách sạn",
+      "brand": "Galaxy Hotel",
+      "city": "Đà Nẵng",
+      "district": "Sơn Trà",
+      "address": "102 Võ Nguyên Giáp, Sơn Trà",
+      "coordinates": {
+        "lat": 16.0678,
+        "lon": 108.2441
+      },
+      "rating": 4,
+      "reviewCount": 780,
+      "popularityScore": 70,
+      "attributes": [
+        "gần biển",
+        "gia đình",
+        "bữa sáng"
+      ],
+      "tags": [
+        "hotel",
+        "near beach",
+        "galaxy"
+      ],
+      "description": "Khách sạn gần biển Mỹ Khê, phù hợp du lịch gia đình.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI010",
+      "name": "Cộng Cà Phê Hồ Gươm",
+      "category": "Quán cà phê",
+      "brand": "Cộng Cà Phê",
+      "city": "Hà Nội",
+      "district": "Hoàn Kiếm",
+      "address": "116 Cầu Gỗ, Hoàn Kiếm",
+      "coordinates": {
+        "lat": 21.0321,
+        "lon": 105.8528
+      },
+      "rating": 4.3,
+      "reviewCount": 2900,
+      "popularityScore": 86,
+      "attributes": [
+        "view hồ",
+        "du lịch",
+        "wifi",
+        "đông khách"
+      ],
+      "tags": [
+        "cafe",
+        "hồ gươm",
+        "view"
+      ],
+      "description": "Quán cà phê phong cách hoài cổ gần Hồ Gươm.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI011",
+      "name": "Maison de Tet Décor",
+      "category": "Quán cà phê",
+      "brand": "Maison de Tet",
+      "city": "Hà Nội",
+      "district": "Tây Hồ",
+      "address": "156 Từ Hoa, Tây Hồ",
+      "coordinates": {
+        "lat": 21.0631,
+        "lon": 105.8272
+      },
+      "rating": 4.5,
+      "reviewCount": 1600,
+      "popularityScore": 84,
+      "attributes": [
+        "yên tĩnh",
+        "ăn sáng",
+        "healthy",
+        "view hồ"
+      ],
+      "tags": [
+        "cafe làm việc",
+        "healthy",
+        "hồ tây"
+      ],
+      "description": "Không gian yên tĩnh, phù hợp ăn sáng, làm việc và gặp bạn bè.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI012",
+      "name": "Lotte Hotel Hanoi",
+      "category": "Khách sạn",
+      "brand": "Lotte",
+      "city": "Hà Nội",
+      "district": "Ba Đình",
+      "address": "54 Liễu Giai, Ba Đình",
+      "coordinates": {
+        "lat": 21.0322,
+        "lon": 105.812
+      },
+      "rating": 4.7,
+      "reviewCount": 4600,
+      "popularityScore": 95,
+      "attributes": [
+        "5 sao",
+        "hồ bơi",
+        "business",
+        "gia đình",
+        "view đẹp"
+      ],
+      "tags": [
+        "hotel",
+        "luxury",
+        "business"
+      ],
+      "description": "Khách sạn cao cấp phù hợp công tác, gia đình và du lịch.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI013",
+      "name": "Khách sạn Sala Đà Nẵng Beach",
+      "category": "Khách sạn",
+      "brand": "Sala",
+      "city": "Đà Nẵng",
+      "district": "Sơn Trà",
+      "address": "36-38 Lâm Hoành, Sơn Trà",
+      "coordinates": {
+        "lat": 16.0582,
+        "lon": 108.2473
+      },
+      "rating": 4.6,
+      "reviewCount": 3100,
+      "popularityScore": 90,
+      "attributes": [
+        "gần biển",
+        "hồ bơi",
+        "gia đình",
+        "buffet sáng"
+      ],
+      "tags": [
+        "hotel",
+        "beach",
+        "family"
+      ],
+      "description": "Khách sạn gần biển Mỹ Khê với hồ bơi và phòng gia đình.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI014",
+      "name": "Mì Quảng Bà Mua",
+      "category": "Nhà hàng",
+      "brand": "Bà Mua",
+      "city": "Đà Nẵng",
+      "district": "Hải Châu",
+      "address": "19 Trần Bình Trọng, Hải Châu",
+      "coordinates": {
+        "lat": 16.0689,
+        "lon": 108.2176
+      },
+      "rating": 4.2,
+      "reviewCount": 2500,
+      "popularityScore": 80,
+      "attributes": [
+        "đặc sản",
+        "giá hợp lý",
+        "gia đình"
+      ],
+      "tags": [
+        "mi quang",
+        "local food",
+        "da nang"
+      ],
+      "description": "Quán đặc sản Mì Quảng nổi tiếng tại Đà Nẵng.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI015",
+      "name": "Công viên Thỏ Trắng",
+      "category": "Khu vui chơi",
+      "brand": "Thỏ Trắng",
+      "city": "TP.HCM",
+      "district": "Quận 10",
+      "address": "875 Cách Mạng Tháng Tám, Quận 10",
+      "coordinates": {
+        "lat": 10.779,
+        "lon": 106.6675
+      },
+      "rating": 4.1,
+      "reviewCount": 1800,
+      "popularityScore": 79,
+      "attributes": [
+        "trẻ em",
+        "gia đình",
+        "cuối tuần"
+      ],
+      "tags": [
+        "kids",
+        "family",
+        "playground"
+      ],
+      "description": "Khu vui chơi ngoài trời phù hợp cho gia đình có trẻ nhỏ.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI016",
+      "name": "CGV Vincom Bà Triệu",
+      "category": "Rạp chiếu phim",
+      "brand": "CGV",
+      "city": "Hà Nội",
+      "district": "Hai Bà Trưng",
+      "address": "191 Bà Triệu, Hai Bà Trưng",
+      "coordinates": {
+        "lat": 21.0119,
+        "lon": 105.8495
+      },
+      "rating": 4.4,
+      "reviewCount": 5200,
+      "popularityScore": 89,
+      "attributes": [
+        "rạp phim",
+        "mua sắm",
+        "ăn uống",
+        "bãi đỗ xe"
+      ],
+      "tags": [
+        "cinema",
+        "cgv",
+        "vincom"
+      ],
+      "description": "Rạp CGV trong trung tâm thương mại Vincom Bà Triệu.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI017",
+      "name": "Trung Nguyên Legend Café Lý Tự Trọng",
+      "category": "Quán cà phê",
+      "brand": "Trung Nguyên",
+      "city": "TP.HCM",
+      "district": "Quận 1",
+      "address": "80 Lý Tự Trọng, Quận 1",
+      "coordinates": {
+        "lat": 10.7761,
+        "lon": 106.6999
+      },
+      "rating": 4.3,
+      "reviewCount": 1400,
+      "popularityScore": 78,
+      "attributes": [
+        "wifi",
+        "gặp đối tác",
+        "yên tĩnh",
+        "coffee"
+      ],
+      "tags": [
+        "cafe",
+        "work",
+        "meeting"
+      ],
+      "description": "Quán cà phê phù hợp gặp đối tác và làm việc ngắn.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI018",
+      "name": "Phở Thìn Lò Đúc",
+      "category": "Nhà hàng",
+      "brand": "Phở Thìn",
+      "city": "Hà Nội",
+      "district": "Hai Bà Trưng",
+      "address": "13 Lò Đúc, Hai Bà Trưng",
+      "coordinates": {
+        "lat": 21.0188,
+        "lon": 105.8589
+      },
+      "rating": 4.4,
+      "reviewCount": 6700,
+      "popularityScore": 93,
+      "attributes": [
+        "phở",
+        "nổi tiếng",
+        "đông khách",
+        "giá vừa"
+      ],
+      "tags": [
+        "pho",
+        "local",
+        "hanoi"
+      ],
+      "description": "Quán phở bò nổi tiếng tại Hà Nội.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI019",
+      "name": "Bún Chả Hương Liên",
+      "category": "Nhà hàng",
+      "brand": "Hương Liên",
+      "city": "Hà Nội",
+      "district": "Hai Bà Trưng",
+      "address": "24 Lê Văn Hưu, Hai Bà Trưng",
+      "coordinates": {
+        "lat": 21.0184,
+        "lon": 105.8533
+      },
+      "rating": 4.3,
+      "reviewCount": 7200,
+      "popularityScore": 92,
+      "attributes": [
+        "đặc sản",
+        "bún chả",
+        "du lịch",
+        "gia đình"
+      ],
+      "tags": [
+        "bun cha",
+        "local food"
+      ],
+      "description": "Quán bún chả nổi tiếng với khách du lịch và người địa phương.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI020",
+      "name": "AEON Mall Tân Phú",
+      "category": "Trung tâm thương mại",
+      "brand": "AEON Mall",
+      "city": "TP.HCM",
+      "district": "Tân Phú",
+      "address": "30 Bờ Bao Tân Thắng, Tân Phú",
+      "coordinates": {
+        "lat": 10.801,
+        "lon": 106.6188
+      },
+      "rating": 4.5,
+      "reviewCount": 11500,
+      "popularityScore": 94,
+      "attributes": [
+        "mua sắm",
+        "gia đình",
+        "trẻ em",
+        "bãi đỗ xe"
+      ],
+      "tags": [
+        "mall",
+        "family",
+        "shopping"
+      ],
+      "description": "Trung tâm thương mại lớn, phù hợp mua sắm cuối tuần cùng gia đình.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI021",
+      "name": "Nhà hàng Secret Garden",
+      "category": "Nhà hàng",
+      "brand": "Secret Garden",
+      "city": "TP.HCM",
+      "district": "Quận 1",
+      "address": "158 Pasteur, Bến Nghé, Quận 1",
+      "coordinates": {
+        "lat": 10.7767,
+        "lon": 106.7007
+      },
+      "rating": 4.4,
+      "reviewCount": 3300,
+      "popularityScore": 84,
+      "attributes": [
+        "hẹn hò",
+        "ẩm thực Việt",
+        "view đẹp",
+        "gia đình"
+      ],
+      "tags": [
+        "romantic",
+        "vietnamese",
+        "date"
+      ],
+      "description": "Nhà hàng món Việt phong cách sân vườn, phù hợp hẹn hò và tiếp khách.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI022",
+      "name": "Đường sách Nguyễn Văn Bình",
+      "category": "Địa điểm văn hóa",
+      "brand": "Không",
+      "city": "TP.HCM",
+      "district": "Quận 1",
+      "address": "Nguyễn Văn Bình, Bến Nghé, Quận 1",
+      "coordinates": {
+        "lat": 10.7798,
+        "lon": 106.6999
+      },
+      "rating": 4.6,
+      "reviewCount": 5200,
+      "popularityScore": 88,
+      "attributes": [
+        "sách",
+        "check-in",
+        "yên tĩnh",
+        "du lịch"
+      ],
+      "tags": [
+        "book street",
+        "check-in"
+      ],
+      "description": "Không gian văn hóa, đọc sách và check-in gần Nhà thờ Đức Bà.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI023",
+      "name": "Nhà thờ Đức Bà Sài Gòn",
+      "category": "Địa điểm du lịch",
+      "brand": "Không",
+      "city": "TP.HCM",
+      "district": "Quận 1",
+      "address": "Công xã Paris, Bến Nghé, Quận 1",
+      "coordinates": {
+        "lat": 10.7798,
+        "lon": 106.699
+      },
+      "rating": 4.5,
+      "reviewCount": 9800,
+      "popularityScore": 95,
+      "attributes": [
+        "du lịch",
+        "check-in",
+        "biểu tượng"
+      ],
+      "tags": [
+        "landmark",
+        "check-in"
+      ],
+      "description": "Công trình kiến trúc nổi tiếng tại trung tâm TP.HCM.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI024",
+      "name": "Cây xăng Petrolimex Võ Văn Kiệt",
+      "category": "Trạm xăng",
+      "brand": "Petrolimex",
+      "city": "TP.HCM",
+      "district": "Quận 1",
+      "address": "592 Võ Văn Kiệt, Quận 1",
+      "coordinates": {
+        "lat": 10.7565,
+        "lon": 106.6882
+      },
+      "rating": 4,
+      "reviewCount": 600,
+      "popularityScore": 72,
+      "attributes": [
+        "xăng dầu",
+        "toilet",
+        "24/7"
+      ],
+      "tags": [
+        "gas station",
+        "petrolimex"
+      ],
+      "description": "Trạm xăng trên tuyến Võ Văn Kiệt, có dịch vụ cơ bản.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI025",
+      "name": "ATM Vietcombank Bến Thành",
+      "category": "ATM",
+      "brand": "Vietcombank",
+      "city": "TP.HCM",
+      "district": "Quận 1",
+      "address": "45 Lê Lợi, Bến Thành, Quận 1",
+      "coordinates": {
+        "lat": 10.7729,
+        "lon": 106.6971
+      },
+      "rating": 4,
+      "reviewCount": 320,
+      "popularityScore": 70,
+      "attributes": [
+        "atm",
+        "24/7",
+        "gần chợ"
+      ],
+      "tags": [
+        "atm",
+        "vcb"
+      ],
+      "description": "ATM Vietcombank gần Chợ Bến Thành.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI026",
+      "name": "Sân bay Tân Sơn Nhất",
+      "category": "Sân bay",
+      "brand": "Không",
+      "city": "TP.HCM",
+      "district": "Tân Bình",
+      "address": "Trường Sơn, Phường 2, Tân Bình",
+      "coordinates": {
+        "lat": 10.8188,
+        "lon": 106.6519
+      },
+      "rating": 4.1,
+      "reviewCount": 14000,
+      "popularityScore": 99,
+      "attributes": [
+        "sân bay",
+        "giao thông",
+        "24/7"
+      ],
+      "tags": [
+        "airport",
+        "tsn"
+      ],
+      "description": "Sân bay lớn tại TP.HCM.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI027",
+      "name": "Sân bay Nội Bài",
+      "category": "Sân bay",
+      "brand": "Không",
+      "city": "Hà Nội",
+      "district": "Sóc Sơn",
+      "address": "Phú Minh, Sóc Sơn",
+      "coordinates": {
+        "lat": 21.2187,
+        "lon": 105.8042
+      },
+      "rating": 4.2,
+      "reviewCount": 11000,
+      "popularityScore": 98,
+      "attributes": [
+        "sân bay",
+        "giao thông",
+        "24/7"
+      ],
+      "tags": [
+        "airport",
+        "noi bai"
+      ],
+      "description": "Sân bay quốc tế phục vụ Hà Nội và miền Bắc.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI028",
+      "name": "Công viên 29/3 Đà Nẵng",
+      "category": "Công viên",
+      "brand": "Không",
+      "city": "Đà Nẵng",
+      "district": "Thanh Khê",
+      "address": "Điện Biên Phủ, Thanh Khê",
+      "coordinates": {
+        "lat": 16.0672,
+        "lon": 108.2058
+      },
+      "rating": 4.2,
+      "reviewCount": 1700,
+      "popularityScore": 75,
+      "attributes": [
+        "trẻ em",
+        "gia đình",
+        "đi bộ",
+        "ngoài trời"
+      ],
+      "tags": [
+        "park",
+        "kids",
+        "family"
+      ],
+      "description": "Công viên lớn phù hợp đi dạo và cho trẻ em vui chơi.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI029",
+      "name": "Anantara Hội An Resort",
+      "category": "Khách sạn/Resort",
+      "brand": "Anantara",
+      "city": "Quảng Nam",
+      "district": "Hội An",
+      "address": "1 Phạm Hồng Thái, Hội An",
+      "coordinates": {
+        "lat": 15.8791,
+        "lon": 108.3348
+      },
+      "rating": 4.6,
+      "reviewCount": 1700,
+      "popularityScore": 87,
+      "attributes": [
+        "resort",
+        "gia đình",
+        "cao cấp",
+        "gần phố cổ"
+      ],
+      "tags": [
+        "resort",
+        "hoi an",
+        "family"
+      ],
+      "description": "Resort cao cấp gần phố cổ Hội An, phù hợp nghỉ dưỡng.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI030",
+      "name": "Hồ Hoàn Kiếm",
+      "category": "Địa điểm du lịch",
+      "brand": "Không",
+      "city": "Hà Nội",
+      "district": "Hoàn Kiếm",
+      "address": "Trung tâm Hoàn Kiếm",
+      "coordinates": {
+        "lat": 21.0287,
+        "lon": 105.852
+      },
+      "rating": 4.7,
+      "reviewCount": 20000,
+      "popularityScore": 99,
+      "attributes": [
+        "du lịch",
+        "check-in",
+        "đi bộ",
+        "view đẹp"
+      ],
+      "tags": [
+        "lake",
+        "ho guom",
+        "landmark"
+      ],
+      "description": "Địa điểm biểu tượng của Hà Nội, phù hợp đi bộ và tham quan.",
+      "datasetTier": "featured"
+    },
+    {
+      "id": "POI031",
+      "name": "Cafe Mộc Đà Lạt 31",
+      "category": "Quán cà phê",
+      "brand": "Cafe",
+      "city": "Đà Lạt",
+      "district": "Đống Đa",
+      "address": "31 Đường Trung Tâm, Đà Lạt",
+      "coordinates": {
+        "lat": 11.77467,
+        "lon": 108.65851
+      },
+      "rating": 4.1,
+      "reviewCount": 2552,
+      "popularityScore": 60,
+      "attributes": [
+        "đặt bàn",
+        "wifi",
+        "check-in",
+        "cao cấp"
+      ],
+      "tags": [
+        "đặt bàn",
+        "wifi",
+        "check-in"
+      ],
+      "description": "Quán cà phê tại Đà Lạt, phù hợp cho đặt bàn, wifi.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI032",
+      "name": "Khu vui chơi KidZone Hội An 32",
+      "category": "Khu vui chơi",
+      "brand": "Khu",
+      "city": "Hội An",
+      "district": "Quận 7",
+      "address": "32 Đường Trung Tâm, Hội An",
+      "coordinates": {
+        "lat": 14.254498,
+        "lon": 105.522142
+      },
+      "rating": 4.6,
+      "reviewCount": 1821,
+      "popularityScore": 77,
+      "attributes": [
+        "bãi đỗ xe",
+        "view đẹp",
+        "mở cửa khuya",
+        "wifi"
+      ],
+      "tags": [
+        "bãi đỗ xe",
+        "view đẹp",
+        "mở cửa khuya"
+      ],
+      "description": "Khu vui chơi tại Hội An, phù hợp cho bãi đỗ xe, view đẹp.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI033",
+      "name": "Trung tâm thương mại City Plaza Đà Nẵng 33",
+      "category": "Trung tâm thương mại",
+      "brand": "Trung",
+      "city": "Đà Nẵng",
+      "district": "Đống Đa",
+      "address": "33 Đường Trung Tâm, Đà Nẵng",
+      "coordinates": {
+        "lat": 19.22033,
+        "lon": 108.04272
+      },
+      "rating": 4.1,
+      "reviewCount": 662,
+      "popularityScore": 91,
+      "attributes": [
+        "yên tĩnh",
+        "check-in",
+        "wifi",
+        "ngoài trời"
+      ],
+      "tags": [
+        "yên tĩnh",
+        "check-in",
+        "wifi"
+      ],
+      "description": "Trung tâm thương mại tại Đà Nẵng, phù hợp cho yên tĩnh, check-in.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI034",
+      "name": "Khách sạn Sao Việt Hà Nội 34",
+      "category": "Khách sạn",
+      "brand": "Khách",
+      "city": "Hà Nội",
+      "district": "Hải Châu",
+      "address": "34 Đường Trung Tâm, Hà Nội",
+      "coordinates": {
+        "lat": 17.182314,
+        "lon": 108.346686
+      },
+      "rating": 4.2,
+      "reviewCount": 2677,
+      "popularityScore": 79,
+      "attributes": [
+        "check-in",
+        "ngoài trời",
+        "gia đình",
+        "giá hợp lý"
+      ],
+      "tags": [
+        "check-in",
+        "ngoài trời",
+        "gia đình"
+      ],
+      "description": "Khách sạn tại Hà Nội, phù hợp cho check-in, ngoài trời.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI035",
+      "name": "Điểm check-in Panorama TP.HCM 35",
+      "category": "Địa điểm du lịch",
+      "brand": "Điểm",
+      "city": "TP.HCM",
+      "district": "Hải Châu",
+      "address": "35 Đường Trung Tâm, TP.HCM",
+      "coordinates": {
+        "lat": 21.087507,
+        "lon": 106.83236
+      },
+      "rating": 4.3,
+      "reviewCount": 1396,
+      "popularityScore": 89,
+      "attributes": [
+        "cao cấp",
+        "mở cửa khuya",
+        "phù hợp hẹn hò",
+        "ngoài trời"
+      ],
+      "tags": [
+        "cao cấp",
+        "mở cửa khuya",
+        "phù hợp hẹn hò"
+      ],
+      "description": "Địa điểm du lịch tại TP.HCM, phù hợp cho cao cấp, mở cửa khuya.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI036",
+      "name": "Cafe Mộc Hội An 36",
+      "category": "Quán cà phê",
+      "brand": "Cafe",
+      "city": "Hội An",
+      "district": "Ba Đình",
+      "address": "36 Đường Trung Tâm, Hội An",
+      "coordinates": {
+        "lat": 10.823977,
+        "lon": 108.01376
+      },
+      "rating": 4,
+      "reviewCount": 2922,
+      "popularityScore": 86,
+      "attributes": [
+        "yên tĩnh",
+        "gia đình",
+        "wifi",
+        "giá hợp lý"
+      ],
+      "tags": [
+        "yên tĩnh",
+        "gia đình",
+        "wifi"
+      ],
+      "description": "Quán cà phê tại Hội An, phù hợp cho yên tĩnh, gia đình.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI037",
+      "name": "ATM BIDV Nha Trang 37",
+      "category": "ATM",
+      "brand": "ATM",
+      "city": "Nha Trang",
+      "district": "Hải Châu",
+      "address": "37 Đường Trung Tâm, Nha Trang",
+      "coordinates": {
+        "lat": 15.497977,
+        "lon": 107.898319
+      },
+      "rating": 4,
+      "reviewCount": 1353,
+      "popularityScore": 79,
+      "attributes": [
+        "giá hợp lý",
+        "mở cửa khuya",
+        "yên tĩnh",
+        "phù hợp hẹn hò"
+      ],
+      "tags": [
+        "giá hợp lý",
+        "mở cửa khuya",
+        "yên tĩnh"
+      ],
+      "description": "ATM tại Nha Trang, phù hợp cho giá hợp lý, mở cửa khuya.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI038",
+      "name": "Khu vui chơi KidZone Đà Nẵng 38",
+      "category": "Khu vui chơi",
+      "brand": "Khu",
+      "city": "Đà Nẵng",
+      "district": "Đống Đa",
+      "address": "38 Đường Trung Tâm, Đà Nẵng",
+      "coordinates": {
+        "lat": 11.126672,
+        "lon": 106.025951
+      },
+      "rating": 4,
+      "reviewCount": 1018,
+      "popularityScore": 83,
+      "attributes": [
+        "gia đình",
+        "wifi",
+        "mở cửa khuya",
+        "cao cấp"
+      ],
+      "tags": [
+        "gia đình",
+        "wifi",
+        "mở cửa khuya"
+      ],
+      "description": "Khu vui chơi tại Đà Nẵng, phù hợp cho gia đình, wifi.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI039",
+      "name": "Bệnh viện Minh Tâm Đà Nẵng 39",
+      "category": "Bệnh viện",
+      "brand": "Bệnh",
+      "city": "Đà Nẵng",
+      "district": "Quận 7",
+      "address": "39 Đường Trung Tâm, Đà Nẵng",
+      "coordinates": {
+        "lat": 10.410934,
+        "lon": 107.675169
+      },
+      "rating": 4.6,
+      "reviewCount": 1099,
+      "popularityScore": 69,
+      "attributes": [
+        "check-in",
+        "mở cửa khuya",
+        "phù hợp hẹn hò",
+        "đặt bàn"
+      ],
+      "tags": [
+        "check-in",
+        "mở cửa khuya",
+        "phù hợp hẹn hò"
+      ],
+      "description": "Bệnh viện tại Đà Nẵng, phù hợp cho check-in, mở cửa khuya.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI040",
+      "name": "Khách sạn Sao Việt Hà Nội 40",
+      "category": "Khách sạn",
+      "brand": "Khách",
+      "city": "Hà Nội",
+      "district": "Tây Hồ",
+      "address": "40 Đường Trung Tâm, Hà Nội",
+      "coordinates": {
+        "lat": 13.419828,
+        "lon": 105.052471
+      },
+      "rating": 4.5,
+      "reviewCount": 265,
+      "popularityScore": 75,
+      "attributes": [
+        "đặt bàn",
+        "cao cấp",
+        "gia đình",
+        "phù hợp hẹn hò"
+      ],
+      "tags": [
+        "đặt bàn",
+        "cao cấp",
+        "gia đình"
+      ],
+      "description": "Khách sạn tại Hà Nội, phù hợp cho đặt bàn, cao cấp.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI041",
+      "name": "Công viên Xanh Đà Nẵng 41",
+      "category": "Công viên",
+      "brand": "Công",
+      "city": "Đà Nẵng",
+      "district": "Quận 7",
+      "address": "41 Đường Trung Tâm, Đà Nẵng",
+      "coordinates": {
+        "lat": 10.149241,
+        "lon": 107.048228
+      },
+      "rating": 4,
+      "reviewCount": 193,
+      "popularityScore": 93,
+      "attributes": [
+        "check-in",
+        "gia đình",
+        "bãi đỗ xe",
+        "cao cấp"
+      ],
+      "tags": [
+        "check-in",
+        "gia đình",
+        "bãi đỗ xe"
+      ],
+      "description": "Công viên tại Đà Nẵng, phù hợp cho check-in, gia đình.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI042",
+      "name": "ATM BIDV Nha Trang 42",
+      "category": "ATM",
+      "brand": "ATM",
+      "city": "Nha Trang",
+      "district": "Ba Đình",
+      "address": "42 Đường Trung Tâm, Nha Trang",
+      "coordinates": {
+        "lat": 17.406636,
+        "lon": 108.203826
+      },
+      "rating": 4.5,
+      "reviewCount": 1432,
+      "popularityScore": 90,
+      "attributes": [
+        "đặt bàn",
+        "gần biển",
+        "bãi đỗ xe",
+        "ngoài trời"
+      ],
+      "tags": [
+        "đặt bàn",
+        "gần biển",
+        "bãi đỗ xe"
+      ],
+      "description": "ATM tại Nha Trang, phù hợp cho đặt bàn, gần biển.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI043",
+      "name": "Khu vui chơi KidZone Đà Lạt 43",
+      "category": "Khu vui chơi",
+      "brand": "Khu",
+      "city": "Đà Lạt",
+      "district": "Đống Đa",
+      "address": "43 Đường Trung Tâm, Đà Lạt",
+      "coordinates": {
+        "lat": 18.026528,
+        "lon": 107.805402
+      },
+      "rating": 4.6,
+      "reviewCount": 257,
+      "popularityScore": 84,
+      "attributes": [
+        "ngoài trời",
+        "mở cửa khuya",
+        "gần biển",
+        "gia đình"
+      ],
+      "tags": [
+        "ngoài trời",
+        "mở cửa khuya",
+        "gần biển"
+      ],
+      "description": "Khu vui chơi tại Đà Lạt, phù hợp cho ngoài trời, mở cửa khuya.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI044",
+      "name": "Điểm check-in Panorama Đà Nẵng 44",
+      "category": "Địa điểm du lịch",
+      "brand": "Điểm",
+      "city": "Đà Nẵng",
+      "district": "Quận 1",
+      "address": "44 Đường Trung Tâm, Đà Nẵng",
+      "coordinates": {
+        "lat": 17.539114,
+        "lon": 105.550492
+      },
+      "rating": 4.3,
+      "reviewCount": 2109,
+      "popularityScore": 70,
+      "attributes": [
+        "ngoài trời",
+        "view đẹp",
+        "mở cửa khuya",
+        "yên tĩnh"
+      ],
+      "tags": [
+        "ngoài trời",
+        "view đẹp",
+        "mở cửa khuya"
+      ],
+      "description": "Địa điểm du lịch tại Đà Nẵng, phù hợp cho ngoài trời, view đẹp.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI045",
+      "name": "Khách sạn Sao Việt Nha Trang 45",
+      "category": "Khách sạn",
+      "brand": "Khách",
+      "city": "Nha Trang",
+      "district": "Quận 7",
+      "address": "45 Đường Trung Tâm, Nha Trang",
+      "coordinates": {
+        "lat": 21.292789,
+        "lon": 108.712561
+      },
+      "rating": 4.1,
+      "reviewCount": 759,
+      "popularityScore": 76,
+      "attributes": [
+        "check-in",
+        "yên tĩnh",
+        "view đẹp",
+        "gia đình"
+      ],
+      "tags": [
+        "check-in",
+        "yên tĩnh",
+        "view đẹp"
+      ],
+      "description": "Khách sạn tại Nha Trang, phù hợp cho check-in, yên tĩnh.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI046",
+      "name": "Khu vui chơi KidZone Đà Nẵng 46",
+      "category": "Khu vui chơi",
+      "brand": "Khu",
+      "city": "Đà Nẵng",
+      "district": "Hải Châu",
+      "address": "46 Đường Trung Tâm, Đà Nẵng",
+      "coordinates": {
+        "lat": 16.553201,
+        "lon": 106.438999
+      },
+      "rating": 3.8,
+      "reviewCount": 1620,
+      "popularityScore": 82,
+      "attributes": [
+        "đặt bàn",
+        "gần biển",
+        "yên tĩnh",
+        "phù hợp hẹn hò"
+      ],
+      "tags": [
+        "đặt bàn",
+        "gần biển",
+        "yên tĩnh"
+      ],
+      "description": "Khu vui chơi tại Đà Nẵng, phù hợp cho đặt bàn, gần biển.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI047",
+      "name": "Khu vui chơi KidZone Đà Nẵng 47",
+      "category": "Khu vui chơi",
+      "brand": "Khu",
+      "city": "Đà Nẵng",
+      "district": "Đống Đa",
+      "address": "47 Đường Trung Tâm, Đà Nẵng",
+      "coordinates": {
+        "lat": 15.955816,
+        "lon": 108.35357
+      },
+      "rating": 4.7,
+      "reviewCount": 2554,
+      "popularityScore": 92,
+      "attributes": [
+        "đặt bàn",
+        "check-in",
+        "bãi đỗ xe",
+        "giá hợp lý"
+      ],
+      "tags": [
+        "đặt bàn",
+        "check-in",
+        "bãi đỗ xe"
+      ],
+      "description": "Khu vui chơi tại Đà Nẵng, phù hợp cho đặt bàn, check-in.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI048",
+      "name": "Bệnh viện Minh Tâm Đà Lạt 48",
+      "category": "Bệnh viện",
+      "brand": "Bệnh",
+      "city": "Đà Lạt",
+      "district": "Đống Đa",
+      "address": "48 Đường Trung Tâm, Đà Lạt",
+      "coordinates": {
+        "lat": 21.968411,
+        "lon": 106.601454
+      },
+      "rating": 4,
+      "reviewCount": 554,
+      "popularityScore": 79,
+      "attributes": [
+        "view đẹp",
+        "bãi đỗ xe",
+        "đặt bàn",
+        "yên tĩnh"
+      ],
+      "tags": [
+        "view đẹp",
+        "bãi đỗ xe",
+        "đặt bàn"
+      ],
+      "description": "Bệnh viện tại Đà Lạt, phù hợp cho view đẹp, bãi đỗ xe.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI049",
+      "name": "Khách sạn Sao Việt Đà Nẵng 49",
+      "category": "Khách sạn",
+      "brand": "Khách",
+      "city": "Đà Nẵng",
+      "district": "Sơn Trà",
+      "address": "49 Đường Trung Tâm, Đà Nẵng",
+      "coordinates": {
+        "lat": 18.764326,
+        "lon": 105.208487
+      },
+      "rating": 4.2,
+      "reviewCount": 1185,
+      "popularityScore": 95,
+      "attributes": [
+        "cao cấp",
+        "gia đình",
+        "đặt bàn",
+        "ngoài trời"
+      ],
+      "tags": [
+        "cao cấp",
+        "gia đình",
+        "đặt bàn"
+      ],
+      "description": "Khách sạn tại Đà Nẵng, phù hợp cho cao cấp, gia đình.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI050",
+      "name": "Bệnh viện Minh Tâm Đà Nẵng 50",
+      "category": "Bệnh viện",
+      "brand": "Bệnh",
+      "city": "Đà Nẵng",
+      "district": "Hải Châu",
+      "address": "50 Đường Trung Tâm, Đà Nẵng",
+      "coordinates": {
+        "lat": 11.961205,
+        "lon": 108.916268
+      },
+      "rating": 4.2,
+      "reviewCount": 2319,
+      "popularityScore": 53,
+      "attributes": [
+        "cao cấp",
+        "wifi",
+        "yên tĩnh",
+        "giá hợp lý"
+      ],
+      "tags": [
+        "cao cấp",
+        "wifi",
+        "yên tĩnh"
+      ],
+      "description": "Bệnh viện tại Đà Nẵng, phù hợp cho cao cấp, wifi.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI051",
+      "name": "Trung tâm thương mại City Plaza Đà Lạt 51",
+      "category": "Trung tâm thương mại",
+      "brand": "Trung",
+      "city": "Đà Lạt",
+      "district": "Hoàn Kiếm",
+      "address": "51 Đường Trung Tâm, Đà Lạt",
+      "coordinates": {
+        "lat": 13.963496,
+        "lon": 107.729436
+      },
+      "rating": 4.5,
+      "reviewCount": 805,
+      "popularityScore": 57,
+      "attributes": [
+        "cao cấp",
+        "giá hợp lý",
+        "bãi đỗ xe",
+        "check-in"
+      ],
+      "tags": [
+        "cao cấp",
+        "giá hợp lý",
+        "bãi đỗ xe"
+      ],
+      "description": "Trung tâm thương mại tại Đà Lạt, phù hợp cho cao cấp, giá hợp lý.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI052",
+      "name": "Cafe Mộc Đà Nẵng 52",
+      "category": "Quán cà phê",
+      "brand": "Cafe",
+      "city": "Đà Nẵng",
+      "district": "Tây Hồ",
+      "address": "52 Đường Trung Tâm, Đà Nẵng",
+      "coordinates": {
+        "lat": 19.942875,
+        "lon": 107.887697
+      },
+      "rating": 4,
+      "reviewCount": 947,
+      "popularityScore": 75,
+      "attributes": [
+        "check-in",
+        "phù hợp hẹn hò",
+        "view đẹp",
+        "ngoài trời"
+      ],
+      "tags": [
+        "check-in",
+        "phù hợp hẹn hò",
+        "view đẹp"
+      ],
+      "description": "Quán cà phê tại Đà Nẵng, phù hợp cho check-in, phù hợp hẹn hò.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI053",
+      "name": "ATM BIDV Đà Nẵng 53",
+      "category": "ATM",
+      "brand": "ATM",
+      "city": "Đà Nẵng",
+      "district": "Hoàn Kiếm",
+      "address": "53 Đường Trung Tâm, Đà Nẵng",
+      "coordinates": {
+        "lat": 18.532017,
+        "lon": 106.740695
+      },
+      "rating": 4.4,
+      "reviewCount": 2706,
+      "popularityScore": 53,
+      "attributes": [
+        "view đẹp",
+        "gia đình",
+        "check-in",
+        "mở cửa khuya"
+      ],
+      "tags": [
+        "view đẹp",
+        "gia đình",
+        "check-in"
+      ],
+      "description": "ATM tại Đà Nẵng, phù hợp cho view đẹp, gia đình.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI054",
+      "name": "ATM BIDV Đà Lạt 54",
+      "category": "ATM",
+      "brand": "ATM",
+      "city": "Đà Lạt",
+      "district": "Hải Châu",
+      "address": "54 Đường Trung Tâm, Đà Lạt",
+      "coordinates": {
+        "lat": 12.877223,
+        "lon": 106.605391
+      },
+      "rating": 4.6,
+      "reviewCount": 2385,
+      "popularityScore": 70,
+      "attributes": [
+        "gần biển",
+        "bãi đỗ xe",
+        "phù hợp hẹn hò",
+        "đặt bàn"
+      ],
+      "tags": [
+        "gần biển",
+        "bãi đỗ xe",
+        "phù hợp hẹn hò"
+      ],
+      "description": "ATM tại Đà Lạt, phù hợp cho gần biển, bãi đỗ xe.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI055",
+      "name": "Cafe Mộc Hội An 55",
+      "category": "Quán cà phê",
+      "brand": "Cafe",
+      "city": "Hội An",
+      "district": "Tây Hồ",
+      "address": "55 Đường Trung Tâm, Hội An",
+      "coordinates": {
+        "lat": 12.950419,
+        "lon": 105.137388
+      },
+      "rating": 4.4,
+      "reviewCount": 107,
+      "popularityScore": 84,
+      "attributes": [
+        "view đẹp",
+        "gia đình",
+        "yên tĩnh",
+        "gần biển"
+      ],
+      "tags": [
+        "view đẹp",
+        "gia đình",
+        "yên tĩnh"
+      ],
+      "description": "Quán cà phê tại Hội An, phù hợp cho view đẹp, gia đình.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI056",
+      "name": "Khu vui chơi KidZone Đà Lạt 56",
+      "category": "Khu vui chơi",
+      "brand": "Khu",
+      "city": "Đà Lạt",
+      "district": "Quận 1",
+      "address": "56 Đường Trung Tâm, Đà Lạt",
+      "coordinates": {
+        "lat": 12.461173,
+        "lon": 108.821817
+      },
+      "rating": 4,
+      "reviewCount": 1829,
+      "popularityScore": 59,
+      "attributes": [
+        "gia đình",
+        "view đẹp",
+        "đặt bàn",
+        "cao cấp"
+      ],
+      "tags": [
+        "gia đình",
+        "view đẹp",
+        "đặt bàn"
+      ],
+      "description": "Khu vui chơi tại Đà Lạt, phù hợp cho gia đình, view đẹp.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI057",
+      "name": "Công viên Xanh Hội An 57",
+      "category": "Công viên",
+      "brand": "Công",
+      "city": "Hội An",
+      "district": "Tây Hồ",
+      "address": "57 Đường Trung Tâm, Hội An",
+      "coordinates": {
+        "lat": 14.506114,
+        "lon": 106.007878
+      },
+      "rating": 4.5,
+      "reviewCount": 791,
+      "popularityScore": 91,
+      "attributes": [
+        "phù hợp hẹn hò",
+        "cao cấp",
+        "check-in",
+        "bãi đỗ xe"
+      ],
+      "tags": [
+        "phù hợp hẹn hò",
+        "cao cấp",
+        "check-in"
+      ],
+      "description": "Công viên tại Hội An, phù hợp cho phù hợp hẹn hò, cao cấp.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI058",
+      "name": "Khu vui chơi KidZone Hà Nội 58",
+      "category": "Khu vui chơi",
+      "brand": "Khu",
+      "city": "Hà Nội",
+      "district": "Sơn Trà",
+      "address": "58 Đường Trung Tâm, Hà Nội",
+      "coordinates": {
+        "lat": 19.589912,
+        "lon": 106.334785
+      },
+      "rating": 4.1,
+      "reviewCount": 892,
+      "popularityScore": 80,
+      "attributes": [
+        "wifi",
+        "gia đình",
+        "yên tĩnh",
+        "mở cửa khuya"
+      ],
+      "tags": [
+        "wifi",
+        "gia đình",
+        "yên tĩnh"
+      ],
+      "description": "Khu vui chơi tại Hà Nội, phù hợp cho wifi, gia đình.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI059",
+      "name": "Khu vui chơi KidZone Đà Nẵng 59",
+      "category": "Khu vui chơi",
+      "brand": "Khu",
+      "city": "Đà Nẵng",
+      "district": "Hoàn Kiếm",
+      "address": "59 Đường Trung Tâm, Đà Nẵng",
+      "coordinates": {
+        "lat": 19.556747,
+        "lon": 108.961715
+      },
+      "rating": 4.5,
+      "reviewCount": 2983,
+      "popularityScore": 74,
+      "attributes": [
+        "wifi",
+        "gần biển",
+        "ngoài trời",
+        "phù hợp hẹn hò"
+      ],
+      "tags": [
+        "wifi",
+        "gần biển",
+        "ngoài trời"
+      ],
+      "description": "Khu vui chơi tại Đà Nẵng, phù hợp cho wifi, gần biển.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI060",
+      "name": "Cafe Mộc Hà Nội 60",
+      "category": "Quán cà phê",
+      "brand": "Cafe",
+      "city": "Hà Nội",
+      "district": "Đống Đa",
+      "address": "60 Đường Trung Tâm, Hà Nội",
+      "coordinates": {
+        "lat": 13.123086,
+        "lon": 108.261335
+      },
+      "rating": 4.4,
+      "reviewCount": 1992,
+      "popularityScore": 59,
+      "attributes": [
+        "ngoài trời",
+        "cao cấp",
+        "phù hợp hẹn hò",
+        "đặt bàn"
+      ],
+      "tags": [
+        "ngoài trời",
+        "cao cấp",
+        "phù hợp hẹn hò"
+      ],
+      "description": "Quán cà phê tại Hà Nội, phù hợp cho ngoài trời, cao cấp.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI061",
+      "name": "Khu vui chơi KidZone Đà Lạt 61",
+      "category": "Khu vui chơi",
+      "brand": "Khu",
+      "city": "Đà Lạt",
+      "district": "Hoàn Kiếm",
+      "address": "61 Đường Trung Tâm, Đà Lạt",
+      "coordinates": {
+        "lat": 12.372561,
+        "lon": 108.128465
+      },
+      "rating": 4,
+      "reviewCount": 1196,
+      "popularityScore": 68,
+      "attributes": [
+        "đặt bàn",
+        "giá hợp lý",
+        "cao cấp",
+        "yên tĩnh"
+      ],
+      "tags": [
+        "đặt bàn",
+        "giá hợp lý",
+        "cao cấp"
+      ],
+      "description": "Khu vui chơi tại Đà Lạt, phù hợp cho đặt bàn, giá hợp lý.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI062",
+      "name": "Công viên Xanh TP.HCM 62",
+      "category": "Công viên",
+      "brand": "Công",
+      "city": "TP.HCM",
+      "district": "Tây Hồ",
+      "address": "62 Đường Trung Tâm, TP.HCM",
+      "coordinates": {
+        "lat": 11.507209,
+        "lon": 108.461129
+      },
+      "rating": 4.6,
+      "reviewCount": 811,
+      "popularityScore": 89,
+      "attributes": [
+        "mở cửa khuya",
+        "gần biển",
+        "đặt bàn",
+        "gia đình"
+      ],
+      "tags": [
+        "mở cửa khuya",
+        "gần biển",
+        "đặt bàn"
+      ],
+      "description": "Công viên tại TP.HCM, phù hợp cho mở cửa khuya, gần biển.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI063",
+      "name": "Cafe Mộc Đà Lạt 63",
+      "category": "Quán cà phê",
+      "brand": "Cafe",
+      "city": "Đà Lạt",
+      "district": "Sơn Trà",
+      "address": "63 Đường Trung Tâm, Đà Lạt",
+      "coordinates": {
+        "lat": 12.596824,
+        "lon": 105.83694
+      },
+      "rating": 4.1,
+      "reviewCount": 1549,
+      "popularityScore": 68,
+      "attributes": [
+        "gia đình",
+        "phù hợp hẹn hò",
+        "view đẹp",
+        "ngoài trời"
+      ],
+      "tags": [
+        "gia đình",
+        "phù hợp hẹn hò",
+        "view đẹp"
+      ],
+      "description": "Quán cà phê tại Đà Lạt, phù hợp cho gia đình, phù hợp hẹn hò.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI064",
+      "name": "Điểm check-in Panorama Hội An 64",
+      "category": "Địa điểm du lịch",
+      "brand": "Điểm",
+      "city": "Hội An",
+      "district": "Hải Châu",
+      "address": "64 Đường Trung Tâm, Hội An",
+      "coordinates": {
+        "lat": 17.508133,
+        "lon": 105.60959
+      },
+      "rating": 4.1,
+      "reviewCount": 882,
+      "popularityScore": 64,
+      "attributes": [
+        "view đẹp",
+        "mở cửa khuya",
+        "yên tĩnh",
+        "đặt bàn"
+      ],
+      "tags": [
+        "view đẹp",
+        "mở cửa khuya",
+        "yên tĩnh"
+      ],
+      "description": "Địa điểm du lịch tại Hội An, phù hợp cho view đẹp, mở cửa khuya.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI065",
+      "name": "Khách sạn Sao Việt Nha Trang 65",
+      "category": "Khách sạn",
+      "brand": "Khách",
+      "city": "Nha Trang",
+      "district": "Hải Châu",
+      "address": "65 Đường Trung Tâm, Nha Trang",
+      "coordinates": {
+        "lat": 17.00924,
+        "lon": 108.162599
+      },
+      "rating": 4,
+      "reviewCount": 1088,
+      "popularityScore": 58,
+      "attributes": [
+        "trẻ em",
+        "ngoài trời",
+        "đặt bàn",
+        "wifi"
+      ],
+      "tags": [
+        "trẻ em",
+        "ngoài trời",
+        "đặt bàn"
+      ],
+      "description": "Khách sạn tại Nha Trang, phù hợp cho trẻ em, ngoài trời.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI066",
+      "name": "Bệnh viện Minh Tâm TP.HCM 66",
+      "category": "Bệnh viện",
+      "brand": "Bệnh",
+      "city": "TP.HCM",
+      "district": "Tây Hồ",
+      "address": "66 Đường Trung Tâm, TP.HCM",
+      "coordinates": {
+        "lat": 15.110312,
+        "lon": 108.651486
+      },
+      "rating": 4,
+      "reviewCount": 2230,
+      "popularityScore": 63,
+      "attributes": [
+        "gần biển",
+        "giá hợp lý",
+        "trẻ em",
+        "view đẹp"
+      ],
+      "tags": [
+        "gần biển",
+        "giá hợp lý",
+        "trẻ em"
+      ],
+      "description": "Bệnh viện tại TP.HCM, phù hợp cho gần biển, giá hợp lý.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI067",
+      "name": "Bệnh viện Minh Tâm Nha Trang 67",
+      "category": "Bệnh viện",
+      "brand": "Bệnh",
+      "city": "Nha Trang",
+      "district": "Hải Châu",
+      "address": "67 Đường Trung Tâm, Nha Trang",
+      "coordinates": {
+        "lat": 18.744919,
+        "lon": 106.202209
+      },
+      "rating": 4.5,
+      "reviewCount": 1324,
+      "popularityScore": 91,
+      "attributes": [
+        "wifi",
+        "ngoài trời",
+        "cao cấp",
+        "mở cửa khuya"
+      ],
+      "tags": [
+        "wifi",
+        "ngoài trời",
+        "cao cấp"
+      ],
+      "description": "Bệnh viện tại Nha Trang, phù hợp cho wifi, ngoài trời.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI068",
+      "name": "Cafe Mộc Đà Nẵng 68",
+      "category": "Quán cà phê",
+      "brand": "Cafe",
+      "city": "Đà Nẵng",
+      "district": "Sơn Trà",
+      "address": "68 Đường Trung Tâm, Đà Nẵng",
+      "coordinates": {
+        "lat": 12.064217,
+        "lon": 107.993788
+      },
+      "rating": 4.1,
+      "reviewCount": 1344,
+      "popularityScore": 92,
+      "attributes": [
+        "view đẹp",
+        "ngoài trời",
+        "giá hợp lý",
+        "đặt bàn"
+      ],
+      "tags": [
+        "view đẹp",
+        "ngoài trời",
+        "giá hợp lý"
+      ],
+      "description": "Quán cà phê tại Đà Nẵng, phù hợp cho view đẹp, ngoài trời.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI069",
+      "name": "Cafe Mộc TP.HCM 69",
+      "category": "Quán cà phê",
+      "brand": "Cafe",
+      "city": "TP.HCM",
+      "district": "Sơn Trà",
+      "address": "69 Đường Trung Tâm, TP.HCM",
+      "coordinates": {
+        "lat": 17.278887,
+        "lon": 106.639291
+      },
+      "rating": 3.9,
+      "reviewCount": 2371,
+      "popularityScore": 84,
+      "attributes": [
+        "đặt bàn",
+        "cao cấp",
+        "giá hợp lý",
+        "mở cửa khuya"
+      ],
+      "tags": [
+        "đặt bàn",
+        "cao cấp",
+        "giá hợp lý"
+      ],
+      "description": "Quán cà phê tại TP.HCM, phù hợp cho đặt bàn, cao cấp.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI070",
+      "name": "Công viên Xanh Hà Nội 70",
+      "category": "Công viên",
+      "brand": "Công",
+      "city": "Hà Nội",
+      "district": "Hoàn Kiếm",
+      "address": "70 Đường Trung Tâm, Hà Nội",
+      "coordinates": {
+        "lat": 13.827136,
+        "lon": 108.890692
+      },
+      "rating": 4.4,
+      "reviewCount": 628,
+      "popularityScore": 80,
+      "attributes": [
+        "ngoài trời",
+        "yên tĩnh",
+        "gần biển",
+        "wifi"
+      ],
+      "tags": [
+        "ngoài trời",
+        "yên tĩnh",
+        "gần biển"
+      ],
+      "description": "Công viên tại Hà Nội, phù hợp cho ngoài trời, yên tĩnh.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI071",
+      "name": "Khách sạn Sao Việt TP.HCM 71",
+      "category": "Khách sạn",
+      "brand": "Khách",
+      "city": "TP.HCM",
+      "district": "Quận 1",
+      "address": "71 Đường Trung Tâm, TP.HCM",
+      "coordinates": {
+        "lat": 21.678351,
+        "lon": 106.673431
+      },
+      "rating": 4,
+      "reviewCount": 1915,
+      "popularityScore": 89,
+      "attributes": [
+        "mở cửa khuya",
+        "yên tĩnh",
+        "giá hợp lý",
+        "phù hợp hẹn hò"
+      ],
+      "tags": [
+        "mở cửa khuya",
+        "yên tĩnh",
+        "giá hợp lý"
+      ],
+      "description": "Khách sạn tại TP.HCM, phù hợp cho mở cửa khuya, yên tĩnh.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI072",
+      "name": "Bệnh viện Minh Tâm TP.HCM 72",
+      "category": "Bệnh viện",
+      "brand": "Bệnh",
+      "city": "TP.HCM",
+      "district": "Hoàn Kiếm",
+      "address": "72 Đường Trung Tâm, TP.HCM",
+      "coordinates": {
+        "lat": 18.355085,
+        "lon": 106.678138
+      },
+      "rating": 4,
+      "reviewCount": 1192,
+      "popularityScore": 82,
+      "attributes": [
+        "mở cửa khuya",
+        "gần biển",
+        "bãi đỗ xe",
+        "wifi"
+      ],
+      "tags": [
+        "mở cửa khuya",
+        "gần biển",
+        "bãi đỗ xe"
+      ],
+      "description": "Bệnh viện tại TP.HCM, phù hợp cho mở cửa khuya, gần biển.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI073",
+      "name": "Trung tâm thương mại City Plaza Đà Nẵng 73",
+      "category": "Trung tâm thương mại",
+      "brand": "Trung",
+      "city": "Đà Nẵng",
+      "district": "Hoàn Kiếm",
+      "address": "73 Đường Trung Tâm, Đà Nẵng",
+      "coordinates": {
+        "lat": 20.576006,
+        "lon": 106.908113
+      },
+      "rating": 4.1,
+      "reviewCount": 68,
+      "popularityScore": 85,
+      "attributes": [
+        "phù hợp hẹn hò",
+        "check-in",
+        "gần biển",
+        "wifi"
+      ],
+      "tags": [
+        "phù hợp hẹn hò",
+        "check-in",
+        "gần biển"
+      ],
+      "description": "Trung tâm thương mại tại Đà Nẵng, phù hợp cho phù hợp hẹn hò, check-in.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI074",
+      "name": "Khách sạn Sao Việt TP.HCM 74",
+      "category": "Khách sạn",
+      "brand": "Khách",
+      "city": "TP.HCM",
+      "district": "Đống Đa",
+      "address": "74 Đường Trung Tâm, TP.HCM",
+      "coordinates": {
+        "lat": 14.565382,
+        "lon": 107.599228
+      },
+      "rating": 4.7,
+      "reviewCount": 2805,
+      "popularityScore": 82,
+      "attributes": [
+        "wifi",
+        "gia đình",
+        "check-in",
+        "view đẹp"
+      ],
+      "tags": [
+        "wifi",
+        "gia đình",
+        "check-in"
+      ],
+      "description": "Khách sạn tại TP.HCM, phù hợp cho wifi, gia đình.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI075",
+      "name": "ATM BIDV Đà Nẵng 75",
+      "category": "ATM",
+      "brand": "ATM",
+      "city": "Đà Nẵng",
+      "district": "Đống Đa",
+      "address": "75 Đường Trung Tâm, Đà Nẵng",
+      "coordinates": {
+        "lat": 20.941099,
+        "lon": 106.270907
+      },
+      "rating": 4.6,
+      "reviewCount": 218,
+      "popularityScore": 51,
+      "attributes": [
+        "yên tĩnh",
+        "phù hợp hẹn hò",
+        "view đẹp",
+        "bãi đỗ xe"
+      ],
+      "tags": [
+        "yên tĩnh",
+        "phù hợp hẹn hò",
+        "view đẹp"
+      ],
+      "description": "ATM tại Đà Nẵng, phù hợp cho yên tĩnh, phù hợp hẹn hò.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI076",
+      "name": "Cafe Mộc Đà Lạt 76",
+      "category": "Quán cà phê",
+      "brand": "Cafe",
+      "city": "Đà Lạt",
+      "district": "Hải Châu",
+      "address": "76 Đường Trung Tâm, Đà Lạt",
+      "coordinates": {
+        "lat": 13.629296,
+        "lon": 107.343319
+      },
+      "rating": 4.5,
+      "reviewCount": 2772,
+      "popularityScore": 60,
+      "attributes": [
+        "ngoài trời",
+        "giá hợp lý",
+        "bãi đỗ xe",
+        "gần biển"
+      ],
+      "tags": [
+        "ngoài trời",
+        "giá hợp lý",
+        "bãi đỗ xe"
+      ],
+      "description": "Quán cà phê tại Đà Lạt, phù hợp cho ngoài trời, giá hợp lý.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI077",
+      "name": "Điểm check-in Panorama Nha Trang 77",
+      "category": "Địa điểm du lịch",
+      "brand": "Điểm",
+      "city": "Nha Trang",
+      "district": "Hải Châu",
+      "address": "77 Đường Trung Tâm, Nha Trang",
+      "coordinates": {
+        "lat": 13.399565,
+        "lon": 107.835328
+      },
+      "rating": 4.6,
+      "reviewCount": 1341,
+      "popularityScore": 73,
+      "attributes": [
+        "ngoài trời",
+        "yên tĩnh",
+        "check-in",
+        "mở cửa khuya"
+      ],
+      "tags": [
+        "ngoài trời",
+        "yên tĩnh",
+        "check-in"
+      ],
+      "description": "Địa điểm du lịch tại Nha Trang, phù hợp cho ngoài trời, yên tĩnh.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI078",
+      "name": "Khách sạn Sao Việt TP.HCM 78",
+      "category": "Khách sạn",
+      "brand": "Khách",
+      "city": "TP.HCM",
+      "district": "Hoàn Kiếm",
+      "address": "78 Đường Trung Tâm, TP.HCM",
+      "coordinates": {
+        "lat": 13.403413,
+        "lon": 107.437706
+      },
+      "rating": 3.8,
+      "reviewCount": 414,
+      "popularityScore": 82,
+      "attributes": [
+        "trẻ em",
+        "cao cấp",
+        "yên tĩnh",
+        "wifi"
+      ],
+      "tags": [
+        "trẻ em",
+        "cao cấp",
+        "yên tĩnh"
+      ],
+      "description": "Khách sạn tại TP.HCM, phù hợp cho trẻ em, cao cấp.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI079",
+      "name": "Công viên Xanh Đà Lạt 79",
+      "category": "Công viên",
+      "brand": "Công",
+      "city": "Đà Lạt",
+      "district": "Tây Hồ",
+      "address": "79 Đường Trung Tâm, Đà Lạt",
+      "coordinates": {
+        "lat": 13.237298,
+        "lon": 107.807666
+      },
+      "rating": 4.3,
+      "reviewCount": 974,
+      "popularityScore": 82,
+      "attributes": [
+        "giá hợp lý",
+        "yên tĩnh",
+        "cao cấp",
+        "gia đình"
+      ],
+      "tags": [
+        "giá hợp lý",
+        "yên tĩnh",
+        "cao cấp"
+      ],
+      "description": "Công viên tại Đà Lạt, phù hợp cho giá hợp lý, yên tĩnh.",
+      "datasetTier": "synthetic-extension"
+    },
+    {
+      "id": "POI080",
+      "name": "Công viên Xanh Đà Nẵng 80",
+      "category": "Công viên",
+      "brand": "Công",
+      "city": "Đà Nẵng",
+      "district": "Đống Đa",
+      "address": "80 Đường Trung Tâm, Đà Nẵng",
+      "coordinates": {
+        "lat": 13.478821,
+        "lon": 108.110192
+      },
+      "rating": 4.1,
+      "reviewCount": 274,
+      "popularityScore": 81,
+      "attributes": [
+        "bãi đỗ xe",
+        "gần biển",
+        "yên tĩnh",
+        "giá hợp lý"
+      ],
+      "tags": [
+        "bãi đỗ xe",
+        "gần biển",
+        "yên tĩnh"
+      ],
+      "description": "Công viên tại Đà Nẵng, phù hợp cho bãi đỗ xe, gần biển.",
+      "datasetTier": "synthetic-extension"
+    }
+  ],
+  "userProfiles": [
+    {
+      "id": "U001",
+      "persona": "Nhân viên văn phòng",
+      "currentLocation": "Quận 1, TP.HCM",
+      "preferences": [
+        "cafe yên tĩnh",
+        "wifi",
+        "làm việc"
+      ],
+      "avoid": [
+        "quán quá đông"
+      ],
+      "budgetLevel": "medium",
+      "notes": "Hay tìm nơi làm việc buổi chiều."
+    },
+    {
+      "id": "U002",
+      "persona": "Gia đình có trẻ nhỏ",
+      "currentLocation": "Hoàn Kiếm, Hà Nội",
+      "preferences": [
+        "nhà hàng gia đình",
+        "khu vui chơi",
+        "chỗ đậu xe"
+      ],
+      "avoid": [
+        "quán bar",
+        "ồn ào"
+      ],
+      "budgetLevel": "medium",
+      "notes": "Ưu tiên nơi có không gian cho trẻ em."
+    },
+    {
+      "id": "U003",
+      "persona": "Du khách lần đầu đến Đà Nẵng",
+      "currentLocation": "Sơn Trà, Đà Nẵng",
+      "preferences": [
+        "gần biển",
+        "check-in",
+        "đặc sản địa phương"
+      ],
+      "avoid": [
+        "quá xa trung tâm"
+      ],
+      "budgetLevel": "medium",
+      "notes": "Muốn lịch trình dễ đi trong 1 ngày."
+    },
+    {
+      "id": "U004",
+      "persona": "Người đi công tác",
+      "currentLocation": "Ba Đình, Hà Nội",
+      "preferences": [
+        "khách sạn business",
+        "gần trung tâm",
+        "wifi tốt"
+      ],
+      "avoid": [
+        "địa điểm quá du lịch"
+      ],
+      "budgetLevel": "high",
+      "notes": "Cần gợi ý nhanh, rõ ràng."
+    },
+    {
+      "id": "U005",
+      "persona": "Cặp đôi",
+      "currentLocation": "Quận 1, TP.HCM",
+      "preferences": [
+        "hẹn hò",
+        "rooftop",
+        "nhà hàng lãng mạn"
+      ],
+      "avoid": [
+        "quá đông trẻ em"
+      ],
+      "budgetLevel": "high",
+      "notes": "Thường tìm nơi ăn tối cuối tuần."
+    },
+    {
+      "id": "U006",
+      "persona": "Người thích khám phá",
+      "currentLocation": "Đà Lạt",
+      "preferences": [
+        "check-in",
+        "quán độc đáo",
+        "view đẹp"
+      ],
+      "avoid": [
+        "chuỗi thương hiệu quen thuộc"
+      ],
+      "budgetLevel": "medium",
+      "notes": "Thích địa điểm mới và có câu chuyện."
+    },
+    {
+      "id": "U007",
+      "persona": "Sinh viên",
+      "currentLocation": "Đống Đa, Hà Nội",
+      "preferences": [
+        "giá rẻ",
+        "wifi",
+        "học nhóm"
+      ],
+      "avoid": [
+        "cao cấp"
+      ],
+      "budgetLevel": "low",
+      "notes": "Cần cafe học bài hoặc ăn uống giá hợp lý."
+    },
+    {
+      "id": "U008",
+      "persona": "Tài xế đường dài",
+      "currentLocation": "TP.HCM",
+      "preferences": [
+        "trạm xăng",
+        "toilet",
+        "ăn khuya",
+        "24/7"
+      ],
+      "avoid": [
+        "đường nhỏ khó đỗ"
+      ],
+      "budgetLevel": "low",
+      "notes": "Ưu tiên tiện ích trên đường đi."
+    }
+  ],
+  "conversationScenarios": [
+    {
+      "id": "S001",
+      "category": "Conversational Search",
+      "conversationHistory": "User: Tôi muốn tìm một quán cà phê yên tĩnh.\nAssistant: Bạn muốn tìm khu vực nào?\nUser: Gần Hồ Hoàn Kiếm.",
+      "expectedAssistantBehavior": "Gợi ý quán cà phê yên tĩnh gần Hồ Hoàn Kiếm, nêu lý do như wifi, yên tĩnh, phù hợp làm việc.",
+      "requiredMapAction": "search(category=cafe, location=Hồ Hoàn Kiếm, attributes=yên tĩnh;wifi;làm việc)"
+    },
+    {
+      "id": "S002",
+      "category": "Clarification Dialog",
+      "conversationHistory": "User: Đưa tôi đến Galaxy.",
+      "expectedAssistantBehavior": "Không chọn ngay một kết quả. Cần hỏi làm rõ Galaxy Cinema, Galaxy Hotel hay địa điểm khác.",
+      "requiredMapAction": "clarify(ambiguous_entity=Galaxy, candidates=Galaxy Cinema;Galaxy Hotel)"
+    },
+    {
+      "id": "S003",
+      "category": "Recommendation Request",
+      "conversationHistory": "User: Gợi ý nơi hẹn hò lần đầu ở Quận 1.",
+      "expectedAssistantBehavior": "Đề xuất nhà hàng/rooftop/cafe có không gian lãng mạn, giải thích lý do.",
+      "requiredMapAction": "recommend(intent=date_place, location=Quận 1, attributes=lãng mạn;view đẹp)"
+    },
+    {
+      "id": "S004",
+      "category": "Multi-turn Search",
+      "conversationHistory": "User: Tìm nhà hàng.\nAssistant: Bạn muốn loại nào?\nUser: món Ý, dưới 500k, gần trung tâm.",
+      "expectedAssistantBehavior": "Giữ ngữ cảnh nhà hàng, lọc món Ý, ngân sách, gần trung tâm.",
+      "requiredMapAction": "search(category=restaurant, cuisine=Italian, budget<=500k, location=center)"
+    },
+    {
+      "id": "S005",
+      "category": "Planning Assistance",
+      "conversationHistory": "User: Tôi có 1 ngày ở Đà Nẵng, nên đi đâu?",
+      "expectedAssistantBehavior": "Đề xuất lịch trình ngắn gồm bãi biển, món địa phương, điểm check-in, tối ưu theo vị trí.",
+      "requiredMapAction": "plan(city=Đà Nẵng, duration=1 day)"
+    },
+    {
+      "id": "S006",
+      "category": "Navigation Assistance",
+      "conversationHistory": "User: Làm thế nào để đến Chợ Bến Thành từ Vincom Đồng Khởi?",
+      "expectedAssistantBehavior": "Sinh hành động chỉ đường từ điểm xuất phát đến điểm đến, có thể hỏi phương tiện nếu thiếu.",
+      "requiredMapAction": "route(origin=Vincom Center Đồng Khởi, destination=Chợ Bến Thành)"
+    },
+    {
+      "id": "S007",
+      "category": "Personalized Search",
+      "conversationHistory": "User profile: Sinh viên, ngân sách thấp.\nUser: Có quán nào để học nhóm gần đây không?",
+      "expectedAssistantBehavior": "Gợi ý cafe giá hợp lý, wifi, có bàn nhóm, không gợi ý nơi cao cấp.",
+      "requiredMapAction": "recommend(category=cafe, attributes=wifi;học nhóm;giá hợp lý)"
+    },
+    {
+      "id": "S008",
+      "category": "Voice-like Query",
+      "conversationHistory": "User: kiếm giúp quán ăn khuya gần sân bay tân sơn nhất với",
+      "expectedAssistantBehavior": "Hiểu dạng nói tự nhiên, tìm nhà hàng mở khuya gần sân bay TSN.",
+      "requiredMapAction": "search(category=restaurant, location=Sân bay Tân Sơn Nhất, attributes=mở cửa khuya)"
+    }
+  ],
+  "publicEvaluation": [
+    {
+      "id": "P001",
+      "conversationCategory": "Conversational Search",
+      "userProfileId": "U001",
+      "conversationTurns": "User: Tìm quán cà phê yên tĩnh để làm việc gần tôi.",
+      "expectedIntent": "Coffee Shop Search",
+      "expectedResponseSummary": "Trả lời có danh sách cafe phù hợp làm việc, nêu lý do wifi/yên tĩnh.",
+      "expectedRecommendations": "The Workshop Coffee; Trung Nguyên Legend Café",
+      "expectedMapAction": "search category cafe near user with work-friendly attributes",
+      "difficulty": "Easy",
+      "skillsTested": [
+        "intent detection",
+        "recommendation"
+      ]
+    },
+    {
+      "id": "P002",
+      "conversationCategory": "Multi-turn Search",
+      "userProfileId": "U002",
+      "conversationTurns": "User: Tìm nhà hàng.\nAssistant: Bạn muốn khu vực nào?\nUser: Gần Hoàn Kiếm, phù hợp cho trẻ em.",
+      "expectedIntent": "Family Restaurant Search",
+      "expectedResponseSummary": "Duy trì ngữ cảnh nhà hàng và thêm ràng buộc gia đình/trẻ em.",
+      "expectedRecommendations": "Nhà hàng gia đình gần Hoàn Kiếm",
+      "expectedMapAction": "search restaurant near Hoàn Kiếm family-friendly",
+      "difficulty": "Medium",
+      "skillsTested": [
+        "context retention",
+        "entity extraction"
+      ]
+    },
+    {
+      "id": "P003",
+      "conversationCategory": "Clarification Dialog",
+      "userProfileId": "U004",
+      "conversationTurns": "User: Đưa tôi đến Galaxy.",
+      "expectedIntent": "Ambiguous Navigation",
+      "expectedResponseSummary": "Hỏi làm rõ vì Galaxy có thể là rạp phim hoặc khách sạn.",
+      "expectedRecommendations": "Galaxy Nguyễn Du; Galaxy Hotel Đà Nẵng",
+      "expectedMapAction": "clarify ambiguity",
+      "difficulty": "Medium",
+      "skillsTested": [
+        "ambiguity resolution"
+      ]
+    },
+    {
+      "id": "P004",
+      "conversationCategory": "Recommendation Request",
+      "userProfileId": "U005",
+      "conversationTurns": "User: Gợi ý nơi hẹn hò lãng mạn tối nay ở Quận 1.",
+      "expectedIntent": "Date Recommendation",
+      "expectedResponseSummary": "Gợi ý rooftop/nhà hàng lãng mạn tại Quận 1, giải thích theo không gian/view.",
+      "expectedRecommendations": "Chill Skybar; Secret Garden",
+      "expectedMapAction": "recommend date places Quận 1",
+      "difficulty": "Easy",
+      "skillsTested": [
+        "recommendation",
+        "explainability"
+      ]
+    },
+    {
+      "id": "P005",
+      "conversationCategory": "Planning Assistance",
+      "userProfileId": "U003",
+      "conversationTurns": "User: Tôi ở Đà Nẵng cuối tuần này, muốn đi biển và ăn đặc sản.",
+      "expectedIntent": "Travel Planning",
+      "expectedResponseSummary": "Đề xuất bãi biển/khách sạn gần biển/quán đặc sản, có lịch trình hợp lý.",
+      "expectedRecommendations": "Sala Đà Nẵng Beach; Mì Quảng Bà Mua",
+      "expectedMapAction": "plan beach + food in Đà Nẵng",
+      "difficulty": "Medium",
+      "skillsTested": [
+        "planning",
+        "recommendation"
+      ]
+    },
+    {
+      "id": "P006",
+      "conversationCategory": "Navigation Assistance",
+      "userProfileId": "U006",
+      "conversationTurns": "User: Chỉ đường từ Hồ Gươm đến Phở Thìn Lò Đúc.",
+      "expectedIntent": "Navigation",
+      "expectedResponseSummary": "Tạo hành động route từ Hồ Gươm đến Phở Thìn, có thể hỏi phương tiện.",
+      "expectedRecommendations": "Phở Thìn Lò Đúc",
+      "expectedMapAction": "route origin Hồ Gươm destination Phở Thìn",
+      "difficulty": "Easy",
+      "skillsTested": [
+        "map action generation"
+      ]
+    },
+    {
+      "id": "P007",
+      "conversationCategory": "Personalized Search",
+      "userProfileId": "U007",
+      "conversationTurns": "User: Tìm chỗ học nhóm có wifi, giá không quá cao.",
+      "expectedIntent": "Study Friendly Cafe",
+      "expectedResponseSummary": "Ưu tiên cafe có wifi, học nhóm, giá hợp lý; tránh nơi cao cấp.",
+      "expectedRecommendations": "Cafe Mộc; The Workshop nếu ngân sách phù hợp",
+      "expectedMapAction": "search cafe attributes wifi;study;budget",
+      "difficulty": "Medium",
+      "skillsTested": [
+        "personalization",
+        "attribute search"
+      ]
+    },
+    {
+      "id": "P008",
+      "conversationCategory": "Conversational Search",
+      "userProfileId": "U008",
+      "conversationTurns": "User: Tìm cây xăng có toilet trên đường đi Hạ Long.",
+      "expectedIntent": "Gas Station Search",
+      "expectedResponseSummary": "Tìm trạm xăng có toilet, ưu tiên tuyến đường/24/7.",
+      "expectedRecommendations": "Petrolimex",
+      "expectedMapAction": "search gas station attributes toilet on route",
+      "difficulty": "Hard",
+      "skillsTested": [
+        "route-aware search",
+        "attributes"
+      ]
+    },
+    {
+      "id": "P009",
+      "conversationCategory": "Multi-turn Search",
+      "userProfileId": "U005",
+      "conversationTurns": "User: Tìm quán ăn tối.\nAssistant: Bạn đi với ai?\nUser: Đi với bạn gái, muốn chỗ có view đẹp.",
+      "expectedIntent": "Romantic Restaurant Search",
+      "expectedResponseSummary": "Giữ ngữ cảnh ăn tối, thêm hẹn hò/view đẹp.",
+      "expectedRecommendations": "Secret Garden; Chill Skybar",
+      "expectedMapAction": "recommend restaurant date view",
+      "difficulty": "Medium",
+      "skillsTested": [
+        "multi-turn",
+        "preference"
+      ]
+    },
+    {
+      "id": "P010",
+      "conversationCategory": "Clarification Dialog",
+      "userProfileId": "U002",
+      "conversationTurns": "User: Big C gần tôi.",
+      "expectedIntent": "Ambiguous/Brand Search",
+      "expectedResponseSummary": "Nếu có nhiều Big C/GO!, hỏi khu vực hoặc dùng vị trí người dùng để chọn.",
+      "expectedRecommendations": "GO!/Big C candidates",
+      "expectedMapAction": "clarify or nearby brand search",
+      "difficulty": "Medium",
+      "skillsTested": [
+        "ambiguity",
+        "location"
+      ]
+    },
+    {
+      "id": "P011",
+      "conversationCategory": "Conversational Search",
+      "userProfileId": "U001",
+      "conversationTurns": "User: quán cafe mở sau 10h tối gần quận 1.",
+      "expectedIntent": "Late Night Cafe Search",
+      "expectedResponseSummary": "Tìm cafe mở khuya tại Quận 1.",
+      "expectedRecommendations": "Cafe mở khuya Quận 1",
+      "expectedMapAction": "search cafe open_after=22:00 location Quận 1",
+      "difficulty": "Medium",
+      "skillsTested": [
+        "time constraint"
+      ]
+    },
+    {
+      "id": "P012",
+      "conversationCategory": "Recommendation Request",
+      "userProfileId": "U004",
+      "conversationTurns": "User: Tôi cần khách sạn phù hợp đi công tác ở Hà Nội.",
+      "expectedIntent": "Business Hotel Recommendation",
+      "expectedResponseSummary": "Gợi ý khách sạn business, wifi tốt, trung tâm.",
+      "expectedRecommendations": "Lotte Hotel Hanoi",
+      "expectedMapAction": "recommend hotel business Hanoi",
+      "difficulty": "Easy",
+      "skillsTested": [
+        "semantic recommendation"
+      ]
+    },
+    {
+      "id": "P013",
+      "conversationCategory": "Planning Assistance",
+      "userProfileId": "U006",
+      "conversationTurns": "User: Lên lịch 2 ngày ở Đà Lạt cho người thích check-in.",
+      "expectedIntent": "Trip Planning",
+      "expectedResponseSummary": "Đề xuất lịch trình 2 ngày, nhiều điểm check-in, quán view đẹp.",
+      "expectedRecommendations": "Điểm check-in Panorama Đà Lạt",
+      "expectedMapAction": "plan city Đà Lạt duration 2 days",
+      "difficulty": "Hard",
+      "skillsTested": [
+        "planning",
+        "preferences"
+      ]
+    },
+    {
+      "id": "P014",
+      "conversationCategory": "Conversational Search",
+      "userProfileId": "U002",
+      "conversationTurns": "User: Có chỗ nào cuối tuần cho trẻ em chơi không?",
+      "expectedIntent": "Kids Place Search",
+      "expectedResponseSummary": "Gợi ý khu vui chơi/công viên phù hợp trẻ em.",
+      "expectedRecommendations": "Công viên Thỏ Trắng; Công viên 29/3",
+      "expectedMapAction": "search kids family place",
+      "difficulty": "Easy",
+      "skillsTested": [
+        "semantic intent"
+      ]
+    },
+    {
+      "id": "P015",
+      "conversationCategory": "Navigation Assistance",
+      "userProfileId": "U008",
+      "conversationTurns": "User: Đi sân bay Tân Sơn Nhất từ trung tâm quận 1 mất bao lâu?",
+      "expectedIntent": "Navigation/ETA",
+      "expectedResponseSummary": "Sinh hành động route/ETA, cần vị trí xuất phát cụ thể nếu thiếu.",
+      "expectedRecommendations": "Sân bay Tân Sơn Nhất",
+      "expectedMapAction": "ask origin clarification or route from Quận 1",
+      "difficulty": "Medium",
+      "skillsTested": [
+        "clarification",
+        "navigation"
+      ]
+    },
+    {
+      "id": "P016",
+      "conversationCategory": "Personalized Search",
+      "userProfileId": "U001",
+      "conversationTurns": "User: Tôi muốn chỗ gặp đối tác, không quá ồn.",
+      "expectedIntent": "Business Meeting Cafe",
+      "expectedResponseSummary": "Gợi ý cafe yên tĩnh, phù hợp gặp đối tác.",
+      "expectedRecommendations": "Trung Nguyên Legend; The Workshop",
+      "expectedMapAction": "recommend cafe meeting quiet",
+      "difficulty": "Medium",
+      "skillsTested": [
+        "personalization",
+        "semantic"
+      ]
+    },
+    {
+      "id": "P017",
+      "conversationCategory": "Clarification Dialog",
+      "userProfileId": "U003",
+      "conversationTurns": "User: Vincom.",
+      "expectedIntent": "Brand Search Ambiguous",
+      "expectedResponseSummary": "Hỏi khu vực hoặc dùng vị trí để chọn chi nhánh Vincom phù hợp.",
+      "expectedRecommendations": "Vincom Center Đồng Khởi; CGV Vincom Bà Triệu",
+      "expectedMapAction": "clarify brand branch",
+      "difficulty": "Easy",
+      "skillsTested": [
+        "ambiguity"
+      ]
+    },
+    {
+      "id": "P018",
+      "conversationCategory": "Multi-turn Search",
+      "userProfileId": "U003",
+      "conversationTurns": "User: Tìm khách sạn gần biển.\nAssistant: Thành phố nào?\nUser: Đà Nẵng, có hồ bơi.",
+      "expectedIntent": "Hotel Search",
+      "expectedResponseSummary": "Giữ ngữ cảnh khách sạn gần biển, thêm Đà Nẵng và hồ bơi.",
+      "expectedRecommendations": "Sala Đà Nẵng Beach",
+      "expectedMapAction": "search hotel near beach pool Da Nang",
+      "difficulty": "Medium",
+      "skillsTested": [
+        "context",
+        "attributes"
+      ]
+    },
+    {
+      "id": "P019",
+      "conversationCategory": "Conversational Search",
+      "userProfileId": "U006",
+      "conversationTurns": "User: nơi nào đẹp để chụp hình ở Hà Nội?",
+      "expectedIntent": "Discovery Search",
+      "expectedResponseSummary": "Gợi ý điểm check-in/du lịch đẹp ở Hà Nội.",
+      "expectedRecommendations": "Hồ Hoàn Kiếm; Đường sách Nguyễn Văn Bình?",
+      "expectedMapAction": "discover check-in Hanoi",
+      "difficulty": "Easy",
+      "skillsTested": [
+        "semantic discovery"
+      ]
+    },
+    {
+      "id": "P020",
+      "conversationCategory": "AI Assistant",
+      "userProfileId": "U004",
+      "conversationTurns": "User: Tóm tắt giúp tôi vì sao Lotte Hotel phù hợp công tác.",
+      "expectedIntent": "Explanation",
+      "expectedResponseSummary": "Trả lời dựa trên attributes business, trung tâm, wifi, rating.",
+      "expectedRecommendations": "Lotte Hotel Hanoi",
+      "expectedMapAction": "explain recommendation",
+      "difficulty": "Medium",
+      "skillsTested": [
+        "explainability"
+      ]
+    },
+    {
+      "id": "P021",
+      "conversationCategory": "Conversational Search",
+      "userProfileId": "U005",
+      "conversationTurns": "User: tối nay muốn đi rooftop nhưng không quá xa quận 1.",
+      "expectedIntent": "Rooftop Search",
+      "expectedResponseSummary": "Tìm rooftop tại/ gần Quận 1, phù hợp tối/hẹn hò.",
+      "expectedRecommendations": "Chill Skybar",
+      "expectedMapAction": "search rooftop location Quận 1",
+      "difficulty": "Easy",
+      "skillsTested": [
+        "intent",
+        "location"
+      ]
+    },
+    {
+      "id": "P022",
+      "conversationCategory": "Multi-turn Search",
+      "userProfileId": "U007",
+      "conversationTurns": "User: Tìm quán ăn rẻ.\nAssistant: Bạn muốn món gì?\nUser: phở hoặc bún chả, gần trường đại học.",
+      "expectedIntent": "Budget Local Food",
+      "expectedResponseSummary": "Giữ ngữ cảnh ăn rẻ, món phở/bún chả, gần đại học.",
+      "expectedRecommendations": "Phở Thìn; Bún Chả Hương Liên",
+      "expectedMapAction": "search local food budget near university",
+      "difficulty": "Hard",
+      "skillsTested": [
+        "multi-turn",
+        "semantic"
+      ]
+    },
+    {
+      "id": "P023",
+      "conversationCategory": "Clarification Dialog",
+      "userProfileId": "U001",
+      "conversationTurns": "User: dẫn tôi đến sân bay.",
+      "expectedIntent": "Navigation Clarification",
+      "expectedResponseSummary": "Nếu không biết sân bay nào, hỏi Tân Sơn Nhất, Nội Bài, Đà Nẵng... hoặc dùng vị trí.",
+      "expectedRecommendations": "Sân bay Tân Sơn Nhất; Sân bay Nội Bài",
+      "expectedMapAction": "clarify airport",
+      "difficulty": "Medium",
+      "skillsTested": [
+        "ambiguity",
+        "navigation"
+      ]
+    },
+    {
+      "id": "P024",
+      "conversationCategory": "Recommendation Request",
+      "userProfileId": "U002",
+      "conversationTurns": "User: Nhà hàng nào ở TP.HCM phù hợp gia đình và có chỗ đậu xe?",
+      "expectedIntent": "Family Restaurant",
+      "expectedResponseSummary": "Gợi ý nhà hàng/TTTM có gia đình và bãi đỗ xe.",
+      "expectedRecommendations": "Pizza 4P's; AEON Mall Tân Phú",
+      "expectedMapAction": "recommend family restaurant parking HCMC",
+      "difficulty": "Medium",
+      "skillsTested": [
+        "attributes",
+        "ranking"
+      ]
+    },
+    {
+      "id": "P025",
+      "conversationCategory": "Planning Assistance",
+      "userProfileId": "U008",
+      "conversationTurns": "User: Tôi lái xe đêm, cần nơi ăn khuya và đổ xăng.",
+      "expectedIntent": "Driver Support Planning",
+      "expectedResponseSummary": "Gợi ý trạm xăng 24/7 và quán ăn mở khuya theo tuyến/vị trí.",
+      "expectedRecommendations": "Petrolimex; quán ăn khuya",
+      "expectedMapAction": "search gas + late food",
+      "difficulty": "Hard",
+      "skillsTested": [
+        "multi-service planning"
+      ]
+    },
+    {
+      "id": "P026",
+      "conversationCategory": "Conversational Search",
+      "userProfileId": "U003",
+      "conversationTurns": "User: khách sạn gần biển mà hợp cho gia đình có trẻ nhỏ.",
+      "expectedIntent": "Family Beach Hotel",
+      "expectedResponseSummary": "Gợi ý khách sạn gần biển có gia đình/trẻ em.",
+      "expectedRecommendations": "Sala Đà Nẵng Beach; Galaxy Hotel Đà Nẵng",
+      "expectedMapAction": "recommend beach family hotel",
+      "difficulty": "Medium",
+      "skillsTested": [
+        "semantic",
+        "attributes"
+      ]
+    },
+    {
+      "id": "P027",
+      "conversationCategory": "AI Assistant",
+      "userProfileId": "U005",
+      "conversationTurns": "User: Vì sao bạn gợi ý Secret Garden cho hẹn hò?",
+      "expectedIntent": "Explain Recommendation",
+      "expectedResponseSummary": "Giải thích không gian sân vườn, món Việt, phù hợp hẹn hò.",
+      "expectedRecommendations": "Secret Garden",
+      "expectedMapAction": "explain POI attributes",
+      "difficulty": "Easy",
+      "skillsTested": [
+        "explainability"
+      ]
+    },
+    {
+      "id": "P028",
+      "conversationCategory": "Long Conversation",
+      "userProfileId": "U006",
+      "conversationTurns": "User: Tôi muốn đi chơi ở Hà Nội.\nAssistant: Bạn thích kiểu địa điểm nào?\nUser: chỗ có thể đi bộ, chụp hình, uống cà phê gần đó.",
+      "expectedIntent": "Discovery + Nearby Cafe",
+      "expectedResponseSummary": "Đề xuất điểm đi bộ/check-in và cafe gần đó.",
+      "expectedRecommendations": "Hồ Hoàn Kiếm + Cộng Cà Phê",
+      "expectedMapAction": "plan POI + nearby cafe",
+      "difficulty": "Hard",
+      "skillsTested": [
+        "context",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "P029",
+      "conversationCategory": "Voice Interaction",
+      "userProfileId": "U001",
+      "conversationTurns": "User: kiếm quán cà phê nào gần đây làm việc được không đông quá",
+      "expectedIntent": "Work Cafe Search",
+      "expectedResponseSummary": "Hiểu câu nói tự nhiên, gợi ý quán cafe làm việc ít đông/yên tĩnh.",
+      "expectedRecommendations": "The Workshop; Trung Nguyên Legend",
+      "expectedMapAction": "search cafe work quiet nearby",
+      "difficulty": "Medium",
+      "skillsTested": [
+        "voice-like NLU"
+      ]
+    },
+    {
+      "id": "P030",
+      "conversationCategory": "Recommendation Request",
+      "userProfileId": "U004",
+      "conversationTurns": "User: Tôi cần nơi tiếp khách nước ngoài ở trung tâm Sài Gòn.",
+      "expectedIntent": "Business Dining Recommendation",
+      "expectedResponseSummary": "Gợi ý nhà hàng/cafe chất lượng, trung tâm, dễ tiếp khách.",
+      "expectedRecommendations": "Secret Garden; Pizza 4P's",
+      "expectedMapAction": "recommend business dining city center",
+      "difficulty": "Medium",
+      "skillsTested": [
+        "semantic",
+        "context"
+      ]
+    }
+  ]
+}

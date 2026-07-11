@@ -1,0 +1,33 @@
+{
+  "name": "tasco-atlas",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@11.7.0",
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "geist": "^1.7.2",
+    "lucide-react": "^1.24.0",
+    "maplibre-gl": "^5.24.0",
+    "next": "^16.2.10",
+    "openai": "^6.46.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "^16.2.10",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.10"
+  }
+}
