@@ -23,7 +23,9 @@ export function isConfirmedSpeech(transcript: string): boolean {
 export function isConfirmedBargeIn(transcript: string): boolean {
   const tokens = wordTokens(transcript);
   if (tokens.length >= 3) return true;
-  return tokens.length === 2 && tokens.join("").length >= 8;
+  // Two-word interrupts like "gần hơn"/"rẻ hơn" (6 letters) must pass while
+  // filler pairs like "à ừm"/"ok la" stay below the bar.
+  return tokens.length === 2 && tokens.join("").length >= 6;
 }
 
 function wordTokens(transcript: string): string[] {
