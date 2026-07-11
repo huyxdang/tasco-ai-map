@@ -1,0 +1,1016 @@
+openapi: 3.1.0
+info:
+  title: TASCO Atlas Hackathon API
+  version: 0.1.0
+  summary: Conversational discovery and deterministic map facade for the TASCO Atlas prototype.
+  description: |
+    REST contract for the camera-free TASCO Atlas hackathon prototype.
+
+    All POI, profile, conversation, and evaluation data in this repository is synthetic.
+    Search, ranking, and journey commerce fields are deterministic. OpenAI may optionally rewrite grounded chat prose. Route geometry and
+    ETA values are simulated from supplied coordinates; they are not road- or traffic-aware.
+servers:
+  - url: http://localhost:3000
+    description: Local Next.js development server
+tags:
+  - name: Service
+  - name: Discovery
+  - name: Routing
+  - name: Conversation
+security: []
+
+paths:
+  /health:
+    get:
+      tags: [Service]
+      operationId: getHealth
+      summary: Check service and synthetic dataset status.
+      responses:
+        "200":
+          description: Service is ready.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+              example:
+                status: ok
+                service: tasco-atlas
+                data:
+                  poiCount: 80
+                  profileCount: 8
+                  language: vi
+                  synthetic: true
+
+  /v1/search:
+    get:
+      tags: [Discovery]
+      operationId: searchPlaces
+      summary: Search and rank POIs using natural-language text.
+      parameters:
+        - $ref: "#/components/parameters/Query"
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Language"
+        - $ref: "#/components/parameters/ProfileId"
+        - $ref: "#/components/parameters/LatitudeOptional"
+        - $ref: "#/components/parameters/LongitudeOptional"
+        - name: category
+          in: query
+          description: Exact or compatible POI category. When supplied, it is a hard filter.
+          schema:
+            type: string
+          example: Quán cà phê
+      responses:
+        "200":
+          description: Stable, deterministic ranking over the synthetic POI dataset.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SearchResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+
+  /v1/autocomplete:
+    get:
+      tags: [Discovery]
+      operationId: autocompletePlaces
+      summary: Return deterministic POI suggestions for a partial query.
+      parameters:
+        - $ref: "#/components/parameters/Query"
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Language"
+        - name: sessionId
+          in: query
+          description: Opaque client identifier echoed in response metadata; it is not persisted.
+          schema:
+            type: string
+          example: demo-001
+      responses:
+        "200":
+          description: Autocomplete suggestions.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AutocompleteResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+
+  /v1/poi/{id}:
+    get:
+      tags: [Discovery]
+      operationId: getPoi
+      summary: Get the full synthetic POI record for a stable ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: POI001
+      responses:
+        "200":
+          description: Full POI record.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [poi]
+                properties:
+                  poi:
+                    $ref: "#/components/schemas/Poi"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /v1/reverse-geocoding:
+    get:
+      tags: [Discovery]
+      operationId: reverseGeocode
+      summary: Return the nearest synthetic POIs to WGS84 coordinates.
+      description: This is nearest-POI lookup, not a live postal-address service.
+      parameters:
+        - $ref: "#/components/parameters/LatitudeRequired"
+        - $ref: "#/components/parameters/LongitudeRequired"
+        - $ref: "#/components/parameters/Limit"
+      responses:
+        "200":
+          description: Nearest POIs ordered by distance.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [results]
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/PlaceResult"
+        "400":
+          $ref: "#/components/responses/InvalidCoordinates"
+
+  /v1/nearby-search:
+    get:
+      tags: [Discovery]
+      operationId: nearbySearch
+      summary: Search synthetic POIs within a radius of WGS84 coordinates.
+      parameters:
+        - $ref: "#/components/parameters/LatitudeRequired"
+        - $ref: "#/components/parameters/LongitudeRequired"
+        - name: radiusMeters
+          in: query
+          description: Radius in meters. The implementation clamps values to 50–100000.
+          schema:
+            type: number
+            minimum: 50
+            maximum: 100000
+            default: 5000
+        - name: radius
+          in: query
+          deprecated: true
+          description: Backward-compatible alias for `radiusMeters`; ignored when `radiusMeters` is present.
+          schema:
+            type: number
+            minimum: 50
+            maximum: 100000
+        - name: q
+          in: query
+          description: Optional natural-language ranking query.
+          schema:
+            type: string
+          example: gia đình có chỗ đậu xe
+        - name: category
+          in: query
+          description: Optional hard category filter.
+          schema:
+            type: string
+          example: Nhà hàng
+        - $ref: "#/components/parameters/Limit"
+      responses:
+        "200":
+          description: Radius-filtered and ranked POIs.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NearbyResponse"
+        "400":
+          $ref: "#/components/responses/InvalidCoordinates"
+
+  /v1/geocoding:
+    get:
+      tags: [Discovery]
+      operationId: geocode
+      summary: Resolve a place/address query to synthetic dataset coordinates.
+      description: |
+        Supply at least one of `address`, `q`, or `query`. `address` takes precedence;
+        `query` is accepted as a backward-compatible alias for `q`.
+      parameters:
+        - name: address
+          in: query
+          description: Natural-language address or place text (canonical supplied-contract field).
+          schema:
+            type: string
+            minLength: 1
+          example: Phạm Hùng, Nam Từ Liêm, Hà Nội
+        - name: q
+          in: query
+          description: Natural-language place/address query.
+          schema:
+            type: string
+            minLength: 1
+        - name: query
+          in: query
+          deprecated: true
+          description: Backward-compatible alias for `q`.
+          schema:
+            type: string
+            minLength: 1
+        - $ref: "#/components/parameters/Limit"
+      responses:
+        "200":
+          description: Matching synthetic places and coordinates.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeocodingResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+
+  /v1/route:
+    post:
+      tags: [Routing]
+      operationId: createRoute
+      summary: Create deterministic simulated routes between coordinates.
+      description: |
+        Generates an interpolated GeoJSON line, Haversine distance, and fixed-speed ETA.
+        It does not use a road network, live traffic, toll data, or production TASCO services.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RouteRequest"
+            example:
+              locations:
+                - lat: 10.7781
+                  lon: 106.7017
+                - lat: 10.7721
+                  lon: 106.6983
+              mode: driving
+              alternates: 1
+              language: vi-VN
+              units: kilometers
+      responses:
+        "200":
+          description: One primary simulated route plus requested alternatives.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RouteResponse"
+        "400":
+          description: Invalid JSON or fewer than two valid coordinates.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /api/chat:
+    post:
+      tags: [Conversation]
+      operationId: chat
+      summary: Turn a Vietnamese conversation turn into recommendations and a map action.
+      description: |
+        Ranking, journey actions, prices, totals, and revisions are deterministic and dataset-grounded. It has no durable session store.
+        OpenAI may rewrite only assistant prose; provider failure uses the deterministic response.
+        To maintain multi-turn context, pass the returned `sessionContext` (and optionally
+        `history`) with the next request.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChatRequest"
+            examples:
+              personalizedDate:
+                summary: Personalized recommendation
+                value:
+                  sessionId: demo-001
+                  profileId: U005
+                  message: Gợi ý nơi hẹn hò lãng mạn tối nay ở Quận 1.
+              clarification:
+                summary: Ambiguous named place
+                value:
+                  sessionId: demo-002
+                  message: Đưa tôi đến Galaxy.
+      responses:
+        "200":
+          description: Natural-language response plus inspectable structured behavior.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChatResponse"
+        "400":
+          description: Missing message or invalid JSON.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+components:
+  parameters:
+    Query:
+      name: q
+      in: query
+      required: true
+      description: Natural-language place, address, category, or attribute query.
+      schema:
+        type: string
+        minLength: 1
+      example: cà phê yên tĩnh ở Quận 1
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of records. Values are clamped to 1–50.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 50
+        default: 10
+    Language:
+      name: lang
+      in: query
+      description: Response/search locale metadata.
+      schema:
+        type: string
+        default: vi
+      example: vi
+    ProfileId:
+      name: profileId
+      in: query
+      description: Optional synthetic profile ID (`U001`–`U008`) used for ranking.
+      schema:
+        type: string
+        pattern: "^U[0-9]{3}$"
+      example: U001
+    LatitudeRequired:
+      name: lat
+      in: query
+      required: true
+      schema:
+        type: number
+        minimum: -90
+        maximum: 90
+      example: 10.7757
+    LongitudeRequired:
+      name: lon
+      in: query
+      required: true
+      schema:
+        type: number
+        minimum: -180
+        maximum: 180
+      example: 106.7019
+    LatitudeOptional:
+      name: lat
+      in: query
+      required: false
+      description: Optional focus/origin latitude; used only when paired with `lon`.
+      schema:
+        type: number
+        minimum: -90
+        maximum: 90
+    LongitudeOptional:
+      name: lon
+      in: query
+      required: false
+      description: Optional focus/origin longitude; used only when paired with `lat`.
+      schema:
+        type: number
+        minimum: -180
+        maximum: 180
+
+  responses:
+    BadRequest:
+      description: Invalid request.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    InvalidCoordinates:
+      description: "`lat` or `lon` is missing or outside WGS84 bounds."
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            error:
+              code: INVALID_COORDINATES
+              message: lat và lon hợp lệ là bắt buộc.
+    NotFound:
+      description: Resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            error:
+              code: POI_NOT_FOUND
+              message: Không tìm thấy địa điểm.
+
+  schemas:
+    Coordinates:
+      type: object
+      additionalProperties: false
+      required: [lat, lon]
+      properties:
+        lat:
+          type: number
+          minimum: -90
+          maximum: 90
+        lon:
+          type: number
+          minimum: -180
+          maximum: 180
+
+    Poi:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - name
+        - category
+        - brand
+        - city
+        - district
+        - address
+        - coordinates
+        - rating
+        - reviewCount
+        - popularityScore
+        - attributes
+        - tags
+        - description
+        - datasetTier
+      properties:
+        id:
+          type: string
+          example: POI001
+        name:
+          type: string
+          example: The Workshop Coffee
+        category:
+          type: string
+          example: Quán cà phê
+        brand:
+          type: string
+          example: The Workshop
+        city:
+          type: string
+          example: TP.HCM
+        district:
+          type: string
+          example: Quận 1
+        address:
+          type: string
+          example: 27 Ngô Đức Kế, Bến Nghé, Quận 1
+        coordinates:
+          $ref: "#/components/schemas/Coordinates"
+        rating:
+          type: number
+          minimum: 0
+          maximum: 5
+        reviewCount:
+          type: integer
+          minimum: 0
+        popularityScore:
+          type: number
+          minimum: 0
+          maximum: 100
+        attributes:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+        description:
+          type: string
+        datasetTier:
+          type: string
+          description: Synthetic fixture tier, for example `featured` or `generated`.
+
+    PlaceResult:
+      type: object
+      additionalProperties: false
+      required: [id, type, name, label, address, category, coordinates, source]
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          const: poi
+        name:
+          type: string
+        label:
+          type: string
+        address:
+          type: string
+        category:
+          type: string
+        coordinates:
+          $ref: "#/components/schemas/Coordinates"
+        distanceMeters:
+          type: integer
+          minimum: 0
+        score:
+          type: number
+          minimum: 0
+          maximum: 1
+        source:
+          type: string
+          const: tasco-dataset
+        tags:
+          type: array
+          items:
+            type: string
+
+    SearchResponse:
+      type: object
+      additionalProperties: false
+      required: [query, results, meta]
+      properties:
+        query:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/PlaceResult"
+        meta:
+          type: object
+          additionalProperties: false
+          required: [limit, lang]
+          properties:
+            limit:
+              type: integer
+            lang:
+              type: string
+
+    GeocodingResponse:
+      type: object
+      additionalProperties: false
+      required: [query, results]
+      properties:
+        query:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/PlaceResult"
+
+    AutocompleteResponse:
+      type: object
+      additionalProperties: false
+      required: [query, suggestions, meta]
+      properties:
+        query:
+          type: string
+        suggestions:
+          type: array
+          items:
+            $ref: "#/components/schemas/PlaceResult"
+        meta:
+          type: object
+          additionalProperties: false
+          required: [limit, sessionId]
+          properties:
+            limit:
+              type: integer
+            sessionId:
+              type: string
+
+    NearbyResponse:
+      type: object
+      additionalProperties: false
+      required: [center, results, meta]
+      properties:
+        center:
+          $ref: "#/components/schemas/Coordinates"
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/PlaceResult"
+        meta:
+          type: object
+          additionalProperties: false
+          required: [radiusMeters, limit]
+          properties:
+            radiusMeters:
+              type: number
+            limit:
+              type: integer
+
+    ScoreBreakdown:
+      type: object
+      description: Weighted contributions to the final recommendation score.
+      additionalProperties:
+        type: number
+
+    Recommendation:
+      type: object
+      additionalProperties: false
+      required: [poi, score, reason]
+      properties:
+        poi:
+          $ref: "#/components/schemas/Poi"
+        score:
+          type: number
+          minimum: 0
+          maximum: 1
+        reason:
+          type: string
+        scoreBreakdown:
+          $ref: "#/components/schemas/ScoreBreakdown"
+        rewardPoints:
+          type: integer
+          description: Synthetic demo reward signal; no monetary value.
+
+    ChatMessage:
+      type: object
+      additionalProperties: false
+      required: [role, content]
+      properties:
+        role:
+          type: string
+          enum: [user, assistant]
+        content:
+          type: string
+
+    PendingClarification:
+      type: object
+      additionalProperties: false
+      required: [entity, candidateIds]
+      properties:
+        entity:
+          type: string
+        candidateIds:
+          type: array
+          items:
+            type: string
+
+    SessionContext:
+      type: object
+      additionalProperties: false
+      properties:
+        sessionId:
+          type: string
+        profileId:
+          type: string
+        lastIntent:
+          type: string
+        lastQuery:
+          type: string
+        constraints:
+          type: array
+          items:
+            type: string
+        pendingClarification:
+          $ref: "#/components/schemas/PendingClarification"
+        journey:
+          $ref: "#/components/schemas/JourneySessionState"
+
+    JourneySessionState:
+      type: object
+      additionalProperties: false
+      required: [query, location, selectedPoiIds, actionKinds, totalVnd, revision]
+      properties:
+        query: { type: string }
+        location: { type: string }
+        selectedPoiIds: { type: array, items: { type: string }, minItems: 2, maxItems: 3 }
+        actionKinds: { type: array, items: { type: string, enum: [fuel, dining, parking] }, minItems: 2, maxItems: 3 }
+        totalVnd: { type: integer, minimum: 0 }
+        revision: { type: integer, minimum: 0 }
+
+    ChatRequest:
+      type: object
+      additionalProperties: false
+      required: [message]
+      properties:
+        message:
+          type: string
+          minLength: 1
+        profileId:
+          type: string
+          description: Optional synthetic user profile (`U001`–`U008`).
+        location:
+          $ref: "#/components/schemas/Coordinates"
+        history:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                $ref: "#/components/schemas/ChatMessage"
+        sessionId:
+          type: string
+        sessionContext:
+          $ref: "#/components/schemas/SessionContext"
+
+    MapAction:
+      type: object
+      additionalProperties: false
+      required: [type]
+      properties:
+        type:
+          type: string
+          enum: [none, search, show, clarify, route, plan]
+        query:
+          type: string
+        center:
+          $ref: "#/components/schemas/Coordinates"
+        zoom:
+          type: number
+        poiIds:
+          type: array
+          items:
+            type: string
+        selectedPoiId:
+          type: string
+        candidates:
+          type: array
+          items:
+            $ref: "#/components/schemas/PlaceResult"
+        route:
+          $ref: "#/components/schemas/RouteResult"
+
+    PrivacyStatus:
+      type: object
+      additionalProperties: false
+      required: [mode, persisted]
+      properties:
+        mode:
+          type: string
+          const: session-only
+        persisted:
+          type: boolean
+          const: false
+
+    ChatResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - intent
+        - assistantResponse
+        - recommendations
+        - confidence
+        - mapAction
+        - sessionContext
+        - privacy
+      properties:
+        intent:
+          type: string
+          description: Detected intent or `clarification_required`.
+        assistantResponse:
+          type: string
+        recommendations:
+          type: array
+          items:
+            $ref: "#/components/schemas/Recommendation"
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Confidence in the selected response behavior, including a decision to clarify.
+        mapAction:
+          $ref: "#/components/schemas/MapAction"
+        sessionContext:
+          $ref: "#/components/schemas/SessionContext"
+        privacy:
+          $ref: "#/components/schemas/PrivacyStatus"
+        journey:
+          $ref: "#/components/schemas/Journey"
+
+    JourneyAction:
+      type: object
+      additionalProperties: false
+      required: [id, poiId, kind, miniApp, cta, reason, originalPriceVnd, discountVnd, finalPriceVnd, rewardPoints, status, simulated]
+      properties:
+        id: { type: string }
+        poiId: { type: string }
+        kind: { type: string, enum: [fuel, dining, parking] }
+        miniApp: { type: string }
+        cta: { type: string }
+        reason: { type: string }
+        originalPriceVnd: { type: integer, minimum: 0 }
+        discountVnd: { type: integer, minimum: 0 }
+        finalPriceVnd: { type: integer, minimum: 0 }
+        rewardPoints: { type: integer, minimum: 0 }
+        status: { type: string, enum: [ready, confirmed] }
+        simulated: { type: boolean, const: true }
+        sponsored:
+          type: object
+          additionalProperties: false
+          required: [label, disclosure]
+          properties:
+            label: { type: string }
+            disclosure: { type: string }
+
+    Journey:
+      type: object
+      additionalProperties: false
+      required: [id, title, actions, originalTotalVnd, discountTotalVnd, totalVnd, savingsVnd, rewardPoints, walletLabel, simulated, revision]
+      properties:
+        id: { type: string }
+        title: { type: string }
+        actions: { type: array, minItems: 2, maxItems: 3, items: { $ref: "#/components/schemas/JourneyAction" } }
+        originalTotalVnd: { type: integer, minimum: 0 }
+        discountTotalVnd: { type: integer, minimum: 0 }
+        totalVnd: { type: integer, minimum: 0 }
+        savingsVnd: { type: integer, minimum: 0 }
+        rewardPoints: { type: integer, minimum: 0 }
+        walletLabel: { type: string, const: Ví VETC }
+        simulated: { type: boolean, const: true }
+        revision:
+          type: object
+          additionalProperties: false
+          required: [number, outcome, changedActionIds, message]
+          properties:
+            number: { type: integer, minimum: 0 }
+            outcome: { type: string, enum: [composed, cheaper, no_cheaper_option] }
+            changedActionIds: { type: array, items: { type: string } }
+            message: { type: string }
+
+    CoordinatePair:
+      type: array
+      description: GeoJSON coordinate tuple in `[longitude, latitude]` order.
+      minItems: 2
+      maxItems: 2
+      items:
+        type: number
+
+    RouteGeometry:
+      type: object
+      additionalProperties: false
+      required: [type, coordinates]
+      properties:
+        type:
+          type: string
+          const: LineString
+        coordinates:
+          type: array
+          minItems: 2
+          items:
+            $ref: "#/components/schemas/CoordinatePair"
+
+    RouteManeuver:
+      type: object
+      additionalProperties: false
+      required:
+        - instruction
+        - distanceMeters
+        - durationSeconds
+        - beginShapeIndex
+        - endShapeIndex
+        - streetNames
+      properties:
+        instruction:
+          type: string
+        distanceMeters:
+          type: integer
+          minimum: 0
+        durationSeconds:
+          type: integer
+          minimum: 1
+        beginShapeIndex:
+          type: integer
+          minimum: 0
+        endShapeIndex:
+          type: integer
+          minimum: 0
+        streetNames:
+          type: array
+          items:
+            type: string
+
+    RouteResult:
+      type: object
+      additionalProperties: false
+      required: [routeId, sourceIndex, summary, geometry, maneuvers]
+      properties:
+        routeId:
+          type: string
+        sourceIndex:
+          type: integer
+          minimum: 0
+        summary:
+          type: object
+          additionalProperties: false
+          required: [distanceMeters, durationSeconds]
+          properties:
+            distanceMeters:
+              type: integer
+              minimum: 0
+            durationSeconds:
+              type: integer
+              minimum: 1
+        geometry:
+          $ref: "#/components/schemas/RouteGeometry"
+        maneuvers:
+          type: array
+          items:
+            $ref: "#/components/schemas/RouteManeuver"
+
+    RouteRequest:
+      type: object
+      additionalProperties: false
+      required: [locations]
+      properties:
+        locations:
+          type: array
+          minItems: 2
+          items:
+            $ref: "#/components/schemas/Coordinates"
+        mode:
+          type: string
+          description: Driving is used when a mode is missing or unsupported.
+          enum: [driving, car, cycling, bicycle, walking, foot, auto, pedestrian]
+          default: driving
+        alternates:
+          description: Boolean or number of alternatives; numeric values are clamped to 0–2.
+          oneOf:
+            - type: boolean
+            - type: integer
+              minimum: 0
+              maximum: 2
+          default: 0
+        language:
+          type: string
+          default: vi-VN
+        units:
+          type: string
+          enum: [kilometers]
+          default: kilometers
+        avoidTolls:
+          type: boolean
+          description: Accepted for facade compatibility; simulated geometry does not model tolls.
+        avoidHighways:
+          type: boolean
+          description: Accepted for facade compatibility; simulated geometry does not model roads.
+
+    RouteResponse:
+      type: object
+      additionalProperties: false
+      required: [routes, meta]
+      properties:
+        routes:
+          type: array
+          minItems: 1
+          items:
+            $ref: "#/components/schemas/RouteResult"
+        meta:
+          type: object
+          additionalProperties: false
+          required: [mode, alternates]
+          properties:
+            mode:
+              type: string
+            alternates:
+              type: integer
+              minimum: 0
+              maximum: 2
+
+    HealthResponse:
+      type: object
+      additionalProperties: false
+      required: [status, service, data]
+      properties:
+        status:
+          type: string
+          const: ok
+        service:
+          type: string
+          const: tasco-atlas
+        data:
+          type: object
+          additionalProperties: false
+          required: [poiCount, profileCount, language, synthetic]
+          properties:
+            poiCount:
+              type: integer
+            profileCount:
+              type: integer
+            language:
+              type: string
+            synthetic:
+              type: boolean
+
+    ErrorResponse:
+      type: object
+      additionalProperties: false
+      required: [error]
+      properties:
+        error:
+          type: object
+          additionalProperties: false
+          required: [code, message]
+          properties:
+            code:
+              type: string
+            message:
+              type: string
