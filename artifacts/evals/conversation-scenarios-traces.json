@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T14:33:37.391Z",
+  "generatedAt": "2026-07-11T22:52:56.986Z",
   "source": "dataset.xlsx#Conversation_Scenarios + synthetic-scenarios",
   "scenarioCount": 90,
   "passed": 90,
@@ -35,7 +35,8 @@
           "query": "Gần Hồ Hoàn Kiếm.",
           "poiIds": [
             "POI010",
-            "POI011"
+            "POI011",
+            "POI060"
           ],
           "center": {
             "lat": 21.0287,
@@ -43,7 +44,7 @@
           },
           "zoom": 13
         },
-        "assistantResponse": "Tôi tìm được 2 lựa chọn phù hợp nhất: Cộng Cà Phê Hồ Gươm, Maison de Tet Décor. Mỗi gợi ý kèm lý do và điểm thành phần để bạn kiểm tra.",
+        "assistantResponse": "Tôi tìm được 3 lựa chọn phù hợp nhất: Cộng Cà Phê Hồ Gươm, Maison de Tet Décor, Cafe Mộc Hà Nội 60. Mỗi gợi ý kèm lý do và điểm thành phần để bạn kiểm tra.",
         "recommendations": [
           {
             "id": "POI010",
@@ -57,11 +58,11 @@
               "wifi",
               "đông khách"
             ],
-            "score": 0.5213,
+            "score": 0.7074,
             "scoreBreakdown": {
-              "textMatch": 0.0982,
+              "textMatch": 0.1543,
               "categoryMatch": 0.2,
-              "locationMatch": 0,
+              "locationMatch": 0.13,
               "attributeMatch": 0.0333,
               "preferenceMatch": 0,
               "quality": 0.0602,
@@ -69,7 +70,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -84,9 +86,9 @@
               "healthy",
               "view hồ"
             ],
-            "score": 0.5122,
+            "score": 0.5963,
             "scoreBreakdown": {
-              "textMatch": 0.1473,
+              "textMatch": 0.2314,
               "categoryMatch": 0.2,
               "locationMatch": 0,
               "attributeMatch": 0.0333,
@@ -96,7 +98,36 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
+            }
+          },
+          {
+            "id": "POI060",
+            "name": "Cafe Mộc Hà Nội 60",
+            "category": "Quán cà phê",
+            "city": "Hà Nội",
+            "district": "Đống Đa",
+            "attributes": [
+              "ngoài trời",
+              "cao cấp",
+              "phù hợp hẹn hò",
+              "đặt bàn"
+            ],
+            "score": 0.4973,
+            "scoreBreakdown": {
+              "textMatch": 0.1543,
+              "categoryMatch": 0.2,
+              "locationMatch": 0,
+              "attributeMatch": 0,
+              "preferenceMatch": 0,
+              "quality": 0.0525,
+              "distance": 0.0506,
+              "featured": 0,
+              "budget": 0,
+              "avoidPenalty": 0,
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -104,7 +135,11 @@
           "sessionId": "eval-S001",
           "lastIntent": "search",
           "lastQuery": "Gần Hồ Hoàn Kiếm.",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Tôi muốn tìm một quán cà phê yên tĩnh.",
+            "Gần Hồ Hoàn Kiếm."
+          ]
         }
       },
       "criteria": [
@@ -118,7 +153,7 @@
           "name": "category",
           "weight": 20,
           "passed": true,
-          "detail": "all recommendations must be cafes; got POI010, POI011"
+          "detail": "all recommendations must be cafes; got POI010, POI011, POI060"
         },
         {
           "name": "location",
@@ -239,6 +274,9 @@
           "lastIntent": "clarification_required",
           "lastQuery": "Đưa tôi đến Galaxy.",
           "constraints": [],
+          "recentQueries": [
+            "Đưa tôi đến Galaxy."
+          ],
           "pendingClarification": {
             "entity": "Galaxy",
             "candidateIds": [
@@ -330,7 +368,8 @@
               "featured": 0.025,
               "budget": 0.048,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           },
           {
@@ -357,7 +396,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           },
           {
@@ -384,7 +424,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           }
         ],
@@ -393,7 +434,10 @@
           "profileId": "U005",
           "lastIntent": "recommendation",
           "lastQuery": "Gợi ý nơi hẹn hò lần đầu ở Quận 1.",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Gợi ý nơi hẹn hò lần đầu ở Quận 1."
+          ]
         }
       },
       "criteria": [
@@ -472,9 +516,9 @@
               "đặt bàn",
               "đồ Ý"
             ],
-            "score": 0.4044,
+            "score": 0.4388,
             "scoreBreakdown": {
-              "textMatch": 0.0736,
+              "textMatch": 0.108,
               "categoryMatch": 0.2,
               "locationMatch": 0,
               "attributeMatch": 0,
@@ -484,7 +528,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -499,9 +544,9 @@
               "đông khách",
               "giá vừa"
             ],
-            "score": 0.4018,
+            "score": 0.3822,
             "scoreBreakdown": {
-              "textMatch": 0.0736,
+              "textMatch": 0.054,
               "categoryMatch": 0.2,
               "locationMatch": 0,
               "attributeMatch": 0,
@@ -511,7 +556,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -526,9 +572,9 @@
               "du lịch",
               "gia đình"
             ],
-            "score": 0.4007,
+            "score": 0.3811,
             "scoreBreakdown": {
-              "textMatch": 0.0736,
+              "textMatch": 0.054,
               "categoryMatch": 0.2,
               "locationMatch": 0,
               "attributeMatch": 0,
@@ -538,7 +584,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -547,7 +594,12 @@
           "lastIntent": "search",
           "lastQuery": "món Ý, dưới 500k, gần trung tâm.",
           "constraints": [
+            "món Ý",
+            "gần trung tâm",
             "dưới 500k"
+          ],
+          "recentQueries": [
+            "món Ý, dưới 500k, gần trung tâm."
           ]
         }
       },
@@ -574,7 +626,7 @@
           "name": "budget_constraint",
           "weight": 15,
           "passed": true,
-          "detail": "constraints: dưới 500k"
+          "detail": "constraints: món Ý | gần trung tâm | dưới 500k"
         },
         {
           "name": "history_retention",
@@ -640,7 +692,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -666,7 +719,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -693,7 +747,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -720,7 +775,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": -0.075,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -729,7 +785,10 @@
           "profileId": "U003",
           "lastIntent": "planning",
           "lastQuery": "Tôi có 1 ngày ở Đà Nẵng, nên đi đâu?",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Tôi có 1 ngày ở Đà Nẵng, nên đi đâu?"
+          ]
         }
       },
       "criteria": [
@@ -839,7 +898,7 @@
             ]
           }
         },
-        "assistantResponse": "Đã tạo tuyến mô phỏng đến Chợ Bến Thành: khoảng 0.8 km, 1 phút. Hãy kiểm tra giao thông thực tế trước khi đi.",
+        "assistantResponse": "Đã tạo tuyến đến Chợ Bến Thành: khoảng 0.8 km, 1 phút. Hãy kiểm tra giao thông thực tế trước khi đi.",
         "recommendations": [
           {
             "id": "POI003",
@@ -853,7 +912,7 @@
               "ẩm thực",
               "biểu tượng thành phố"
             ],
-            "score": 0.4323,
+            "score": 0.7323,
             "scoreBreakdown": {
               "textMatch": 0.27,
               "categoryMatch": 0,
@@ -865,7 +924,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0.3
             }
           }
         ],
@@ -873,7 +933,10 @@
           "sessionId": "eval-S006",
           "lastIntent": "navigation",
           "lastQuery": "Làm thế nào để đến Chợ Bến Thành từ Vincom Đồng Khởi?",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Làm thế nào để đến Chợ Bến Thành từ Vincom Đồng Khởi?"
+          ]
         }
       },
       "criteria": [
@@ -963,7 +1026,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -990,7 +1054,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -1001,6 +1066,9 @@
           "lastQuery": "Có quán nào để học nhóm gần đây không?",
           "constraints": [
             "học nhóm"
+          ],
+          "recentQueries": [
+            "Có quán nào để học nhóm gần đây không?"
           ]
         }
       },
@@ -1077,6 +1145,9 @@
           "lastQuery": "kiếm giúp quán ăn khuya gần sân bay tân sơn nhất với",
           "constraints": [
             "mở cửa khuya"
+          ],
+          "recentQueries": [
+            "kiếm giúp quán ăn khuya gần sân bay tân sơn nhất với"
           ]
         }
       },
@@ -1138,7 +1209,10 @@
           "sessionId": "eval-SYN001",
           "lastIntent": "clarification_required",
           "lastQuery": "Tìm nhà hàng.",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Tìm nhà hàng."
+          ]
         }
       },
       "criteria": [
@@ -1187,7 +1261,10 @@
           "sessionId": "eval-SYN002",
           "lastIntent": "clarification_required",
           "lastQuery": "Tôi cần đổ xăng.",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Tôi cần đổ xăng."
+          ]
         }
       },
       "criteria": [
@@ -1236,7 +1313,10 @@
           "sessionId": "eval-SYN003",
           "lastIntent": "clarification_required",
           "lastQuery": "Tìm quán cà phê.",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Tìm quán cà phê."
+          ]
         }
       },
       "criteria": [
@@ -1285,7 +1365,10 @@
           "sessionId": "eval-SYN004",
           "lastIntent": "clarification_required",
           "lastQuery": "Tìm khách sạn.",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Tìm khách sạn."
+          ]
         }
       },
       "criteria": [
@@ -1334,7 +1417,10 @@
           "sessionId": "eval-SYN005",
           "lastIntent": "clarification_required",
           "lastQuery": "Có gì hay không?",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Có gì hay không?"
+          ]
         }
       },
       "criteria": [
@@ -1383,7 +1469,10 @@
           "sessionId": "eval-SYN006",
           "lastIntent": "clarification_required",
           "lastQuery": "Ở Quận 1 có gì?",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Ở Quận 1 có gì?"
+          ]
         }
       },
       "criteria": [
@@ -1432,7 +1521,10 @@
           "sessionId": "eval-SYN007",
           "lastIntent": "clarification_required",
           "lastQuery": "Gợi ý giúp mình với.",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Gợi ý giúp mình với."
+          ]
         }
       },
       "criteria": [
@@ -1475,7 +1567,10 @@
           "sessionId": "eval-SYN008",
           "lastIntent": "clarification_required",
           "lastQuery": "Tìm chỗ ăn.",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Tìm chỗ ăn."
+          ]
         }
       },
       "criteria": [
@@ -1535,9 +1630,9 @@
               "đặt bàn",
               "đồ Ý"
             ],
-            "score": 0.5906,
+            "score": 0.7641,
             "scoreBreakdown": {
-              "textMatch": 0.0964,
+              "textMatch": 0.27,
               "categoryMatch": 0.2,
               "locationMatch": 0.13,
               "attributeMatch": 0.0333,
@@ -1547,7 +1642,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -1562,9 +1658,9 @@
               "view đẹp",
               "gia đình"
             ],
-            "score": 0.5851,
+            "score": 0.7587,
             "scoreBreakdown": {
-              "textMatch": 0.0964,
+              "textMatch": 0.27,
               "categoryMatch": 0.2,
               "locationMatch": 0.13,
               "attributeMatch": 0.0333,
@@ -1574,7 +1670,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -1584,6 +1681,10 @@
           "lastQuery": "Ở Quận 1, cho gia đình.",
           "constraints": [
             "gia đình"
+          ],
+          "recentQueries": [
+            "Tìm nhà hàng.",
+            "Ở Quận 1, cho gia đình."
           ]
         }
       },
@@ -1639,8 +1740,9 @@
           "type": "search",
           "query": "Gần Hồ Gươm, yên tĩnh.",
           "poiIds": [
+            "POI010",
             "POI011",
-            "POI010"
+            "POI060"
           ],
           "center": {
             "lat": 21.0287,
@@ -1648,8 +1750,36 @@
           },
           "zoom": 13
         },
-        "assistantResponse": "Tôi tìm được 2 lựa chọn phù hợp nhất: Maison de Tet Décor, Cộng Cà Phê Hồ Gươm. Mỗi gợi ý kèm lý do và điểm thành phần để bạn kiểm tra.",
+        "assistantResponse": "Tôi tìm được 3 lựa chọn phù hợp nhất: Cộng Cà Phê Hồ Gươm, Maison de Tet Décor, Cafe Mộc Hà Nội 60. Mỗi gợi ý kèm lý do và điểm thành phần để bạn kiểm tra.",
         "recommendations": [
+          {
+            "id": "POI010",
+            "name": "Cộng Cà Phê Hồ Gươm",
+            "category": "Quán cà phê",
+            "city": "Hà Nội",
+            "district": "Hoàn Kiếm",
+            "attributes": [
+              "view hồ",
+              "du lịch",
+              "wifi",
+              "đông khách"
+            ],
+            "score": 0.7331,
+            "scoreBreakdown": {
+              "textMatch": 0.18,
+              "categoryMatch": 0.2,
+              "locationMatch": 0.13,
+              "attributeMatch": 0.0333,
+              "preferenceMatch": 0,
+              "quality": 0.0602,
+              "distance": 0.0646,
+              "featured": 0.025,
+              "budget": 0,
+              "avoidPenalty": 0,
+              "intentBoost": 0,
+              "nameMatch": 0
+            }
+          },
           {
             "id": "POI011",
             "name": "Maison de Tet Décor",
@@ -1674,34 +1804,36 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
-            "id": "POI010",
-            "name": "Cộng Cà Phê Hồ Gươm",
+            "id": "POI060",
+            "name": "Cafe Mộc Hà Nội 60",
             "category": "Quán cà phê",
             "city": "Hà Nội",
-            "district": "Hoàn Kiếm",
+            "district": "Đống Đa",
             "attributes": [
-              "view hồ",
-              "du lịch",
-              "wifi",
-              "đông khách"
+              "ngoài trời",
+              "cao cấp",
+              "phù hợp hẹn hò",
+              "đặt bàn"
             ],
-            "score": 0.6031,
+            "score": 0.523,
             "scoreBreakdown": {
               "textMatch": 0.18,
               "categoryMatch": 0.2,
               "locationMatch": 0,
-              "attributeMatch": 0.0333,
+              "attributeMatch": 0,
               "preferenceMatch": 0,
-              "quality": 0.0602,
-              "distance": 0.0646,
-              "featured": 0.025,
+              "quality": 0.0525,
+              "distance": 0.0506,
+              "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -1711,6 +1843,10 @@
           "lastQuery": "Gần Hồ Gươm, yên tĩnh.",
           "constraints": [
             "yên tĩnh"
+          ],
+          "recentQueries": [
+            "Tìm quán cà phê.",
+            "Gần Hồ Gươm, yên tĩnh."
           ]
         }
       },
@@ -1725,7 +1861,7 @@
           "name": "category",
           "weight": 21,
           "passed": true,
-          "detail": "all recommendations must be Quán cà phê; got POI011, POI010"
+          "detail": "all recommendations must be Quán cà phê; got POI010, POI011, POI060"
         },
         {
           "name": "proximity",
@@ -1737,13 +1873,13 @@
           "name": "includes",
           "weight": 18,
           "passed": true,
-          "detail": "must include POI010; got POI011, POI010"
+          "detail": "must include POI010; got POI010, POI011, POI060"
         },
         {
           "name": "min_results",
           "weight": 18,
           "passed": true,
-          "detail": "needs at least 1 results, got 2"
+          "detail": "needs at least 1 results, got 3"
         }
       ],
       "score": 100,
@@ -1846,6 +1982,9 @@
           "lastIntent": "clarification_required",
           "lastQuery": "Đưa tôi đến Galaxy.",
           "constraints": [],
+          "recentQueries": [
+            "Đưa tôi đến Galaxy."
+          ],
           "pendingClarification": {
             "entity": "Galaxy",
             "candidateIds": [
@@ -1978,6 +2117,9 @@
           "lastIntent": "clarification_required",
           "lastQuery": "Vincom.",
           "constraints": [],
+          "recentQueries": [
+            "Vincom."
+          ],
           "pendingClarification": {
             "entity": "Vincom",
             "candidateIds": [
@@ -2106,6 +2248,9 @@
           "lastIntent": "clarification_required",
           "lastQuery": "Dẫn tôi đến sân bay.",
           "constraints": [],
+          "recentQueries": [
+            "Dẫn tôi đến sân bay."
+          ],
           "pendingClarification": {
             "entity": "sân bay",
             "candidateIds": [
@@ -2163,6 +2308,9 @@
           "lastIntent": "clarification_required",
           "lastQuery": "Big C gần tôi.",
           "constraints": [],
+          "recentQueries": [
+            "Big C gần tôi."
+          ],
           "pendingClarification": {
             "entity": "Big C/GO!",
             "candidateIds": []
@@ -2259,7 +2407,7 @@
             ]
           }
         },
-        "assistantResponse": "Đã tạo tuyến mô phỏng đến Galaxy Nguyễn Du: khoảng 0.9 km, 2 phút. Hãy kiểm tra giao thông thực tế trước khi đi.",
+        "assistantResponse": "Đã tạo tuyến đến Galaxy Nguyễn Du: khoảng 0.9 km, 2 phút. Hãy kiểm tra giao thông thực tế trước khi đi.",
         "recommendations": [
           {
             "id": "POI008",
@@ -2272,7 +2420,7 @@
               "giải trí",
               "đặt vé"
             ],
-            "score": 0.9257,
+            "score": 1,
             "scoreBreakdown": {
               "textMatch": 0.27,
               "categoryMatch": 0.2,
@@ -2284,7 +2432,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.3
+              "intentBoost": 0.3,
+              "nameMatch": 0.3
             }
           }
         ],
@@ -2292,7 +2441,11 @@
           "sessionId": "eval-SYN015",
           "lastIntent": "navigation",
           "lastQuery": "Rạp phim Nguyễn Du nhé",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Đưa tôi đến Galaxy.",
+            "Rạp phim Nguyễn Du nhé"
+          ]
         }
       },
       "criteria": [
@@ -2338,8 +2491,8 @@
             "POI036"
           ],
           "center": {
-            "lat": 12.950419,
-            "lon": 105.137388
+            "lat": 15.884288,
+            "lon": 108.34362
           },
           "zoom": 13
         },
@@ -2369,7 +2522,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -2396,7 +2550,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -2406,6 +2561,9 @@
           "lastQuery": "Quán cà phê yên tĩnh ở Hội An",
           "constraints": [
             "yên tĩnh"
+          ],
+          "recentQueries": [
+            "Quán cà phê yên tĩnh ở Hội An"
           ]
         }
       },
@@ -2465,8 +2623,8 @@
             "POI031"
           ],
           "center": {
-            "lat": 12.596824,
-            "lon": 105.83694
+            "lat": 11.936517,
+            "lon": 108.429532
           },
           "zoom": 13
         },
@@ -2496,7 +2654,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -2523,7 +2682,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -2550,7 +2710,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -2560,6 +2721,9 @@
           "lastQuery": "Quán cà phê view đẹp ở Đà Lạt",
           "constraints": [
             "view đẹp"
+          ],
+          "recentQueries": [
+            "Quán cà phê view đẹp ở Đà Lạt"
           ]
         }
       },
@@ -2651,7 +2815,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -2678,7 +2843,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -2705,7 +2871,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -2715,6 +2882,9 @@
           "lastQuery": "Cà phê để làm việc ở Quận 1",
           "constraints": [
             "làm việc"
+          ],
+          "recentQueries": [
+            "Cà phê để làm việc ở Quận 1"
           ]
         }
       },
@@ -2804,7 +2974,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -2831,7 +3002,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -2841,6 +3013,9 @@
           "lastQuery": "Nhà hàng cho gia đình ở Quận 1",
           "constraints": [
             "gia đình"
+          ],
+          "recentQueries": [
+            "Nhà hàng cho gia đình ở Quận 1"
           ]
         }
       },
@@ -2931,7 +3106,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -2957,7 +3133,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -2984,7 +3161,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -2995,6 +3173,9 @@
           "constraints": [
             "gần biển",
             "hồ bơi"
+          ],
+          "recentQueries": [
+            "Khách sạn gần biển có hồ bơi ở Đà Nẵng"
           ]
         }
       },
@@ -3092,7 +3273,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -3119,7 +3301,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -3146,7 +3329,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -3156,6 +3340,9 @@
           "lastQuery": "Khách sạn 5 sao có hồ bơi ở Hà Nội",
           "constraints": [
             "hồ bơi"
+          ],
+          "recentQueries": [
+            "Khách sạn 5 sao có hồ bơi ở Hà Nội"
           ]
         }
       },
@@ -3246,7 +3433,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.18
+              "intentBoost": 0.18,
+              "nameMatch": 0
             }
           },
           {
@@ -3273,7 +3461,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -3300,7 +3489,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -3310,6 +3500,9 @@
           "lastQuery": "Công viên cho trẻ em ở Đà Nẵng",
           "constraints": [
             "trẻ em"
+          ],
+          "recentQueries": [
+            "Công viên cho trẻ em ở Đà Nẵng"
           ]
         }
       },
@@ -3404,7 +3597,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -3412,7 +3606,10 @@
           "sessionId": "eval-SYN023",
           "lastIntent": "search",
           "lastQuery": "Rạp chiếu phim ở Hà Nội",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Rạp chiếu phim ở Hà Nội"
+          ]
         }
       },
       "criteria": [
@@ -3500,7 +3697,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -3510,6 +3708,9 @@
           "lastQuery": "Trung tâm thương mại có bãi đỗ xe ở Quận 1",
           "constraints": [
             "bãi đỗ xe"
+          ],
+          "recentQueries": [
+            "Trung tâm thương mại có bãi đỗ xe ở Quận 1"
           ]
         }
       },
@@ -3598,7 +3799,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -3606,7 +3808,10 @@
           "sessionId": "eval-SYN025",
           "lastIntent": "search",
           "lastQuery": "Bệnh viện cấp cứu ở Đống Đa, Hà Nội",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Bệnh viện cấp cứu ở Đống Đa, Hà Nội"
+          ]
         }
       },
       "criteria": [
@@ -3693,7 +3898,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -3701,7 +3907,10 @@
           "sessionId": "eval-SYN026",
           "lastIntent": "search",
           "lastQuery": "ATM gần Chợ Bến Thành",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "ATM gần Chợ Bến Thành"
+          ]
         }
       },
       "criteria": [
@@ -3779,7 +3988,7 @@
               "ẩm thực",
               "biểu tượng thành phố"
             ],
-            "score": 0.3423,
+            "score": 0.6423,
             "scoreBreakdown": {
               "textMatch": 0.18,
               "categoryMatch": 0,
@@ -3791,7 +4000,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0.3
             }
           },
           {
@@ -3818,7 +4028,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -3844,7 +4055,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -3852,7 +4064,10 @@
           "sessionId": "eval-SYN027",
           "lastIntent": "search",
           "lastQuery": "Chợ Bến Thành có gì hay?",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Chợ Bến Thành có gì hay?"
+          ]
         }
       },
       "criteria": [
@@ -3930,7 +4145,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -3957,7 +4173,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -3984,7 +4201,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -3994,6 +4212,9 @@
           "lastQuery": "Quán cà phê mở cửa khuya ở Sài Gòn",
           "constraints": [
             "mở cửa khuya"
+          ],
+          "recentQueries": [
+            "Quán cà phê mở cửa khuya ở Sài Gòn"
           ]
         }
       },
@@ -4092,7 +4313,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": -0.05,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -4119,7 +4341,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": -0.05,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -4146,7 +4369,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": -0.05,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -4158,6 +4382,9 @@
           "constraints": [
             "yên tĩnh",
             "làm việc"
+          ],
+          "recentQueries": [
+            "Tìm chỗ yên tĩnh để làm việc chiều nay"
           ]
         }
       },
@@ -4210,8 +4437,8 @@
             "POI058"
           ],
           "center": {
-            "lat": 19.589912,
-            "lon": 106.334785
+            "lat": 21.029366,
+            "lon": 105.851086
           },
           "zoom": 13
         },
@@ -4241,7 +4468,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -4252,6 +4480,9 @@
           "lastQuery": "Khu vui chơi cho trẻ em gần đây",
           "constraints": [
             "trẻ em"
+          ],
+          "recentQueries": [
+            "Khu vui chơi cho trẻ em gần đây"
           ]
         }
       },
@@ -4343,7 +4574,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -4369,7 +4601,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -4396,7 +4629,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": -0.075,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -4407,6 +4641,9 @@
           "lastQuery": "Khách sạn gần biển gần đây",
           "constraints": [
             "gần biển"
+          ],
+          "recentQueries": [
+            "Khách sạn gần biển gần đây"
           ]
         }
       },
@@ -4504,7 +4741,8 @@
               "featured": 0.025,
               "budget": 0.048,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           },
           {
@@ -4531,7 +4769,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           },
           {
@@ -4558,7 +4797,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           }
         ],
@@ -4567,7 +4807,10 @@
           "profileId": "U005",
           "lastIntent": "search",
           "lastQuery": "Tối nay hẹn hò ở đâu được?",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Tối nay hẹn hò ở đâu được?"
+          ]
         }
       },
       "criteria": [
@@ -4651,7 +4894,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.08
+              "intentBoost": 0.08,
+              "nameMatch": 0
             }
           },
           {
@@ -4678,7 +4922,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -4690,6 +4935,9 @@
           "constraints": [
             "wifi",
             "giá rẻ"
+          ],
+          "recentQueries": [
+            "Quán cà phê giá rẻ có wifi gần đây"
           ]
         }
       },
@@ -4784,7 +5032,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.3
+              "intentBoost": 0.3,
+              "nameMatch": 0
             }
           }
         ],
@@ -4795,6 +5044,9 @@
           "lastQuery": "Cây xăng có toilet gần đây",
           "constraints": [
             "toilet"
+          ],
+          "recentQueries": [
+            "Cây xăng có toilet gần đây"
           ]
         }
       },
@@ -4887,7 +5139,8 @@
               "featured": 0.025,
               "budget": 0.048,
               "avoidPenalty": -0.06,
-              "intentBoost": 0.25
+              "intentBoost": 0.25,
+              "nameMatch": 0
             }
           },
           {
@@ -4914,7 +5167,8 @@
               "featured": 0,
               "budget": 0.048,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -4941,7 +5195,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -4950,7 +5205,10 @@
           "profileId": "U004",
           "lastIntent": "search",
           "lastQuery": "Khách sạn business gần đây",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Khách sạn business gần đây"
+          ]
         }
       },
       "criteria": [
@@ -5039,7 +5297,8 @@
               "featured": 0.025,
               "budget": 0.048,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           }
         ],
@@ -5050,6 +5309,9 @@
           "lastQuery": "Rooftop có view đẹp tối nay",
           "constraints": [
             "view đẹp"
+          ],
+          "recentQueries": [
+            "Rooftop có view đẹp tối nay"
           ]
         }
       },
@@ -5135,7 +5397,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -5161,7 +5424,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -5188,7 +5452,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -5198,6 +5463,10 @@
           "lastQuery": "Ở Đà Nẵng, gần biển.",
           "constraints": [
             "gần biển"
+          ],
+          "recentQueries": [
+            "Tìm khách sạn.",
+            "Ở Đà Nẵng, gần biển."
           ]
         }
       },
@@ -5258,8 +5527,8 @@
             "POI031"
           ],
           "center": {
-            "lat": 13.629296,
-            "lon": 107.343319
+            "lat": 11.943934,
+            "lon": 108.441759
           },
           "zoom": 13
         },
@@ -5289,7 +5558,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -5316,7 +5586,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -5343,7 +5614,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -5353,6 +5625,10 @@
           "lastQuery": "Ở Đà Lạt, giá hợp lý.",
           "constraints": [
             "giá hợp lý"
+          ],
+          "recentQueries": [
+            "Tìm quán cà phê.",
+            "Ở Đà Lạt, giá hợp lý."
           ]
         }
       },
@@ -5432,9 +5708,9 @@
               "đặt bàn",
               "đồ Ý"
             ],
-            "score": 0.4465,
+            "score": 0.4388,
             "scoreBreakdown": {
-              "textMatch": 0.1157,
+              "textMatch": 0.108,
               "categoryMatch": 0.2,
               "locationMatch": 0,
               "attributeMatch": 0,
@@ -5444,7 +5720,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -5459,9 +5736,9 @@
               "đông khách",
               "giá vừa"
             ],
-            "score": 0.4439,
+            "score": 0.3822,
             "scoreBreakdown": {
-              "textMatch": 0.1157,
+              "textMatch": 0.054,
               "categoryMatch": 0.2,
               "locationMatch": 0,
               "attributeMatch": 0,
@@ -5471,7 +5748,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -5486,9 +5764,9 @@
               "du lịch",
               "gia đình"
             ],
-            "score": 0.4428,
+            "score": 0.3811,
             "scoreBreakdown": {
-              "textMatch": 0.1157,
+              "textMatch": 0.054,
               "categoryMatch": 0.2,
               "locationMatch": 0,
               "attributeMatch": 0,
@@ -5498,7 +5776,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -5507,7 +5786,12 @@
           "lastIntent": "search",
           "lastQuery": "Món Ý, dưới 500k, gần trung tâm.",
           "constraints": [
+            "món Ý",
+            "gần trung tâm",
             "dưới 500k"
+          ],
+          "recentQueries": [
+            "Món Ý, dưới 500k, gần trung tâm."
           ]
         }
       },
@@ -5534,7 +5818,7 @@
           "name": "constraints",
           "weight": 18,
           "passed": true,
-          "detail": "session constraints must include 500k; got dưới 500k"
+          "detail": "session constraints must include 500k; got món Ý | gần trung tâm | dưới 500k"
         },
         {
           "name": "min_results",
@@ -5564,7 +5848,8 @@
           "query": "Chỗ nào gần Hồ Gươm hơn?",
           "poiIds": [
             "POI011",
-            "POI010"
+            "POI010",
+            "POI060"
           ],
           "center": {
             "lat": 21.0287,
@@ -5572,7 +5857,7 @@
           },
           "zoom": 13
         },
-        "assistantResponse": "Tôi tìm được 2 lựa chọn phù hợp nhất: Maison de Tet Décor, Cộng Cà Phê Hồ Gươm. Mỗi gợi ý kèm lý do và điểm thành phần để bạn kiểm tra.",
+        "assistantResponse": "Tôi tìm được 3 lựa chọn phù hợp nhất: Maison de Tet Décor, Cộng Cà Phê Hồ Gươm, Cafe Mộc Hà Nội 60. Mỗi gợi ý kèm lý do và điểm thành phần để bạn kiểm tra.",
         "recommendations": [
           {
             "id": "POI011",
@@ -5598,7 +5883,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -5625,7 +5911,36 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
+            }
+          },
+          {
+            "id": "POI060",
+            "name": "Cafe Mộc Hà Nội 60",
+            "category": "Quán cà phê",
+            "city": "Hà Nội",
+            "district": "Đống Đa",
+            "attributes": [
+              "ngoài trời",
+              "cao cấp",
+              "phù hợp hẹn hò",
+              "đặt bàn"
+            ],
+            "score": 0.653,
+            "scoreBreakdown": {
+              "textMatch": 0.18,
+              "categoryMatch": 0.2,
+              "locationMatch": 0.13,
+              "attributeMatch": 0,
+              "preferenceMatch": 0,
+              "quality": 0.0525,
+              "distance": 0.0506,
+              "featured": 0,
+              "budget": 0,
+              "avoidPenalty": 0,
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -5635,6 +5950,10 @@
           "lastQuery": "Chỗ nào gần Hồ Gươm hơn?",
           "constraints": [
             "yên tĩnh"
+          ],
+          "recentQueries": [
+            "Quán cà phê yên tĩnh ở Hà Nội",
+            "Chỗ nào gần Hồ Gươm hơn?"
           ]
         }
       },
@@ -5649,7 +5968,7 @@
           "name": "category",
           "weight": 15,
           "passed": true,
-          "detail": "all recommendations must be Quán cà phê; got POI011, POI010"
+          "detail": "all recommendations must be Quán cà phê; got POI011, POI010, POI060"
         },
         {
           "name": "proximity",
@@ -5661,7 +5980,7 @@
           "name": "includes",
           "weight": 15,
           "passed": true,
-          "detail": "must include POI010; got POI011, POI010"
+          "detail": "must include POI010; got POI011, POI010, POI060"
         },
         {
           "name": "constraints",
@@ -5673,7 +5992,7 @@
           "name": "min_results",
           "weight": 15,
           "passed": true,
-          "detail": "needs at least 1 results, got 2"
+          "detail": "needs at least 1 results, got 3"
         }
       ],
       "score": 100,
@@ -5731,7 +6050,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           },
           {
@@ -5758,7 +6078,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           }
         ],
@@ -5766,7 +6087,11 @@
           "sessionId": "eval-SYN041",
           "lastIntent": "search",
           "lastQuery": "Có món phở nổi tiếng không?",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Tìm nhà hàng ở Hà Nội.",
+            "Có món phở nổi tiếng không?"
+          ]
         }
       },
       "criteria": [
@@ -5856,7 +6181,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           },
           {
@@ -5883,7 +6209,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           }
         ],
@@ -5893,6 +6220,10 @@
           "lastQuery": "Chỗ nào phù hợp hẹn hò hơn?",
           "constraints": [
             "dưới 500k"
+          ],
+          "recentQueries": [
+            "Nhà hàng dưới 500k ở Quận 1",
+            "Chỗ nào phù hợp hẹn hò hơn?"
           ]
         }
       },
@@ -5951,8 +6282,8 @@
             "POI065"
           ],
           "center": {
-            "lat": 21.292789,
-            "lon": 108.712561
+            "lat": 12.242323,
+            "lon": 109.18899
           },
           "zoom": 13
         },
@@ -5982,7 +6313,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -6009,7 +6341,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -6019,6 +6352,9 @@
           "lastQuery": "Khách sạn khoảng một triệu ở Nha Trang",
           "constraints": [
             "khoảng một triệu"
+          ],
+          "recentQueries": [
+            "Khách sạn khoảng một triệu ở Nha Trang"
           ]
         }
       },
@@ -6078,8 +6414,8 @@
             "POI036"
           ],
           "center": {
-            "lat": 12.950419,
-            "lon": 105.137388
+            "lat": 15.884288,
+            "lon": 108.34362
           },
           "zoom": 13
         },
@@ -6097,9 +6433,9 @@
               "yên tĩnh",
               "gần biển"
             ],
-            "score": 0.6618,
+            "score": 0.7003,
             "scoreBreakdown": {
-              "textMatch": 0.2314,
+              "textMatch": 0.27,
               "categoryMatch": 0.2,
               "locationMatch": 0.13,
               "attributeMatch": 0,
@@ -6109,7 +6445,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -6124,9 +6461,9 @@
               "wifi",
               "giá hợp lý"
             ],
-            "score": 0.6593,
+            "score": 0.6979,
             "scoreBreakdown": {
-              "textMatch": 0.2314,
+              "textMatch": 0.27,
               "categoryMatch": 0.2,
               "locationMatch": 0.13,
               "attributeMatch": 0,
@@ -6136,7 +6473,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -6144,7 +6482,10 @@
           "sessionId": "eval-SYN044",
           "lastIntent": "search",
           "lastQuery": "Quán cà phê ở Hội An.",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Quán cà phê ở Hội An."
+          ]
         }
       },
       "criteria": [
@@ -6242,7 +6583,7 @@
             ]
           }
         },
-        "assistantResponse": "Đã tạo tuyến mô phỏng đến Chợ Bến Thành: khoảng 0.4 km, 1 phút. Hãy kiểm tra giao thông thực tế trước khi đi.",
+        "assistantResponse": "Đã tạo tuyến đến Chợ Bến Thành: khoảng 0.4 km, 1 phút. Hãy kiểm tra giao thông thực tế trước khi đi.",
         "recommendations": [
           {
             "id": "POI003",
@@ -6256,7 +6597,7 @@
               "ẩm thực",
               "biểu tượng thành phố"
             ],
-            "score": 0.4323,
+            "score": 0.7323,
             "scoreBreakdown": {
               "textMatch": 0.27,
               "categoryMatch": 0,
@@ -6268,7 +6609,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0.3
             }
           }
         ],
@@ -6276,7 +6618,10 @@
           "sessionId": "eval-SYN045",
           "lastIntent": "navigation",
           "lastQuery": "Đưa tôi đến Chợ Bến Thành.",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Đưa tôi đến Chợ Bến Thành."
+          ]
         }
       },
       "criteria": [
@@ -6368,7 +6713,7 @@
             ]
           }
         },
-        "assistantResponse": "Đã tạo tuyến mô phỏng đến Phở Thìn Lò Đúc: khoảng 1.3 km, 2 phút. Hãy kiểm tra giao thông thực tế trước khi đi.",
+        "assistantResponse": "Đã tạo tuyến đến Phở Thìn Lò Đúc: khoảng 1.3 km, 2 phút. Hãy kiểm tra giao thông thực tế trước khi đi.",
         "recommendations": [
           {
             "id": "POI018",
@@ -6382,7 +6727,7 @@
               "đông khách",
               "giá vừa"
             ],
-            "score": 0.8848,
+            "score": 1,
             "scoreBreakdown": {
               "textMatch": 0.27,
               "categoryMatch": 0.2,
@@ -6394,7 +6739,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0.3
             }
           }
         ],
@@ -6402,7 +6748,10 @@
           "sessionId": "eval-SYN046",
           "lastIntent": "navigation",
           "lastQuery": "Chỉ đường đến Phở Thìn từ Hồ Gươm.",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Chỉ đường đến Phở Thìn từ Hồ Gươm."
+          ]
         }
       },
       "criteria": [
@@ -6494,7 +6843,7 @@
             ]
           }
         },
-        "assistantResponse": "Đã tạo tuyến mô phỏng đến Bún Chả Hương Liên: khoảng 1.2 km, 2 phút. Hãy kiểm tra giao thông thực tế trước khi đi.",
+        "assistantResponse": "Đã tạo tuyến đến Bún Chả Hương Liên: khoảng 1.2 km, 2 phút. Hãy kiểm tra giao thông thực tế trước khi đi.",
         "recommendations": [
           {
             "id": "POI019",
@@ -6508,7 +6857,7 @@
               "du lịch",
               "gia đình"
             ],
-            "score": 0.8838,
+            "score": 1,
             "scoreBreakdown": {
               "textMatch": 0.27,
               "categoryMatch": 0.2,
@@ -6520,7 +6869,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0.3
             }
           }
         ],
@@ -6528,7 +6878,10 @@
           "sessionId": "eval-SYN047",
           "lastIntent": "navigation",
           "lastQuery": "Từ Hồ Gươm đến Bún Chả Hương Liên đi thế nào?",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Từ Hồ Gươm đến Bún Chả Hương Liên đi thế nào?"
+          ]
         }
       },
       "criteria": [
@@ -6620,7 +6973,7 @@
             ]
           }
         },
-        "assistantResponse": "Đã tạo tuyến mô phỏng đến Chợ Bến Thành: khoảng 0.4 km, 1 phút. Hãy kiểm tra giao thông thực tế trước khi đi.",
+        "assistantResponse": "Đã tạo tuyến đến Chợ Bến Thành: khoảng 0.4 km, 1 phút. Hãy kiểm tra giao thông thực tế trước khi đi.",
         "recommendations": [
           {
             "id": "POI003",
@@ -6634,7 +6987,7 @@
               "ẩm thực",
               "biểu tượng thành phố"
             ],
-            "score": 0.4323,
+            "score": 0.7323,
             "scoreBreakdown": {
               "textMatch": 0.27,
               "categoryMatch": 0,
@@ -6646,7 +6999,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0.3
             }
           }
         ],
@@ -6654,7 +7008,10 @@
           "sessionId": "eval-SYN048",
           "lastIntent": "navigation",
           "lastQuery": "Take me to Ben Thanh Market.",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Take me to Ben Thanh Market."
+          ]
         }
       },
       "criteria": [
@@ -6746,7 +7103,7 @@
             ]
           }
         },
-        "assistantResponse": "Đã tạo tuyến mô phỏng đến Sân bay Tân Sơn Nhất: khoảng 7.1 km, 12 phút. Hãy kiểm tra giao thông thực tế trước khi đi.",
+        "assistantResponse": "Đã tạo tuyến đến Sân bay Tân Sơn Nhất: khoảng 7.1 km, 12 phút. Hãy kiểm tra giao thông thực tế trước khi đi.",
         "recommendations": [
           {
             "id": "POI026",
@@ -6759,7 +7116,7 @@
               "giao thông",
               "24/7"
             ],
-            "score": 0.9811,
+            "score": 1,
             "scoreBreakdown": {
               "textMatch": 0.27,
               "categoryMatch": 0.2,
@@ -6771,7 +7128,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.35
+              "intentBoost": 0.35,
+              "nameMatch": 0.3
             }
           }
         ],
@@ -6779,7 +7137,10 @@
           "sessionId": "eval-SYN049",
           "lastIntent": "navigation",
           "lastQuery": "Đưa tôi đến Sân bay Tân Sơn Nhất.",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Đưa tôi đến Sân bay Tân Sơn Nhất."
+          ]
         }
       },
       "criteria": [
@@ -6853,7 +7214,10 @@
           "sessionId": "eval-SYN050",
           "lastIntent": "navigation",
           "lastQuery": "Đưa tôi đến Chợ Bến Thành.",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Đưa tôi đến Chợ Bến Thành."
+          ]
         }
       },
       "criteria": [
@@ -6951,7 +7315,7 @@
             ]
           }
         },
-        "assistantResponse": "Đã tạo tuyến mô phỏng đến Lotte Hotel Hanoi: khoảng 4.2 km, 7 phút. Hãy kiểm tra giao thông thực tế trước khi đi.",
+        "assistantResponse": "Đã tạo tuyến đến Lotte Hotel Hanoi: khoảng 4.2 km, 7 phút. Hãy kiểm tra giao thông thực tế trước khi đi.",
         "recommendations": [
           {
             "id": "POI012",
@@ -6966,7 +7330,7 @@
               "gia đình",
               "view đẹp"
             ],
-            "score": 0.9844,
+            "score": 1,
             "scoreBreakdown": {
               "textMatch": 0.27,
               "categoryMatch": 0.2,
@@ -6978,7 +7342,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.35
+              "intentBoost": 0.35,
+              "nameMatch": 0.3
             }
           }
         ],
@@ -6986,7 +7351,10 @@
           "sessionId": "eval-SYN051",
           "lastIntent": "navigation",
           "lastQuery": "Đến Lotte Hotel từ Hồ Gươm mất bao lâu?",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Đến Lotte Hotel từ Hồ Gươm mất bao lâu?"
+          ]
         }
       },
       "criteria": [
@@ -7078,7 +7446,7 @@
             ]
           }
         },
-        "assistantResponse": "Đã tạo tuyến mô phỏng đến Bệnh viện Bạch Mai: khoảng 3.2 km, 6 phút. Hãy kiểm tra giao thông thực tế trước khi đi.",
+        "assistantResponse": "Đã tạo tuyến đến Bệnh viện Bạch Mai: khoảng 3.2 km, 6 phút. Hãy kiểm tra giao thông thực tế trước khi đi.",
         "recommendations": [
           {
             "id": "POI006",
@@ -7092,7 +7460,7 @@
               "24/7",
               "bãi đỗ xe"
             ],
-            "score": 0.6278,
+            "score": 0.9278,
             "scoreBreakdown": {
               "textMatch": 0.27,
               "categoryMatch": 0.2,
@@ -7104,7 +7472,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0.3
             }
           }
         ],
@@ -7112,7 +7481,10 @@
           "sessionId": "eval-SYN052",
           "lastIntent": "navigation",
           "lastQuery": "Chỉ đường tới Bệnh viện Bạch Mai",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Chỉ đường tới Bệnh viện Bạch Mai"
+          ]
         }
       },
       "criteria": [
@@ -7161,7 +7533,10 @@
           "sessionId": "eval-SYN053",
           "lastIntent": "search",
           "lastQuery": "Nhà hàng ở Đà Lạt",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Nhà hàng ở Đà Lạt"
+          ]
         }
       },
       "criteria": [
@@ -7210,7 +7585,10 @@
           "sessionId": "eval-SYN054",
           "lastIntent": "search",
           "lastQuery": "Rooftop bar ở Hà Nội",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Rooftop bar ở Hà Nội"
+          ]
         }
       },
       "criteria": [
@@ -7259,7 +7637,10 @@
           "sessionId": "eval-SYN055",
           "lastIntent": "search",
           "lastQuery": "Trạm xăng ở Hà Nội",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Trạm xăng ở Hà Nội"
+          ]
         }
       },
       "criteria": [
@@ -7308,7 +7689,10 @@
           "sessionId": "eval-SYN056",
           "lastIntent": "search",
           "lastQuery": "Rạp chiếu phim ở Đà Nẵng",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Rạp chiếu phim ở Đà Nẵng"
+          ]
         }
       },
       "criteria": [
@@ -7357,7 +7741,10 @@
           "sessionId": "eval-SYN057",
           "lastIntent": "search",
           "lastQuery": "ATM ở Hà Nội",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "ATM ở Hà Nội"
+          ]
         }
       },
       "criteria": [
@@ -7413,6 +7800,9 @@
           "lastQuery": "Quán ăn khuya gần sân bay tân sơn nhất",
           "constraints": [
             "mở cửa khuya"
+          ],
+          "recentQueries": [
+            "Quán ăn khuya gần sân bay tân sơn nhất"
           ]
         }
       },
@@ -7462,7 +7852,10 @@
           "sessionId": "eval-SYN059",
           "lastIntent": "search",
           "lastQuery": "Nhà hàng ở Hội An",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Nhà hàng ở Hội An"
+          ]
         }
       },
       "criteria": [
@@ -7511,7 +7904,10 @@
           "sessionId": "eval-SYN060",
           "lastIntent": "search",
           "lastQuery": "Khách sạn ở Đà Lạt",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Khách sạn ở Đà Lạt"
+          ]
         }
       },
       "criteria": [
@@ -7554,7 +7950,8 @@
           "query": "kiem quan ca phe yen tinh gan ho guom",
           "poiIds": [
             "POI010",
-            "POI011"
+            "POI011",
+            "POI060"
           ],
           "center": {
             "lat": 21.0287,
@@ -7562,7 +7959,7 @@
           },
           "zoom": 13
         },
-        "assistantResponse": "Tôi tìm được 2 lựa chọn phù hợp nhất: Cộng Cà Phê Hồ Gươm, Maison de Tet Décor. Mỗi gợi ý kèm lý do và điểm thành phần để bạn kiểm tra.",
+        "assistantResponse": "Tôi tìm được 3 lựa chọn phù hợp nhất: Cộng Cà Phê Hồ Gươm, Maison de Tet Décor, Cafe Mộc Hà Nội 60. Mỗi gợi ý kèm lý do và điểm thành phần để bạn kiểm tra.",
         "recommendations": [
           {
             "id": "POI010",
@@ -7576,11 +7973,11 @@
               "wifi",
               "đông khách"
             ],
-            "score": 0.616,
+            "score": 0.746,
             "scoreBreakdown": {
               "textMatch": 0.1929,
               "categoryMatch": 0.2,
-              "locationMatch": 0,
+              "locationMatch": 0.13,
               "attributeMatch": 0.0333,
               "preferenceMatch": 0,
               "quality": 0.0602,
@@ -7588,7 +7985,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -7615,7 +8013,36 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
+            }
+          },
+          {
+            "id": "POI060",
+            "name": "Cafe Mộc Hà Nội 60",
+            "category": "Quán cà phê",
+            "city": "Hà Nội",
+            "district": "Đống Đa",
+            "attributes": [
+              "ngoài trời",
+              "cao cấp",
+              "phù hợp hẹn hò",
+              "đặt bàn"
+            ],
+            "score": 0.4973,
+            "scoreBreakdown": {
+              "textMatch": 0.1543,
+              "categoryMatch": 0.2,
+              "locationMatch": 0,
+              "attributeMatch": 0,
+              "preferenceMatch": 0,
+              "quality": 0.0525,
+              "distance": 0.0506,
+              "featured": 0,
+              "budget": 0,
+              "avoidPenalty": 0,
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -7625,6 +8052,9 @@
           "lastQuery": "kiem quan ca phe yen tinh gan ho guom",
           "constraints": [
             "yên tĩnh"
+          ],
+          "recentQueries": [
+            "kiem quan ca phe yen tinh gan ho guom"
           ]
         }
       },
@@ -7639,7 +8069,7 @@
           "name": "category",
           "weight": 21,
           "passed": true,
-          "detail": "all recommendations must be Quán cà phê; got POI010, POI011"
+          "detail": "all recommendations must be Quán cà phê; got POI010, POI011, POI060"
         },
         {
           "name": "proximity",
@@ -7651,13 +8081,13 @@
           "name": "includes",
           "weight": 18,
           "passed": true,
-          "detail": "must include POI010; got POI010, POI011"
+          "detail": "must include POI010; got POI010, POI011, POI060"
         },
         {
           "name": "min_results",
           "weight": 18,
           "passed": true,
-          "detail": "needs at least 1 results, got 2"
+          "detail": "needs at least 1 results, got 3"
         }
       ],
       "score": 100,
@@ -7714,7 +8144,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -7741,7 +8172,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -7749,7 +8181,10 @@
           "sessionId": "eval-SYN062",
           "lastIntent": "search",
           "lastQuery": "quan an re o ha noi cho sinh vien",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "quan an re o ha noi cho sinh vien"
+          ]
         }
       },
       "criteria": [
@@ -7833,7 +8268,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -7859,7 +8295,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -7886,7 +8323,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -7896,6 +8334,9 @@
           "lastQuery": "ks gan bien o da nang",
           "constraints": [
             "gần biển"
+          ],
+          "recentQueries": [
+            "ks gan bien o da nang"
           ]
         }
       },
@@ -7992,7 +8433,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8020,7 +8462,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8047,7 +8490,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -8055,7 +8499,10 @@
           "sessionId": "eval-SYN064",
           "lastIntent": "search",
           "lastQuery": "coffee gan ben thanh market",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "coffee gan ben thanh market"
+          ]
         }
       },
       "criteria": [
@@ -8118,8 +8565,8 @@
             "POI071"
           ],
           "center": {
-            "lat": 21.678351,
-            "lon": 106.673431
+            "lat": 10.773658,
+            "lon": 106.708697
           },
           "zoom": 13
         },
@@ -8149,7 +8596,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -8157,7 +8605,10 @@
           "sessionId": "eval-SYN065",
           "lastIntent": "search",
           "lastQuery": "tim ks o q1",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "tim ks o q1"
+          ]
         }
       },
       "criteria": [
@@ -8226,6 +8677,9 @@
           "constraints": [
             "wifi",
             "làm việc"
+          ],
+          "recentQueries": [
+            "quan cafe lam viec co wifi gan tsn"
           ]
         }
       },
@@ -8303,7 +8757,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8330,7 +8785,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -8338,7 +8794,10 @@
           "sessionId": "eval-SYN067",
           "lastIntent": "search",
           "lastQuery": "an toi o dau ngon o quan 1",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "an toi o dau ngon o quan 1"
+          ]
         }
       },
       "criteria": [
@@ -8391,8 +8850,8 @@
             "POI052"
           ],
           "center": {
-            "lat": 12.064217,
-            "lon": 107.993788
+            "lat": 16.044857,
+            "lon": 108.194209
           },
           "zoom": 13
         },
@@ -8422,7 +8881,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8449,7 +8909,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8476,7 +8937,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -8484,7 +8946,10 @@
           "sessionId": "eval-SYN068",
           "lastIntent": "search",
           "lastQuery": "cho nao chup hinh dep o da nang",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "cho nao chup hinh dep o da nang"
+          ]
         }
       },
       "criteria": [
@@ -8567,7 +9032,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8594,7 +9060,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8621,7 +9088,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -8629,7 +9097,10 @@
           "sessionId": "eval-SYN069",
           "lastIntent": "recommendation",
           "lastQuery": "I'm in Da Nang with a few friends. Where should we go?",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "I'm in Da Nang with a few friends. Where should we go?"
+          ]
         }
       },
       "criteria": [
@@ -8677,8 +9148,8 @@
             "POI048"
           ],
           "center": {
-            "lat": 18.026528,
-            "lon": 107.805402
+            "lat": 11.948266,
+            "lon": 108.436694
           },
           "zoom": 13
         },
@@ -8708,7 +9179,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8735,7 +9207,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8762,7 +9235,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8789,7 +9263,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -8797,7 +9272,10 @@
           "sessionId": "eval-SYN070",
           "lastIntent": "planning",
           "lastQuery": "Tôi có 1 ngày ở Đà Lạt, nên đi đâu?",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Tôi có 1 ngày ở Đà Lạt, nên đi đâu?"
+          ]
         }
       },
       "criteria": [
@@ -8888,7 +9366,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8915,7 +9394,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8943,7 +9423,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -8969,7 +9450,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -8977,7 +9459,10 @@
           "sessionId": "eval-SYN071",
           "lastIntent": "planning",
           "lastQuery": "Cuối tuần này ở Hà Nội nên làm gì?",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Cuối tuần này ở Hà Nội nên làm gì?"
+          ]
         }
       },
       "criteria": [
@@ -9068,7 +9553,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9095,7 +9581,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9122,7 +9609,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9149,7 +9637,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -9157,7 +9646,10 @@
           "sessionId": "eval-SYN072",
           "lastIntent": "planning",
           "lastQuery": "Lên lịch trình 1 ngày ở Hội An giúp mình.",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Lên lịch trình 1 ngày ở Hội An giúp mình."
+          ]
         }
       },
       "criteria": [
@@ -9211,8 +9703,8 @@
             "POI045"
           ],
           "center": {
-            "lat": 18.744919,
-            "lon": 106.202209
+            "lat": 12.240645,
+            "lon": 109.203661
           },
           "zoom": 13
         },
@@ -9242,7 +9734,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9269,7 +9762,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9296,7 +9790,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9323,7 +9818,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -9331,7 +9827,10 @@
           "sessionId": "eval-SYN073",
           "lastIntent": "planning",
           "lastQuery": "Tôi có 2 ngày ở Nha Trang, đi đâu?",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Tôi có 2 ngày ở Nha Trang, đi đâu?"
+          ]
         }
       },
       "criteria": [
@@ -9421,7 +9920,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9448,7 +9948,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9476,7 +9977,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -9484,7 +9986,10 @@
           "sessionId": "eval-SYN074",
           "lastIntent": "search",
           "lastQuery": "Đi chơi với bạn bè ở Sài Gòn thì đi đâu?",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Đi chơi với bạn bè ở Sài Gòn thì đi đâu?"
+          ]
         }
       },
       "criteria": [
@@ -9563,7 +10068,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.08
+              "intentBoost": 0.08,
+              "nameMatch": 0
             }
           },
           {
@@ -9590,7 +10096,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.08
+              "intentBoost": 0.08,
+              "nameMatch": 0
             }
           },
           {
@@ -9617,7 +10124,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.08
+              "intentBoost": 0.08,
+              "nameMatch": 0
             }
           }
         ],
@@ -9627,6 +10135,9 @@
           "lastQuery": "Quán cà phê có wifi và ổ cắm ở Quận 1",
           "constraints": [
             "wifi"
+          ],
+          "recentQueries": [
+            "Quán cà phê có wifi và ổ cắm ở Quận 1"
           ]
         }
       },
@@ -9716,7 +10227,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9743,7 +10255,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -9751,7 +10264,10 @@
           "sessionId": "eval-SYN076",
           "lastIntent": "search",
           "lastQuery": "Nhà hàng đặt bàn được ở Quận 1",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Nhà hàng đặt bàn được ở Quận 1"
+          ]
         }
       },
       "criteria": [
@@ -9841,7 +10357,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9867,7 +10384,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -9894,7 +10412,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -9904,6 +10423,9 @@
           "lastQuery": "Khách sạn cho gia đình có buffet sáng ở Đà Nẵng",
           "constraints": [
             "gia đình"
+          ],
+          "recentQueries": [
+            "Khách sạn cho gia đình có buffet sáng ở Đà Nẵng"
           ]
         }
       },
@@ -9995,7 +10517,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -10022,7 +10545,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.2
+              "intentBoost": 0.2,
+              "nameMatch": 0
             }
           },
           {
@@ -10049,7 +10573,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -10059,6 +10584,9 @@
           "lastQuery": "Chỗ nào yên tĩnh đọc sách ở Quận 1?",
           "constraints": [
             "yên tĩnh"
+          ],
+          "recentQueries": [
+            "Chỗ nào yên tĩnh đọc sách ở Quận 1?"
           ]
         }
       },
@@ -10143,7 +10671,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           },
           {
@@ -10170,7 +10699,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           },
           {
@@ -10197,7 +10727,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -10207,6 +10738,9 @@
           "lastQuery": "Phở ngon ở Hà Nội dưới 100k",
           "constraints": [
             "dưới 100k"
+          ],
+          "recentQueries": [
+            "Phở ngon ở Hà Nội dưới 100k"
           ]
         }
       },
@@ -10297,7 +10831,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           },
           {
@@ -10324,7 +10859,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0.22
+              "intentBoost": 0.22,
+              "nameMatch": 0
             }
           },
           {
@@ -10351,7 +10887,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -10359,7 +10896,10 @@
           "sessionId": "eval-SYN080",
           "lastIntent": "search",
           "lastQuery": "Bún chả nổi tiếng ở Hà Nội",
-          "constraints": []
+          "constraints": [],
+          "recentQueries": [
+            "Bún chả nổi tiếng ở Hà Nội"
+          ]
         }
       },
       "criteria": [
@@ -10443,7 +10983,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -10470,7 +11011,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -10497,7 +11039,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -10508,6 +11051,9 @@
           "constraints": [
             "giá hợp lý",
             "trẻ em"
+          ],
+          "recentQueries": [
+            "Khu vui chơi giá hợp lý cho trẻ em ở Đà Nẵng"
           ]
         }
       },
@@ -10573,8 +11119,8 @@
             "POI040"
           ],
           "center": {
-            "lat": 17.182314,
-            "lon": 108.346686
+            "lat": 21.02565,
+            "lon": 105.853229
           },
           "zoom": 13
         },
@@ -10604,7 +11150,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -10632,7 +11179,8 @@
               "featured": 0.025,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           },
           {
@@ -10659,7 +11207,8 @@
               "featured": 0,
               "budget": 0,
               "avoidPenalty": 0,
-              "intentBoost": 0
+              "intentBoost": 0,
+              "nameMatch": 0
             }
           }
         ],
@@ -10669,6 +11218,9 @@
           "lastQuery": "Khách sạn giá hợp lý ở Hà Nội",
           "constraints": [
             "giá hợp lý"
+          ],
+          "recentQueries": [
+            "Khách sạn giá hợp lý ở Hà Nội"
           ]
         }
       },

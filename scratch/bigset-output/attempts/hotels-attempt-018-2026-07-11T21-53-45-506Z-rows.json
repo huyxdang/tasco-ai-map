@@ -1,0 +1,50 @@
+[
+  {
+    "breakfast": true,
+    "breakfast_buffet": "",
+    "family_friendly": "",
+    "hotel_url": "https://www.google.com/maps/search/Northern%20Charm%20Hotel%2012%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%AD%20T%E1%BB%B1%20Tr%E1%BB%8Dng%2C%20Qu%E1%BA%ADn%201",
+    "name": "Northern Charm Hotel",
+    "nice_view": true,
+    "parking": "",
+    "pool": true,
+    "price_tier": "Upscale",
+    "quiet": "",
+    "rating": 4.5,
+    "rating_source": "Booking.com",
+    "review_count": 8505,
+    "street_address": "12 Ly Tu Trong Street, District 1, Ho Chi Minh City"
+  },
+  {
+    "breakfast": false,
+    "breakfast_buffet": false,
+    "family_friendly": false,
+    "hotel_url": "https://www.google.com/maps/search/OnTop%20Bar%20166%20%C4%90%C6%B0%E1%BB%9Dng%20Hai%20Ba%20Tr%C3%B9ng%2C%20Qu%E1%BA%ADn%201",
+    "name": "OnTop Bar",
+    "nice_view": true,
+    "parking": false,
+    "pool": false,
+    "price_tier": "Upscale",
+    "quiet": false,
+    "rating": 4,
+    "rating_source": "TripAdvisor",
+    "review_count": 47,
+    "street_address": "166 Hai Ba Trung, District 1, Ho Chi Minh City"
+  },
+  {
+    "breakfast": true,
+    "breakfast_buffet": true,
+    "family_friendly": true,
+    "hotel_url": "https://www.google.com/maps/search/Mai%20House%20Saigon%20Hotel%20157%20%C4%90%C6%B0%E1%BB%9Dng%20Nam%20K%E1%BB%B3%20Kh%E1%BB%9Fi%20Ngh%C4%A9a%2C%20Qu%E1%BA%ADn%201",
+    "name": "Mai House Saigon Hotel",
+    "nice_view": true,
+    "parking": true,
+    "pool": true,
+    "price_tier": "Mid-range",
+    "quiet": true,
+    "rating": "4.9",
+    "rating_source": "TripAdvisor",
+    "review_count": "1093",
+    "street_address": "157 Nam Kỳ Khởi Nghĩa, Xuan Hoa Ward, District 3, Ho Chi Minh City, Vietnam"
+  }
+]

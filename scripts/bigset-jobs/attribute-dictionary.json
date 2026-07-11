@@ -1,0 +1,33 @@
+{
+  "comment": "Canonical Vietnamese attribute tokens — the ONLY values merge-enrichment.mjs may write into poi.attributes. The engine matches these exact normalized strings (see KNOWN_CONSTRAINTS in src/lib/chat.ts and attribute matching in src/lib/search.ts). BigSet output fields map to tokens via `fieldMap`.",
+  "canonicalTokens": [
+    "wifi", "yên tĩnh", "làm việc", "học nhóm", "giá hợp lý", "giá rẻ", "cao cấp",
+    "gia đình", "trẻ em", "view đẹp", "phù hợp hẹn hò", "mở cửa khuya", "mở cửa sớm",
+    "ngoài trời", "bãi đỗ xe", "đặt bàn", "toilet", "hồ bơi", "ăn sáng", "buffet sáng",
+    "đồ Ý", "món Việt", "đặc sản", "healthy", "takeaway", "ổ cắm", "máy lạnh", "đông khách"
+  ],
+  "fieldMap": {
+    "wifi": { "true": ["wifi"] },
+    "quiet": { "true": ["yên tĩnh"] },
+    "study_friendly": { "true": ["học nhóm", "làm việc"] },
+    "work_friendly": { "true": ["làm việc"] },
+    "power_outlets": { "true": ["ổ cắm"] },
+    "air_conditioned": { "true": ["máy lạnh"] },
+    "price_tier": { "cheap": ["giá rẻ", "giá hợp lý"], "moderate": ["giá hợp lý"], "premium": ["cao cấp"] },
+    "open_late": { "true": ["mở cửa khuya"] },
+    "opens_early": { "true": ["mở cửa sớm"] },
+    "outdoor_seating": { "true": ["ngoài trời"] },
+    "parking": { "true": ["bãi đỗ xe"] },
+    "reservations": { "true": ["đặt bàn"] },
+    "romantic": { "true": ["phù hợp hẹn hò"] },
+    "family_friendly": { "true": ["gia đình"] },
+    "kids": { "true": ["trẻ em"] },
+    "nice_view": { "true": ["view đẹp"] },
+    "pool": { "true": ["hồ bơi"] },
+    "breakfast": { "true": ["ăn sáng"] },
+    "breakfast_buffet": { "true": ["buffet sáng"] },
+    "cuisine": { "italian": ["đồ Ý"], "vietnamese": ["món Việt"] },
+    "crowded": { "true": ["đông khách"] },
+    "takeaway": { "true": ["takeaway"] }
+  }
+}

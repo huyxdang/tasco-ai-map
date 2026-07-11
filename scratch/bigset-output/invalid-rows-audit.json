@@ -1,0 +1,811 @@
+{
+  "generated_at": "2026-07-11T22:10:45.002Z",
+  "categories": {
+    "cafes": [
+      {
+        "canonical_index": 1,
+        "reasons": [
+          "missing_house_number",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "air_conditioned": "",
+          "cafe_url": "https://foody.vn/ho-chi-minh/the-coffee-house-nguyen-hue",
+          "name": "The Coffee House - Nguyen Hue",
+          "open_late": "",
+          "opens_early": "",
+          "outdoor_seating": "",
+          "parking": "",
+          "power_outlets": "",
+          "price_tier": "",
+          "quiet": "",
+          "rating": "",
+          "review_count": "",
+          "street_address": "",
+          "study_friendly": "",
+          "takeaway": "",
+          "wifi": ""
+        }
+      },
+      {
+        "canonical_index": 19,
+        "reasons": [
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "air_conditioned": true,
+          "cafe_url": "https://foody.vn/ho-chi-minh/the-coffee-house-86-88-cao-thang",
+          "name": "The Coffee House - 86-88 Cao Thắng",
+          "open_late": false,
+          "opens_early": false,
+          "outdoor_seating": true,
+          "parking": true,
+          "power_outlets": "",
+          "price_tier": "moderate",
+          "quiet": "",
+          "rating": 4.3,
+          "review_count": 3013,
+          "street_address": "86-88 Cao Thắng, Phường 4, Quận 3, TP.HCM",
+          "study_friendly": "",
+          "takeaway": true,
+          "wifi": true
+        }
+      },
+      {
+        "canonical_index": 33,
+        "reasons": [
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "air_conditioned": true,
+          "cafe_url": "https://foody.vn/ho-chi-minh/highlands-coffee-35-thang-long",
+          "name": "Highlands Coffee - 35 Thăng Long",
+          "open_late": true,
+          "opens_early": false,
+          "outdoor_seating": true,
+          "parking": true,
+          "power_outlets": "",
+          "price_tier": "moderate",
+          "quiet": "",
+          "rating": 4,
+          "review_count": "",
+          "street_address": "35 Thăng Long, P. 4, Quận Tân Bình, TP. HCM",
+          "study_friendly": "",
+          "takeaway": true,
+          "wifi": true
+        }
+      },
+      {
+        "canonical_index": 96,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "air_conditioned": null,
+          "cafe_url": "https://google.com/maps/search/Chez%20Gilbert%20Saigon%20-%20French%20Bistro%20(Fresh%20Homemade%20Baguette%20Sandwiches)%2017%20%C4%90%C6%B0%E1%BB%9Dng%20Tr%E1%BA%A7n%20H%C6%B0ng%20%C4%90%E1%BA%A1o%2C%20Ph%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Th%C3%A1i%20B%C3%ACnh%2C%20Qu%E1%BA%ADn%201",
+          "name": "Chez Gilbert Saigon - French Bistro",
+          "open_late": null,
+          "opens_early": null,
+          "outdoor_seating": true,
+          "parking": true,
+          "power_outlets": null,
+          "price_tier": "$$$",
+          "quiet": null,
+          "rating": 5,
+          "review_count": 69,
+          "street_address": "17 Đường Trần Hưng Đạo, Phường Nguyễn Thái Bình, Quận 1, TP.HCM",
+          "study_friendly": null,
+          "takeaway": true,
+          "wifi": true
+        }
+      },
+      {
+        "canonical_index": 97,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "air_conditioned": true,
+          "cafe_url": "https://google.com/maps/search/Kai%20Coffee%20139%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Th%C3%A1i%20B%C3%ACnh%2C%20Qu%E1%BA%ADn%201",
+          "name": "Kai Coffee",
+          "open_late": true,
+          "opens_early": true,
+          "outdoor_seating": true,
+          "parking": true,
+          "power_outlets": true,
+          "price_tier": "$",
+          "quiet": null,
+          "rating": 3.7,
+          "review_count": 167,
+          "street_address": "139 Nguyễn Thái Bình, Phường Nguyễn Thái Bình, Quận 1, TP.HCM",
+          "study_friendly": true,
+          "takeaway": true,
+          "wifi": true
+        }
+      },
+      {
+        "canonical_index": 98,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "air_conditioned": true,
+          "cafe_url": "https://google.com/maps/search/Trung%20Nguy%C3%AAn%20Legend%20Caf%C3%A9%2012%20%C4%90%C6%B0%E1%BB%9Dng%20Alexandre%20De%20Rhodes%2C%20Qu%E1%BA%ADn%201",
+          "name": "Trung Nguyên Legend Café",
+          "open_late": true,
+          "opens_early": true,
+          "outdoor_seating": true,
+          "parking": true,
+          "power_outlets": "",
+          "price_tier": "$$",
+          "quiet": true,
+          "rating": 3.1,
+          "review_count": 6,
+          "street_address": "12 Alexandre De Rhodes, Phường Bến Nghé, Quận 1, TP.HCM",
+          "study_friendly": "",
+          "takeaway": true,
+          "wifi": true
+        }
+      },
+      {
+        "canonical_index": 99,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "air_conditioned": "",
+          "cafe_url": "https://google.com/maps/search/Corner%20Cafe%202%2F8I%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Th%E1%BB%8B%20Minh%20Khai%2C%20Qu%E1%BA%ADn%201",
+          "name": "Corner Cafe",
+          "open_late": "",
+          "opens_early": "",
+          "outdoor_seating": "",
+          "parking": "",
+          "power_outlets": "",
+          "price_tier": "",
+          "quiet": "",
+          "rating": 4.8,
+          "review_count": 51,
+          "street_address": "2/8i Nguyễn Thị Minh Khai, Phường Đa Kao, Quận 1, TP.HCM",
+          "study_friendly": "",
+          "takeaway": "",
+          "wifi": ""
+        }
+      },
+      {
+        "canonical_index": 100,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "air_conditioned": true,
+          "cafe_url": "https://google.com/maps/search/Highlands%20Coffee%2065%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%AA%20L%E1%BB%97i%2C%20Qu%E1%BA%ADn%201",
+          "name": "Highlands Coffee - SG Centre",
+          "open_late": true,
+          "opens_early": true,
+          "outdoor_seating": null,
+          "parking": true,
+          "power_outlets": null,
+          "price_tier": "$$",
+          "quiet": null,
+          "rating": 4,
+          "review_count": 3,
+          "street_address": "65 Lê Lợi, Phường Bến Nghé, Quận 1, TP.HCM",
+          "study_friendly": null,
+          "takeaway": true,
+          "wifi": true
+        }
+      },
+      {
+        "canonical_index": 102,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "air_conditioned": "",
+          "cafe_url": "https://google.com/maps/search/Pcoffee%20-%20Specialty%20Coffee%2015%20%C4%90%C6%B0%E1%BB%9Dng%20Hu%E1%BB%B3nh%20Kh%C6%B0%C6%A1ng%20Ninh%2C%20Qu%E1%BA%ADn%201",
+          "name": "Pcoffee - Specialty Coffee",
+          "open_late": "",
+          "opens_early": "",
+          "outdoor_seating": "",
+          "parking": "",
+          "power_outlets": "",
+          "price_tier": "",
+          "quiet": "",
+          "rating": "",
+          "review_count": "",
+          "street_address": "15 Đường Huỳnh Khương Ninh, Phường Đa Kao, Quận 1, TP.HCM",
+          "study_friendly": "",
+          "takeaway": "",
+          "wifi": ""
+        }
+      },
+      {
+        "canonical_index": 104,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "air_conditioned": "",
+          "cafe_url": "https://google.com/maps/search/Hyan%20Cafe%20%26%20Bistro%2017C%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Th%E1%BB%8B%20Minh%20Khai%2C%20Qu%E1%BA%ADn%201",
+          "name": "Hyan Cafe & Bistro",
+          "open_late": "",
+          "opens_early": "",
+          "outdoor_seating": "",
+          "parking": "",
+          "power_outlets": "",
+          "price_tier": "",
+          "quiet": "",
+          "rating": "",
+          "review_count": "",
+          "street_address": "17C Nguyễn Thị Minh Khai, Phường Bến Nghé, Quận 1",
+          "study_friendly": "",
+          "takeaway": true,
+          "wifi": ""
+        }
+      },
+      {
+        "canonical_index": 105,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "air_conditioned": "",
+          "cafe_url": "https://google.com/maps/search/Kerlan%20Kafe%2020A%20H%E1%BA%BBm%2022%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%AA%20V%C4%83n%20H%E1%BB%A9%2C%20Qu%E1%BA%ADn%201",
+          "name": "Kerlan Kafe",
+          "open_late": "",
+          "opens_early": "",
+          "outdoor_seating": "",
+          "parking": "",
+          "power_outlets": "",
+          "price_tier": "$$$$",
+          "quiet": "",
+          "rating": "",
+          "review_count": "",
+          "street_address": "20A Lê Văn Hưu, Phường Bến Nghé, Quận 1, Hồ Chí Minh City",
+          "study_friendly": "",
+          "takeaway": "",
+          "wifi": ""
+        }
+      }
+    ],
+    "restaurants": [
+      {
+        "canonical_index": 20,
+        "reasons": [
+          "missing_house_number",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "air_conditioned": true,
+          "cuisine": "vietnamese",
+          "family_friendly": true,
+          "foody_url": "https://foody.vn/ho-chi-minh/moc-mien-quan",
+          "name": "Mộc Miên Cafe",
+          "nice_view": true,
+          "open_late": true,
+          "outdoor_seating": true,
+          "parking": true,
+          "price_tier": "cheap",
+          "rating": 3.9,
+          "rating_source": "Foody.vn 7.8/10 → 3.9/5",
+          "reservations": true,
+          "review_count": 61,
+          "romantic": true,
+          "street_address": ""
+        }
+      },
+      {
+        "canonical_index": 21,
+        "reasons": [
+          "missing_house_number",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "air_conditioned": true,
+          "cuisine": "other",
+          "family_friendly": true,
+          "foody_url": "https://foody.vn/ho-chi-minh/markee",
+          "name": "Markee Restaurant",
+          "nice_view": false,
+          "open_late": true,
+          "outdoor_seating": true,
+          "parking": true,
+          "price_tier": "premium",
+          "rating": "",
+          "rating_source": "",
+          "reservations": true,
+          "review_count": "",
+          "romantic": false,
+          "street_address": ""
+        }
+      },
+      {
+        "canonical_index": 53,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "air_conditioned": "",
+          "cuisine": "Vietnamese",
+          "family_friendly": "",
+          "foody_url": "https://google.com/maps/search/?query=Pho+2000+210+%C4%90%C6%B0%E1%BB%9Dng+L%C3%AA+Th%C3%A1nh+T%C3%B4n%2C+Qu%E1%BA%ADn+1",
+          "name": "Phở 2000",
+          "nice_view": "",
+          "open_late": false,
+          "outdoor_seating": "",
+          "parking": "",
+          "price_tier": "",
+          "rating": 3.7,
+          "rating_source": "TripAdvisor",
+          "reservations": "",
+          "review_count": 1372,
+          "romantic": "",
+          "street_address": "210 Lê Thánh Tôn, Phường Bến Thành, Quận 1, TP. Hồ Chí Minh"
+        }
+      },
+      {
+        "canonical_index": 55,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "air_conditioned": "",
+          "cuisine": "Asian",
+          "family_friendly": true,
+          "foody_url": "https://google.com/maps/search/?query=B%C3%9AP+Sky+Cuisine+69+%C4%90%C6%B0%E1%BB%9Dng+Nguy%E1%BB%85n+Tr%E1%BA%A3i%2C+Qu%E1%BA%ADn+1",
+          "name": "BÚP Sky Cuisine & Restaurant",
+          "nice_view": true,
+          "open_late": true,
+          "outdoor_seating": true,
+          "parking": "",
+          "price_tier": "$$ - $$$",
+          "rating": 4.8,
+          "rating_source": "TripAdvisor",
+          "reservations": true,
+          "review_count": 31,
+          "romantic": true,
+          "street_address": "65-67-69 Nguyễn Thái Bình, Phường Bến Thành, Quận 1, TP. Hồ Chí Minh"
+        }
+      },
+      {
+        "canonical_index": 57,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "air_conditioned": true,
+          "cuisine": "Vietnamese",
+          "family_friendly": true,
+          "foody_url": "https://google.com/maps/search/?query=B%C3%BAn+Ch%E1%BA%A3+H%C3%A0+N%E1%BB%99i+26+8A+%C4%90%C6%B0%C6%93ng+Th%C3%A1i+V%C4%83n+Lung%2C+Qu%E1%BA%ADn+1",
+          "name": "Bún Chả Hà Nội 26",
+          "nice_view": "",
+          "open_late": false,
+          "outdoor_seating": true,
+          "parking": true,
+          "price_tier": "30.000đ - 44.000đ",
+          "rating": 3.3,
+          "rating_source": "Foody",
+          "reservations": true,
+          "review_count": 50,
+          "romantic": "",
+          "street_address": "8A/9C2 Thái Văn Lung, Bến Nghế, Quận 1, TP. Hồ Chí Minh"
+        }
+      },
+      {
+        "canonical_index": 58,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "air_conditioned": "",
+          "cuisine": "Vietnamese",
+          "family_friendly": false,
+          "foody_url": "https://google.com/maps/search/?query=Anan+Saigon+89+%C4%90%C6%B0%E1%BB%9Dng+T%C3%B4n+Th%E1%BA%A5t+%E1%91%92%E1%BA%A5m%2C+Qu%E1%BA%ADn+1",
+          "name": "Anan Saigon",
+          "nice_view": true,
+          "open_late": true,
+          "outdoor_seating": true,
+          "parking": "",
+          "price_tier": "",
+          "rating": 4.4,
+          "rating_source": "TripAdvisor",
+          "reservations": true,
+          "review_count": 857,
+          "romantic": "",
+          "street_address": "89 Đường Tôn Thất Đạm, Quận 1, TP. Hồ Chí Minh"
+        }
+      },
+      {
+        "canonical_index": 61,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "air_conditioned": true,
+          "cuisine": "Vietnamese",
+          "family_friendly": true,
+          "foody_url": "https://google.com/maps/search/?query=Qu%C3%A1n+%C4%82n+Hu%E1%BA%BF+O+Xu%C3%A2n+22+H%E1%BA%BBm+81+%C4%90%C6%B0%E1%BB%9Dng+Nguy%E1%BB%85n+H%E1%BB%AFu+C%E1%BA%A7u%2C+Qu%E1%BA%ADn+1",
+          "name": "Quán Ăn Huế O Xuân",
+          "nice_view": null,
+          "open_late": true,
+          "outdoor_seating": true,
+          "parking": true,
+          "price_tier": "15.000đ - 44.000đ",
+          "rating": 3.3,
+          "rating_source": "Foody",
+          "reservations": true,
+          "review_count": 100,
+          "romantic": null,
+          "street_address": "22 Hẻm 81 Đường Nguyễn Hữu Cầu, Quận 1, TP. Hồ Chí Minh"
+        }
+      },
+      {
+        "canonical_index": 63,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "air_conditioned": "",
+          "cuisine": "Contemporary",
+          "family_friendly": "",
+          "foody_url": "https://google.com/maps/search/?query=Nous+5th+floor%2C+123+Le+Loi%2C+District+1",
+          "name": "Nous Dine",
+          "nice_view": "",
+          "open_late": true,
+          "outdoor_seating": "",
+          "parking": true,
+          "price_tier": "$$$$",
+          "rating": 4.5,
+          "rating_source": "TableAgent",
+          "reservations": true,
+          "review_count": 1,
+          "romantic": true,
+          "street_address": "123 Lê Lợi, Quận 1, TP. Hồ Chí Minh"
+        }
+      },
+      {
+        "canonical_index": 65,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "air_conditioned": "",
+          "cuisine": "Vietnamese",
+          "family_friendly": true,
+          "foody_url": "https://google.com/maps/search/?query=Spice+Viet+Saigon+Restaurant+157+Pasteur%2C+Qu%E1%BA%ADn+1",
+          "name": "Spice Viet Restaurant",
+          "nice_view": "",
+          "open_late": true,
+          "outdoor_seating": "",
+          "parking": true,
+          "price_tier": "",
+          "rating": 4.8,
+          "rating_source": "TripAdvisor",
+          "reservations": true,
+          "review_count": 64,
+          "romantic": true,
+          "street_address": "157 Pasteur Street, Ward 6, District 3, Ho Chi Minh City, Vietnam"
+        }
+      },
+      {
+        "canonical_index": 71,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "air_conditioned": true,
+          "cuisine": "Vietnamese",
+          "family_friendly": true,
+          "foody_url": "https://google.com/maps/search/Nh%C3%A0%20h%C3%A0ng%20D%C3%ACn%20K%C3%BD%20137C%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Tr%C3%A3i%2C%20Qu%E1%BA%ADn%201",
+          "name": "Nhà hàng Dìn Ký",
+          "nice_view": "",
+          "open_late": true,
+          "outdoor_seating": true,
+          "parking": true,
+          "price_tier": "$$",
+          "rating": 3.8,
+          "rating_source": "TripAdvisor",
+          "reservations": true,
+          "review_count": "",
+          "romantic": "",
+          "street_address": "137C Nguyễn Trãi, Quận 1, TP. Hồ Chí Minh"
+        }
+      },
+      {
+        "canonical_index": 73,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "air_conditioned": true,
+          "cuisine": "Vietnamese",
+          "family_friendly": "",
+          "foody_url": "https://google.com/maps/search/The%20Street%20-%20Sai%20Gon%2041%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Th%C3%A1i%20B%C3%ACnh%2C%20Qu%E1%BA%ADn%201",
+          "name": "The Street - Sai Gon",
+          "nice_view": "",
+          "open_late": true,
+          "outdoor_seating": true,
+          "parking": true,
+          "price_tier": "$$",
+          "rating": 4.8,
+          "rating_source": "Google Maps",
+          "reservations": true,
+          "review_count": 1520,
+          "romantic": "",
+          "street_address": "39-41 Nguyễn Thái Bình, Quận 1, TP. Hồ Chí Minh"
+        }
+      }
+    ],
+    "hotels": [
+      {
+        "canonical_index": 18,
+        "reasons": [
+          "invalid_category_url"
+        ],
+        "row": {
+          "breakfast": true,
+          "breakfast_buffet": false,
+          "family_friendly": true,
+          "hotel_url": "httpshttps://www.foody.vn/ho-chi-minh/sport-hotel",
+          "name": "Sport Hotel",
+          "nice_view": false,
+          "parking": true,
+          "pool": true,
+          "price_tier": "moderate",
+          "quiet": false,
+          "rating": 3,
+          "rating_source": "Trip.com",
+          "review_count": "",
+          "street_address": "3 Phan Văn Đạt, P. Bến Nghé, Quận 1, TP. HCM"
+        }
+      },
+      {
+        "canonical_index": 25,
+        "reasons": [
+          "missing_house_number",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "breakfast": true,
+          "breakfast_buffet": true,
+          "family_friendly": true,
+          "hotel_url": "https://google.com/maps/place/Alagon+City+Hotel+%26+Spa",
+          "name": "Alagon City Hotel & Spa",
+          "nice_view": true,
+          "parking": true,
+          "pool": true,
+          "price_tier": "moderate",
+          "quiet": "",
+          "rating": 4.1,
+          "rating_source": "Agoda",
+          "review_count": 2687,
+          "street_address": ""
+        }
+      },
+      {
+        "canonical_index": 44,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "breakfast": true,
+          "breakfast_buffet": true,
+          "family_friendly": "",
+          "hotel_url": "https://google.com/maps/search/?query=Palace+Hotel+S%C3%A0i+G%C3%B2n+56-66+%C4%90%C6%B0%E1%BB%9Dng+Nguy%E1%BB%85n+Hu%E1%BB%87%2C+Qu%E1%BA%ADn+1",
+          "name": "Palace Hotel Saigon",
+          "nice_view": true,
+          "parking": "",
+          "pool": true,
+          "price_tier": "Mid-range",
+          "quiet": "",
+          "rating": 3.8,
+          "rating_source": "Expedia",
+          "review_count": 1000,
+          "street_address": "56-66 Đường Nguyễn Huệ, Quận 1, Ho Chi Minh City"
+        }
+      },
+      {
+        "canonical_index": 45,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "breakfast": true,
+          "breakfast_buffet": "",
+          "family_friendly": "",
+          "hotel_url": "https://google.com/maps/search/?query=Au+Lac+Legend+Hotel+90+%C4%90%C6%B0%E1%BB%9Dng+Nguy%E1%BB%85n+Th%E1%BB%8B+Minh+Khai%2C+Qu%E1%BA%ADn+1",
+          "name": "Au Lac Legend Hotel",
+          "nice_view": "",
+          "parking": "",
+          "pool": true,
+          "price_tier": "",
+          "quiet": "",
+          "rating": "",
+          "rating_source": "",
+          "review_count": "",
+          "street_address": "90 Nguyễn Thị Minh Khai, Quận 3, Ho Chi Minh City, Vietnam"
+        }
+      },
+      {
+        "canonical_index": 46,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "breakfast": true,
+          "breakfast_buffet": true,
+          "family_friendly": true,
+          "hotel_url": "https://google.com/maps/search/?query=Bach+Suites+Saigon+6+%C4%90%C6%B0%E1%BB%9Dng+Ph%E1%BA%A1m+Ng%E1%BB%8Dc+Th%E1%BA%A1ch%2C+Qu%E1%BA%ADn+1",
+          "name": "Bach Suites Saigon",
+          "nice_view": true,
+          "parking": true,
+          "pool": true,
+          "price_tier": "Upscale",
+          "quiet": "",
+          "rating": 4.5,
+          "rating_source": "TripAdvisor",
+          "review_count": 113,
+          "street_address": "10A Pham Ngoc Thach Street, Vo Thi Sau Ward, District 3, Ho Chi Minh City, Vietnam"
+        }
+      },
+      {
+        "canonical_index": 51,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "breakfast": true,
+          "breakfast_buffet": true,
+          "family_friendly": "",
+          "hotel_url": "https://google.com/maps/search/?query=Silverland+Yen+Hotel+50+%C4%90%C6%B0%C6%A1ng+Th%E1%BB%A7+Khoa+Hu%C4%82n%2C+Qu%E1%BA%ADn+1",
+          "name": "Silverland Yen Hotel",
+          "nice_view": true,
+          "parking": "",
+          "pool": true,
+          "price_tier": "Upscale",
+          "quiet": "",
+          "rating": 4,
+          "rating_source": "TripAdvisor",
+          "review_count": "",
+          "street_address": "73–75 Thu Khoa Huan Street, Ben Thanh Ward, Quận 1, Ho Chi Minh City"
+        }
+      },
+      {
+        "canonical_index": 65,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "breakfast": null,
+          "breakfast_buffet": null,
+          "family_friendly": null,
+          "hotel_url": "https://google.com/maps/search/A25%20Hotel%20184%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Tr%E1%BA%A3i%2C%20Qu%E1%BA%ADn%201",
+          "name": "A25 Hotel",
+          "nice_view": null,
+          "parking": null,
+          "pool": null,
+          "price_tier": "Mid-range",
+          "quiet": null,
+          "rating": 4.15,
+          "rating_source": "Agoda",
+          "review_count": 459,
+          "street_address": "180-184 Nguyễn Trãi, Quận 1, Thành phố Hồ Chí Minh, Vietnam"
+        }
+      },
+      {
+        "canonical_index": 84,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "breakfast": true,
+          "breakfast_buffet": "",
+          "family_friendly": "",
+          "hotel_url": "https://google.com/maps/search/Northern%20Charm%20Hotel%2012%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%AD%20T%E1%BB%B1%20Tr%E1%BB%8Dng%2C%20Qu%E1%BA%ADn%201",
+          "name": "Northern Charm Hotel",
+          "nice_view": true,
+          "parking": "",
+          "pool": true,
+          "price_tier": "Upscale",
+          "quiet": "",
+          "rating": 4.5,
+          "rating_source": "Booking.com",
+          "review_count": 8505,
+          "street_address": "12 Ly Tu Trong Street, District 1, Ho Chi Minh City"
+        }
+      },
+      {
+        "canonical_index": 85,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "breakfast": false,
+          "breakfast_buffet": false,
+          "family_friendly": false,
+          "hotel_url": "https://google.com/maps/search/OnTop%20Bar%20166%20%C4%90%C6%B0%E1%BB%9Dng%20Hai%20Ba%20Tr%C3%B9ng%2C%20Qu%E1%BA%ADn%201",
+          "name": "OnTop Bar",
+          "nice_view": true,
+          "parking": false,
+          "pool": false,
+          "price_tier": "Upscale",
+          "quiet": false,
+          "rating": 4,
+          "rating_source": "TripAdvisor",
+          "review_count": 47,
+          "street_address": "166 Hai Ba Trung, District 1, Ho Chi Minh City"
+        }
+      },
+      {
+        "canonical_index": 86,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "breakfast": true,
+          "breakfast_buffet": true,
+          "family_friendly": true,
+          "hotel_url": "https://google.com/maps/search/Mai%20House%20Saigon%20Hotel%20157%20%C4%90%C6%B0%E1%BB%9Dng%20Nam%20K%E1%BB%B3%20Kh%E1%BB%9Fi%20Ngh%C4%A9a%2C%20Qu%E1%BA%ADn%201",
+          "name": "Mai House Saigon Hotel",
+          "nice_view": true,
+          "parking": true,
+          "pool": true,
+          "price_tier": "Mid-range",
+          "quiet": true,
+          "rating": 4.9,
+          "rating_source": "TripAdvisor",
+          "review_count": 1093,
+          "street_address": "157 Nam Kỳ Khởi Nghĩa, Xuan Hoa Ward, District 3, Ho Chi Minh City, Vietnam"
+        }
+      },
+      {
+        "canonical_index": 89,
+        "reasons": [
+          "generic_maps_search_not_individual_evidence"
+        ],
+        "row": {
+          "breakfast": false,
+          "breakfast_buffet": false,
+          "family_friendly": false,
+          "hotel_url": "https://google.com/maps/search/Ipeace%20Hotel%20175%2F5%20%C4%90%C6%B0%E1%BB%9Dng%20Ph%E1%BA%A1m%20Ng%E1%BB%AF%20L%C3%A3o%2C%20Qu%E1%BA%ADn%201",
+          "name": "Ipeace Hotel",
+          "nice_view": false,
+          "parking": false,
+          "pool": false,
+          "price_tier": "Budget",
+          "quiet": false,
+          "rating": 3,
+          "rating_source": "TripAdvisor",
+          "review_count": "",
+          "street_address": "175/5 Phạm Ngũ Lão, Quận 1, Hồ Chí Minh City, Vietnam"
+        }
+      },
+      {
+        "canonical_index": 97,
+        "reasons": [
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "breakfast": true,
+          "breakfast_buffet": true,
+          "family_friendly": true,
+          "hotel_url": "https://booking.com/hotel/vn/signature-by-m-village-le-thanh-ton-quan-1.vi.html",
+          "name": "Signature by M Village Le Thanh Ton, a brand of Modern Village Lifestyle",
+          "nice_view": true,
+          "parking": false,
+          "pool": true,
+          "price_tier": "Upscale",
+          "quiet": false,
+          "rating": 4.3,
+          "rating_source": "Booking.com",
+          "review_count": 257,
+          "street_address": "24 Lê Thánh Tôn, 700000, Ho Chi Minh City, Vietnam"
+        }
+      }
+    ]
+  }
+}

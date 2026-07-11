@@ -1,0 +1,38 @@
+[
+  {
+    "air_conditioned": true,
+    "cafe_url": "https://www.foody.vn/ho-chi-minh/highlands-coffee-12-le-thanh-ton",
+    "name": "Highlands Coffee - 12 Lê Thánh Tôn",
+    "open_late": true,
+    "opens_early": false,
+    "outdoor_seating": true,
+    "parking": true,
+    "power_outlets": false,
+    "price_tier": "moderate",
+    "quiet": false,
+    "rating": 3.7,
+    "review_count": 38,
+    "street_address": "12 Lê Thánh Tôn, Quận 1, TP.HCM",
+    "study_friendly": false,
+    "takeaway": true,
+    "wifi": true
+  },
+  {
+    "air_conditioned": true,
+    "cafe_url": "https://www.foody.vn/ho-chi-minh/highlands-coffee-ca-phe-dong-goi-27b-nguyen-dinh-chieu",
+    "name": "Highlands Coffee - Cà Phê Đóng Gói - 27B Nguyễn Đình Chiểu",
+    "open_late": false,
+    "opens_early": false,
+    "outdoor_seating": "",
+    "parking": true,
+    "power_outlets": "",
+    "price_tier": "moderate",
+    "quiet": "",
+    "rating": 3.7,
+    "review_count": "",
+    "street_address": "27B Nguyễn Đình Chiểu, Quận 1, TP.HCM",
+    "study_friendly": "",
+    "takeaway": true,
+    "wifi": true
+  }
+]

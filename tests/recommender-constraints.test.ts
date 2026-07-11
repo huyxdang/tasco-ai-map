@@ -133,6 +133,31 @@ describe("named landmarks act as location anchors", () => {
   });
 });
 
+describe("interactive refinement", () => {
+  it("removes a constraint deterministically when the chip is dismissed", () => {
+    const first = handleChat({ message: "Nhà hàng món Việt gần trung tâm ở Quận 1" });
+    expect(first.sessionContext?.constraints).toContain("món Việt");
+    expect(first.sessionContext?.constraints).toContain("gần trung tâm");
+
+    const second = handleChat({ message: "Bỏ tiêu chí món Việt", sessionContext: first.sessionContext });
+    expect(second.sessionContext?.constraints).not.toContain("món Việt");
+    expect(second.sessionContext?.constraints).toContain("gần trung tâm");
+    // Context survives: the removal turn is an edit, not a new request.
+    expect(second.sessionContext?.lastQuery).toBe("Nhà hàng món Việt gần trung tâm ở Quận 1");
+    expect(second.recommendations.length).toBeGreaterThan(0);
+  });
+
+  it("offers tappable quick replies on clarification turns", () => {
+    const bare = handleChat({ message: "Tìm nhà hàng." });
+    expect(bare.intent).toBe("clarification_required");
+    expect(bare.quickReplies?.length).toBeGreaterThanOrEqual(2);
+
+    const ambiguous = handleChat({ message: "Đưa tôi đến Galaxy." });
+    expect(ambiguous.quickReplies).toContain("Galaxy Nguyễn Du");
+    expect(ambiguous.quickReplies).toContain("Galaxy Hotel Đà Nẵng");
+  });
+});
+
 describe("honest no-match behavior", () => {
   it("states the unmet constraints when the dataset has no qualifying POI", () => {
     const response = handleChat({

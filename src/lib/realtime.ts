@@ -1,28 +1,8 @@
-import type { ChatResponse } from "./types";
+// Voice stack is fully ElevenLabs: Scribe v2 Realtime for STT (src/lib/stt-client.ts)
+// and Flash v2.5 for TTS (src/lib/tts-client.ts). This module keeps the pieces the
+// voice UI shares: the word-confirmed barge-in guard and hard mic muting.
 
 type AudioTrackSource = Pick<MediaStream, "getAudioTracks">;
-
-export type RealtimeEventSink = {
-  onSpeechStarted: () => void;
-  onTranscriptDelta: (delta: string) => void;
-  onTranscriptCompleted: (transcript: string) => void;
-  onResponseCreated: () => void;
-  onOutputTranscriptDelta: (delta: string) => void;
-  onResponseDone: () => void;
-};
-
-export function dispatchRealtimeServerEvent(raw: string, sink: RealtimeEventSink) {
-  let event: { type?: string; transcript?: string; delta?: string };
-  try { event = JSON.parse(raw) as typeof event; } catch { return false; }
-  if (event.type === "input_audio_buffer.speech_started") sink.onSpeechStarted();
-  else if (event.type === "conversation.item.input_audio_transcription.delta") sink.onTranscriptDelta(event.delta ?? "");
-  else if (event.type === "conversation.item.input_audio_transcription.completed" && event.transcript) sink.onTranscriptCompleted(event.transcript);
-  else if (event.type === "response.created") sink.onResponseCreated();
-  else if (event.type === "response.output_audio_transcript.delta") sink.onOutputTranscriptDelta(event.delta ?? "");
-  else if (event.type === "response.done") sink.onResponseDone();
-  else return false;
-  return true;
-}
 
 export function setAudioTracksMuted(stream: AudioTrackSource | null, muted: boolean) {
   stream?.getAudioTracks().forEach((track) => { track.enabled = !muted; });
@@ -32,31 +12,30 @@ export function setAudioTracksMuted(stream: AudioTrackSource | null, muted: bool
 // breath or a bump on the microphone cannot stop the assistant mid-sentence.
 // Two word-like tokens, or one reasonably long word, count as real speech.
 export function isConfirmedSpeech(transcript: string): boolean {
-  const tokens = transcript
-    .split(/\s+/)
-    .map((token) => token.replace(/[^\p{L}\p{N}]/gu, ""))
-    .filter((token) => token.length > 0);
+  const tokens = wordTokens(transcript);
   if (tokens.length >= 2) return true;
   return tokens.some((token) => token.length >= 4);
 }
 
-export function groundedRealtimeResponse(response: ChatResponse) {
-  const grounding = JSON.stringify({
-    assistantResponse: response.assistantResponse,
-    selectedPoi: response.recommendations?.[0]?.poi.name ?? null,
-    journeyTotalVnd: response.journey?.totalVnd ?? null,
-    savingsVnd: response.journey?.savingsVnd ?? null,
-    revisionOutcome: response.journey?.revision.outcome ?? null,
-    simulation: true
-  });
-  return {
-    type: "response.create",
-    response: {
-      conversation: "none",
-      metadata: { source: "tasco-deterministic-chat" },
-      output_modalities: ["audio"],
-      input: [{ type: "message", role: "user", content: [{ type: "input_text", text: grounding }] }],
-      instructions: "Đọc ngắn gọn đúng nội dung assistantResponse trong dữ liệu có cấu trúc. Không thêm hoặc đổi địa điểm, giá, tuyến, ưu đãi, tổng tiền hay kết quả sửa đổi. Nói rõ đây là mô phỏng nếu có hành trình."
-    }
-  };
+// Interrupting active playback demands MORE evidence than opening a turn:
+// in a noisy room, stray transcribed words (TV, other people) must not stop
+// the assistant — three word tokens or two substantial ones.
+export function isConfirmedBargeIn(transcript: string): boolean {
+  const tokens = wordTokens(transcript);
+  if (tokens.length >= 3) return true;
+  // Two-word interrupts like "gần hơn"/"rẻ hơn" (6 letters) must pass while
+  // filler pairs like "à ừm"/"ok la" stay below the bar.
+  return tokens.length === 2 && tokens.join("").length >= 6;
 }
+
+function wordTokens(transcript: string): string[] {
+  return transcript
+    .split(/\s+/)
+    .map((token) => token.replace(/[^\p{L}\p{N}]/gu, ""))
+    .filter((token) => token.length > 0);
+}
+
+// Speech synthesis moved to ElevenLabs (/api/tts + src/lib/tts-client.ts). The
+// OpenAI Realtime session is transcription-only and never produces audio, so no
+// response.create payload exists anymore — the deterministic assistantResponse
+// is sent verbatim to the TTS endpoint instead.

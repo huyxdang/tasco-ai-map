@@ -1,0 +1,50 @@
+[
+  {
+    "breakfast": true,
+    "breakfast_buffet": false,
+    "family_friendly": false,
+    "hotel_url": "https://www.booking.com/hotel/vn/jovia.vi.html",
+    "name": "Jovia Hotel",
+    "nice_view": true,
+    "parking": false,
+    "pool": true,
+    "price_tier": "Mid-range",
+    "quiet": "",
+    "rating": 4,
+    "rating_source": "Traveloka",
+    "review_count": 74,
+    "street_address": "132 Lý Tự Trọng, Phường Bến Thành, Quận 1, Hồ Chí Minh, Vietnam"
+  },
+  {
+    "breakfast": true,
+    "breakfast_buffet": false,
+    "family_friendly": false,
+    "hotel_url": "https://www.traveloka.com/vi-vn/hotel/vietnam/prostyle-hotel-ho-chi-minh-9000006058214",
+    "name": "Prostyle Hotel Ho Chi Minh",
+    "nice_view": true,
+    "parking": true,
+    "pool": true,
+    "price_tier": "Mid-range",
+    "quiet": "",
+    "rating": 4.15,
+    "rating_source": "KAYAK",
+    "review_count": 446,
+    "street_address": "26 Thi Sach St, Ben Nghe Ward, District 1, Ho Chi Minh City"
+  },
+  {
+    "breakfast": true,
+    "breakfast_buffet": false,
+    "family_friendly": true,
+    "hotel_url": "https://www.agoda.com/queen-central-hotel/hotel/ho-chi-minh-city-vn.html",
+    "name": "Queen Central Hotel - Ben Thanh Market",
+    "nice_view": true,
+    "parking": true,
+    "pool": false,
+    "price_tier": "Budget",
+    "quiet": false,
+    "rating": 2.6,
+    "rating_source": "TripAdvisor",
+    "review_count": 44,
+    "street_address": "38-40 Nguyen An Ninh, Ben Thanh Ward, District 1, Ho Chi Minh City, Vietnam"
+  }
+]

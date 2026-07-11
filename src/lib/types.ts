@@ -89,10 +89,30 @@ export interface Recommendation {
 
 export type JourneyActionKind = "fuel" | "dining" | "parking";
 
+/** Ordered destination category carried alongside the legacy commerce action kind. */
+export type JourneyStopCategory = "cafe" | "restaurant";
+
+/** Deterministic cuisine/dish constraint attached to one ordered stop. */
+export type JourneyStopCuisine =
+  | "pho"
+  | "vietnamese"
+  | "italian"
+  | "japanese"
+  | "korean";
+
+export interface JourneyStopRequest {
+  category: JourneyStopCategory;
+  cuisine?: JourneyStopCuisine;
+}
+
 export interface JourneyAction {
   id: string;
   poiId: string;
   kind: JourneyActionKind;
+  /** Keeps two dining stops (for example cafe then restaurant) distinct. */
+  requestedCategory?: JourneyStopCategory;
+  /** Keeps an explicit dish such as pho stable through recomposition. */
+  requestedCuisine?: JourneyStopCuisine;
   miniApp: string;
   cta: string;
   reason: string;
@@ -129,6 +149,10 @@ export interface JourneySessionState {
   location: string;
   selectedPoiIds: string[];
   actionKinds: JourneyActionKind[];
+  /** Present for conversational multi-destination journeys; index-aligned with actions. */
+  requestedCategories?: JourneyStopCategory[];
+  /** Null preserves index alignment for stops without an explicit cuisine. */
+  requestedCuisines?: Array<JourneyStopCuisine | null>;
   totalVnd: number;
   revision: number;
 }
@@ -182,6 +206,8 @@ export interface SessionContext {
   profileId?: string;
   lastIntent?: string;
   lastQuery?: string;
+  /** Rolling window of the last few user turns for multi-turn context. */
+  recentQueries?: string[];
   constraints?: string[];
   pendingClarification?: {
     entity: string;
@@ -197,6 +223,8 @@ export interface ChatMessage {
 
 export interface ChatRequest {
   message: string;
+  /** Canonical Vietnamese constraint hint from the NLU translator (LLM parses, never decides). */
+  nluHint?: string;
   profileId?: string;
   location?: Coordinates;
   history?: ChatMessage[] | string;
@@ -222,6 +250,8 @@ export interface ChatResponse {
   assistantResponse: string;
   recommendations: Recommendation[];
   confidence: number;
+  /** Tappable answers for a clarification turn; each submits as a normal utterance. */
+  quickReplies?: string[];
   mapAction: MapAction;
   sessionContext?: SessionContext;
   privacy?: {

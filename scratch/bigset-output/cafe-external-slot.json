@@ -1,0 +1,575 @@
+{
+  "status": "completed_external_unadopted",
+  "category": "cafes",
+  "attempt": 28,
+  "attempt_key": "cafes-028-2026-07-11T21-20-00-655Z-open-pack-queue",
+  "old_dataset_id": "jd7attv2yhc8dxc7zaztwmn5dn8aatb3",
+  "dataset_id": "jd77axwbw481a4x0ab6s40v0ds8ab24e",
+  "schema_verified": true,
+  "schema_signature": [
+    "air_conditioned:boolean:field",
+    "cafe_url:url:pk",
+    "name:text:field",
+    "open_late:boolean:field",
+    "opens_early:boolean:field",
+    "outdoor_seating:boolean:field",
+    "parking:boolean:field",
+    "power_outlets:boolean:field",
+    "price_tier:text:field",
+    "quiet:boolean:field",
+    "rating:number:field",
+    "review_count:number:field",
+    "street_address:text:field",
+    "study_friendly:boolean:field",
+    "takeaway:boolean:field",
+    "wifi:boolean:field"
+  ],
+  "reason": "Deterministic open-pack pivot after discovery-stage evidence {\"prior_strategy\":\"open-ended source/corridor discovery\",\"evidence\":\"non-deterministic lead discovery remained the limiting step\"}; exact uncovered names and house-number addresses remove the lead-discovery exit",
+  "prompt_strategy": "deterministic open-pack lead queue (16 exact uncovered name/address candidates); exact search then mandatory run_subagent per lead; fallback URL prevents discovery-only exit",
+  "deterministic_open_pack_recovery": true,
+  "lead_queue": [
+    {
+      "open_pack_id": "OVT-3406C610-4015-4C6E-BF4D-E52D488EEE20",
+      "name": "Cộng Cà Phê",
+      "address": "72 Đường Lê Thánh Tôn, Quận 1",
+      "brand": "",
+      "normalized_name": "cong",
+      "chain_family": "cong",
+      "street_keys": [
+        "72|duong le thanh ton"
+      ],
+      "identity_group_keys": [
+        "cong|72|duong le thanh ton",
+        "cong|72|duong le thanh ton"
+      ],
+      "corridor": "duong le thanh ton",
+      "corridor_coverage": 0,
+      "quality_score": 3,
+      "popularity_score": 97,
+      "fallback_url": "https://www.google.com/maps/search/C%E1%BB%99ng%20C%C3%A0%20Ph%C3%AA%2072%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%AA%20Th%C3%A1nh%20T%C3%B4n%2C%20Qu%E1%BA%ADn%201",
+      "identity_group": {
+        "normalized_name": "cong",
+        "chain_family": "cong",
+        "street_keys": [
+          "72|duong le thanh ton"
+        ],
+        "keys": [
+          "cong|72|duong le thanh ton",
+          "cong|72|duong le thanh ton"
+        ]
+      }
+    },
+    {
+      "open_pack_id": "OVT-9B222E1B-EA53-4AA6-86EC-F93B4707A9ED",
+      "name": "The Letter Cafe",
+      "address": "42 Đường Nguyễn Huệ, Quận 1",
+      "brand": "",
+      "normalized_name": "the letter",
+      "chain_family": "the letter",
+      "street_keys": [
+        "42|duong nguyen hue"
+      ],
+      "identity_group_keys": [
+        "the letter|42|duong nguyen hue",
+        "the letter|42|duong nguyen hue"
+      ],
+      "corridor": "duong nguyen hue",
+      "corridor_coverage": 0,
+      "quality_score": 3,
+      "popularity_score": 97,
+      "fallback_url": "https://www.google.com/maps/search/The%20Letter%20Cafe%2042%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Hu%E1%BB%87%2C%20Qu%E1%BA%ADn%201",
+      "identity_group": {
+        "normalized_name": "the letter",
+        "chain_family": "the letter",
+        "street_keys": [
+          "42|duong nguyen hue"
+        ],
+        "keys": [
+          "the letter|42|duong nguyen hue",
+          "the letter|42|duong nguyen hue"
+        ]
+      }
+    },
+    {
+      "open_pack_id": "OVT-357DF2C6-3E80-4BE4-B867-96BF54D37513",
+      "name": "The Vintage Emporium Da Kao",
+      "address": "95 Nguyễn Văn Thủ, Quận 1",
+      "brand": "",
+      "normalized_name": "the vintage emporium da kao",
+      "chain_family": "the vintage emporium da kao",
+      "street_keys": [
+        "95|nguyen van thu"
+      ],
+      "identity_group_keys": [
+        "the vintage emporium da kao|95|nguyen van thu",
+        "the vintage emporium da kao|95|nguyen van thu"
+      ],
+      "corridor": "nguyen van thu",
+      "corridor_coverage": 0,
+      "quality_score": 3,
+      "popularity_score": 97,
+      "fallback_url": "https://www.google.com/maps/search/The%20Vintage%20Emporium%20Da%20Kao%2095%20Nguy%E1%BB%85n%20V%C4%83n%20Th%E1%BB%A7%2C%20Qu%E1%BA%ADn%201",
+      "identity_group": {
+        "normalized_name": "the vintage emporium da kao",
+        "chain_family": "the vintage emporium da kao",
+        "street_keys": [
+          "95|nguyen van thu"
+        ],
+        "keys": [
+          "the vintage emporium da kao|95|nguyen van thu",
+          "the vintage emporium da kao|95|nguyen van thu"
+        ]
+      }
+    },
+    {
+      "open_pack_id": "OVT-F67C5BC9-623C-499C-99A4-1A1276846DC4",
+      "name": "Thị cafe",
+      "address": "33/72 Đường Nguyễn Trung Trực, Quận 1",
+      "brand": "",
+      "normalized_name": "thi",
+      "chain_family": "thi",
+      "street_keys": [
+        "33/72|duong nguyen trung truc"
+      ],
+      "identity_group_keys": [
+        "thi|33/72|duong nguyen trung truc",
+        "thi|33/72|duong nguyen trung truc"
+      ],
+      "corridor": "duong nguyen trung truc",
+      "corridor_coverage": 0,
+      "quality_score": 3,
+      "popularity_score": 97,
+      "fallback_url": "https://www.google.com/maps/search/Th%E1%BB%8B%20cafe%2033%2F72%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Trung%20Tr%E1%BB%B1c%2C%20Qu%E1%BA%ADn%201",
+      "identity_group": {
+        "normalized_name": "thi",
+        "chain_family": "thi",
+        "street_keys": [
+          "33/72|duong nguyen trung truc"
+        ],
+        "keys": [
+          "thi|33/72|duong nguyen trung truc",
+          "thi|33/72|duong nguyen trung truc"
+        ]
+      }
+    },
+    {
+      "open_pack_id": "OVT-86D97713-FEE6-4E85-9001-9E23B4441914",
+      "name": "3T Ca Phe Trung",
+      "address": "1A Đường Tôn Đức Thắng, Quận 1",
+      "brand": "",
+      "normalized_name": "trung",
+      "chain_family": "trung",
+      "street_keys": [
+        "1a|duong ton duc thang"
+      ],
+      "identity_group_keys": [
+        "trung|1a|duong ton duc thang",
+        "trung|1a|duong ton duc thang"
+      ],
+      "corridor": "duong ton duc thang",
+      "corridor_coverage": 0,
+      "quality_score": 3,
+      "popularity_score": 97,
+      "fallback_url": "https://www.google.com/maps/search/3T%20Ca%20Phe%20Trung%201A%20%C4%90%C6%B0%E1%BB%9Dng%20T%C3%B4n%20%C4%90%E1%BB%A9c%20Th%E1%BA%AFng%2C%20Qu%E1%BA%ADn%201",
+      "identity_group": {
+        "normalized_name": "trung",
+        "chain_family": "trung",
+        "street_keys": [
+          "1a|duong ton duc thang"
+        ],
+        "keys": [
+          "trung|1a|duong ton duc thang",
+          "trung|1a|duong ton duc thang"
+        ]
+      }
+    },
+    {
+      "open_pack_id": "OVT-25847354-A47B-474B-ACDF-3FDCD9C5427C",
+      "name": "Trung Nguyên Legend Café",
+      "address": "219 Đường Lý Tự Trọng, Quận 1",
+      "brand": "",
+      "normalized_name": "trung nguyen legend",
+      "chain_family": "trung nguyen",
+      "street_keys": [
+        "219|duong ly tu trong"
+      ],
+      "identity_group_keys": [
+        "trung nguyen legend|219|duong ly tu trong",
+        "trung nguyen|219|duong ly tu trong"
+      ],
+      "corridor": "duong ly tu trong",
+      "corridor_coverage": 0,
+      "quality_score": 3,
+      "popularity_score": 97,
+      "fallback_url": "https://www.google.com/maps/search/Trung%20Nguy%C3%AAn%20Legend%20Caf%C3%A9%20219%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%BD%20T%E1%BB%B1%20Tr%E1%BB%8Dng%2C%20Qu%E1%BA%ADn%201",
+      "identity_group": {
+        "normalized_name": "trung nguyen legend",
+        "chain_family": "trung nguyen",
+        "street_keys": [
+          "219|duong ly tu trong"
+        ],
+        "keys": [
+          "trung nguyen legend|219|duong ly tu trong",
+          "trung nguyen|219|duong ly tu trong"
+        ]
+      }
+    },
+    {
+      "open_pack_id": "OVT-FD106A55-031E-48A0-8607-374227A29CDD",
+      "name": "Gióng Cafe",
+      "address": "57 Đường Nguyễn Du, Quận 1",
+      "brand": "",
+      "normalized_name": "giong",
+      "chain_family": "giong",
+      "street_keys": [
+        "57|duong nguyen du"
+      ],
+      "identity_group_keys": [
+        "giong|57|duong nguyen du",
+        "giong|57|duong nguyen du"
+      ],
+      "corridor": "duong nguyen du",
+      "corridor_coverage": 0,
+      "quality_score": 3,
+      "popularity_score": 96,
+      "fallback_url": "https://www.google.com/maps/search/Gi%C3%B3ng%20Cafe%2057%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Du%2C%20Qu%E1%BA%ADn%201",
+      "identity_group": {
+        "normalized_name": "giong",
+        "chain_family": "giong",
+        "street_keys": [
+          "57|duong nguyen du"
+        ],
+        "keys": [
+          "giong|57|duong nguyen du",
+          "giong|57|duong nguyen du"
+        ]
+      }
+    },
+    {
+      "open_pack_id": "OVT-9C7D5186-633C-4850-901E-8C4EBD384ACD",
+      "name": "Gờ cafe - Nguyễn Thị Minh Khai",
+      "address": "6/12 Hẻm 6 Nguyễn Thị Minh Khai, Quận 1",
+      "brand": "",
+      "normalized_name": "go nguyen thi khai",
+      "chain_family": "go nguyen thi khai",
+      "street_keys": [
+        "6/12|hem 6 nguyen thi minh khai"
+      ],
+      "identity_group_keys": [
+        "go nguyen thi khai|6/12|hem 6 nguyen thi minh khai",
+        "go nguyen thi khai|6/12|hem 6 nguyen thi minh khai"
+      ],
+      "corridor": "hem 6 nguyen thi minh khai",
+      "corridor_coverage": 0,
+      "quality_score": 3,
+      "popularity_score": 96,
+      "fallback_url": "https://www.google.com/maps/search/G%E1%BB%9D%20cafe%20-%20Nguy%E1%BB%85n%20Th%E1%BB%8B%20Minh%20Khai%206%2F12%20H%E1%BA%BBm%206%20Nguy%E1%BB%85n%20Th%E1%BB%8B%20Minh%20Khai%2C%20Qu%E1%BA%ADn%201",
+      "identity_group": {
+        "normalized_name": "go nguyen thi khai",
+        "chain_family": "go nguyen thi khai",
+        "street_keys": [
+          "6/12|hem 6 nguyen thi minh khai"
+        ],
+        "keys": [
+          "go nguyen thi khai|6/12|hem 6 nguyen thi minh khai",
+          "go nguyen thi khai|6/12|hem 6 nguyen thi minh khai"
+        ]
+      }
+    },
+    {
+      "open_pack_id": "OVT-0074F26A-C098-44EE-8976-F9CC642EFA11",
+      "name": "Gucafe",
+      "address": "31 Đường Trương Định, Quận 1",
+      "brand": "",
+      "normalized_name": "gucafe",
+      "chain_family": "gucafe",
+      "street_keys": [
+        "31|duong truong dinh"
+      ],
+      "identity_group_keys": [
+        "gucafe|31|duong truong dinh",
+        "gucafe|31|duong truong dinh"
+      ],
+      "corridor": "duong truong dinh",
+      "corridor_coverage": 0,
+      "quality_score": 3,
+      "popularity_score": 96,
+      "fallback_url": "https://www.google.com/maps/search/Gucafe%2031%20%C4%90%C6%B0%E1%BB%9Dng%20Tr%C6%B0%C6%A1ng%20%C4%90%E1%BB%8Bnh%2C%20Qu%E1%BA%ADn%201",
+      "identity_group": {
+        "normalized_name": "gucafe",
+        "chain_family": "gucafe",
+        "street_keys": [
+          "31|duong truong dinh"
+        ],
+        "keys": [
+          "gucafe|31|duong truong dinh",
+          "gucafe|31|duong truong dinh"
+        ]
+      }
+    },
+    {
+      "open_pack_id": "OVT-01516DBB-5A93-411E-87DD-52C6D0C9D71E",
+      "name": "Highlands Coffee",
+      "address": "34 Đường Lê Duẩn, Quận 1",
+      "brand": "",
+      "normalized_name": "highlands",
+      "chain_family": "highlands",
+      "street_keys": [
+        "34|duong le duan"
+      ],
+      "identity_group_keys": [
+        "highlands|34|duong le duan",
+        "highlands|34|duong le duan"
+      ],
+      "corridor": "duong le duan",
+      "corridor_coverage": 0,
+      "quality_score": 3,
+      "popularity_score": 96,
+      "fallback_url": "https://www.google.com/maps/search/Highlands%20Coffee%2034%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%AA%20Du%E1%BA%A9n%2C%20Qu%E1%BA%ADn%201",
+      "identity_group": {
+        "normalized_name": "highlands",
+        "chain_family": "highlands",
+        "street_keys": [
+          "34|duong le duan"
+        ],
+        "keys": [
+          "highlands|34|duong le duan",
+          "highlands|34|duong le duan"
+        ]
+      }
+    },
+    {
+      "open_pack_id": "OVT-EB4BBD0E-ACB2-4ED3-B894-8ED8922E8148",
+      "name": "Leu",
+      "address": "82 Đường Nguyễn Đình Chiểu, Quận 1",
+      "brand": "",
+      "normalized_name": "leu",
+      "chain_family": "leu",
+      "street_keys": [
+        "82|duong nguyen dinh chieu"
+      ],
+      "identity_group_keys": [
+        "leu|82|duong nguyen dinh chieu",
+        "leu|82|duong nguyen dinh chieu"
+      ],
+      "corridor": "duong nguyen dinh chieu",
+      "corridor_coverage": 0,
+      "quality_score": 3,
+      "popularity_score": 96,
+      "fallback_url": "https://www.google.com/maps/search/Leu%2082%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20%C4%90%C3%ACnh%20Chi%E1%BB%83u%2C%20Qu%E1%BA%ADn%201",
+      "identity_group": {
+        "normalized_name": "leu",
+        "chain_family": "leu",
+        "street_keys": [
+          "82|duong nguyen dinh chieu"
+        ],
+        "keys": [
+          "leu|82|duong nguyen dinh chieu",
+          "leu|82|duong nguyen dinh chieu"
+        ]
+      }
+    },
+    {
+      "open_pack_id": "OVT-B5CADDB9-94E9-4260-AA61-63B8ACC12EF7",
+      "name": "Mơ Đi Hội",
+      "address": "145 Đường Nguyễn Trãi, Quận 1",
+      "brand": "",
+      "normalized_name": "mo di hoi",
+      "chain_family": "mo di hoi",
+      "street_keys": [
+        "145|duong nguyen trai"
+      ],
+      "identity_group_keys": [
+        "mo di hoi|145|duong nguyen trai",
+        "mo di hoi|145|duong nguyen trai"
+      ],
+      "corridor": "duong nguyen trai",
+      "corridor_coverage": 0,
+      "quality_score": 3,
+      "popularity_score": 96,
+      "fallback_url": "https://www.google.com/maps/search/M%C6%A1%20%C4%90i%20H%E1%BB%99i%20145%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Tr%C3%A3i%2C%20Qu%E1%BA%ADn%201",
+      "identity_group": {
+        "normalized_name": "mo di hoi",
+        "chain_family": "mo di hoi",
+        "street_keys": [
+          "145|duong nguyen trai"
+        ],
+        "keys": [
+          "mo di hoi|145|duong nguyen trai",
+          "mo di hoi|145|duong nguyen trai"
+        ]
+      }
+    },
+    {
+      "open_pack_id": "OVT-BE662392-AB4D-4AF4-BEA9-F7F7687A13D3",
+      "name": "Petit Four Cafe",
+      "address": "18A/36/3 Hẻm 18A/3 Nguyễn Thị Minh Khai, Quận 1",
+      "brand": "",
+      "normalized_name": "petit four",
+      "chain_family": "petit four",
+      "street_keys": [
+        "36/3|hem 18a 3 nguyen thi minh khai"
+      ],
+      "identity_group_keys": [
+        "petit four|36/3|hem 18a 3 nguyen thi minh khai",
+        "petit four|36/3|hem 18a 3 nguyen thi minh khai"
+      ],
+      "corridor": "hem 18a 3 nguyen thi minh khai",
+      "corridor_coverage": 0,
+      "quality_score": 3,
+      "popularity_score": 96,
+      "fallback_url": "https://www.google.com/maps/search/Petit%20Four%20Cafe%2018A%2F36%2F3%20H%E1%BA%BBm%2018A%2F3%20Nguy%E1%BB%85n%20Th%E1%BB%8B%20Minh%20Khai%2C%20Qu%E1%BA%ADn%201",
+      "identity_group": {
+        "normalized_name": "petit four",
+        "chain_family": "petit four",
+        "street_keys": [
+          "36/3|hem 18a 3 nguyen thi minh khai"
+        ],
+        "keys": [
+          "petit four|36/3|hem 18a 3 nguyen thi minh khai",
+          "petit four|36/3|hem 18a 3 nguyen thi minh khai"
+        ]
+      }
+    },
+    {
+      "open_pack_id": "OVT-B007061D-0AFB-40DB-BC9D-7FC39A296A24",
+      "name": "RuNam d'Or",
+      "address": "3 Công Trường Công Xã Paris, Quận 1",
+      "brand": "",
+      "normalized_name": "runam d or",
+      "chain_family": "runam d or",
+      "street_keys": [
+        "3|cong truong cong xa paris"
+      ],
+      "identity_group_keys": [
+        "runam d or|3|cong truong cong xa paris",
+        "runam d or|3|cong truong cong xa paris"
+      ],
+      "corridor": "cong truong cong xa paris",
+      "corridor_coverage": 0,
+      "quality_score": 3,
+      "popularity_score": 96,
+      "fallback_url": "https://www.google.com/maps/search/RuNam%20d'Or%203%20C%C3%B4ng%20Tr%C6%B0%E1%BB%9Dng%20C%C3%B4ng%20X%C3%A3%20Paris%2C%20Qu%E1%BA%ADn%201",
+      "identity_group": {
+        "normalized_name": "runam d or",
+        "chain_family": "runam d or",
+        "street_keys": [
+          "3|cong truong cong xa paris"
+        ],
+        "keys": [
+          "runam d or|3|cong truong cong xa paris",
+          "runam d or|3|cong truong cong xa paris"
+        ]
+      }
+    },
+    {
+      "open_pack_id": "OVT-A154970E-5DB9-4D2D-9E77-D3129CC28A0B",
+      "name": "Bookworm's Coffee",
+      "address": "4 Hẻm 1 Đường Đỗ Quang Đẩu, Quận 1",
+      "brand": "",
+      "normalized_name": "bookworm s",
+      "chain_family": "bookworm s",
+      "street_keys": [
+        "4|hem 1 duong do quang dau"
+      ],
+      "identity_group_keys": [
+        "bookworm s|4|hem 1 duong do quang dau",
+        "bookworm s|4|hem 1 duong do quang dau"
+      ],
+      "corridor": "hem 1 duong do quang dau",
+      "corridor_coverage": 0,
+      "quality_score": 3,
+      "popularity_score": 95,
+      "fallback_url": "https://www.google.com/maps/search/Bookworm's%20Coffee%204%20H%E1%BA%BBm%201%20%C4%90%C6%B0%E1%BB%9Dng%20%C4%90%E1%BB%97%20Quang%20%C4%90%E1%BA%A9u%2C%20Qu%E1%BA%ADn%201",
+      "identity_group": {
+        "normalized_name": "bookworm s",
+        "chain_family": "bookworm s",
+        "street_keys": [
+          "4|hem 1 duong do quang dau"
+        ],
+        "keys": [
+          "bookworm s|4|hem 1 duong do quang dau",
+          "bookworm s|4|hem 1 duong do quang dau"
+        ]
+      }
+    },
+    {
+      "open_pack_id": "OVT-2ABE3797-6199-461C-9802-9FE12F16AC40",
+      "name": "E-Paso Coffee",
+      "address": "94E Đường Pasteur, Quận 1",
+      "brand": "",
+      "normalized_name": "e paso",
+      "chain_family": "e paso",
+      "street_keys": [
+        "94e|duong pasteur"
+      ],
+      "identity_group_keys": [
+        "e paso|94e|duong pasteur",
+        "e paso|94e|duong pasteur"
+      ],
+      "corridor": "duong pasteur",
+      "corridor_coverage": 0,
+      "quality_score": 3,
+      "popularity_score": 95,
+      "fallback_url": "https://www.google.com/maps/search/E-Paso%20Coffee%2094E%20%C4%90%C6%B0%E1%BB%9Dng%20Pasteur%2C%20Qu%E1%BA%ADn%201",
+      "identity_group": {
+        "normalized_name": "e paso",
+        "chain_family": "e paso",
+        "street_keys": [
+          "94e|duong pasteur"
+        ],
+        "keys": [
+          "e paso|94e|duong pasteur",
+          "e paso|94e|duong pasteur"
+        ]
+      }
+    }
+  ],
+  "lead_ids": [
+    "OVT-3406C610-4015-4C6E-BF4D-E52D488EEE20",
+    "OVT-9B222E1B-EA53-4AA6-86EC-F93B4707A9ED",
+    "OVT-357DF2C6-3E80-4BE4-B867-96BF54D37513",
+    "OVT-F67C5BC9-623C-499C-99A4-1A1276846DC4",
+    "OVT-86D97713-FEE6-4E85-9001-9E23B4441914",
+    "OVT-25847354-A47B-474B-ACDF-3FDCD9C5427C",
+    "OVT-FD106A55-031E-48A0-8607-374227A29CDD",
+    "OVT-9C7D5186-633C-4850-901E-8C4EBD384ACD",
+    "OVT-0074F26A-C098-44EE-8976-F9CC642EFA11",
+    "OVT-01516DBB-5A93-411E-87DD-52C6D0C9D71E",
+    "OVT-EB4BBD0E-ACB2-4ED3-B894-8ED8922E8148",
+    "OVT-B5CADDB9-94E9-4260-AA61-63B8ACC12EF7",
+    "OVT-BE662392-AB4D-4AF4-BEA9-F7F7687A13D3",
+    "OVT-B007061D-0AFB-40DB-BC9D-7FC39A296A24",
+    "OVT-A154970E-5DB9-4D2D-9E77-D3129CC28A0B",
+    "OVT-2ABE3797-6199-461C-9802-9FE12F16AC40"
+  ],
+  "created_at": "2026-07-11T21:20:00.655Z",
+  "started_at": "2026-07-11T21:20:00.656Z",
+  "pre_snapshot": "scratch/bigset-output/attempts/cafes-attempt-028-2026-07-11T21-20-00-655Z-pre.json",
+  "required_models": {
+    "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+    "investigate_subagent": "openai/gpt-oss-120b:nitro"
+  },
+  "effective_model_config": {
+    "schema_inference": "anthropic/claude-sonnet-4.6",
+    "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+    "investigate_subagent": "openai/gpt-oss-120b:nitro",
+    "verified_at": "2026-07-11T21:19:34.809Z",
+    "source": "GET /settings/models"
+  },
+  "fail_fast_zero_rows": true,
+  "unique_before": 106,
+  "usable_before": 95,
+  "run_id": "78cb8fa7-d140-4123-8a17-f0647e2586f1",
+  "submitted_at": "2026-07-11T21:20:00.676Z",
+  "dataset_status": "live",
+  "status_error": null,
+  "rows_exported": 10,
+  "export": "scratch/bigset-output/attempts/cafes-attempt-028-2026-07-11T21-20-00-655Z-rows.json",
+  "finished_at": "2026-07-11T21:22:45.809Z",
+  "adoption_ready": true,
+  "unique_after": 115,
+  "unique_delta": 9,
+  "usable_after": 104,
+  "usable_delta": 9
+}

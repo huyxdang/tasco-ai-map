@@ -97,6 +97,8 @@ OpenAI is optional and limited to rewriting already-grounded Vietnamese prose. T
 
 An eligible Vietnamese driving request naming at least two of fuel, dining, and parking produces one `journey` with 2–3 dataset-grounded actions. Stable action IDs, integer VND prices, discounts, rewards, totals, sponsorship disclosures, and `simulated: true` markers are computed locally. `Rẻ hơn một chút` reuses compact client-carried journey state and either returns a strictly lower same-category/same-city bundle or honestly retains the current journey. Confirmation and its single simulated VETC receipt are browser-local and hand off to the existing Route Theater.
 
+Explicit sequential requests such as “coffee then phở” produce an ordered café → phở journey. The engine ranks each leg from its own segment, retains the current turn plus three prior user turns for refinements, keeps each stop’s category and explicit cuisine/dish stable during cheaper recomposition, returns no partial plan when a leg is unavailable, and clears stale journey/history state when the user begins a new topic.
+
 The exact scoring formula and context lifecycle are documented in [docs/architecture.md](docs/architecture.md).
 
 ### 2D map

@@ -4,8 +4,14 @@ import { dirname, resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { runConversationScenarioEval, scenarioEvalMarkdown } from "../src/lib/conversation-scenario-eval";
+import { activePackName, getPoiById } from "../src/lib/data";
 
 describe("Conversation_Scenarios evaluation", () => {
+  it("runs against the frozen workbook pack — never the open pack", () => {
+    expect(activePackName).toBe("workbook");
+    expect(getPoiById("POI001")?.name).toBe("The Workshop Coffee");
+  });
+
   it("runs every workbook scenario and records auditable traces", () => {
     const report = runConversationScenarioEval();
     const jsonPath = resolve("artifacts/evals/conversation-scenarios-traces.json");

@@ -1,0 +1,3572 @@
+{
+  "status": "adopted_partial",
+  "category": "restaurants",
+  "attempts": [
+    {
+      "status": "completed_external_unadopted",
+      "category": "restaurants",
+      "attempt": 17,
+      "attempt_key": "restaurants-017-2026-07-11T20-40-17-677Z-external-slot",
+      "old_dataset_id": "jd7420m8t5nbmp53mx72npmrw18aa0nx",
+      "dataset_id": "jd79yz9g5jyvycbttgnwm4mckn8aay8q",
+      "schema_verified": true,
+      "schema_signature": [
+        "air_conditioned:boolean:field",
+        "cuisine:text:field",
+        "family_friendly:boolean:field",
+        "foody_url:url:pk",
+        "name:text:field",
+        "nice_view:boolean:field",
+        "open_late:boolean:field",
+        "outdoor_seating:boolean:field",
+        "parking:boolean:field",
+        "price_tier:text:field",
+        "rating:number:field",
+        "rating_source:text:field",
+        "reservations:boolean:field",
+        "review_count:number:field",
+        "romantic:boolean:field",
+        "street_address:text:field"
+      ],
+      "reason": "Causal recovery after replacement attempt 16 made repeated broad search/fetch calls, dispatched zero run_subagent calls, and inserted zero rows; route one source-and-street lead directly to each subagent",
+      "prompt_strategy": "restaurant lead-router recovery: one source-and-street search then immediate run_subagent; no orchestrator fetch; rotate source family and under-covered corridor",
+      "source_street_recovery": true,
+      "causal_terminal_recovery": true,
+      "created_at": "2026-07-11T20:40:17.677Z",
+      "started_at": "2026-07-11T20:40:17.679Z",
+      "pre_snapshot": "scratch/bigset-output/attempts/restaurants-attempt-017-2026-07-11T20-40-17-677Z-pre.json",
+      "required_models": {
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro"
+      },
+      "effective_model_config": {
+        "schema_inference": "anthropic/claude-sonnet-4.6",
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro",
+        "verified_at": "2026-07-11T20:39:48.616Z",
+        "source": "GET /settings/models"
+      },
+      "fail_fast_zero_rows": true,
+      "run_id": "3adbefbb-edf9-403a-a3b3-210a3f93432a",
+      "submitted_at": "2026-07-11T20:40:17.689Z",
+      "dataset_status": "live",
+      "status_error": null,
+      "rows_exported": 4,
+      "export": "scratch/bigset-output/attempts/restaurants-attempt-017-2026-07-11T20-40-17-677Z-rows.json",
+      "finished_at": "2026-07-11T20:43:02.794Z",
+      "adoption_ready": true,
+      "unique_before": 30,
+      "unique_after": 34,
+      "unique_delta": 4,
+      "usable_before": 28,
+      "usable_after": 32,
+      "usable_delta": 4
+    },
+    {
+      "status": "completed_external_unadopted",
+      "category": "restaurants",
+      "attempt": 18,
+      "attempt_key": "restaurants-018-2026-07-11T20-44-10-752Z-external-slot",
+      "old_dataset_id": "jd79yz9g5jyvycbttgnwm4mckn8aay8q",
+      "dataset_id": "jd7dv7ncyy60xx2ewy7rjdtrkx8abzf5",
+      "schema_verified": true,
+      "schema_signature": [
+        "air_conditioned:boolean:field",
+        "cuisine:text:field",
+        "family_friendly:boolean:field",
+        "foody_url:url:pk",
+        "name:text:field",
+        "nice_view:boolean:field",
+        "open_late:boolean:field",
+        "outdoor_seating:boolean:field",
+        "parking:boolean:field",
+        "price_tier:text:field",
+        "rating:number:field",
+        "rating_source:text:field",
+        "reservations:boolean:field",
+        "review_count:number:field",
+        "romantic:boolean:field",
+        "street_address:text:field"
+      ],
+      "reason": "Causal recovery after replacement attempt 16 made repeated broad search/fetch calls, dispatched zero run_subagent calls, and inserted zero rows; route one source-and-street lead directly to each subagent",
+      "prompt_strategy": "restaurant lead-router recovery: one source-and-street search then immediate run_subagent; no orchestrator fetch; rotate source family and under-covered corridor",
+      "source_street_recovery": true,
+      "causal_terminal_recovery": true,
+      "created_at": "2026-07-11T20:44:10.752Z",
+      "started_at": "2026-07-11T20:44:10.753Z",
+      "pre_snapshot": "scratch/bigset-output/attempts/restaurants-attempt-018-2026-07-11T20-44-10-752Z-pre.json",
+      "required_models": {
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro"
+      },
+      "effective_model_config": {
+        "schema_inference": "anthropic/claude-sonnet-4.6",
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro",
+        "verified_at": "2026-07-11T20:43:43.341Z",
+        "source": "GET /settings/models"
+      },
+      "fail_fast_zero_rows": true,
+      "unique_before": 34,
+      "usable_before": 32,
+      "run_id": "4a241593-071f-4325-a9ed-2cb540ca36ba",
+      "submitted_at": "2026-07-11T20:44:10.769Z",
+      "dataset_status": "live",
+      "status_error": null,
+      "rows_exported": 7,
+      "export": "scratch/bigset-output/attempts/restaurants-attempt-018-2026-07-11T20-44-10-752Z-rows.json",
+      "finished_at": "2026-07-11T20:47:25.913Z",
+      "adoption_ready": true,
+      "unique_after": 41,
+      "unique_delta": 7,
+      "usable_after": 39,
+      "usable_delta": 7
+    },
+    {
+      "status": "completed_external_unadopted",
+      "category": "restaurants",
+      "attempt": 19,
+      "attempt_key": "restaurants-019-2026-07-11T20-47-59-464Z-external-slot",
+      "old_dataset_id": "jd7dv7ncyy60xx2ewy7rjdtrkx8abzf5",
+      "dataset_id": "jd70rpyd6adad5dsyrjby44f3h8aaqjh",
+      "schema_verified": true,
+      "schema_signature": [
+        "air_conditioned:boolean:field",
+        "cuisine:text:field",
+        "family_friendly:boolean:field",
+        "foody_url:url:pk",
+        "name:text:field",
+        "nice_view:boolean:field",
+        "open_late:boolean:field",
+        "outdoor_seating:boolean:field",
+        "parking:boolean:field",
+        "price_tier:text:field",
+        "rating:number:field",
+        "rating_source:text:field",
+        "reservations:boolean:field",
+        "review_count:number:field",
+        "romantic:boolean:field",
+        "street_address:text:field"
+      ],
+      "reason": "Causal recovery after replacement attempt 16 made repeated broad search/fetch calls, dispatched zero run_subagent calls, and inserted zero rows; route one source-and-street lead directly to each subagent",
+      "prompt_strategy": "restaurant lead-router recovery: one source-and-street search then immediate run_subagent; no orchestrator fetch; rotate source family and under-covered corridor",
+      "source_street_recovery": true,
+      "causal_terminal_recovery": true,
+      "created_at": "2026-07-11T20:47:59.464Z",
+      "started_at": "2026-07-11T20:47:59.465Z",
+      "pre_snapshot": "scratch/bigset-output/attempts/restaurants-attempt-019-2026-07-11T20-47-59-464Z-pre.json",
+      "required_models": {
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro"
+      },
+      "effective_model_config": {
+        "schema_inference": "anthropic/claude-sonnet-4.6",
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro",
+        "verified_at": "2026-07-11T20:47:34.774Z",
+        "source": "GET /settings/models"
+      },
+      "fail_fast_zero_rows": true,
+      "unique_before": 41,
+      "usable_before": 39,
+      "run_id": "dd6abf5f-e4c0-4816-9cb9-14db9cdae54a",
+      "submitted_at": "2026-07-11T20:47:59.483Z",
+      "dataset_status": "live",
+      "status_error": null,
+      "rows_exported": 3,
+      "export": "scratch/bigset-output/attempts/restaurants-attempt-019-2026-07-11T20-47-59-464Z-rows.json",
+      "finished_at": "2026-07-11T20:50:29.579Z",
+      "adoption_ready": true,
+      "unique_after": 43,
+      "unique_delta": 2,
+      "usable_after": 41,
+      "usable_delta": 2
+    },
+    {
+      "status": "completed_external_unadopted",
+      "category": "restaurants",
+      "attempt": 20,
+      "attempt_key": "restaurants-020-2026-07-11T20-50-53-278Z-external-slot",
+      "old_dataset_id": "jd70rpyd6adad5dsyrjby44f3h8aaqjh",
+      "dataset_id": "jd75k00htf4bnyy5dbnkt9z3tn8aahmg",
+      "schema_verified": true,
+      "schema_signature": [
+        "air_conditioned:boolean:field",
+        "cuisine:text:field",
+        "family_friendly:boolean:field",
+        "foody_url:url:pk",
+        "name:text:field",
+        "nice_view:boolean:field",
+        "open_late:boolean:field",
+        "outdoor_seating:boolean:field",
+        "parking:boolean:field",
+        "price_tier:text:field",
+        "rating:number:field",
+        "rating_source:text:field",
+        "reservations:boolean:field",
+        "review_count:number:field",
+        "romantic:boolean:field",
+        "street_address:text:field"
+      ],
+      "reason": "Causal recovery after replacement attempt 16 made repeated broad search/fetch calls, dispatched zero run_subagent calls, and inserted zero rows; route one source-and-street lead directly to each subagent",
+      "prompt_strategy": "restaurant lead-router recovery: one source-and-street search then immediate run_subagent; no orchestrator fetch; rotate source family and under-covered corridor",
+      "source_street_recovery": true,
+      "causal_terminal_recovery": true,
+      "created_at": "2026-07-11T20:50:53.278Z",
+      "started_at": "2026-07-11T20:50:53.279Z",
+      "pre_snapshot": "scratch/bigset-output/attempts/restaurants-attempt-020-2026-07-11T20-50-53-278Z-pre.json",
+      "required_models": {
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro"
+      },
+      "effective_model_config": {
+        "schema_inference": "anthropic/claude-sonnet-4.6",
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro",
+        "verified_at": "2026-07-11T20:50:29.584Z",
+        "source": "GET /settings/models"
+      },
+      "fail_fast_zero_rows": true,
+      "unique_before": 43,
+      "usable_before": 41,
+      "run_id": "24350ea6-46ea-4265-90bc-3d8d496c5642",
+      "submitted_at": "2026-07-11T20:50:53.298Z",
+      "dataset_status": "live",
+      "status_error": null,
+      "rows_exported": 2,
+      "export": "scratch/bigset-output/attempts/restaurants-attempt-020-2026-07-11T20-50-53-278Z-rows.json",
+      "finished_at": "2026-07-11T20:51:38.347Z",
+      "adoption_ready": true,
+      "unique_after": 45,
+      "unique_delta": 2,
+      "usable_after": 43,
+      "usable_delta": 2
+    },
+    {
+      "status": "completed_external_unadopted",
+      "category": "restaurants",
+      "attempt": 21,
+      "attempt_key": "restaurants-021-2026-07-11T20-52-02-775Z-external-slot",
+      "old_dataset_id": "jd75k00htf4bnyy5dbnkt9z3tn8aahmg",
+      "dataset_id": "jd7eh9k0whrc2yjcds4qq2qt198aaqyv",
+      "schema_verified": true,
+      "schema_signature": [
+        "air_conditioned:boolean:field",
+        "cuisine:text:field",
+        "family_friendly:boolean:field",
+        "foody_url:url:pk",
+        "name:text:field",
+        "nice_view:boolean:field",
+        "open_late:boolean:field",
+        "outdoor_seating:boolean:field",
+        "parking:boolean:field",
+        "price_tier:text:field",
+        "rating:number:field",
+        "rating_source:text:field",
+        "reservations:boolean:field",
+        "review_count:number:field",
+        "romantic:boolean:field",
+        "street_address:text:field"
+      ],
+      "reason": "Causal recovery after replacement attempt 16 made repeated broad search/fetch calls, dispatched zero run_subagent calls, and inserted zero rows; route one source-and-street lead directly to each subagent",
+      "prompt_strategy": "restaurant lead-router recovery: one source-and-street search then immediate run_subagent; no orchestrator fetch; rotate source family and under-covered corridor",
+      "source_street_recovery": true,
+      "causal_terminal_recovery": true,
+      "created_at": "2026-07-11T20:52:02.775Z",
+      "started_at": "2026-07-11T20:52:02.776Z",
+      "pre_snapshot": "scratch/bigset-output/attempts/restaurants-attempt-021-2026-07-11T20-52-02-775Z-pre.json",
+      "required_models": {
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro"
+      },
+      "effective_model_config": {
+        "schema_inference": "anthropic/claude-sonnet-4.6",
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro",
+        "verified_at": "2026-07-11T20:51:38.354Z",
+        "source": "GET /settings/models"
+      },
+      "fail_fast_zero_rows": true,
+      "unique_before": 45,
+      "usable_before": 43,
+      "run_id": "f7db9199-09fb-487e-9e66-7b1cd42d4893",
+      "submitted_at": "2026-07-11T20:52:02.795Z",
+      "dataset_status": "live",
+      "status_error": null,
+      "rows_exported": 1,
+      "export": "scratch/bigset-output/attempts/restaurants-attempt-021-2026-07-11T20-52-02-775Z-rows.json",
+      "finished_at": "2026-07-11T20:52:32.833Z",
+      "adoption_ready": true,
+      "unique_after": 45,
+      "unique_delta": 0,
+      "usable_after": 43,
+      "usable_delta": 0
+    },
+    {
+      "status": "paused_zero_row_review",
+      "category": "restaurants",
+      "attempt": 22,
+      "attempt_key": "restaurants-022-2026-07-11T20-52-59-360Z-external-slot",
+      "old_dataset_id": "jd7eh9k0whrc2yjcds4qq2qt198aaqyv",
+      "dataset_id": "jd7bp2eg9gavsxrhwsrn8r48c18ab0qa",
+      "schema_verified": true,
+      "schema_signature": [
+        "air_conditioned:boolean:field",
+        "cuisine:text:field",
+        "family_friendly:boolean:field",
+        "foody_url:url:pk",
+        "name:text:field",
+        "nice_view:boolean:field",
+        "open_late:boolean:field",
+        "outdoor_seating:boolean:field",
+        "parking:boolean:field",
+        "price_tier:text:field",
+        "rating:number:field",
+        "rating_source:text:field",
+        "reservations:boolean:field",
+        "review_count:number:field",
+        "romantic:boolean:field",
+        "street_address:text:field"
+      ],
+      "reason": "Causal recovery after replacement attempt 16 made repeated broad search/fetch calls, dispatched zero run_subagent calls, and inserted zero rows; route one source-and-street lead directly to each subagent",
+      "prompt_strategy": "restaurant lead-router recovery: one source-and-street search then immediate run_subagent; no orchestrator fetch; rotate source family and under-covered corridor",
+      "source_street_recovery": true,
+      "causal_terminal_recovery": true,
+      "created_at": "2026-07-11T20:52:59.360Z",
+      "started_at": "2026-07-11T20:52:59.362Z",
+      "pre_snapshot": "scratch/bigset-output/attempts/restaurants-attempt-022-2026-07-11T20-52-59-360Z-pre.json",
+      "required_models": {
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro"
+      },
+      "effective_model_config": {
+        "schema_inference": "anthropic/claude-sonnet-4.6",
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro",
+        "verified_at": "2026-07-11T20:52:32.839Z",
+        "source": "GET /settings/models"
+      },
+      "fail_fast_zero_rows": true,
+      "unique_before": 45,
+      "usable_before": 43,
+      "run_id": "0e0e323d-ff9c-4221-9e92-f8ce510e16b2",
+      "submitted_at": "2026-07-11T20:52:59.380Z",
+      "dataset_status": "failed",
+      "status_error": "Populate workflow completed with 0 rows",
+      "rows_exported": 0,
+      "export": "scratch/bigset-output/attempts/restaurants-attempt-022-2026-07-11T20-52-59-360Z-rows.json",
+      "finished_at": "2026-07-11T20:53:14.404Z",
+      "adoption_ready": true,
+      "unique_after": 45,
+      "unique_delta": 0,
+      "usable_after": 43,
+      "usable_delta": 0
+    },
+    {
+      "status": "completed_external_unadopted",
+      "category": "restaurants",
+      "attempt": 23,
+      "attempt_key": "restaurants-023-2026-07-11T20-59-07-784Z-open-pack-queue",
+      "old_dataset_id": "jd7bp2eg9gavsxrhwsrn8r48c18ab0qa",
+      "dataset_id": "jd74tvbx0n6xy29jtw9c7vpmsd8abckz",
+      "schema_verified": true,
+      "schema_signature": [
+        "air_conditioned:boolean:field",
+        "cuisine:text:field",
+        "family_friendly:boolean:field",
+        "foody_url:url:pk",
+        "name:text:field",
+        "nice_view:boolean:field",
+        "open_late:boolean:field",
+        "outdoor_seating:boolean:field",
+        "parking:boolean:field",
+        "price_tier:text:field",
+        "rating:number:field",
+        "rating_source:text:field",
+        "reservations:boolean:field",
+        "review_count:number:field",
+        "romantic:boolean:field",
+        "street_address:text:field"
+      ],
+      "reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"0e0e323d-ff9c-4221-9e92-f8ce510e16b2\",\"search_calls\":1,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
+      "prompt_strategy": "deterministic open-pack lead queue (16 exact uncovered name/address candidates); exact search then mandatory run_subagent per lead; fallback URL prevents discovery-only exit",
+      "deterministic_open_pack_recovery": true,
+      "lead_queue": [
+        {
+          "open_pack_id": "OVT-95EEA5E0-4F26-4A5D-8D1E-80CCF933D9CE",
+          "name": "A by TUNG",
+          "address": "31-33 Đường Đặng Dung, Quận 1",
+          "brand": "",
+          "corridor": "duong dang dung",
+          "popularity_score": 100,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=A%20by%20TUNG%2031-33%20%C4%90%C6%B0%E1%BB%9Dng%20%C4%90%E1%BA%B7ng%20Dung%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-92F38BA4-02D5-4384-8348-33BCF3584583",
+          "name": "Vietnam House Restaurant",
+          "address": "97 Đường Đồng Khởi, Quận 1",
+          "brand": "",
+          "corridor": "duong dong khoi",
+          "popularity_score": 100,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Vietnam%20House%20Restaurant%2097%20%C4%90%C6%B0%E1%BB%9Dng%20%C4%90%E1%BB%93ng%20Kh%E1%BB%9Fi%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-2DA6F78B-78CE-4362-812D-5C0FC50CD3DE",
+          "name": "Xu Restaurant Lounge",
+          "address": "75 Đường Hai Bà Trưng, Quận 1",
+          "brand": "",
+          "corridor": "duong hai ba trung",
+          "popularity_score": 100,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Xu%20Restaurant%20Lounge%2075%20%C4%90%C6%B0%E1%BB%9Dng%20Hai%20B%C3%A0%20Tr%C6%B0ng%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-62BE5B3F-70DB-4C0E-87E7-3470BDA774C4",
+          "name": "Chanh Bistro Rooftop Saigon",
+          "address": "213 Đường Lý Tự Trọng, Quận 1",
+          "brand": "",
+          "corridor": "duong ly tu trong",
+          "popularity_score": 100,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Chanh%20Bistro%20Rooftop%20Saigon%20213%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%BD%20T%E1%BB%B1%20Tr%E1%BB%8Dng%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-57FE521B-5793-4A16-9339-6B2D1F70B3A7",
+          "name": "The Trieu Institute",
+          "address": "10 Đường Mạc Thị Bưởi, Quận 1",
+          "brand": "",
+          "corridor": "duong mac thi buoi",
+          "popularity_score": 100,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=The%20Trieu%20Institute%2010%20%C4%90%C6%B0%E1%BB%9Dng%20M%E1%BA%A1c%20Th%E1%BB%8B%20B%C6%B0%E1%BB%9Fi%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-528DB9B8-5377-40ED-B377-94B9A015DD2E",
+          "name": "My Banh Mi",
+          "address": "57 Đường Nguyễn Du, Quận 1",
+          "brand": "",
+          "corridor": "duong nguyen du",
+          "popularity_score": 100,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=My%20Banh%20Mi%2057%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Du%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-C48F45AB-FEA2-473A-A2BF-8C1027DBF283",
+          "name": "Matsuri Japanese Restaurant - Nguyễn Huệ",
+          "address": "3 Đường Nguyễn Huệ, Quận 1",
+          "brand": "",
+          "corridor": "duong nguyen hue",
+          "popularity_score": 100,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Matsuri%20Japanese%20Restaurant%20-%20Nguy%E1%BB%85n%20Hu%E1%BB%87%203%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Hu%E1%BB%87%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-432F761B-CB36-448E-BAE5-43D13B72CFFF",
+          "name": "Bếp Mẹ Ỉn - Nguyễn Thái Bình",
+          "address": "165/43 Đường Nguyễn Thái Bình, Quận 1",
+          "brand": "",
+          "corridor": "duong nguyen thai binh",
+          "popularity_score": 100,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=B%E1%BA%BFp%20M%E1%BA%B9%20%E1%BB%88n%20-%20Nguy%E1%BB%85n%20Th%C3%A1i%20B%C3%ACnh%20165%2F43%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Th%C3%A1i%20B%C3%ACnh%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-28AFB5EE-94EF-4EC4-BC43-F25D5985D293",
+          "name": "Den Long",
+          "address": "130 Đường Nguyễn Trãi, Quận 1",
+          "brand": "",
+          "corridor": "duong nguyen trai",
+          "popularity_score": 100,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Den%20Long%20130%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Tr%C3%A3i%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-E090BBF0-CB8A-4080-BEAF-940F91BD4C5F",
+          "name": "Wainosuke",
+          "address": "29 Đ. Hải Triều, Quận 1",
+          "brand": "",
+          "corridor": "d hai trieu",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Wainosuke%2029%20%C4%90.%20H%E1%BA%A3i%20Tri%E1%BB%81u%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-3F275EDE-29D6-4ED8-8548-D28D5E419F67",
+          "name": "X85 Beer Garden",
+          "address": "95 Đường Cách Mạng Tháng Tám, Quận 1",
+          "brand": "",
+          "corridor": "duong cach mang thang tam",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=X85%20Beer%20Garden%2095%20%C4%90%C6%B0%E1%BB%9Dng%20C%C3%A1ch%20M%E1%BA%A1ng%20Th%C3%A1ng%20T%C3%A1m%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-F8016635-889F-4934-8DF3-D4DB2E73E6E9",
+          "name": "Cục Gạch Quán",
+          "address": "10 Đường Đặng Tất, Quận 1",
+          "brand": "",
+          "corridor": "duong dang tat",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=C%E1%BB%A5c%20G%E1%BA%A1ch%20Qu%C3%A1n%2010%20%C4%90%C6%B0%E1%BB%9Dng%20%C4%90%E1%BA%B7ng%20T%E1%BA%A5t%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-6C0999BB-C9D8-4AFE-9096-6FA395865A1A",
+          "name": "Bánh Cuốn Tây Hồ Cô Nhỏ",
+          "address": "127 Đường Đinh Tiên Hoàng, Quận 1",
+          "brand": "",
+          "corridor": "duong dinh tien hoang",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=B%C3%A1nh%20Cu%E1%BB%91n%20T%C3%A2y%20H%E1%BB%93%20C%C3%B4%20Nh%E1%BB%8F%20127%20%C4%90%C6%B0%E1%BB%9Dng%20%C4%90inh%20Ti%C3%AAn%20Ho%C3%A0ng%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-BA7659C8-5476-4E88-AAE4-4F284A16CC1E",
+          "name": "Le 17 Bistro",
+          "address": "SOFITEL Saigon Plaza, 17 Đường Lê Duẩn, Quận 1",
+          "brand": "",
+          "corridor": "duong le duan",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Le%2017%20Bistro%20SOFITEL%20Saigon%20Plaza%2C%2017%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%AA%20Du%E1%BA%A9n%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-F8175D57-B25B-4BC7-8055-684AF08B2A75",
+          "name": "Smith's Kitchen and Bar",
+          "address": "14 Đường Lê Lai, Quận 1",
+          "brand": "",
+          "corridor": "duong le lai",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Smith's%20Kitchen%20and%20Bar%2014%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%AA%20Lai%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-4B7E9548-15F3-43DE-A518-EC9ADC38FD8D",
+          "name": "Miyama",
+          "address": "Cao Đông, 65 Đường Lê Lợi, Quận 1",
+          "brand": "",
+          "corridor": "duong le loi",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Miyama%20Cao%20%C4%90%C3%B4ng%2C%2065%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%AA%20L%E1%BB%A3i%2C%20Qu%E1%BA%ADn%201"
+        }
+      ],
+      "lead_ids": [
+        "OVT-95EEA5E0-4F26-4A5D-8D1E-80CCF933D9CE",
+        "OVT-92F38BA4-02D5-4384-8348-33BCF3584583",
+        "OVT-2DA6F78B-78CE-4362-812D-5C0FC50CD3DE",
+        "OVT-62BE5B3F-70DB-4C0E-87E7-3470BDA774C4",
+        "OVT-57FE521B-5793-4A16-9339-6B2D1F70B3A7",
+        "OVT-528DB9B8-5377-40ED-B377-94B9A015DD2E",
+        "OVT-C48F45AB-FEA2-473A-A2BF-8C1027DBF283",
+        "OVT-432F761B-CB36-448E-BAE5-43D13B72CFFF",
+        "OVT-28AFB5EE-94EF-4EC4-BC43-F25D5985D293",
+        "OVT-E090BBF0-CB8A-4080-BEAF-940F91BD4C5F",
+        "OVT-3F275EDE-29D6-4ED8-8548-D28D5E419F67",
+        "OVT-F8016635-889F-4934-8DF3-D4DB2E73E6E9",
+        "OVT-6C0999BB-C9D8-4AFE-9096-6FA395865A1A",
+        "OVT-BA7659C8-5476-4E88-AAE4-4F284A16CC1E",
+        "OVT-F8175D57-B25B-4BC7-8055-684AF08B2A75",
+        "OVT-4B7E9548-15F3-43DE-A518-EC9ADC38FD8D"
+      ],
+      "created_at": "2026-07-11T20:59:07.784Z",
+      "started_at": "2026-07-11T20:59:07.785Z",
+      "pre_snapshot": "scratch/bigset-output/attempts/restaurants-attempt-023-2026-07-11T20-59-07-784Z-pre.json",
+      "required_models": {
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro"
+      },
+      "effective_model_config": {
+        "schema_inference": "anthropic/claude-sonnet-4.6",
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro",
+        "verified_at": "2026-07-11T20:58:43.881Z",
+        "source": "GET /settings/models"
+      },
+      "fail_fast_zero_rows": true,
+      "unique_before": 45,
+      "usable_before": 43,
+      "run_id": "afbb5bdf-2e80-4a2f-a531-bc1cb58857a6",
+      "submitted_at": "2026-07-11T20:59:07.803Z",
+      "dataset_status": "live",
+      "status_error": null,
+      "rows_exported": 5,
+      "export": "scratch/bigset-output/attempts/restaurants-attempt-023-2026-07-11T20-59-07-784Z-rows.json",
+      "finished_at": "2026-07-11T21:01:07.893Z",
+      "adoption_ready": true,
+      "unique_after": 50,
+      "unique_delta": 5,
+      "usable_after": 48,
+      "usable_delta": 5
+    },
+    {
+      "status": "completed_external_unadopted",
+      "category": "restaurants",
+      "attempt": 24,
+      "attempt_key": "restaurants-024-2026-07-11T21-01-34-201Z-open-pack-queue",
+      "old_dataset_id": "jd74tvbx0n6xy29jtw9c7vpmsd8abckz",
+      "dataset_id": "jd76yctrfczpdx4ny3ckqkyeen8ab3tk",
+      "schema_verified": true,
+      "schema_signature": [
+        "air_conditioned:boolean:field",
+        "cuisine:text:field",
+        "family_friendly:boolean:field",
+        "foody_url:url:pk",
+        "name:text:field",
+        "nice_view:boolean:field",
+        "open_late:boolean:field",
+        "outdoor_seating:boolean:field",
+        "parking:boolean:field",
+        "price_tier:text:field",
+        "rating:number:field",
+        "rating_source:text:field",
+        "reservations:boolean:field",
+        "review_count:number:field",
+        "romantic:boolean:field",
+        "street_address:text:field"
+      ],
+      "reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"0e0e323d-ff9c-4221-9e92-f8ce510e16b2\",\"search_calls\":1,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
+      "prompt_strategy": "deterministic open-pack lead queue (16 exact uncovered name/address candidates); exact search then mandatory run_subagent per lead; fallback URL prevents discovery-only exit",
+      "deterministic_open_pack_recovery": true,
+      "lead_queue": [
+        {
+          "open_pack_id": "OVT-D22F27CC-F870-4A08-8269-D1008D035590",
+          "name": "Café Cardinal",
+          "address": "22-36 Đường Nguyễn Huệ, Quận 1",
+          "brand": "",
+          "corridor": "duong nguyen hue",
+          "popularity_score": 100,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Caf%C3%A9%20Cardinal%2022-36%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Hu%E1%BB%87%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-F5440758-7C5A-4AAD-893B-56381AAF6B2E",
+          "name": "Chao Suon Chu Chen",
+          "address": "281 Đường Nguyễn Trãi, Quận 1",
+          "brand": "",
+          "corridor": "duong nguyen trai",
+          "popularity_score": 100,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Chao%20Suon%20Chu%20Chen%20281%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Tr%C3%A3i%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-C0160264-857C-434B-A7E7-CF016BEB85E1",
+          "name": "Rạng Đông Shop",
+          "address": "95 Đường Cách Mạng Tháng Tám, Quận 1",
+          "brand": "",
+          "corridor": "duong cach mang thang tam",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=R%E1%BA%A1ng%20%C4%90%C3%B4ng%20Shop%2095%20%C4%90%C6%B0%E1%BB%9Dng%20C%C3%A1ch%20M%E1%BA%A1ng%20Th%C3%A1ng%20T%C3%A1m%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-9ADBA910-BF0C-44CE-B422-1E29F1EE31B0",
+          "name": "Quán 94 - Đặc Sản Cua Biển",
+          "address": "94 Đường Đinh Tiên Hoàng, Quận 1",
+          "brand": "",
+          "corridor": "duong dinh tien hoang",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%2094%20-%20%C4%90%E1%BA%B7c%20S%E1%BA%A3n%20Cua%20Bi%E1%BB%83n%2094%20%C4%90%C6%B0%E1%BB%9Dng%20%C4%90inh%20Ti%C3%AAn%20Ho%C3%A0ng%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-DB8186F3-750E-476F-B26E-0191D759625A",
+          "name": "Bier Garden",
+          "address": "125 Đường Đồng Khởi, Quận 1",
+          "brand": "",
+          "corridor": "duong dong khoi",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Bier%20Garden%20125%20%C4%90%C6%B0%E1%BB%9Dng%20%C4%90%E1%BB%93ng%20Kh%E1%BB%9Fi%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-2B6E0082-76C1-458A-978C-EE2053C0A9BE",
+          "name": "TanDoor",
+          "address": "74/6 Đường Hai Bà Trưng, Quận 1",
+          "brand": "",
+          "corridor": "duong hai ba trung",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=TanDoor%2074%2F6%20%C4%90%C6%B0%E1%BB%9Dng%20Hai%20B%C3%A0%20Tr%C6%B0ng%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-29921998-1959-45B7-B8AC-EC5370656779",
+          "name": "Lebanhmi",
+          "address": "17/11 Đường Lê Thánh Tôn, Quận 1",
+          "brand": "",
+          "corridor": "duong le thanh ton",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Lebanhmi%2017%2F11%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%AA%20Th%C3%A1nh%20T%C3%B4n%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-3C309714-3900-4494-9702-BC2844396A31",
+          "name": "Cơm Tấm Mộc",
+          "address": "85 Đường Lý Tự Trọng, Quận 1",
+          "brand": "",
+          "corridor": "duong ly tu trong",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=C%C6%A1m%20T%E1%BA%A5m%20M%E1%BB%99c%2085%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%BD%20T%E1%BB%B1%20Tr%E1%BB%8Dng%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-D5E30129-C62C-4E7D-BBC8-0CA535662824",
+          "name": "Elgin",
+          "address": "27 Đường Mạc Đĩnh Chi, Quận 1",
+          "brand": "",
+          "corridor": "duong mac dinh chi",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Elgin%2027%20%C4%90%C6%B0%E1%BB%9Dng%20M%E1%BA%A1c%20%C4%90%C4%A9nh%20Chi%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-B04D5398-441A-4869-84B1-B5686E28962B",
+          "name": "Bún riêu Nguyễn Cảnh Chân",
+          "address": "TK18/5 Đường Nguyễn Cảnh Chân, Quận 1",
+          "brand": "",
+          "corridor": "duong nguyen canh chan",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=B%C3%BAn%20ri%C3%AAu%20Nguy%E1%BB%85n%20C%E1%BA%A3nh%20Ch%C3%A2n%20TK18%2F5%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20C%E1%BA%A3nh%20Ch%C3%A2n%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-87010E4A-E614-4CF5-8543-5BAB1634302A",
+          "name": "Món ngon Sài Gòn",
+          "address": "2 Đường Nguyễn Đình Chiểu, Quận 1",
+          "brand": "",
+          "corridor": "duong nguyen dinh chieu",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=M%C3%B3n%20ngon%20S%C3%A0i%20G%C3%B2n%202%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20%C4%90%C3%ACnh%20Chi%E1%BB%83u%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-292A5DE2-ACD1-4ED9-8454-325C74FE15AB",
+          "name": "Bánh Canh Cua 87",
+          "address": "22 Đường Nguyễn Du, Quận 1",
+          "brand": "",
+          "corridor": "duong nguyen du",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=B%C3%A1nh%20Canh%20Cua%2087%2022%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Du%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-3B2C9BDE-2380-49D6-BFDF-4F22EE4AC9F2",
+          "name": "Hoa Vien Brauhaus",
+          "address": "28 Đường Nguyễn Thị Minh Khai, Quận 1",
+          "brand": "",
+          "corridor": "duong nguyen thi minh khai",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Hoa%20Vien%20Brauhaus%2028%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Th%E1%BB%8B%20Minh%20Khai%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-36C9F454-F43B-4726-A813-F8BC88D22A80",
+          "name": "Bun Bo Hue Dong Ba",
+          "address": "207A Đường Nguyễn Văn Thủ, Quận 1",
+          "brand": "",
+          "corridor": "duong nguyen van thu",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Bun%20Bo%20Hue%20Dong%20Ba%20207A%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20V%C4%83n%20Th%E1%BB%A7%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-073EE7D3-AFE8-4AC3-A386-808E01A953CC",
+          "name": "Bun Dau Homemade",
+          "address": "1 Đường Nguyễn Văn Tráng, Quận 1",
+          "brand": "",
+          "corridor": "duong nguyen van trang",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Bun%20Dau%20Homemade%201%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20V%C4%83n%20Tr%C3%A1ng%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-F428DC3A-D1A8-47A7-B7A3-8C0E901B8A8D",
+          "name": "Ngon Restaurant",
+          "address": "160 Đường Pasteur, Quận 1",
+          "brand": "",
+          "corridor": "duong pasteur",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Ngon%20Restaurant%20160%20%C4%90%C6%B0%E1%BB%9Dng%20Pasteur%2C%20Qu%E1%BA%ADn%201"
+        }
+      ],
+      "lead_ids": [
+        "OVT-D22F27CC-F870-4A08-8269-D1008D035590",
+        "OVT-F5440758-7C5A-4AAD-893B-56381AAF6B2E",
+        "OVT-C0160264-857C-434B-A7E7-CF016BEB85E1",
+        "OVT-9ADBA910-BF0C-44CE-B422-1E29F1EE31B0",
+        "OVT-DB8186F3-750E-476F-B26E-0191D759625A",
+        "OVT-2B6E0082-76C1-458A-978C-EE2053C0A9BE",
+        "OVT-29921998-1959-45B7-B8AC-EC5370656779",
+        "OVT-3C309714-3900-4494-9702-BC2844396A31",
+        "OVT-D5E30129-C62C-4E7D-BBC8-0CA535662824",
+        "OVT-B04D5398-441A-4869-84B1-B5686E28962B",
+        "OVT-87010E4A-E614-4CF5-8543-5BAB1634302A",
+        "OVT-292A5DE2-ACD1-4ED9-8454-325C74FE15AB",
+        "OVT-3B2C9BDE-2380-49D6-BFDF-4F22EE4AC9F2",
+        "OVT-36C9F454-F43B-4726-A813-F8BC88D22A80",
+        "OVT-073EE7D3-AFE8-4AC3-A386-808E01A953CC",
+        "OVT-F428DC3A-D1A8-47A7-B7A3-8C0E901B8A8D"
+      ],
+      "created_at": "2026-07-11T21:01:34.201Z",
+      "started_at": "2026-07-11T21:01:34.202Z",
+      "pre_snapshot": "scratch/bigset-output/attempts/restaurants-attempt-024-2026-07-11T21-01-34-201Z-pre.json",
+      "required_models": {
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro"
+      },
+      "effective_model_config": {
+        "schema_inference": "anthropic/claude-sonnet-4.6",
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro",
+        "verified_at": "2026-07-11T21:01:07.899Z",
+        "source": "GET /settings/models"
+      },
+      "fail_fast_zero_rows": true,
+      "unique_before": 50,
+      "usable_before": 48,
+      "run_id": "7ea1fd8b-1c89-4210-b841-d270ca57f657",
+      "submitted_at": "2026-07-11T21:01:34.214Z",
+      "dataset_status": "live",
+      "status_error": null,
+      "rows_exported": 3,
+      "export": "scratch/bigset-output/attempts/restaurants-attempt-024-2026-07-11T21-01-34-201Z-rows.json",
+      "finished_at": "2026-07-11T21:02:49.284Z",
+      "adoption_ready": true,
+      "unique_after": 53,
+      "unique_delta": 3,
+      "usable_after": 51,
+      "usable_delta": 3
+    },
+    {
+      "status": "completed_external_unadopted",
+      "category": "restaurants",
+      "attempt": 25,
+      "attempt_key": "restaurants-025-2026-07-11T21-03-34-011Z-open-pack-queue",
+      "old_dataset_id": "jd76yctrfczpdx4ny3ckqkyeen8ab3tk",
+      "dataset_id": "jd72jdjfp09745pmrqjv28thbh8abkbb",
+      "schema_verified": true,
+      "schema_signature": [
+        "air_conditioned:boolean:field",
+        "cuisine:text:field",
+        "family_friendly:boolean:field",
+        "foody_url:url:pk",
+        "name:text:field",
+        "nice_view:boolean:field",
+        "open_late:boolean:field",
+        "outdoor_seating:boolean:field",
+        "parking:boolean:field",
+        "price_tier:text:field",
+        "rating:number:field",
+        "rating_source:text:field",
+        "reservations:boolean:field",
+        "review_count:number:field",
+        "romantic:boolean:field",
+        "street_address:text:field"
+      ],
+      "reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"0e0e323d-ff9c-4221-9e92-f8ce510e16b2\",\"search_calls\":1,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
+      "prompt_strategy": "deterministic open-pack lead queue (16 exact uncovered name/address candidates); exact search then mandatory run_subagent per lead; fallback URL prevents discovery-only exit",
+      "deterministic_open_pack_recovery": true,
+      "lead_queue": [
+        {
+          "open_pack_id": "OVT-710306B2-84FD-45BB-8A84-1B680B2C2B12",
+          "name": "Pho 2000",
+          "address": "210 Đường Lê Thánh Tôn, Quận 1",
+          "brand": "",
+          "corridor": "duong le thanh ton",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Pho%202000%20210%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%AA%20Th%C3%A1nh%20T%C3%B4n%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-596A4E38-44E8-47FD-A9A0-365D150C6FF8",
+          "name": "Quán Nem",
+          "address": "15E Đường Nguyễn Thị Minh Khai, Quận 1",
+          "brand": "",
+          "corridor": "duong nguyen thi minh khai",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20Nem%2015E%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Th%E1%BB%8B%20Minh%20Khai%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-C6E25C25-B88C-42A4-989A-5476A3FD3AB8",
+          "name": "BÚP Sky Cuisine",
+          "address": "69 Đường Nguyễn Trãi, Quận 1",
+          "brand": "",
+          "corridor": "duong nguyen trai",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=B%C3%9AP%20Sky%20Cuisine%2069%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Tr%C3%A3i%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-D0361B10-7490-4B6D-8C24-8AE5C9A6BD7B",
+          "name": "Hùng Xíu",
+          "address": "15 Đường Nguyễn Văn Tráng, Quận 1",
+          "brand": "",
+          "corridor": "duong nguyen van trang",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=H%C3%B9ng%20X%C3%ADu%2015%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20V%C4%83n%20Tr%C3%A1ng%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-929386EB-FF7F-4047-897A-78580835C919",
+          "name": "Bún Chả Hà Nội 26",
+          "address": "8A Đường Thái Văn Lung, Quận 1",
+          "brand": "",
+          "corridor": "duong thai van lung",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=B%C3%BAn%20Ch%E1%BA%A3%20H%C3%A0%20N%E1%BB%99i%2026%208A%20%C4%90%C6%B0%E1%BB%9Dng%20Th%C3%A1i%20V%C4%83n%20Lung%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-FE56135B-0571-45F1-A4AC-E26992E52167",
+          "name": "Anan Saigon",
+          "address": "89 Đường Tôn Thất Đạm, Quận 1",
+          "brand": "",
+          "corridor": "duong ton that dam",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Anan%20Saigon%2089%20%C4%90%C6%B0%E1%BB%9Dng%20T%C3%B4n%20Th%E1%BA%A5t%20%C4%90%E1%BA%A1m%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-1492221F-2C8F-4F76-9272-2F668A750B4D",
+          "name": "Maison Mận-Đỏ Restaurant",
+          "address": "30 Đường Trần Nhật Duật, Quận 1",
+          "brand": "",
+          "corridor": "duong tran nhat duat",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Maison%20M%E1%BA%ADn-%C4%90%E1%BB%8F%20Restaurant%2030%20%C4%90%C6%B0%E1%BB%9Dng%20Tr%E1%BA%A7n%20Nh%E1%BA%ADt%20Du%E1%BA%ADt%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-82F2D532-9CEC-446F-B2E8-B6E564CEC467",
+          "name": "Nam Giao",
+          "address": "136/15 Hẻm 136 Lê Thánh Tôn, Quận 1",
+          "brand": "",
+          "corridor": "hem 136 le thanh ton",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Nam%20Giao%20136%2F15%20H%E1%BA%BBm%20136%20L%C3%AA%20Th%C3%A1nh%20T%C3%B4n%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-879409A4-8074-4EA8-9DA5-9F2AF1D4ED1B",
+          "name": "Quán Ăn Huế O Xuân",
+          "address": "22 Hẻm 81 Đường Nguyễn Hữu Cầu, Quận 1",
+          "brand": "",
+          "corridor": "hem 81 duong nguyen huu cau",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Qu%C3%A1n%20%C4%82n%20Hu%E1%BA%BF%20O%20Xu%C3%A2n%2022%20H%E1%BA%BBm%2081%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20H%E1%BB%AFu%20C%E1%BA%A7u%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-0797E6D5-9D3C-4253-913A-3DFF0CFFA1C5",
+          "name": "Square One",
+          "address": "Nhà Hàng Square One, 2 Công Trường Lam Sơn, Quận 1",
+          "brand": "",
+          "corridor": "lam son",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Square%20One%20Nh%C3%A0%20H%C3%A0ng%20Square%20One%2C%202%20C%C3%B4ng%20Tr%C6%B0%E1%BB%9Dng%20Lam%20S%C6%A1n%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-1AD08574-0FEF-4B81-A68E-7AE503CAB744",
+          "name": "Nous",
+          "address": "5th floor, 123 Le Loi, District 1, Quận 1",
+          "brand": "",
+          "corridor": "le loi",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Nous%205th%20floor%2C%20123%20Le%20Loi%2C%20District%201%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-CA7E0275-5B11-4984-87D2-40273004CFB8",
+          "name": "Spice Viet Saigon Restaurant",
+          "address": "157 Pasteur, Quận 1",
+          "brand": "",
+          "corridor": "pasteur",
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Spice%20Viet%20Saigon%20Restaurant%20157%20Pasteur%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-EF89FBDB-7A05-44AB-82DA-C1165B533E6D",
+          "name": "Xôi chè Bùi Thị Xuân",
+          "address": "111 Đường Bùi Thị Xuân, Quận 1",
+          "brand": "",
+          "corridor": "duong bui thi xuan",
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=X%C3%B4i%20ch%C3%A8%20B%C3%B9i%20Th%E1%BB%8B%20Xu%C3%A2n%20111%20%C4%90%C6%B0%E1%BB%9Dng%20B%C3%B9i%20Th%E1%BB%8B%20Xu%C3%A2n%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-F877ED3F-73BA-4C39-AE00-33E282A83F54",
+          "name": "NhÀ HÀNg RẠNg ĐÔNg",
+          "address": "81 Đường Cách Mạng Tháng 8, Quận 1",
+          "brand": "",
+          "corridor": "duong cach mang thang 8",
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Nh%C3%80%20H%C3%80Ng%20R%E1%BA%A0Ng%20%C4%90%C3%94Ng%2081%20%C4%90%C6%B0%E1%BB%9Dng%20C%C3%A1ch%20M%E1%BA%A1ng%20Th%C3%A1ng%208%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-AB18C0D9-CD30-4F54-B4C3-FA41CE4F497C",
+          "name": "Nhà Hàng Chay ROU Vegetarian",
+          "address": "37B Đường Cô Bắc, Quận 1",
+          "brand": "",
+          "corridor": "duong co bac",
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Nh%C3%A0%20H%C3%A0ng%20Chay%20ROU%20Vegetarian%2037B%20%C4%90%C6%B0%E1%BB%9Dng%20C%C3%B4%20B%E1%BA%AFc%2C%20Qu%E1%BA%ADn%201"
+        },
+        {
+          "open_pack_id": "OVT-3F1D98A0-BF4D-44BB-9473-A3985F68BFDB",
+          "name": "Banana Mama Rooftop Bar & Kitchen",
+          "address": "102 Đường Cống Quỳnh, Quận 1",
+          "brand": "",
+          "corridor": "duong cong quynh",
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/?api=1&query=Banana%20Mama%20Rooftop%20Bar%20%26%20Kitchen%20102%20%C4%90%C6%B0%E1%BB%9Dng%20C%E1%BB%91ng%20Qu%E1%BB%B3nh%2C%20Qu%E1%BA%ADn%201"
+        }
+      ],
+      "lead_ids": [
+        "OVT-710306B2-84FD-45BB-8A84-1B680B2C2B12",
+        "OVT-596A4E38-44E8-47FD-A9A0-365D150C6FF8",
+        "OVT-C6E25C25-B88C-42A4-989A-5476A3FD3AB8",
+        "OVT-D0361B10-7490-4B6D-8C24-8AE5C9A6BD7B",
+        "OVT-929386EB-FF7F-4047-897A-78580835C919",
+        "OVT-FE56135B-0571-45F1-A4AC-E26992E52167",
+        "OVT-1492221F-2C8F-4F76-9272-2F668A750B4D",
+        "OVT-82F2D532-9CEC-446F-B2E8-B6E564CEC467",
+        "OVT-879409A4-8074-4EA8-9DA5-9F2AF1D4ED1B",
+        "OVT-0797E6D5-9D3C-4253-913A-3DFF0CFFA1C5",
+        "OVT-1AD08574-0FEF-4B81-A68E-7AE503CAB744",
+        "OVT-CA7E0275-5B11-4984-87D2-40273004CFB8",
+        "OVT-EF89FBDB-7A05-44AB-82DA-C1165B533E6D",
+        "OVT-F877ED3F-73BA-4C39-AE00-33E282A83F54",
+        "OVT-AB18C0D9-CD30-4F54-B4C3-FA41CE4F497C",
+        "OVT-3F1D98A0-BF4D-44BB-9473-A3985F68BFDB"
+      ],
+      "created_at": "2026-07-11T21:03:34.011Z",
+      "started_at": "2026-07-11T21:03:34.012Z",
+      "pre_snapshot": "scratch/bigset-output/attempts/restaurants-attempt-025-2026-07-11T21-03-34-011Z-pre.json",
+      "required_models": {
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro"
+      },
+      "effective_model_config": {
+        "schema_inference": "anthropic/claude-sonnet-4.6",
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro",
+        "verified_at": "2026-07-11T21:02:49.289Z",
+        "source": "GET /settings/models"
+      },
+      "fail_fast_zero_rows": true,
+      "unique_before": 53,
+      "usable_before": 51,
+      "run_id": "e54c2194-083f-4a53-944e-f013c88f83f6",
+      "submitted_at": "2026-07-11T21:03:34.021Z",
+      "dataset_status": "live",
+      "status_error": null,
+      "rows_exported": 14,
+      "export": "scratch/bigset-output/attempts/restaurants-attempt-025-2026-07-11T21-10-22-371Z-recovered-rows.json",
+      "finished_at": "2026-07-11T21:10:22.378Z",
+      "adoption_ready": true,
+      "recovered_after_controller_stop": true,
+      "unique_after": 67,
+      "unique_delta": 14,
+      "usable_after": 58,
+      "usable_delta": 7
+    },
+    {
+      "status": "completed_external_unadopted",
+      "category": "restaurants",
+      "attempt": 26,
+      "attempt_key": "restaurants-026-2026-07-11T21-17-09-414Z-open-pack-queue",
+      "old_dataset_id": "jd72jdjfp09745pmrqjv28thbh8abkbb",
+      "dataset_id": "jd7dh2ywcm1hws97py5jd4kke58aa1dr",
+      "schema_verified": true,
+      "schema_signature": [
+        "air_conditioned:boolean:field",
+        "cuisine:text:field",
+        "family_friendly:boolean:field",
+        "foody_url:url:pk",
+        "name:text:field",
+        "nice_view:boolean:field",
+        "open_late:boolean:field",
+        "outdoor_seating:boolean:field",
+        "parking:boolean:field",
+        "price_tier:text:field",
+        "rating:number:field",
+        "rating_source:text:field",
+        "reservations:boolean:field",
+        "review_count:number:field",
+        "romantic:boolean:field",
+        "street_address:text:field"
+      ],
+      "reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"0e0e323d-ff9c-4221-9e92-f8ce510e16b2\",\"search_calls\":1,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
+      "prompt_strategy": "deterministic open-pack lead queue (16 exact uncovered name/address candidates); exact search then mandatory run_subagent per lead; fallback URL prevents discovery-only exit",
+      "deterministic_open_pack_recovery": true,
+      "lead_queue": [
+        {
+          "open_pack_id": "OVT-558C23F2-7FED-424A-AD85-D868F594AEB9",
+          "name": "Ann Quán",
+          "address": "66 Đường Ngô Đức Kế, Quận 1",
+          "brand": "",
+          "normalized_name": "ann quan",
+          "chain_family": "ann quan",
+          "street_keys": [
+            "66|duong ngo duc ke"
+          ],
+          "identity_group_keys": [
+            "ann quan|66|duong ngo duc ke",
+            "ann quan|66|duong ngo duc ke"
+          ],
+          "corridor": "duong ngo duc ke",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Ann%20Qu%C3%A1n%2066%20%C4%90%C6%B0%E1%BB%9Dng%20Ng%C3%B4%20%C4%90%E1%BB%A9c%20K%E1%BA%BF%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "ann quan",
+            "chain_family": "ann quan",
+            "street_keys": [
+              "66|duong ngo duc ke"
+            ],
+            "keys": [
+              "ann quan|66|duong ngo duc ke",
+              "ann quan|66|duong ngo duc ke"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-81C3345B-5AB8-4EC6-B685-3F384C7B0DB7",
+          "name": "Ashima Mushroom Hotpot",
+          "address": "331A Đường Nguyễn Trãi, Quận 1",
+          "brand": "",
+          "normalized_name": "ashima mushroom hotpot",
+          "chain_family": "ashima mushroom hotpot",
+          "street_keys": [
+            "331a|duong nguyen trai"
+          ],
+          "identity_group_keys": [
+            "ashima mushroom hotpot|331a|duong nguyen trai",
+            "ashima mushroom hotpot|331a|duong nguyen trai"
+          ],
+          "corridor": "duong nguyen trai",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Ashima%20Mushroom%20Hotpot%20331A%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Tr%C3%A3i%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "ashima mushroom hotpot",
+            "chain_family": "ashima mushroom hotpot",
+            "street_keys": [
+              "331a|duong nguyen trai"
+            ],
+            "keys": [
+              "ashima mushroom hotpot|331a|duong nguyen trai",
+              "ashima mushroom hotpot|331a|duong nguyen trai"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-617478BD-68F0-49D9-9036-2A2A7F7ACD58",
+          "name": "Béo Ơi Quán - Món ngon Hà Nội",
+          "address": "15/20 Hẻm 15 Nguyễn Thị Minh Khai, Quận 1",
+          "brand": "",
+          "normalized_name": "beo oi quan mon ngon ha noi",
+          "chain_family": "beo oi quan mon ngon ha noi",
+          "street_keys": [
+            "15/20|hem 15 nguyen thi minh khai"
+          ],
+          "identity_group_keys": [
+            "beo oi quan mon ngon ha noi|15/20|hem 15 nguyen thi minh khai",
+            "beo oi quan mon ngon ha noi|15/20|hem 15 nguyen thi minh khai"
+          ],
+          "corridor": "hem 15 nguyen thi minh khai",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/B%C3%A9o%20%C6%A0i%20Qu%C3%A1n%20-%20M%C3%B3n%20ngon%20H%C3%A0%20N%E1%BB%99i%2015%2F20%20H%E1%BA%BBm%2015%20Nguy%E1%BB%85n%20Th%E1%BB%8B%20Minh%20Khai%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "beo oi quan mon ngon ha noi",
+            "chain_family": "beo oi quan mon ngon ha noi",
+            "street_keys": [
+              "15/20|hem 15 nguyen thi minh khai"
+            ],
+            "keys": [
+              "beo oi quan mon ngon ha noi|15/20|hem 15 nguyen thi minh khai",
+              "beo oi quan mon ngon ha noi|15/20|hem 15 nguyen thi minh khai"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-8BD1980A-0A68-403D-8943-732ED14BB5F0",
+          "name": "Bò Kho Cô Mai",
+          "address": "71 Đường Hồ Tùng Mậu, Quận 1",
+          "brand": "",
+          "normalized_name": "bo kho co mai",
+          "chain_family": "bo kho co mai",
+          "street_keys": [
+            "71|duong ho tung mau"
+          ],
+          "identity_group_keys": [
+            "bo kho co mai|71|duong ho tung mau",
+            "bo kho co mai|71|duong ho tung mau"
+          ],
+          "corridor": "duong ho tung mau",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/B%C3%B2%20Kho%20C%C3%B4%20Mai%2071%20%C4%90%C6%B0%E1%BB%9Dng%20H%E1%BB%93%20T%C3%B9ng%20M%E1%BA%ADu%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "bo kho co mai",
+            "chain_family": "bo kho co mai",
+            "street_keys": [
+              "71|duong ho tung mau"
+            ],
+            "keys": [
+              "bo kho co mai|71|duong ho tung mau",
+              "bo kho co mai|71|duong ho tung mau"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-3945B037-8696-4BEF-9161-44C2D226E303",
+          "name": "Bún Đậu Cô Khàn",
+          "address": "102/26 Hẻm 102 Cống Quỳnh, Quận 1",
+          "brand": "",
+          "normalized_name": "bun dau co khan",
+          "chain_family": "bun dau",
+          "street_keys": [
+            "102/26|hem 102 cong quynh"
+          ],
+          "identity_group_keys": [
+            "bun dau co khan|102/26|hem 102 cong quynh",
+            "bun dau|102/26|hem 102 cong quynh"
+          ],
+          "corridor": "hem 102 cong quynh",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/B%C3%BAn%20%C4%90%E1%BA%ADu%20C%C3%B4%20Kh%C3%A0n%20102%2F26%20H%E1%BA%BBm%20102%20C%E1%BB%91ng%20Qu%E1%BB%B3nh%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "bun dau co khan",
+            "chain_family": "bun dau",
+            "street_keys": [
+              "102/26|hem 102 cong quynh"
+            ],
+            "keys": [
+              "bun dau co khan|102/26|hem 102 cong quynh",
+              "bun dau|102/26|hem 102 cong quynh"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-452BCF37-2A58-41B0-B9E8-B0D46D3DB4C4",
+          "name": "FSC Garden",
+          "address": "1B Đường Phạm Ngọc Thạch, Quận 1",
+          "brand": "",
+          "normalized_name": "fsc garden",
+          "chain_family": "fsc garden",
+          "street_keys": [
+            "1b|duong pham ngoc thach"
+          ],
+          "identity_group_keys": [
+            "fsc garden|1b|duong pham ngoc thach",
+            "fsc garden|1b|duong pham ngoc thach"
+          ],
+          "corridor": "duong pham ngoc thach",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/FSC%20Garden%201B%20%C4%90%C6%B0%E1%BB%9Dng%20Ph%E1%BA%A1m%20Ng%E1%BB%8Dc%20Th%E1%BA%A1ch%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "fsc garden",
+            "chain_family": "fsc garden",
+            "street_keys": [
+              "1b|duong pham ngoc thach"
+            ],
+            "keys": [
+              "fsc garden|1b|duong pham ngoc thach",
+              "fsc garden|1b|duong pham ngoc thach"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-3556F14A-A6A9-49A0-88FA-FCDA1CFCB202",
+          "name": "Lẩu Lòng Bò",
+          "address": "1 Đường Lê Thánh Tôn, Quận 1",
+          "brand": "",
+          "normalized_name": "lau long bo",
+          "chain_family": "lau long bo",
+          "street_keys": [
+            "1|duong le thanh ton"
+          ],
+          "identity_group_keys": [
+            "lau long bo|1|duong le thanh ton",
+            "lau long bo|1|duong le thanh ton"
+          ],
+          "corridor": "duong le thanh ton",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/L%E1%BA%A9u%20L%C3%B2ng%20B%C3%B2%201%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%AA%20Th%C3%A1nh%20T%C3%B4n%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "lau long bo",
+            "chain_family": "lau long bo",
+            "street_keys": [
+              "1|duong le thanh ton"
+            ],
+            "keys": [
+              "lau long bo|1|duong le thanh ton",
+              "lau long bo|1|duong le thanh ton"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-AF04F32E-21BE-49C5-9A93-36DDC4E24D48",
+          "name": "Le Comptoir Bistro & Books",
+          "address": "12 Đường Hồ Huấn Nghiệp, Quận 1",
+          "brand": "",
+          "normalized_name": "le comptoir bistro books",
+          "chain_family": "le comptoir bistro books",
+          "street_keys": [
+            "12|duong ho huan nghiep"
+          ],
+          "identity_group_keys": [
+            "le comptoir bistro books|12|duong ho huan nghiep",
+            "le comptoir bistro books|12|duong ho huan nghiep"
+          ],
+          "corridor": "duong ho huan nghiep",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Le%20Comptoir%20Bistro%20%26%20Books%2012%20%C4%90%C6%B0%E1%BB%9Dng%20H%E1%BB%93%20Hu%E1%BA%A5n%20Nghi%E1%BB%87p%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "le comptoir bistro books",
+            "chain_family": "le comptoir bistro books",
+            "street_keys": [
+              "12|duong ho huan nghiep"
+            ],
+            "keys": [
+              "le comptoir bistro books|12|duong ho huan nghiep",
+              "le comptoir bistro books|12|duong ho huan nghiep"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-E46EAD0A-C2A3-4186-82F3-C2D9B270BB67",
+          "name": "Mandarine - Finest Vietnamese Cuisine",
+          "address": "11A Đường Ngô Văn Năm, Quận 1",
+          "brand": "",
+          "normalized_name": "mandarine finest vietnamese cuisine",
+          "chain_family": "mandarine finest vietnamese cuisine",
+          "street_keys": [
+            "11a|duong ngo van nam"
+          ],
+          "identity_group_keys": [
+            "mandarine finest vietnamese cuisine|11a|duong ngo van nam",
+            "mandarine finest vietnamese cuisine|11a|duong ngo van nam"
+          ],
+          "corridor": "duong ngo van nam",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Mandarine%20-%20Finest%20Vietnamese%20Cuisine%2011A%20%C4%90%C6%B0%E1%BB%9Dng%20Ng%C3%B4%20V%C4%83n%20N%C4%83m%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "mandarine finest vietnamese cuisine",
+            "chain_family": "mandarine finest vietnamese cuisine",
+            "street_keys": [
+              "11a|duong ngo van nam"
+            ],
+            "keys": [
+              "mandarine finest vietnamese cuisine|11a|duong ngo van nam",
+              "mandarine finest vietnamese cuisine|11a|duong ngo van nam"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-8452E01A-5030-48CC-A591-2E502113E1CF",
+          "name": "Mulligans Saigon - Restaurant & Pub",
+          "address": "91 Đường Nguyễn Thái Bình, Quận 1",
+          "brand": "",
+          "normalized_name": "mulligans pub",
+          "chain_family": "mulligans pub",
+          "street_keys": [
+            "91|duong nguyen thai binh"
+          ],
+          "identity_group_keys": [
+            "mulligans pub|91|duong nguyen thai binh",
+            "mulligans pub|91|duong nguyen thai binh"
+          ],
+          "corridor": "duong nguyen thai binh",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Mulligans%20Saigon%20-%20Restaurant%20%26%20Pub%2091%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Th%C3%A1i%20B%C3%ACnh%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "mulligans pub",
+            "chain_family": "mulligans pub",
+            "street_keys": [
+              "91|duong nguyen thai binh"
+            ],
+            "keys": [
+              "mulligans pub|91|duong nguyen thai binh",
+              "mulligans pub|91|duong nguyen thai binh"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-0AB20632-9A4C-4F0F-96FE-D63A666862FA",
+          "name": "Nam Giao Quán - Since 1991",
+          "address": "242 Đường Đề Thám, Quận 1",
+          "brand": "",
+          "normalized_name": "nam giao quan since",
+          "chain_family": "nam giao",
+          "street_keys": [
+            "242|duong de tham"
+          ],
+          "identity_group_keys": [
+            "nam giao quan since|242|duong de tham",
+            "nam giao|242|duong de tham"
+          ],
+          "corridor": "duong de tham",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Nam%20Giao%20Qu%C3%A1n%20-%20Since%201991%20242%20%C4%90%C6%B0%E1%BB%9Dng%20%C4%90%E1%BB%81%20Th%C3%A1m%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "nam giao quan since",
+            "chain_family": "nam giao",
+            "street_keys": [
+              "242|duong de tham"
+            ],
+            "keys": [
+              "nam giao quan since|242|duong de tham",
+              "nam giao|242|duong de tham"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-1F9E05DD-4B1A-4624-9A03-71C681FC962C",
+          "name": "Ngọc Sương Sài Gòn - Sương Nguyệt Ánh",
+          "address": "106 Đường Sương Nguyệt Anh, Quận 1",
+          "brand": "",
+          "normalized_name": "ngoc suong sai gon suong nguyet anh",
+          "chain_family": "ngoc suong sai gon suong nguyet anh",
+          "street_keys": [
+            "106|duong suong nguyet anh"
+          ],
+          "identity_group_keys": [
+            "ngoc suong sai gon suong nguyet anh|106|duong suong nguyet anh",
+            "ngoc suong sai gon suong nguyet anh|106|duong suong nguyet anh"
+          ],
+          "corridor": "duong suong nguyet anh",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Ng%E1%BB%8Dc%20S%C6%B0%C6%A1ng%20S%C3%A0i%20G%C3%B2n%20-%20S%C6%B0%C6%A1ng%20Nguy%E1%BB%87t%20%C3%81nh%20106%20%C4%90%C6%B0%E1%BB%9Dng%20S%C6%B0%C6%A1ng%20Nguy%E1%BB%87t%20Anh%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "ngoc suong sai gon suong nguyet anh",
+            "chain_family": "ngoc suong sai gon suong nguyet anh",
+            "street_keys": [
+              "106|duong suong nguyet anh"
+            ],
+            "keys": [
+              "ngoc suong sai gon suong nguyet anh|106|duong suong nguyet anh",
+              "ngoc suong sai gon suong nguyet anh|106|duong suong nguyet anh"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-6B4DDAB4-11E0-4E98-9D23-8ECF4B6BFFA4",
+          "name": "Nhà Hàng Skewers",
+          "address": "9A Đường Thái Văn Lung, Quận 1",
+          "brand": "",
+          "normalized_name": "nha hang skewers",
+          "chain_family": "nha hang",
+          "street_keys": [
+            "9a|duong thai van lung"
+          ],
+          "identity_group_keys": [
+            "nha hang skewers|9a|duong thai van lung",
+            "nha hang|9a|duong thai van lung"
+          ],
+          "corridor": "duong thai van lung",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Nh%C3%A0%20H%C3%A0ng%20Skewers%209A%20%C4%90%C6%B0%E1%BB%9Dng%20Th%C3%A1i%20V%C4%83n%20Lung%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "nha hang skewers",
+            "chain_family": "nha hang",
+            "street_keys": [
+              "9a|duong thai van lung"
+            ],
+            "keys": [
+              "nha hang skewers|9a|duong thai van lung",
+              "nha hang|9a|duong thai van lung"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-F40C59D4-AE76-4B05-8002-72AEA4D3F13D",
+          "name": "Opus Saigon",
+          "address": "1 Hẻm 12 Phan Kế Bính, Quận 1",
+          "brand": "",
+          "normalized_name": "opus",
+          "chain_family": "opus",
+          "street_keys": [
+            "1|hem 12 phan ke binh"
+          ],
+          "identity_group_keys": [
+            "opus|1|hem 12 phan ke binh",
+            "opus|1|hem 12 phan ke binh"
+          ],
+          "corridor": "hem 12 phan ke binh",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Opus%20Saigon%201%20H%E1%BA%BBm%2012%20Phan%20K%E1%BA%BF%20B%C3%ADnh%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "opus",
+            "chain_family": "opus",
+            "street_keys": [
+              "1|hem 12 phan ke binh"
+            ],
+            "keys": [
+              "opus|1|hem 12 phan ke binh",
+              "opus|1|hem 12 phan ke binh"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-28B74393-1B8E-477D-8A20-A0FFCD790D87",
+          "name": "Pate Chaud SGC Saigon",
+          "address": "5H Đường Tôn Đức Thắng, Quận 1",
+          "brand": "",
+          "normalized_name": "pate chaud sgc",
+          "chain_family": "pate chaud sgc",
+          "street_keys": [
+            "5h|duong ton duc thang"
+          ],
+          "identity_group_keys": [
+            "pate chaud sgc|5h|duong ton duc thang",
+            "pate chaud sgc|5h|duong ton duc thang"
+          ],
+          "corridor": "duong ton duc thang",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Pate%20Chaud%20SGC%20Saigon%205H%20%C4%90%C6%B0%E1%BB%9Dng%20T%C3%B4n%20%C4%90%E1%BB%A9c%20Th%E1%BA%AFng%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "pate chaud sgc",
+            "chain_family": "pate chaud sgc",
+            "street_keys": [
+              "5h|duong ton duc thang"
+            ],
+            "keys": [
+              "pate chaud sgc|5h|duong ton duc thang",
+              "pate chaud sgc|5h|duong ton duc thang"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-6BD2CA3B-1152-44A6-92AD-8F2B62CC11E8",
+          "name": "Quán Chay Sen",
+          "address": "171 Đường Nguyễn Thái Học, Quận 1",
+          "brand": "",
+          "normalized_name": "quan chay sen",
+          "chain_family": "quan chay sen",
+          "street_keys": [
+            "171|duong nguyen thai hoc"
+          ],
+          "identity_group_keys": [
+            "quan chay sen|171|duong nguyen thai hoc",
+            "quan chay sen|171|duong nguyen thai hoc"
+          ],
+          "corridor": "duong nguyen thai hoc",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Qu%C3%A1n%20Chay%20Sen%20171%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Th%C3%A1i%20H%E1%BB%8Dc%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "quan chay sen",
+            "chain_family": "quan chay sen",
+            "street_keys": [
+              "171|duong nguyen thai hoc"
+            ],
+            "keys": [
+              "quan chay sen|171|duong nguyen thai hoc",
+              "quan chay sen|171|duong nguyen thai hoc"
+            ]
+          }
+        }
+      ],
+      "lead_ids": [
+        "OVT-558C23F2-7FED-424A-AD85-D868F594AEB9",
+        "OVT-81C3345B-5AB8-4EC6-B685-3F384C7B0DB7",
+        "OVT-617478BD-68F0-49D9-9036-2A2A7F7ACD58",
+        "OVT-8BD1980A-0A68-403D-8943-732ED14BB5F0",
+        "OVT-3945B037-8696-4BEF-9161-44C2D226E303",
+        "OVT-452BCF37-2A58-41B0-B9E8-B0D46D3DB4C4",
+        "OVT-3556F14A-A6A9-49A0-88FA-FCDA1CFCB202",
+        "OVT-AF04F32E-21BE-49C5-9A93-36DDC4E24D48",
+        "OVT-E46EAD0A-C2A3-4186-82F3-C2D9B270BB67",
+        "OVT-8452E01A-5030-48CC-A591-2E502113E1CF",
+        "OVT-0AB20632-9A4C-4F0F-96FE-D63A666862FA",
+        "OVT-1F9E05DD-4B1A-4624-9A03-71C681FC962C",
+        "OVT-6B4DDAB4-11E0-4E98-9D23-8ECF4B6BFFA4",
+        "OVT-F40C59D4-AE76-4B05-8002-72AEA4D3F13D",
+        "OVT-28B74393-1B8E-477D-8A20-A0FFCD790D87",
+        "OVT-6BD2CA3B-1152-44A6-92AD-8F2B62CC11E8"
+      ],
+      "created_at": "2026-07-11T21:17:09.414Z",
+      "started_at": "2026-07-11T21:17:09.416Z",
+      "pre_snapshot": "scratch/bigset-output/attempts/restaurants-attempt-026-2026-07-11T21-17-09-414Z-pre.json",
+      "required_models": {
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro"
+      },
+      "effective_model_config": {
+        "schema_inference": "anthropic/claude-sonnet-4.6",
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro",
+        "verified_at": "2026-07-11T21:16:39.882Z",
+        "source": "GET /settings/models"
+      },
+      "fail_fast_zero_rows": true,
+      "unique_before": 67,
+      "usable_before": 58,
+      "run_id": "27897f77-4ad2-47e4-87f7-9bd170de1b6d",
+      "submitted_at": "2026-07-11T21:17:09.434Z",
+      "dataset_status": "live",
+      "status_error": null,
+      "rows_exported": 4,
+      "export": "scratch/bigset-output/attempts/restaurants-attempt-026-2026-07-11T21-17-09-414Z-rows.json",
+      "finished_at": "2026-07-11T21:18:39.502Z",
+      "adoption_ready": true,
+      "unique_after": 71,
+      "unique_delta": 4,
+      "usable_after": 62,
+      "usable_delta": 4
+    },
+    {
+      "status": "completed_external_unadopted",
+      "category": "restaurants",
+      "attempt": 27,
+      "attempt_key": "restaurants-027-2026-07-11T21-19-06-692Z-open-pack-queue",
+      "old_dataset_id": "jd7dh2ywcm1hws97py5jd4kke58aa1dr",
+      "dataset_id": "jd71tpzjr95758qqhpfvm3ytsh8abwms",
+      "schema_verified": true,
+      "schema_signature": [
+        "air_conditioned:boolean:field",
+        "cuisine:text:field",
+        "family_friendly:boolean:field",
+        "foody_url:url:pk",
+        "name:text:field",
+        "nice_view:boolean:field",
+        "open_late:boolean:field",
+        "outdoor_seating:boolean:field",
+        "parking:boolean:field",
+        "price_tier:text:field",
+        "rating:number:field",
+        "rating_source:text:field",
+        "reservations:boolean:field",
+        "review_count:number:field",
+        "romantic:boolean:field",
+        "street_address:text:field"
+      ],
+      "reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"0e0e323d-ff9c-4221-9e92-f8ce510e16b2\",\"search_calls\":1,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
+      "prompt_strategy": "deterministic open-pack lead queue (16 exact uncovered name/address candidates); exact search then mandatory run_subagent per lead; fallback URL prevents discovery-only exit",
+      "deterministic_open_pack_recovery": true,
+      "lead_queue": [
+        {
+          "open_pack_id": "OVT-45E3DAE9-F75C-4708-8BB0-3C368A2578E2",
+          "name": "Nhà hàng Dìn Ký",
+          "address": "137C Đường Nguyễn Trãi, Quận 1",
+          "brand": "",
+          "normalized_name": "nha hang din ky",
+          "chain_family": "nha hang",
+          "street_keys": [
+            "137c|duong nguyen trai"
+          ],
+          "identity_group_keys": [
+            "nha hang din ky|137c|duong nguyen trai",
+            "nha hang|137c|duong nguyen trai"
+          ],
+          "corridor": "duong nguyen trai",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Nh%C3%A0%20h%C3%A0ng%20D%C3%ACn%20K%C3%BD%20137C%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Tr%C3%A3i%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "nha hang din ky",
+            "chain_family": "nha hang",
+            "street_keys": [
+              "137c|duong nguyen trai"
+            ],
+            "keys": [
+              "nha hang din ky|137c|duong nguyen trai",
+              "nha hang|137c|duong nguyen trai"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-CDB1191E-DDA0-46D8-8CD3-851D49D1DA26",
+          "name": "Quan Ngon 138",
+          "address": "138 Đường Nam Kỳ Khởi Nghĩa, Quận 1",
+          "brand": "",
+          "normalized_name": "quan ngon",
+          "chain_family": "quan ngon",
+          "street_keys": [
+            "138|duong nam ky khoi nghia"
+          ],
+          "identity_group_keys": [
+            "quan ngon|138|duong nam ky khoi nghia",
+            "quan ngon|138|duong nam ky khoi nghia"
+          ],
+          "corridor": "duong nam ky khoi nghia",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Quan%20Ngon%20138%20138%20%C4%90%C6%B0%E1%BB%9Dng%20Nam%20K%E1%BB%B3%20Kh%E1%BB%9Fi%20Ngh%C4%A9a%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "quan ngon",
+            "chain_family": "quan ngon",
+            "street_keys": [
+              "138|duong nam ky khoi nghia"
+            ],
+            "keys": [
+              "quan ngon|138|duong nam ky khoi nghia",
+              "quan ngon|138|duong nam ky khoi nghia"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-7B12CBEC-C95B-49CA-A1EA-8E2C445B3CBD",
+          "name": "Soul Ben Thanh",
+          "address": "7 Đường Thủ Khoa Huân, Quận 1",
+          "brand": "",
+          "normalized_name": "soul ben thanh",
+          "chain_family": "soul ben thanh",
+          "street_keys": [
+            "7|duong thu khoa huan"
+          ],
+          "identity_group_keys": [
+            "soul ben thanh|7|duong thu khoa huan",
+            "soul ben thanh|7|duong thu khoa huan"
+          ],
+          "corridor": "duong thu khoa huan",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Soul%20Ben%20Thanh%207%20%C4%90%C6%B0%E1%BB%9Dng%20Th%E1%BB%A7%20Khoa%20Hu%C3%A2n%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "soul ben thanh",
+            "chain_family": "soul ben thanh",
+            "street_keys": [
+              "7|duong thu khoa huan"
+            ],
+            "keys": [
+              "soul ben thanh|7|duong thu khoa huan",
+              "soul ben thanh|7|duong thu khoa huan"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-89241477-2345-4903-816D-3F0A263537C8",
+          "name": "The Street - Sai Gon",
+          "address": "41 Đường Nguyễn Thái Bình, Quận 1",
+          "brand": "",
+          "normalized_name": "the street sai gon",
+          "chain_family": "the street",
+          "street_keys": [
+            "41|duong nguyen thai binh"
+          ],
+          "identity_group_keys": [
+            "the street sai gon|41|duong nguyen thai binh",
+            "the street|41|duong nguyen thai binh"
+          ],
+          "corridor": "duong nguyen thai binh",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/The%20Street%20-%20Sai%20Gon%2041%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Th%C3%A1i%20B%C3%ACnh%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "the street sai gon",
+            "chain_family": "the street",
+            "street_keys": [
+              "41|duong nguyen thai binh"
+            ],
+            "keys": [
+              "the street sai gon|41|duong nguyen thai binh",
+              "the street|41|duong nguyen thai binh"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-3A1AADC1-4C2A-49B9-9888-170F0DB09D71",
+          "name": "Thóc Grill & Craft Beer",
+          "address": "89 Đường Đề Thám, Quận 1",
+          "brand": "",
+          "normalized_name": "thoc grill craft beer",
+          "chain_family": "thoc grill craft beer",
+          "street_keys": [
+            "89|duong de tham"
+          ],
+          "identity_group_keys": [
+            "thoc grill craft beer|89|duong de tham",
+            "thoc grill craft beer|89|duong de tham"
+          ],
+          "corridor": "duong de tham",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Th%C3%B3c%20Grill%20%26%20Craft%20Beer%2089%20%C4%90%C6%B0%E1%BB%9Dng%20%C4%90%E1%BB%81%20Th%C3%A1m%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "thoc grill craft beer",
+            "chain_family": "thoc grill craft beer",
+            "street_keys": [
+              "89|duong de tham"
+            ],
+            "keys": [
+              "thoc grill craft beer|89|duong de tham",
+              "thoc grill craft beer|89|duong de tham"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-350DFA02-423B-48A8-915E-4D4DEC6C81A0",
+          "name": "Viet Village Restaurant",
+          "address": "15-17 Đường Đinh Tiên Hoàng, Quận 1",
+          "brand": "",
+          "normalized_name": "viet village",
+          "chain_family": "viet village",
+          "street_keys": [
+            "15|duong dinh tien hoang"
+          ],
+          "identity_group_keys": [
+            "viet village|15|duong dinh tien hoang",
+            "viet village|15|duong dinh tien hoang"
+          ],
+          "corridor": "duong dinh tien hoang",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Viet%20Village%20Restaurant%2015-17%20%C4%90%C6%B0%E1%BB%9Dng%20%C4%90inh%20Ti%C3%AAn%20Ho%C3%A0ng%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "viet village",
+            "chain_family": "viet village",
+            "street_keys": [
+              "15|duong dinh tien hoang"
+            ],
+            "keys": [
+              "viet village|15|duong dinh tien hoang",
+              "viet village|15|duong dinh tien hoang"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-857D1803-2EAE-4273-B323-06F31E6E3795",
+          "name": "Vy Da Quan",
+          "address": "62 Đường Lý Tự Trọng, Quận 1",
+          "brand": "",
+          "normalized_name": "vy da quan",
+          "chain_family": "vy da quan",
+          "street_keys": [
+            "62|duong ly tu trong"
+          ],
+          "identity_group_keys": [
+            "vy da quan|62|duong ly tu trong",
+            "vy da quan|62|duong ly tu trong"
+          ],
+          "corridor": "duong ly tu trong",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Vy%20Da%20Quan%2062%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%BD%20T%E1%BB%B1%20Tr%E1%BB%8Dng%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "vy da quan",
+            "chain_family": "vy da quan",
+            "street_keys": [
+              "62|duong ly tu trong"
+            ],
+            "keys": [
+              "vy da quan|62|duong ly tu trong",
+              "vy da quan|62|duong ly tu trong"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-6E4DBB53-3C98-49C8-A3D4-D627CA5A21DF",
+          "name": "A Bảy Quán",
+          "address": "75 Hẻm 75 Đường Hoàng Sa, Quận 1",
+          "brand": "",
+          "normalized_name": "a bay quan",
+          "chain_family": "a bay quan",
+          "street_keys": [
+            "75|hem 75 duong hoang sa"
+          ],
+          "identity_group_keys": [
+            "a bay quan|75|hem 75 duong hoang sa",
+            "a bay quan|75|hem 75 duong hoang sa"
+          ],
+          "corridor": "hem 75 duong hoang sa",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 97,
+          "fallback_url": "https://www.google.com/maps/search/A%20B%E1%BA%A3y%20Qu%C3%A1n%2075%20H%E1%BA%BBm%2075%20%C4%90%C6%B0%E1%BB%9Dng%20Ho%C3%A0ng%20Sa%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "a bay quan",
+            "chain_family": "a bay quan",
+            "street_keys": [
+              "75|hem 75 duong hoang sa"
+            ],
+            "keys": [
+              "a bay quan|75|hem 75 duong hoang sa",
+              "a bay quan|75|hem 75 duong hoang sa"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-E221F9C5-7E42-4E28-A7A3-58ABDF3993D8",
+          "name": "Basilico",
+          "address": "39 Đường Lê Duẩn, Quận 1",
+          "brand": "",
+          "normalized_name": "basilico",
+          "chain_family": "basilico",
+          "street_keys": [
+            "39|duong le duan"
+          ],
+          "identity_group_keys": [
+            "basilico|39|duong le duan",
+            "basilico|39|duong le duan"
+          ],
+          "corridor": "duong le duan",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 97,
+          "fallback_url": "https://www.google.com/maps/search/Basilico%2039%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%AA%20Du%E1%BA%A9n%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "basilico",
+            "chain_family": "basilico",
+            "street_keys": [
+              "39|duong le duan"
+            ],
+            "keys": [
+              "basilico|39|duong le duan",
+              "basilico|39|duong le duan"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-DFAEADD2-1CB9-48A3-A4CD-F0FAC1C832DE",
+          "name": "Bún Thịt Nướng Chị Tuyền",
+          "address": "195 Đường Cô Giang, Quận 1",
+          "brand": "",
+          "normalized_name": "bun thit nuong tuyen",
+          "chain_family": "bun thit",
+          "street_keys": [
+            "195|duong co giang"
+          ],
+          "identity_group_keys": [
+            "bun thit nuong tuyen|195|duong co giang",
+            "bun thit|195|duong co giang"
+          ],
+          "corridor": "duong co giang",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 97,
+          "fallback_url": "https://www.google.com/maps/search/B%C3%BAn%20Th%E1%BB%8Bt%20N%C6%B0%E1%BB%9Bng%20Ch%E1%BB%8B%20Tuy%E1%BB%81n%20195%20%C4%90%C6%B0%E1%BB%9Dng%20C%C3%B4%20Giang%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "bun thit nuong tuyen",
+            "chain_family": "bun thit",
+            "street_keys": [
+              "195|duong co giang"
+            ],
+            "keys": [
+              "bun thit nuong tuyen|195|duong co giang",
+              "bun thit|195|duong co giang"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-D8768309-A17E-4873-83F8-02E3FE2F3654",
+          "name": "Ếch Xanh",
+          "address": "371D Đường Nguyễn Cảnh Chân, Quận 1",
+          "brand": "",
+          "normalized_name": "ech xanh",
+          "chain_family": "ech xanh",
+          "street_keys": [
+            "371d|duong nguyen canh chan"
+          ],
+          "identity_group_keys": [
+            "ech xanh|371d|duong nguyen canh chan",
+            "ech xanh|371d|duong nguyen canh chan"
+          ],
+          "corridor": "duong nguyen canh chan",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 97,
+          "fallback_url": "https://www.google.com/maps/search/%E1%BA%BEch%20Xanh%20371D%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20C%E1%BA%A3nh%20Ch%C3%A2n%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "ech xanh",
+            "chain_family": "ech xanh",
+            "street_keys": [
+              "371d|duong nguyen canh chan"
+            ],
+            "keys": [
+              "ech xanh|371d|duong nguyen canh chan",
+              "ech xanh|371d|duong nguyen canh chan"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-199B06B0-224C-4188-BD77-E83386F4812A",
+          "name": "Hệ Thống Nhà Hàng Hầm Rượu Dê Cua 245",
+          "address": "91 Đường Hoàng Sa, Quận 1",
+          "brand": "",
+          "normalized_name": "he thong nha hang ham ruou de cua",
+          "chain_family": "he thong nha hang ham ruou de cua",
+          "street_keys": [
+            "91|duong hoang sa"
+          ],
+          "identity_group_keys": [
+            "he thong nha hang ham ruou de cua|91|duong hoang sa",
+            "he thong nha hang ham ruou de cua|91|duong hoang sa"
+          ],
+          "corridor": "duong hoang sa",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 97,
+          "fallback_url": "https://www.google.com/maps/search/H%E1%BB%87%20Th%E1%BB%91ng%20Nh%C3%A0%20H%C3%A0ng%20H%E1%BA%A7m%20R%C6%B0%E1%BB%A3u%20D%C3%AA%20Cua%20245%2091%20%C4%90%C6%B0%E1%BB%9Dng%20Ho%C3%A0ng%20Sa%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "he thong nha hang ham ruou de cua",
+            "chain_family": "he thong nha hang ham ruou de cua",
+            "street_keys": [
+              "91|duong hoang sa"
+            ],
+            "keys": [
+              "he thong nha hang ham ruou de cua|91|duong hoang sa",
+              "he thong nha hang ham ruou de cua|91|duong hoang sa"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-83B12DD3-AF49-498E-8CA7-D71ECCA99714",
+          "name": "Kingscross Sonatus Central",
+          "address": "13B/1 Hẻm 15 Lê Thánh Tôn, Quận 1",
+          "brand": "",
+          "normalized_name": "kingscross sonatus central",
+          "chain_family": "kingscross sonatus central",
+          "street_keys": [
+            "13b/1|hem 15 le thanh ton"
+          ],
+          "identity_group_keys": [
+            "kingscross sonatus central|13b/1|hem 15 le thanh ton",
+            "kingscross sonatus central|13b/1|hem 15 le thanh ton"
+          ],
+          "corridor": "hem 15 le thanh ton",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 97,
+          "fallback_url": "https://www.google.com/maps/search/Kingscross%20Sonatus%20Central%2013B%2F1%20H%E1%BA%BBm%2015%20L%C3%AA%20Th%C3%A1nh%20T%C3%B4n%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "kingscross sonatus central",
+            "chain_family": "kingscross sonatus central",
+            "street_keys": [
+              "13b/1|hem 15 le thanh ton"
+            ],
+            "keys": [
+              "kingscross sonatus central|13b/1|hem 15 le thanh ton",
+              "kingscross sonatus central|13b/1|hem 15 le thanh ton"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-45C2DFE1-17D4-4FEB-BB47-8A9A38AEABAD",
+          "name": "Lá Dong Riềng Restaurant",
+          "address": "172 Đường Trần Quang Khải, Quận 1",
+          "brand": "",
+          "normalized_name": "la rieng",
+          "chain_family": "la rieng",
+          "street_keys": [
+            "172|duong tran quang khai"
+          ],
+          "identity_group_keys": [
+            "la rieng|172|duong tran quang khai",
+            "la rieng|172|duong tran quang khai"
+          ],
+          "corridor": "duong tran quang khai",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 97,
+          "fallback_url": "https://www.google.com/maps/search/L%C3%A1%20Dong%20Ri%E1%BB%81ng%20Restaurant%20172%20%C4%90%C6%B0%E1%BB%9Dng%20Tr%E1%BA%A7n%20Quang%20Kh%E1%BA%A3i%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "la rieng",
+            "chain_family": "la rieng",
+            "street_keys": [
+              "172|duong tran quang khai"
+            ],
+            "keys": [
+              "la rieng|172|duong tran quang khai",
+              "la rieng|172|duong tran quang khai"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-056F6B24-0757-4A56-B988-D261328F7582",
+          "name": "La Table De Saigon Restaurant",
+          "address": "185/10 Hẻm 175 Đường Phạm Ngũ Lão, Quận 1",
+          "brand": "",
+          "normalized_name": "la table de",
+          "chain_family": "la table de",
+          "street_keys": [
+            "185/10|hem 175 duong pham ngu lao"
+          ],
+          "identity_group_keys": [
+            "la table de|185/10|hem 175 duong pham ngu lao",
+            "la table de|185/10|hem 175 duong pham ngu lao"
+          ],
+          "corridor": "hem 175 duong pham ngu lao",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 97,
+          "fallback_url": "https://www.google.com/maps/search/La%20Table%20De%20Saigon%20Restaurant%20185%2F10%20H%E1%BA%BBm%20175%20%C4%90%C6%B0%E1%BB%9Dng%20Ph%E1%BA%A1m%20Ng%C5%A9%20L%C3%A3o%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "la table de",
+            "chain_family": "la table de",
+            "street_keys": [
+              "185/10|hem 175 duong pham ngu lao"
+            ],
+            "keys": [
+              "la table de|185/10|hem 175 duong pham ngu lao",
+              "la table de|185/10|hem 175 duong pham ngu lao"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-B9FD98FD-2BB1-4B1F-884A-D96C0E89F674",
+          "name": "Lẩu Dê Đồng Hương",
+          "address": "33B Đường Nguyễn Đình Chiểu, Quận 1",
+          "brand": "",
+          "normalized_name": "lau de huong",
+          "chain_family": "lau de",
+          "street_keys": [
+            "33b|duong nguyen dinh chieu"
+          ],
+          "identity_group_keys": [
+            "lau de huong|33b|duong nguyen dinh chieu",
+            "lau de|33b|duong nguyen dinh chieu"
+          ],
+          "corridor": "duong nguyen dinh chieu",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 97,
+          "fallback_url": "https://www.google.com/maps/search/L%E1%BA%A9u%20D%C3%AA%20%C4%90%E1%BB%93ng%20H%C6%B0%C6%A1ng%2033B%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20%C4%90%C3%ACnh%20Chi%E1%BB%83u%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "lau de huong",
+            "chain_family": "lau de",
+            "street_keys": [
+              "33b|duong nguyen dinh chieu"
+            ],
+            "keys": [
+              "lau de huong|33b|duong nguyen dinh chieu",
+              "lau de|33b|duong nguyen dinh chieu"
+            ]
+          }
+        }
+      ],
+      "lead_ids": [
+        "OVT-45E3DAE9-F75C-4708-8BB0-3C368A2578E2",
+        "OVT-CDB1191E-DDA0-46D8-8CD3-851D49D1DA26",
+        "OVT-7B12CBEC-C95B-49CA-A1EA-8E2C445B3CBD",
+        "OVT-89241477-2345-4903-816D-3F0A263537C8",
+        "OVT-3A1AADC1-4C2A-49B9-9888-170F0DB09D71",
+        "OVT-350DFA02-423B-48A8-915E-4D4DEC6C81A0",
+        "OVT-857D1803-2EAE-4273-B323-06F31E6E3795",
+        "OVT-6E4DBB53-3C98-49C8-A3D4-D627CA5A21DF",
+        "OVT-E221F9C5-7E42-4E28-A7A3-58ABDF3993D8",
+        "OVT-DFAEADD2-1CB9-48A3-A4CD-F0FAC1C832DE",
+        "OVT-D8768309-A17E-4873-83F8-02E3FE2F3654",
+        "OVT-199B06B0-224C-4188-BD77-E83386F4812A",
+        "OVT-83B12DD3-AF49-498E-8CA7-D71ECCA99714",
+        "OVT-45C2DFE1-17D4-4FEB-BB47-8A9A38AEABAD",
+        "OVT-056F6B24-0757-4A56-B988-D261328F7582",
+        "OVT-B9FD98FD-2BB1-4B1F-884A-D96C0E89F674"
+      ],
+      "created_at": "2026-07-11T21:19:06.692Z",
+      "started_at": "2026-07-11T21:19:06.693Z",
+      "pre_snapshot": "scratch/bigset-output/attempts/restaurants-attempt-027-2026-07-11T21-19-06-692Z-pre.json",
+      "required_models": {
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro"
+      },
+      "effective_model_config": {
+        "schema_inference": "anthropic/claude-sonnet-4.6",
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro",
+        "verified_at": "2026-07-11T21:18:39.505Z",
+        "source": "GET /settings/models"
+      },
+      "fail_fast_zero_rows": true,
+      "unique_before": 71,
+      "usable_before": 62,
+      "run_id": "a44dff05-0f72-4c4d-b687-1d20ae6d5e34",
+      "submitted_at": "2026-07-11T21:19:06.710Z",
+      "dataset_status": "live",
+      "status_error": null,
+      "rows_exported": 7,
+      "export": "scratch/bigset-output/attempts/restaurants-attempt-027-2026-07-11T21-19-06-692Z-rows.json",
+      "finished_at": "2026-07-11T21:22:51.855Z",
+      "adoption_ready": true,
+      "unique_after": 78,
+      "unique_delta": 7,
+      "usable_after": 67,
+      "usable_delta": 5
+    },
+    {
+      "status": "paused_zero_row_review",
+      "category": "restaurants",
+      "attempt": 28,
+      "attempt_key": "restaurants-028-2026-07-11T21-23-19-790Z-open-pack-queue",
+      "old_dataset_id": "jd71tpzjr95758qqhpfvm3ytsh8abwms",
+      "dataset_id": "jd73ymswk3kmzkaakhjc9tdwjd8ab1en",
+      "schema_verified": true,
+      "schema_signature": [
+        "air_conditioned:boolean:field",
+        "cuisine:text:field",
+        "family_friendly:boolean:field",
+        "foody_url:url:pk",
+        "name:text:field",
+        "nice_view:boolean:field",
+        "open_late:boolean:field",
+        "outdoor_seating:boolean:field",
+        "parking:boolean:field",
+        "price_tier:text:field",
+        "rating:number:field",
+        "rating_source:text:field",
+        "reservations:boolean:field",
+        "review_count:number:field",
+        "romantic:boolean:field",
+        "street_address:text:field"
+      ],
+      "reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"0e0e323d-ff9c-4221-9e92-f8ce510e16b2\",\"search_calls\":1,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
+      "prompt_strategy": "deterministic open-pack lead queue (16 exact uncovered name/address candidates); exact search then mandatory run_subagent per lead; fallback URL prevents discovery-only exit",
+      "deterministic_open_pack_recovery": true,
+      "lead_queue": [
+        {
+          "open_pack_id": "OVT-D23D6534-8C3D-44DD-A1F4-73C0A9336F62",
+          "name": "NhÀ HÀNg ĐOÀN ViÊN",
+          "address": "6 Đường Huyền Trân Công Chúa, Quận 1",
+          "brand": "",
+          "normalized_name": "nha hang doan vien",
+          "chain_family": "nha hang",
+          "street_keys": [
+            "6|duong huyen tran cong chua"
+          ],
+          "identity_group_keys": [
+            "nha hang doan vien|6|duong huyen tran cong chua",
+            "nha hang|6|duong huyen tran cong chua"
+          ],
+          "corridor": "duong huyen tran cong chua",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Nh%C3%80%20H%C3%80Ng%20%C4%90O%C3%80N%20Vi%C3%8AN%206%20%C4%90%C6%B0%E1%BB%9Dng%20Huy%E1%BB%81n%20Tr%C3%A2n%20C%C3%B4ng%20Ch%C3%BAa%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "nha hang doan vien",
+            "chain_family": "nha hang",
+            "street_keys": [
+              "6|duong huyen tran cong chua"
+            ],
+            "keys": [
+              "nha hang doan vien|6|duong huyen tran cong chua",
+              "nha hang|6|duong huyen tran cong chua"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-5AB48285-D9AB-47EB-A6EE-BA8F7456A1B8",
+          "name": "Lion City Vietnam - Ẩm thực Singapore",
+          "address": "24 Đường Lê Anh Xuân, Quận 1",
+          "brand": "",
+          "normalized_name": "lion city vietnam am thuc singapore",
+          "chain_family": "lion city vietnam am thuc singapore",
+          "street_keys": [
+            "24|duong le anh xuan"
+          ],
+          "identity_group_keys": [
+            "lion city vietnam am thuc singapore|24|duong le anh xuan",
+            "lion city vietnam am thuc singapore|24|duong le anh xuan"
+          ],
+          "corridor": "duong le anh xuan",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 97,
+          "fallback_url": "https://www.google.com/maps/search/Lion%20City%20Vietnam%20-%20%E1%BA%A8m%20th%E1%BB%B1c%20Singapore%2024%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%AA%20Anh%20Xu%C3%A2n%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "lion city vietnam am thuc singapore",
+            "chain_family": "lion city vietnam am thuc singapore",
+            "street_keys": [
+              "24|duong le anh xuan"
+            ],
+            "keys": [
+              "lion city vietnam am thuc singapore|24|duong le anh xuan",
+              "lion city vietnam am thuc singapore|24|duong le anh xuan"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-45514585-37DA-4D07-94FD-106F6408667F",
+          "name": "Miss Thu Restaurant",
+          "address": "Bellissima Salon And Spa, 65 Đường Lê Lợi, Quận 1",
+          "brand": "",
+          "normalized_name": "miss thu",
+          "chain_family": "miss thu",
+          "street_keys": [
+            "65|duong le loi"
+          ],
+          "identity_group_keys": [
+            "miss thu|65|duong le loi",
+            "miss thu|65|duong le loi"
+          ],
+          "corridor": "duong le loi",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 97,
+          "fallback_url": "https://www.google.com/maps/search/Miss%20Thu%20Restaurant%20Bellissima%20Salon%20And%20Spa%2C%2065%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%AA%20L%E1%BB%A3i%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "miss thu",
+            "chain_family": "miss thu",
+            "street_keys": [
+              "65|duong le loi"
+            ],
+            "keys": [
+              "miss thu|65|duong le loi",
+              "miss thu|65|duong le loi"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-E017C11E-A652-4F72-8EEA-6141E7E059A8",
+          "name": "Mỳ Cay Khuya | Ho Chi Minh City",
+          "address": "233/18 Hẻm 233 Nguyễn Trãi, Quận 1",
+          "brand": "",
+          "normalized_name": "my cay khuya city",
+          "chain_family": "my cay khuya city",
+          "street_keys": [
+            "233/18|hem 233 nguyen trai"
+          ],
+          "identity_group_keys": [
+            "my cay khuya city|233/18|hem 233 nguyen trai",
+            "my cay khuya city|233/18|hem 233 nguyen trai"
+          ],
+          "corridor": "hem 233 nguyen trai",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 97,
+          "fallback_url": "https://www.google.com/maps/search/M%E1%BB%B3%20Cay%20Khuya%20%7C%20Ho%20Chi%20Minh%20City%20233%2F18%20H%E1%BA%BBm%20233%20Nguy%E1%BB%85n%20Tr%C3%A3i%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "my cay khuya city",
+            "chain_family": "my cay khuya city",
+            "street_keys": [
+              "233/18|hem 233 nguyen trai"
+            ],
+            "keys": [
+              "my cay khuya city|233/18|hem 233 nguyen trai",
+              "my cay khuya city|233/18|hem 233 nguyen trai"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-6A962BF2-278A-4AF8-9E07-D98751C87F14",
+          "name": "Ốc Ghe",
+          "address": "34 Đường Mạc Đĩnh Chi, Quận 1",
+          "brand": "",
+          "normalized_name": "oc ghe",
+          "chain_family": "oc ghe",
+          "street_keys": [
+            "34|duong mac dinh chi"
+          ],
+          "identity_group_keys": [
+            "oc ghe|34|duong mac dinh chi",
+            "oc ghe|34|duong mac dinh chi"
+          ],
+          "corridor": "duong mac dinh chi",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 97,
+          "fallback_url": "https://www.google.com/maps/search/%E1%BB%90c%20Ghe%2034%20%C4%90%C6%B0%E1%BB%9Dng%20M%E1%BA%A1c%20%C4%90%C4%A9nh%20Chi%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "oc ghe",
+            "chain_family": "oc ghe",
+            "street_keys": [
+              "34|duong mac dinh chi"
+            ],
+            "keys": [
+              "oc ghe|34|duong mac dinh chi",
+              "oc ghe|34|duong mac dinh chi"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-C66345B1-D9F6-474E-9B62-232EDE90BA64",
+          "name": "Propaganda Saigon",
+          "address": "21 Đường Hàn Thuyên, Quận 1",
+          "brand": "",
+          "normalized_name": "propaganda",
+          "chain_family": "propaganda",
+          "street_keys": [
+            "21|duong han thuyen"
+          ],
+          "identity_group_keys": [
+            "propaganda|21|duong han thuyen",
+            "propaganda|21|duong han thuyen"
+          ],
+          "corridor": "duong han thuyen",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 97,
+          "fallback_url": "https://www.google.com/maps/search/Propaganda%20Saigon%2021%20%C4%90%C6%B0%E1%BB%9Dng%20H%C3%A0n%20Thuy%C3%AAn%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "propaganda",
+            "chain_family": "propaganda",
+            "street_keys": [
+              "21|duong han thuyen"
+            ],
+            "keys": [
+              "propaganda|21|duong han thuyen",
+              "propaganda|21|duong han thuyen"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-3DF6331A-890E-422F-AB39-90CB4C500D5A",
+          "name": "Sora Bistro",
+          "address": "11 Đường Thái Văn Lung, Quận 1",
+          "brand": "",
+          "normalized_name": "sora bistro",
+          "chain_family": "sora bistro",
+          "street_keys": [
+            "11|duong thai van lung"
+          ],
+          "identity_group_keys": [
+            "sora bistro|11|duong thai van lung",
+            "sora bistro|11|duong thai van lung"
+          ],
+          "corridor": "duong thai van lung",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 97,
+          "fallback_url": "https://www.google.com/maps/search/Sora%20Bistro%2011%20%C4%90%C6%B0%E1%BB%9Dng%20Th%C3%A1i%20V%C4%83n%20Lung%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "sora bistro",
+            "chain_family": "sora bistro",
+            "street_keys": [
+              "11|duong thai van lung"
+            ],
+            "keys": [
+              "sora bistro|11|duong thai van lung",
+              "sora bistro|11|duong thai van lung"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-1168823B-32CF-4CF5-8849-415127D202E4",
+          "name": "Vee Ayy Food",
+          "address": "345/84 Hẻm 345 Trần Hưng Đạo, Quận 1",
+          "brand": "",
+          "normalized_name": "vee ayy food",
+          "chain_family": "vee ayy food",
+          "street_keys": [
+            "345/84|hem 345 tran hung dao"
+          ],
+          "identity_group_keys": [
+            "vee ayy food|345/84|hem 345 tran hung dao",
+            "vee ayy food|345/84|hem 345 tran hung dao"
+          ],
+          "corridor": "hem 345 tran hung dao",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 97,
+          "fallback_url": "https://www.google.com/maps/search/Vee%20Ayy%20Food%20345%2F84%20H%E1%BA%BBm%20345%20Tr%E1%BA%A7n%20H%C6%B0ng%20%C4%90%E1%BA%A1o%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "vee ayy food",
+            "chain_family": "vee ayy food",
+            "street_keys": [
+              "345/84|hem 345 tran hung dao"
+            ],
+            "keys": [
+              "vee ayy food|345/84|hem 345 tran hung dao",
+              "vee ayy food|345/84|hem 345 tran hung dao"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-65EE2088-017E-47EB-8902-6904583F80EF",
+          "name": "Bếp Huế",
+          "address": "89 Đường Thạch Thị Thanh, Quận 1",
+          "brand": "",
+          "normalized_name": "bep hue",
+          "chain_family": "bep hue",
+          "street_keys": [
+            "89|duong thach thi thanh"
+          ],
+          "identity_group_keys": [
+            "bep hue|89|duong thach thi thanh",
+            "bep hue|89|duong thach thi thanh"
+          ],
+          "corridor": "duong thach thi thanh",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 96,
+          "fallback_url": "https://www.google.com/maps/search/B%E1%BA%BFp%20Hu%E1%BA%BF%2089%20%C4%90%C6%B0%E1%BB%9Dng%20Th%E1%BA%A1ch%20Th%E1%BB%8B%20Thanh%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "bep hue",
+            "chain_family": "bep hue",
+            "street_keys": [
+              "89|duong thach thi thanh"
+            ],
+            "keys": [
+              "bep hue|89|duong thach thi thanh",
+              "bep hue|89|duong thach thi thanh"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-1FE5E391-583D-4B17-9510-E2DDE9B56D72",
+          "name": "Bếp Nhà Lục Tỉnh",
+          "address": "39 Đường Nam Kỳ Khởi Nghĩa, Quận 1",
+          "brand": "",
+          "normalized_name": "bep nha luc tinh",
+          "chain_family": "bep nha luc tinh",
+          "street_keys": [
+            "39|duong nam ky khoi nghia"
+          ],
+          "identity_group_keys": [
+            "bep nha luc tinh|39|duong nam ky khoi nghia",
+            "bep nha luc tinh|39|duong nam ky khoi nghia"
+          ],
+          "corridor": "duong nam ky khoi nghia",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 96,
+          "fallback_url": "https://www.google.com/maps/search/B%E1%BA%BFp%20Nh%C3%A0%20L%E1%BB%A5c%20T%E1%BB%89nh%2039%20%C4%90%C6%B0%E1%BB%9Dng%20Nam%20K%E1%BB%B3%20Kh%E1%BB%9Fi%20Ngh%C4%A9a%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "bep nha luc tinh",
+            "chain_family": "bep nha luc tinh",
+            "street_keys": [
+              "39|duong nam ky khoi nghia"
+            ],
+            "keys": [
+              "bep nha luc tinh|39|duong nam ky khoi nghia",
+              "bep nha luc tinh|39|duong nam ky khoi nghia"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-ED189B4B-7284-4D3B-BC6B-D50ABB3E8049",
+          "name": "Bloom Saigon Restaurant",
+          "address": "3/1 Đường Hoàng Sa, Quận 1",
+          "brand": "",
+          "normalized_name": "bloom",
+          "chain_family": "bloom",
+          "street_keys": [
+            "3/1|duong hoang sa"
+          ],
+          "identity_group_keys": [
+            "bloom|3/1|duong hoang sa",
+            "bloom|3/1|duong hoang sa"
+          ],
+          "corridor": "duong hoang sa",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 96,
+          "fallback_url": "https://www.google.com/maps/search/Bloom%20Saigon%20Restaurant%203%2F1%20%C4%90%C6%B0%E1%BB%9Dng%20Ho%C3%A0ng%20Sa%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "bloom",
+            "chain_family": "bloom",
+            "street_keys": [
+              "3/1|duong hoang sa"
+            ],
+            "keys": [
+              "bloom|3/1|duong hoang sa",
+              "bloom|3/1|duong hoang sa"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-B3FD4C91-2E48-4BA0-BBFD-B2E182A71B5F",
+          "name": "Bún Đậu A Vừng",
+          "address": "6 Đường Lương Hữu Khánh, Quận 1",
+          "brand": "",
+          "normalized_name": "bun dau a vung",
+          "chain_family": "bun dau",
+          "street_keys": [
+            "6|duong luong huu khanh"
+          ],
+          "identity_group_keys": [
+            "bun dau a vung|6|duong luong huu khanh",
+            "bun dau|6|duong luong huu khanh"
+          ],
+          "corridor": "duong luong huu khanh",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 96,
+          "fallback_url": "https://www.google.com/maps/search/B%C3%BAn%20%C4%90%E1%BA%ADu%20A%20V%E1%BB%ABng%206%20%C4%90%C6%B0%E1%BB%9Dng%20L%C6%B0%C6%A1ng%20H%E1%BB%AFu%20Kh%C3%A1nh%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "bun dau a vung",
+            "chain_family": "bun dau",
+            "street_keys": [
+              "6|duong luong huu khanh"
+            ],
+            "keys": [
+              "bun dau a vung|6|duong luong huu khanh",
+              "bun dau|6|duong luong huu khanh"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-8B9128EC-5FE2-4EC9-B7CE-C66BBAC80FCA",
+          "name": "Bún Riêu Gánh Bến Thành",
+          "address": "4 Đường Phan Bội Châu, Quận 1",
+          "brand": "",
+          "normalized_name": "bun rieu ganh ben thanh",
+          "chain_family": "bun rieu",
+          "street_keys": [
+            "4|duong phan boi chau"
+          ],
+          "identity_group_keys": [
+            "bun rieu ganh ben thanh|4|duong phan boi chau",
+            "bun rieu|4|duong phan boi chau"
+          ],
+          "corridor": "duong phan boi chau",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 96,
+          "fallback_url": "https://www.google.com/maps/search/B%C3%BAn%20Ri%C3%AAu%20G%C3%A1nh%20B%E1%BA%BFn%20Th%C3%A0nh%204%20%C4%90%C6%B0%E1%BB%9Dng%20Phan%20B%E1%BB%99i%20Ch%C3%A2u%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "bun rieu ganh ben thanh",
+            "chain_family": "bun rieu",
+            "street_keys": [
+              "4|duong phan boi chau"
+            ],
+            "keys": [
+              "bun rieu ganh ben thanh|4|duong phan boi chau",
+              "bun rieu|4|duong phan boi chau"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-58D458BB-7560-47F0-A23E-2DA80684A61A",
+          "name": "Chef Thiện",
+          "address": "158 Đường Pasteur, Quận 1",
+          "brand": "",
+          "normalized_name": "chef thien",
+          "chain_family": "chef thien",
+          "street_keys": [
+            "158|duong pasteur"
+          ],
+          "identity_group_keys": [
+            "chef thien|158|duong pasteur",
+            "chef thien|158|duong pasteur"
+          ],
+          "corridor": "duong pasteur",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 96,
+          "fallback_url": "https://www.google.com/maps/search/Chef%20Thi%E1%BB%87n%20158%20%C4%90%C6%B0%E1%BB%9Dng%20Pasteur%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "chef thien",
+            "chain_family": "chef thien",
+            "street_keys": [
+              "158|duong pasteur"
+            ],
+            "keys": [
+              "chef thien|158|duong pasteur",
+              "chef thien|158|duong pasteur"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-67F34971-E4AB-4584-B76F-CF28E9673775",
+          "name": "Cơm Gà Hồng Xương",
+          "address": "353 Đường Nguyễn Trãi, Quận 1",
+          "brand": "",
+          "normalized_name": "com ga hong xuong",
+          "chain_family": "com ga",
+          "street_keys": [
+            "353|duong nguyen trai"
+          ],
+          "identity_group_keys": [
+            "com ga hong xuong|353|duong nguyen trai",
+            "com ga|353|duong nguyen trai"
+          ],
+          "corridor": "duong nguyen trai",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 96,
+          "fallback_url": "https://www.google.com/maps/search/C%C6%A1m%20G%C3%A0%20H%E1%BB%93ng%20X%C6%B0%C6%A1ng%20353%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20Tr%C3%A3i%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "com ga hong xuong",
+            "chain_family": "com ga",
+            "street_keys": [
+              "353|duong nguyen trai"
+            ],
+            "keys": [
+              "com ga hong xuong|353|duong nguyen trai",
+              "com ga|353|duong nguyen trai"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-C9E4F09C-315F-412D-964E-45ADDB3B76DA",
+          "name": "Haji Osmal Restaurant",
+          "address": "35 Đường Nguyễn An Ninh, Quận 1",
+          "brand": "",
+          "normalized_name": "haji osmal",
+          "chain_family": "haji osmal",
+          "street_keys": [
+            "35|duong nguyen an ninh"
+          ],
+          "identity_group_keys": [
+            "haji osmal|35|duong nguyen an ninh",
+            "haji osmal|35|duong nguyen an ninh"
+          ],
+          "corridor": "duong nguyen an ninh",
+          "corridor_coverage": 0,
+          "quality_score": 3,
+          "popularity_score": 96,
+          "fallback_url": "https://www.google.com/maps/search/Haji%20Osmal%20Restaurant%2035%20%C4%90%C6%B0%E1%BB%9Dng%20Nguy%E1%BB%85n%20An%20Ninh%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "haji osmal",
+            "chain_family": "haji osmal",
+            "street_keys": [
+              "35|duong nguyen an ninh"
+            ],
+            "keys": [
+              "haji osmal|35|duong nguyen an ninh",
+              "haji osmal|35|duong nguyen an ninh"
+            ]
+          }
+        }
+      ],
+      "lead_ids": [
+        "OVT-D23D6534-8C3D-44DD-A1F4-73C0A9336F62",
+        "OVT-5AB48285-D9AB-47EB-A6EE-BA8F7456A1B8",
+        "OVT-45514585-37DA-4D07-94FD-106F6408667F",
+        "OVT-E017C11E-A652-4F72-8EEA-6141E7E059A8",
+        "OVT-6A962BF2-278A-4AF8-9E07-D98751C87F14",
+        "OVT-C66345B1-D9F6-474E-9B62-232EDE90BA64",
+        "OVT-3DF6331A-890E-422F-AB39-90CB4C500D5A",
+        "OVT-1168823B-32CF-4CF5-8849-415127D202E4",
+        "OVT-65EE2088-017E-47EB-8902-6904583F80EF",
+        "OVT-1FE5E391-583D-4B17-9510-E2DDE9B56D72",
+        "OVT-ED189B4B-7284-4D3B-BC6B-D50ABB3E8049",
+        "OVT-B3FD4C91-2E48-4BA0-BBFD-B2E182A71B5F",
+        "OVT-8B9128EC-5FE2-4EC9-B7CE-C66BBAC80FCA",
+        "OVT-58D458BB-7560-47F0-A23E-2DA80684A61A",
+        "OVT-67F34971-E4AB-4584-B76F-CF28E9673775",
+        "OVT-C9E4F09C-315F-412D-964E-45ADDB3B76DA"
+      ],
+      "created_at": "2026-07-11T21:23:19.790Z",
+      "started_at": "2026-07-11T21:23:19.791Z",
+      "pre_snapshot": "scratch/bigset-output/attempts/restaurants-attempt-028-2026-07-11T21-23-19-790Z-pre.json",
+      "required_models": {
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro"
+      },
+      "effective_model_config": {
+        "schema_inference": "anthropic/claude-sonnet-4.6",
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro",
+        "verified_at": "2026-07-11T21:22:51.864Z",
+        "source": "GET /settings/models"
+      },
+      "fail_fast_zero_rows": true,
+      "unique_before": 78,
+      "usable_before": 67,
+      "run_id": "03209cbc-a467-4ff3-9c00-1a4b278e515e",
+      "submitted_at": "2026-07-11T21:23:19.802Z",
+      "dataset_status": "failed",
+      "status_error": "Populate workflow completed with 0 rows",
+      "rows_exported": 0,
+      "export": "scratch/bigset-output/attempts/restaurants-attempt-028-2026-07-11T21-23-19-790Z-rows.json",
+      "finished_at": "2026-07-11T21:25:04.844Z",
+      "adoption_ready": true,
+      "unique_after": 78,
+      "unique_delta": 0,
+      "usable_after": 67,
+      "usable_delta": 0
+    },
+    {
+      "status": "completed_external_unadopted",
+      "category": "restaurants",
+      "attempt": 29,
+      "attempt_key": "restaurants-029-2026-07-11T21-29-59-319Z-open-pack-queue",
+      "old_dataset_id": "jd73ymswk3kmzkaakhjc9tdwjd8ab1en",
+      "dataset_id": "jd7a0bfc2wqv9t1y4dsk28m0gs8ab7jc",
+      "schema_verified": true,
+      "schema_signature": [
+        "air_conditioned:boolean:field",
+        "cuisine:text:field",
+        "family_friendly:boolean:field",
+        "foody_url:url:pk",
+        "name:text:field",
+        "nice_view:boolean:field",
+        "open_late:boolean:field",
+        "outdoor_seating:boolean:field",
+        "parking:boolean:field",
+        "price_tier:text:field",
+        "rating:number:field",
+        "rating_source:text:field",
+        "reservations:boolean:field",
+        "review_count:number:field",
+        "romantic:boolean:field",
+        "street_address:text:field"
+      ],
+      "reason": "Pre-resolved direct-dispatch pivot after exact queue runStats {\"run_id\":\"03209cbc-a467-4ff3-9c00-1a4b278e515e\",\"search_calls\":27,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0,\"orchestrator_steps\":30}; individual URLs remove all remaining orchestrator discovery decisions",
+      "prompt_strategy": "pre-resolved direct-dispatch queue (7 exact individual URLs); zero orchestrator discovery; mandatory run_subagent per lead",
+      "deterministic_open_pack_recovery": true,
+      "pre_resolved_direct_dispatch": true,
+      "lead_queue": [
+        {
+          "open_pack_id": "OVT-FD41B2AE-D4F9-4D8F-BEAC-4009FF3D0E30",
+          "name": "Nhà Hàng Thiên Nam",
+          "address": "55 Đường Nam Kỳ Khởi Nghĩa, Quận 1",
+          "resolved_url": "https://www.foody.vn/ho-chi-minh/nha-hang-thien-nam-am-thuc-hoa-phap",
+          "resolved_source": "TinyFish exact-name/address result with matching house number",
+          "normalized_name": "nha hang thien nam",
+          "chain_family": "nha hang thien nam",
+          "street_keys": [
+            "55|duong nam ky khoi nghia"
+          ],
+          "identity_group_keys": [
+            "nha hang thien nam|55|duong nam ky khoi nghia",
+            "nha hang thien nam|55|duong nam ky khoi nghia"
+          ],
+          "corridor": "duong nam ky khoi nghia",
+          "identity_group": {
+            "normalized_name": "nha hang thien nam",
+            "chain_family": "nha hang thien nam",
+            "street_keys": [
+              "55|duong nam ky khoi nghia"
+            ],
+            "keys": [
+              "nha hang thien nam|55|duong nam ky khoi nghia",
+              "nha hang thien nam|55|duong nam ky khoi nghia"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-A3B4A3F7-D063-4D55-8C7D-4FC40D61EBB3",
+          "name": "Bún Riêu Cua",
+          "address": "199 Đường Hoàng Sa, Quận 1",
+          "resolved_url": "https://www.facebook.com/199hoangsa/?locale=vi_VN",
+          "resolved_source": "TinyFish exact-name/address result with matching house number",
+          "normalized_name": "bun rieu cua",
+          "chain_family": "bun rieu cua",
+          "street_keys": [
+            "199|duong hoang sa"
+          ],
+          "identity_group_keys": [
+            "bun rieu cua|199|duong hoang sa",
+            "bun rieu cua|199|duong hoang sa"
+          ],
+          "corridor": "duong hoang sa",
+          "identity_group": {
+            "normalized_name": "bun rieu cua",
+            "chain_family": "bun rieu cua",
+            "street_keys": [
+              "199|duong hoang sa"
+            ],
+            "keys": [
+              "bun rieu cua|199|duong hoang sa",
+              "bun rieu cua|199|duong hoang sa"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-3D0B7FBB-F7B8-4504-9ECF-4A680F5C72DA",
+          "name": "Lẩu Bò Quang Khải",
+          "address": "60 Đường Hồ Hảo Hớn, Quận 1",
+          "resolved_url": "https://www.foody.vn/ho-chi-minh/lau-bo-quang-khai-ho-hao-hon",
+          "resolved_source": "TinyFish exact-name/address result with matching house number",
+          "normalized_name": "lau bo quang khai",
+          "chain_family": "lau bo quang khai",
+          "street_keys": [
+            "60|duong ho hao hon"
+          ],
+          "identity_group_keys": [
+            "lau bo quang khai|60|duong ho hao hon",
+            "lau bo quang khai|60|duong ho hao hon"
+          ],
+          "corridor": "duong ho hao hon",
+          "identity_group": {
+            "normalized_name": "lau bo quang khai",
+            "chain_family": "lau bo quang khai",
+            "street_keys": [
+              "60|duong ho hao hon"
+            ],
+            "keys": [
+              "lau bo quang khai|60|duong ho hao hon",
+              "lau bo quang khai|60|duong ho hao hon"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-C66345B1-D9F6-474E-9B62-232EDE90BA64",
+          "name": "Propaganda Saigon",
+          "address": "21 Đường Hàn Thuyên, Quận 1",
+          "resolved_url": "https://www.foody.vn/ho-chi-minh/propaganda-saigon",
+          "resolved_source": "TinyFish exact-name/address result with matching house number",
+          "normalized_name": "propaganda",
+          "chain_family": "propaganda",
+          "street_keys": [
+            "21|duong han thuyen"
+          ],
+          "identity_group_keys": [
+            "propaganda|21|duong han thuyen",
+            "propaganda|21|duong han thuyen"
+          ],
+          "corridor": "duong han thuyen",
+          "identity_group": {
+            "normalized_name": "propaganda",
+            "chain_family": "propaganda",
+            "street_keys": [
+              "21|duong han thuyen"
+            ],
+            "keys": [
+              "propaganda|21|duong han thuyen",
+              "propaganda|21|duong han thuyen"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-6A962BF2-278A-4AF8-9E07-D98751C87F14",
+          "name": "Ốc Ghe",
+          "address": "34 Đường Mạc Đĩnh Chi, Quận 1",
+          "resolved_url": "https://www.foody.vn/ho-chi-minh/oc-ghe",
+          "resolved_source": "TinyFish exact-name/address result with matching house number",
+          "normalized_name": "oc ghe",
+          "chain_family": "oc ghe",
+          "street_keys": [
+            "34|duong mac dinh chi"
+          ],
+          "identity_group_keys": [
+            "oc ghe|34|duong mac dinh chi",
+            "oc ghe|34|duong mac dinh chi"
+          ],
+          "corridor": "duong mac dinh chi",
+          "identity_group": {
+            "normalized_name": "oc ghe",
+            "chain_family": "oc ghe",
+            "street_keys": [
+              "34|duong mac dinh chi"
+            ],
+            "keys": [
+              "oc ghe|34|duong mac dinh chi",
+              "oc ghe|34|duong mac dinh chi"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-8B9128EC-5FE2-4EC9-B7CE-C66BBAC80FCA",
+          "name": "Bún Riêu Gánh Bến Thành",
+          "address": "4 Đường Phan Bội Châu, Quận 1",
+          "resolved_url": "https://riviu.vn/bun-rieu-ganh-ben-thanh-phan-boi-chau",
+          "resolved_source": "TinyFish exact-name/address result with matching house number",
+          "normalized_name": "bun rieu ganh ben thanh",
+          "chain_family": "bun rieu ganh ben thanh",
+          "street_keys": [
+            "4|duong phan boi chau"
+          ],
+          "identity_group_keys": [
+            "bun rieu ganh ben thanh|4|duong phan boi chau",
+            "bun rieu ganh ben thanh|4|duong phan boi chau"
+          ],
+          "corridor": "duong phan boi chau",
+          "identity_group": {
+            "normalized_name": "bun rieu ganh ben thanh",
+            "chain_family": "bun rieu ganh ben thanh",
+            "street_keys": [
+              "4|duong phan boi chau"
+            ],
+            "keys": [
+              "bun rieu ganh ben thanh|4|duong phan boi chau",
+              "bun rieu ganh ben thanh|4|duong phan boi chau"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-65EE2088-017E-47EB-8902-6904583F80EF",
+          "name": "Bếp Huế",
+          "address": "89 Đường Thạch Thị Thanh, Quận 1",
+          "resolved_url": "https://www.foody.vn/ho-chi-minh/bep-hue",
+          "resolved_source": "TinyFish exact-name/address result with matching house number",
+          "normalized_name": "bep hue",
+          "chain_family": "bep hue",
+          "street_keys": [
+            "89|duong thach thi thanh"
+          ],
+          "identity_group_keys": [
+            "bep hue|89|duong thach thi thanh",
+            "bep hue|89|duong thach thi thanh"
+          ],
+          "corridor": "duong thach thi thanh",
+          "identity_group": {
+            "normalized_name": "bep hue",
+            "chain_family": "bep hue",
+            "street_keys": [
+              "89|duong thach thi thanh"
+            ],
+            "keys": [
+              "bep hue|89|duong thach thi thanh",
+              "bep hue|89|duong thach thi thanh"
+            ]
+          }
+        }
+      ],
+      "lead_ids": [
+        "OVT-FD41B2AE-D4F9-4D8F-BEAC-4009FF3D0E30",
+        "OVT-A3B4A3F7-D063-4D55-8C7D-4FC40D61EBB3",
+        "OVT-3D0B7FBB-F7B8-4504-9ECF-4A680F5C72DA",
+        "OVT-C66345B1-D9F6-474E-9B62-232EDE90BA64",
+        "OVT-6A962BF2-278A-4AF8-9E07-D98751C87F14",
+        "OVT-8B9128EC-5FE2-4EC9-B7CE-C66BBAC80FCA",
+        "OVT-65EE2088-017E-47EB-8902-6904583F80EF"
+      ],
+      "created_at": "2026-07-11T21:29:59.319Z",
+      "started_at": "2026-07-11T21:29:59.320Z",
+      "pre_snapshot": "scratch/bigset-output/attempts/restaurants-attempt-029-2026-07-11T21-29-59-319Z-pre.json",
+      "required_models": {
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro"
+      },
+      "effective_model_config": {
+        "schema_inference": "anthropic/claude-sonnet-4.6",
+        "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+        "investigate_subagent": "openai/gpt-oss-120b:nitro",
+        "verified_at": "2026-07-11T21:29:36.257Z",
+        "source": "GET /settings/models"
+      },
+      "fail_fast_zero_rows": true,
+      "unique_before": 78,
+      "usable_before": 67,
+      "run_id": "aa4b5f3d-d23c-4224-ba86-46a44afa91fd",
+      "submitted_at": "2026-07-11T21:29:59.335Z",
+      "dataset_status": "live",
+      "status_error": null,
+      "rows_exported": 1,
+      "export": "scratch/bigset-output/attempts/restaurants-attempt-029-2026-07-11T21-29-59-319Z-rows.json",
+      "finished_at": "2026-07-11T21:30:44.387Z",
+      "adoption_ready": true,
+      "unique_after": 79,
+      "unique_delta": 1,
+      "usable_after": 68,
+      "usable_delta": 1
+    }
+  ],
+  "replacements": [
+    {
+      "old_dataset_id": "jd79yz9g5jyvycbttgnwm4mckn8aay8q",
+      "new_dataset_id": "jd7dv7ncyy60xx2ewy7rjdtrkx8abzf5",
+      "reason": "Causal recovery after replacement attempt 16 made repeated broad search/fetch calls, dispatched zero run_subagent calls, and inserted zero rows; route one source-and-street lead directly to each subagent",
+      "prompt_strategy": "restaurant lead-router recovery: one source-and-street search then immediate run_subagent; no orchestrator fetch; rotate source family and under-covered corridor",
+      "source_street_recovery": true,
+      "causal_terminal_recovery": true,
+      "schema_verified": true,
+      "at": "2026-07-11T20:44:10.752Z"
+    },
+    {
+      "old_dataset_id": "jd7420m8t5nbmp53mx72npmrw18aa0nx",
+      "new_dataset_id": "jd79yz9g5jyvycbttgnwm4mckn8aay8q",
+      "reason": "Causal recovery after replacement attempt 16 made repeated broad search/fetch calls, dispatched zero run_subagent calls, and inserted zero rows; route one source-and-street lead directly to each subagent",
+      "prompt_strategy": "restaurant lead-router recovery: one source-and-street search then immediate run_subagent; no orchestrator fetch; rotate source family and under-covered corridor",
+      "source_street_recovery": true,
+      "causal_terminal_recovery": true,
+      "schema_verified": true,
+      "at": "2026-07-11T20:40:17.677Z"
+    },
+    {
+      "old_dataset_id": "jd7dv7ncyy60xx2ewy7rjdtrkx8abzf5",
+      "new_dataset_id": "jd70rpyd6adad5dsyrjby44f3h8aaqjh",
+      "reason": "Causal recovery after replacement attempt 16 made repeated broad search/fetch calls, dispatched zero run_subagent calls, and inserted zero rows; route one source-and-street lead directly to each subagent",
+      "prompt_strategy": "restaurant lead-router recovery: one source-and-street search then immediate run_subagent; no orchestrator fetch; rotate source family and under-covered corridor",
+      "source_street_recovery": true,
+      "causal_terminal_recovery": true,
+      "schema_verified": true,
+      "at": "2026-07-11T20:47:59.464Z"
+    },
+    {
+      "old_dataset_id": "jd70rpyd6adad5dsyrjby44f3h8aaqjh",
+      "new_dataset_id": "jd75k00htf4bnyy5dbnkt9z3tn8aahmg",
+      "reason": "Causal recovery after replacement attempt 16 made repeated broad search/fetch calls, dispatched zero run_subagent calls, and inserted zero rows; route one source-and-street lead directly to each subagent",
+      "prompt_strategy": "restaurant lead-router recovery: one source-and-street search then immediate run_subagent; no orchestrator fetch; rotate source family and under-covered corridor",
+      "source_street_recovery": true,
+      "causal_terminal_recovery": true,
+      "schema_verified": true,
+      "at": "2026-07-11T20:50:53.278Z"
+    },
+    {
+      "old_dataset_id": "jd75k00htf4bnyy5dbnkt9z3tn8aahmg",
+      "new_dataset_id": "jd7eh9k0whrc2yjcds4qq2qt198aaqyv",
+      "reason": "Causal recovery after replacement attempt 16 made repeated broad search/fetch calls, dispatched zero run_subagent calls, and inserted zero rows; route one source-and-street lead directly to each subagent",
+      "prompt_strategy": "restaurant lead-router recovery: one source-and-street search then immediate run_subagent; no orchestrator fetch; rotate source family and under-covered corridor",
+      "source_street_recovery": true,
+      "causal_terminal_recovery": true,
+      "schema_verified": true,
+      "at": "2026-07-11T20:52:02.775Z"
+    },
+    {
+      "old_dataset_id": "jd7eh9k0whrc2yjcds4qq2qt198aaqyv",
+      "new_dataset_id": "jd7bp2eg9gavsxrhwsrn8r48c18ab0qa",
+      "reason": "Causal recovery after replacement attempt 16 made repeated broad search/fetch calls, dispatched zero run_subagent calls, and inserted zero rows; route one source-and-street lead directly to each subagent",
+      "prompt_strategy": "restaurant lead-router recovery: one source-and-street search then immediate run_subagent; no orchestrator fetch; rotate source family and under-covered corridor",
+      "source_street_recovery": true,
+      "causal_terminal_recovery": true,
+      "schema_verified": true,
+      "at": "2026-07-11T20:52:59.360Z"
+    },
+    {
+      "old_dataset_id": "jd7bp2eg9gavsxrhwsrn8r48c18ab0qa",
+      "new_dataset_id": "jd74tvbx0n6xy29jtw9c7vpmsd8abckz",
+      "reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"0e0e323d-ff9c-4221-9e92-f8ce510e16b2\",\"search_calls\":1,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
+      "prompt_strategy": "deterministic open-pack lead queue (16 exact uncovered name/address candidates); exact search then mandatory run_subagent per lead; fallback URL prevents discovery-only exit",
+      "deterministic_open_pack_recovery": true,
+      "lead_ids": [
+        "OVT-95EEA5E0-4F26-4A5D-8D1E-80CCF933D9CE",
+        "OVT-92F38BA4-02D5-4384-8348-33BCF3584583",
+        "OVT-2DA6F78B-78CE-4362-812D-5C0FC50CD3DE",
+        "OVT-62BE5B3F-70DB-4C0E-87E7-3470BDA774C4",
+        "OVT-57FE521B-5793-4A16-9339-6B2D1F70B3A7",
+        "OVT-528DB9B8-5377-40ED-B377-94B9A015DD2E",
+        "OVT-C48F45AB-FEA2-473A-A2BF-8C1027DBF283",
+        "OVT-432F761B-CB36-448E-BAE5-43D13B72CFFF",
+        "OVT-28AFB5EE-94EF-4EC4-BC43-F25D5985D293",
+        "OVT-E090BBF0-CB8A-4080-BEAF-940F91BD4C5F",
+        "OVT-3F275EDE-29D6-4ED8-8548-D28D5E419F67",
+        "OVT-F8016635-889F-4934-8DF3-D4DB2E73E6E9",
+        "OVT-6C0999BB-C9D8-4AFE-9096-6FA395865A1A",
+        "OVT-BA7659C8-5476-4E88-AAE4-4F284A16CC1E",
+        "OVT-F8175D57-B25B-4BC7-8055-684AF08B2A75",
+        "OVT-4B7E9548-15F3-43DE-A518-EC9ADC38FD8D"
+      ],
+      "schema_verified": true,
+      "at": "2026-07-11T20:59:07.784Z"
+    },
+    {
+      "old_dataset_id": "jd74tvbx0n6xy29jtw9c7vpmsd8abckz",
+      "new_dataset_id": "jd76yctrfczpdx4ny3ckqkyeen8ab3tk",
+      "reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"0e0e323d-ff9c-4221-9e92-f8ce510e16b2\",\"search_calls\":1,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
+      "prompt_strategy": "deterministic open-pack lead queue (16 exact uncovered name/address candidates); exact search then mandatory run_subagent per lead; fallback URL prevents discovery-only exit",
+      "deterministic_open_pack_recovery": true,
+      "lead_ids": [
+        "OVT-D22F27CC-F870-4A08-8269-D1008D035590",
+        "OVT-F5440758-7C5A-4AAD-893B-56381AAF6B2E",
+        "OVT-C0160264-857C-434B-A7E7-CF016BEB85E1",
+        "OVT-9ADBA910-BF0C-44CE-B422-1E29F1EE31B0",
+        "OVT-DB8186F3-750E-476F-B26E-0191D759625A",
+        "OVT-2B6E0082-76C1-458A-978C-EE2053C0A9BE",
+        "OVT-29921998-1959-45B7-B8AC-EC5370656779",
+        "OVT-3C309714-3900-4494-9702-BC2844396A31",
+        "OVT-D5E30129-C62C-4E7D-BBC8-0CA535662824",
+        "OVT-B04D5398-441A-4869-84B1-B5686E28962B",
+        "OVT-87010E4A-E614-4CF5-8543-5BAB1634302A",
+        "OVT-292A5DE2-ACD1-4ED9-8454-325C74FE15AB",
+        "OVT-3B2C9BDE-2380-49D6-BFDF-4F22EE4AC9F2",
+        "OVT-36C9F454-F43B-4726-A813-F8BC88D22A80",
+        "OVT-073EE7D3-AFE8-4AC3-A386-808E01A953CC",
+        "OVT-F428DC3A-D1A8-47A7-B7A3-8C0E901B8A8D"
+      ],
+      "schema_verified": true,
+      "at": "2026-07-11T21:01:34.201Z"
+    },
+    {
+      "old_dataset_id": "jd76yctrfczpdx4ny3ckqkyeen8ab3tk",
+      "new_dataset_id": "jd72jdjfp09745pmrqjv28thbh8abkbb",
+      "reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"0e0e323d-ff9c-4221-9e92-f8ce510e16b2\",\"search_calls\":1,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
+      "prompt_strategy": "deterministic open-pack lead queue (16 exact uncovered name/address candidates); exact search then mandatory run_subagent per lead; fallback URL prevents discovery-only exit",
+      "deterministic_open_pack_recovery": true,
+      "lead_ids": [
+        "OVT-710306B2-84FD-45BB-8A84-1B680B2C2B12",
+        "OVT-596A4E38-44E8-47FD-A9A0-365D150C6FF8",
+        "OVT-C6E25C25-B88C-42A4-989A-5476A3FD3AB8",
+        "OVT-D0361B10-7490-4B6D-8C24-8AE5C9A6BD7B",
+        "OVT-929386EB-FF7F-4047-897A-78580835C919",
+        "OVT-FE56135B-0571-45F1-A4AC-E26992E52167",
+        "OVT-1492221F-2C8F-4F76-9272-2F668A750B4D",
+        "OVT-82F2D532-9CEC-446F-B2E8-B6E564CEC467",
+        "OVT-879409A4-8074-4EA8-9DA5-9F2AF1D4ED1B",
+        "OVT-0797E6D5-9D3C-4253-913A-3DFF0CFFA1C5",
+        "OVT-1AD08574-0FEF-4B81-A68E-7AE503CAB744",
+        "OVT-CA7E0275-5B11-4984-87D2-40273004CFB8",
+        "OVT-EF89FBDB-7A05-44AB-82DA-C1165B533E6D",
+        "OVT-F877ED3F-73BA-4C39-AE00-33E282A83F54",
+        "OVT-AB18C0D9-CD30-4F54-B4C3-FA41CE4F497C",
+        "OVT-3F1D98A0-BF4D-44BB-9473-A3985F68BFDB"
+      ],
+      "schema_verified": true,
+      "at": "2026-07-11T21:03:34.011Z"
+    },
+    {
+      "old_dataset_id": "jd72jdjfp09745pmrqjv28thbh8abkbb",
+      "new_dataset_id": "jd7dh2ywcm1hws97py5jd4kke58aa1dr",
+      "reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"0e0e323d-ff9c-4221-9e92-f8ce510e16b2\",\"search_calls\":1,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
+      "prompt_strategy": "deterministic open-pack lead queue (16 exact uncovered name/address candidates); exact search then mandatory run_subagent per lead; fallback URL prevents discovery-only exit",
+      "deterministic_open_pack_recovery": true,
+      "lead_ids": [
+        "OVT-558C23F2-7FED-424A-AD85-D868F594AEB9",
+        "OVT-81C3345B-5AB8-4EC6-B685-3F384C7B0DB7",
+        "OVT-617478BD-68F0-49D9-9036-2A2A7F7ACD58",
+        "OVT-8BD1980A-0A68-403D-8943-732ED14BB5F0",
+        "OVT-3945B037-8696-4BEF-9161-44C2D226E303",
+        "OVT-452BCF37-2A58-41B0-B9E8-B0D46D3DB4C4",
+        "OVT-3556F14A-A6A9-49A0-88FA-FCDA1CFCB202",
+        "OVT-AF04F32E-21BE-49C5-9A93-36DDC4E24D48",
+        "OVT-E46EAD0A-C2A3-4186-82F3-C2D9B270BB67",
+        "OVT-8452E01A-5030-48CC-A591-2E502113E1CF",
+        "OVT-0AB20632-9A4C-4F0F-96FE-D63A666862FA",
+        "OVT-1F9E05DD-4B1A-4624-9A03-71C681FC962C",
+        "OVT-6B4DDAB4-11E0-4E98-9D23-8ECF4B6BFFA4",
+        "OVT-F40C59D4-AE76-4B05-8002-72AEA4D3F13D",
+        "OVT-28B74393-1B8E-477D-8A20-A0FFCD790D87",
+        "OVT-6BD2CA3B-1152-44A6-92AD-8F2B62CC11E8"
+      ],
+      "schema_verified": true,
+      "at": "2026-07-11T21:17:09.414Z"
+    },
+    {
+      "old_dataset_id": "jd7dh2ywcm1hws97py5jd4kke58aa1dr",
+      "new_dataset_id": "jd71tpzjr95758qqhpfvm3ytsh8abwms",
+      "reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"0e0e323d-ff9c-4221-9e92-f8ce510e16b2\",\"search_calls\":1,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
+      "prompt_strategy": "deterministic open-pack lead queue (16 exact uncovered name/address candidates); exact search then mandatory run_subagent per lead; fallback URL prevents discovery-only exit",
+      "deterministic_open_pack_recovery": true,
+      "lead_ids": [
+        "OVT-45E3DAE9-F75C-4708-8BB0-3C368A2578E2",
+        "OVT-CDB1191E-DDA0-46D8-8CD3-851D49D1DA26",
+        "OVT-7B12CBEC-C95B-49CA-A1EA-8E2C445B3CBD",
+        "OVT-89241477-2345-4903-816D-3F0A263537C8",
+        "OVT-3A1AADC1-4C2A-49B9-9888-170F0DB09D71",
+        "OVT-350DFA02-423B-48A8-915E-4D4DEC6C81A0",
+        "OVT-857D1803-2EAE-4273-B323-06F31E6E3795",
+        "OVT-6E4DBB53-3C98-49C8-A3D4-D627CA5A21DF",
+        "OVT-E221F9C5-7E42-4E28-A7A3-58ABDF3993D8",
+        "OVT-DFAEADD2-1CB9-48A3-A4CD-F0FAC1C832DE",
+        "OVT-D8768309-A17E-4873-83F8-02E3FE2F3654",
+        "OVT-199B06B0-224C-4188-BD77-E83386F4812A",
+        "OVT-83B12DD3-AF49-498E-8CA7-D71ECCA99714",
+        "OVT-45C2DFE1-17D4-4FEB-BB47-8A9A38AEABAD",
+        "OVT-056F6B24-0757-4A56-B988-D261328F7582",
+        "OVT-B9FD98FD-2BB1-4B1F-884A-D96C0E89F674"
+      ],
+      "schema_verified": true,
+      "at": "2026-07-11T21:19:06.692Z"
+    },
+    {
+      "old_dataset_id": "jd71tpzjr95758qqhpfvm3ytsh8abwms",
+      "new_dataset_id": "jd73ymswk3kmzkaakhjc9tdwjd8ab1en",
+      "reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"0e0e323d-ff9c-4221-9e92-f8ce510e16b2\",\"search_calls\":1,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
+      "prompt_strategy": "deterministic open-pack lead queue (16 exact uncovered name/address candidates); exact search then mandatory run_subagent per lead; fallback URL prevents discovery-only exit",
+      "deterministic_open_pack_recovery": true,
+      "lead_ids": [
+        "OVT-D23D6534-8C3D-44DD-A1F4-73C0A9336F62",
+        "OVT-5AB48285-D9AB-47EB-A6EE-BA8F7456A1B8",
+        "OVT-45514585-37DA-4D07-94FD-106F6408667F",
+        "OVT-E017C11E-A652-4F72-8EEA-6141E7E059A8",
+        "OVT-6A962BF2-278A-4AF8-9E07-D98751C87F14",
+        "OVT-C66345B1-D9F6-474E-9B62-232EDE90BA64",
+        "OVT-3DF6331A-890E-422F-AB39-90CB4C500D5A",
+        "OVT-1168823B-32CF-4CF5-8849-415127D202E4",
+        "OVT-65EE2088-017E-47EB-8902-6904583F80EF",
+        "OVT-1FE5E391-583D-4B17-9510-E2DDE9B56D72",
+        "OVT-ED189B4B-7284-4D3B-BC6B-D50ABB3E8049",
+        "OVT-B3FD4C91-2E48-4BA0-BBFD-B2E182A71B5F",
+        "OVT-8B9128EC-5FE2-4EC9-B7CE-C66BBAC80FCA",
+        "OVT-58D458BB-7560-47F0-A23E-2DA80684A61A",
+        "OVT-67F34971-E4AB-4584-B76F-CF28E9673775",
+        "OVT-C9E4F09C-315F-412D-964E-45ADDB3B76DA"
+      ],
+      "schema_verified": true,
+      "at": "2026-07-11T21:23:19.790Z"
+    },
+    {
+      "old_dataset_id": "jd73ymswk3kmzkaakhjc9tdwjd8ab1en",
+      "new_dataset_id": "jd7a0bfc2wqv9t1y4dsk28m0gs8ab7jc",
+      "reason": "Pre-resolved direct-dispatch pivot after exact queue runStats {\"run_id\":\"03209cbc-a467-4ff3-9c00-1a4b278e515e\",\"search_calls\":27,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0,\"orchestrator_steps\":30}; individual URLs remove all remaining orchestrator discovery decisions",
+      "prompt_strategy": "pre-resolved direct-dispatch queue (7 exact individual URLs); zero orchestrator discovery; mandatory run_subagent per lead",
+      "deterministic_open_pack_recovery": true,
+      "pre_resolved_direct_dispatch": true,
+      "lead_ids": [
+        "OVT-FD41B2AE-D4F9-4D8F-BEAC-4009FF3D0E30",
+        "OVT-A3B4A3F7-D063-4D55-8C7D-4FC40D61EBB3",
+        "OVT-3D0B7FBB-F7B8-4504-9ECF-4A680F5C72DA",
+        "OVT-C66345B1-D9F6-474E-9B62-232EDE90BA64",
+        "OVT-6A962BF2-278A-4AF8-9E07-D98751C87F14",
+        "OVT-8B9128EC-5FE2-4EC9-B7CE-C66BBAC80FCA",
+        "OVT-65EE2088-017E-47EB-8902-6904583F80EF"
+      ],
+      "schema_verified": true,
+      "at": "2026-07-11T21:29:59.319Z"
+    }
+  ],
+  "created_at": "2026-07-11T20:43:43.348Z",
+  "required_models": {
+    "populate_orchestrator": "openai/gpt-oss-120b:nitro",
+    "investigate_subagent": "openai/gpt-oss-120b:nitro"
+  },
+  "current_dataset_id": "jd7a0bfc2wqv9t1y4dsk28m0gs8ab7jc",
+  "projected_unique_rows": 79,
+  "projected_usable_rows": 68,
+  "updated_at": "2026-07-11T21:30:44.388Z",
+  "strategy_phase": "pre_resolved_direct_dispatch",
+  "strategy_changes": [
+    {
+      "strategy": "deterministic_open_pack_queue",
+      "causal_metrics": {
+        "run_id": "0e0e323d-ff9c-4221-9e92-f8ce510e16b2",
+        "search_calls": 1,
+        "fetch_calls": 0,
+        "investigate_calls": 0,
+        "rows_inserted": 0
+      },
+      "at": "2026-07-11T20:58:43.856Z"
+    },
+    {
+      "strategy": "deterministic_open_pack_queue",
+      "causal_metrics": {
+        "run_id": "0e0e323d-ff9c-4221-9e92-f8ce510e16b2",
+        "search_calls": 1,
+        "fetch_calls": 0,
+        "investigate_calls": 0,
+        "rows_inserted": 0
+      },
+      "at": "2026-07-11T21:16:39.855Z"
+    },
+    {
+      "strategy": "pre_resolved_direct_dispatch",
+      "causal_metrics": {
+        "run_id": "03209cbc-a467-4ff3-9c00-1a4b278e515e",
+        "search_calls": 27,
+        "fetch_calls": 0,
+        "investigate_calls": 0,
+        "rows_inserted": 0,
+        "orchestrator_steps": 30
+      },
+      "leads_file": "scratch/bigset-output/restaurant-preresolved-leads-phase1.json",
+      "lead_ids": [
+        "OVT-FD41B2AE-D4F9-4D8F-BEAC-4009FF3D0E30",
+        "OVT-A3B4A3F7-D063-4D55-8C7D-4FC40D61EBB3",
+        "OVT-3D0B7FBB-F7B8-4504-9ECF-4A680F5C72DA",
+        "OVT-C66345B1-D9F6-474E-9B62-232EDE90BA64",
+        "OVT-6A962BF2-278A-4AF8-9E07-D98751C87F14",
+        "OVT-8B9128EC-5FE2-4EC9-B7CE-C66BBAC80FCA",
+        "OVT-65EE2088-017E-47EB-8902-6904583F80EF"
+      ],
+      "at": "2026-07-11T21:29:36.230Z"
+    }
+  ],
+  "deterministic_causal_reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"0e0e323d-ff9c-4221-9e92-f8ce510e16b2\",\"search_calls\":1,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
+  "used_lead_ids": [
+    "OVT-95EEA5E0-4F26-4A5D-8D1E-80CCF933D9CE",
+    "OVT-92F38BA4-02D5-4384-8348-33BCF3584583",
+    "OVT-2DA6F78B-78CE-4362-812D-5C0FC50CD3DE",
+    "OVT-62BE5B3F-70DB-4C0E-87E7-3470BDA774C4",
+    "OVT-57FE521B-5793-4A16-9339-6B2D1F70B3A7",
+    "OVT-528DB9B8-5377-40ED-B377-94B9A015DD2E",
+    "OVT-C48F45AB-FEA2-473A-A2BF-8C1027DBF283",
+    "OVT-432F761B-CB36-448E-BAE5-43D13B72CFFF",
+    "OVT-28AFB5EE-94EF-4EC4-BC43-F25D5985D293",
+    "OVT-E090BBF0-CB8A-4080-BEAF-940F91BD4C5F",
+    "OVT-3F275EDE-29D6-4ED8-8548-D28D5E419F67",
+    "OVT-F8016635-889F-4934-8DF3-D4DB2E73E6E9",
+    "OVT-6C0999BB-C9D8-4AFE-9096-6FA395865A1A",
+    "OVT-BA7659C8-5476-4E88-AAE4-4F284A16CC1E",
+    "OVT-F8175D57-B25B-4BC7-8055-684AF08B2A75",
+    "OVT-4B7E9548-15F3-43DE-A518-EC9ADC38FD8D",
+    "OVT-D22F27CC-F870-4A08-8269-D1008D035590",
+    "OVT-F5440758-7C5A-4AAD-893B-56381AAF6B2E",
+    "OVT-C0160264-857C-434B-A7E7-CF016BEB85E1",
+    "OVT-9ADBA910-BF0C-44CE-B422-1E29F1EE31B0",
+    "OVT-DB8186F3-750E-476F-B26E-0191D759625A",
+    "OVT-2B6E0082-76C1-458A-978C-EE2053C0A9BE",
+    "OVT-29921998-1959-45B7-B8AC-EC5370656779",
+    "OVT-3C309714-3900-4494-9702-BC2844396A31",
+    "OVT-D5E30129-C62C-4E7D-BBC8-0CA535662824",
+    "OVT-B04D5398-441A-4869-84B1-B5686E28962B",
+    "OVT-87010E4A-E614-4CF5-8543-5BAB1634302A",
+    "OVT-292A5DE2-ACD1-4ED9-8454-325C74FE15AB",
+    "OVT-3B2C9BDE-2380-49D6-BFDF-4F22EE4AC9F2",
+    "OVT-36C9F454-F43B-4726-A813-F8BC88D22A80",
+    "OVT-073EE7D3-AFE8-4AC3-A386-808E01A953CC",
+    "OVT-F428DC3A-D1A8-47A7-B7A3-8C0E901B8A8D",
+    "OVT-710306B2-84FD-45BB-8A84-1B680B2C2B12",
+    "OVT-596A4E38-44E8-47FD-A9A0-365D150C6FF8",
+    "OVT-C6E25C25-B88C-42A4-989A-5476A3FD3AB8",
+    "OVT-D0361B10-7490-4B6D-8C24-8AE5C9A6BD7B",
+    "OVT-929386EB-FF7F-4047-897A-78580835C919",
+    "OVT-FE56135B-0571-45F1-A4AC-E26992E52167",
+    "OVT-1492221F-2C8F-4F76-9272-2F668A750B4D",
+    "OVT-82F2D532-9CEC-446F-B2E8-B6E564CEC467",
+    "OVT-879409A4-8074-4EA8-9DA5-9F2AF1D4ED1B",
+    "OVT-0797E6D5-9D3C-4253-913A-3DFF0CFFA1C5",
+    "OVT-1AD08574-0FEF-4B81-A68E-7AE503CAB744",
+    "OVT-CA7E0275-5B11-4984-87D2-40273004CFB8",
+    "OVT-EF89FBDB-7A05-44AB-82DA-C1165B533E6D",
+    "OVT-F877ED3F-73BA-4C39-AE00-33E282A83F54",
+    "OVT-AB18C0D9-CD30-4F54-B4C3-FA41CE4F497C",
+    "OVT-3F1D98A0-BF4D-44BB-9473-A3985F68BFDB",
+    "OVT-558C23F2-7FED-424A-AD85-D868F594AEB9",
+    "OVT-81C3345B-5AB8-4EC6-B685-3F384C7B0DB7",
+    "OVT-617478BD-68F0-49D9-9036-2A2A7F7ACD58",
+    "OVT-8BD1980A-0A68-403D-8943-732ED14BB5F0",
+    "OVT-3945B037-8696-4BEF-9161-44C2D226E303",
+    "OVT-452BCF37-2A58-41B0-B9E8-B0D46D3DB4C4",
+    "OVT-3556F14A-A6A9-49A0-88FA-FCDA1CFCB202",
+    "OVT-AF04F32E-21BE-49C5-9A93-36DDC4E24D48",
+    "OVT-E46EAD0A-C2A3-4186-82F3-C2D9B270BB67",
+    "OVT-8452E01A-5030-48CC-A591-2E502113E1CF",
+    "OVT-0AB20632-9A4C-4F0F-96FE-D63A666862FA",
+    "OVT-1F9E05DD-4B1A-4624-9A03-71C681FC962C",
+    "OVT-6B4DDAB4-11E0-4E98-9D23-8ECF4B6BFFA4",
+    "OVT-F40C59D4-AE76-4B05-8002-72AEA4D3F13D",
+    "OVT-28B74393-1B8E-477D-8A20-A0FFCD790D87",
+    "OVT-6BD2CA3B-1152-44A6-92AD-8F2B62CC11E8",
+    "OVT-45E3DAE9-F75C-4708-8BB0-3C368A2578E2",
+    "OVT-CDB1191E-DDA0-46D8-8CD3-851D49D1DA26",
+    "OVT-7B12CBEC-C95B-49CA-A1EA-8E2C445B3CBD",
+    "OVT-89241477-2345-4903-816D-3F0A263537C8",
+    "OVT-3A1AADC1-4C2A-49B9-9888-170F0DB09D71",
+    "OVT-350DFA02-423B-48A8-915E-4D4DEC6C81A0",
+    "OVT-857D1803-2EAE-4273-B323-06F31E6E3795",
+    "OVT-6E4DBB53-3C98-49C8-A3D4-D627CA5A21DF",
+    "OVT-E221F9C5-7E42-4E28-A7A3-58ABDF3993D8",
+    "OVT-DFAEADD2-1CB9-48A3-A4CD-F0FAC1C832DE",
+    "OVT-D8768309-A17E-4873-83F8-02E3FE2F3654",
+    "OVT-199B06B0-224C-4188-BD77-E83386F4812A",
+    "OVT-83B12DD3-AF49-498E-8CA7-D71ECCA99714",
+    "OVT-45C2DFE1-17D4-4FEB-BB47-8A9A38AEABAD",
+    "OVT-056F6B24-0757-4A56-B988-D261328F7582",
+    "OVT-B9FD98FD-2BB1-4B1F-884A-D96C0E89F674",
+    "OVT-D23D6534-8C3D-44DD-A1F4-73C0A9336F62",
+    "OVT-5AB48285-D9AB-47EB-A6EE-BA8F7456A1B8",
+    "OVT-45514585-37DA-4D07-94FD-106F6408667F",
+    "OVT-E017C11E-A652-4F72-8EEA-6141E7E059A8",
+    "OVT-6A962BF2-278A-4AF8-9E07-D98751C87F14",
+    "OVT-C66345B1-D9F6-474E-9B62-232EDE90BA64",
+    "OVT-3DF6331A-890E-422F-AB39-90CB4C500D5A",
+    "OVT-1168823B-32CF-4CF5-8849-415127D202E4",
+    "OVT-65EE2088-017E-47EB-8902-6904583F80EF",
+    "OVT-1FE5E391-583D-4B17-9510-E2DDE9B56D72",
+    "OVT-ED189B4B-7284-4D3B-BC6B-D50ABB3E8049",
+    "OVT-B3FD4C91-2E48-4BA0-BBFD-B2E182A71B5F",
+    "OVT-8B9128EC-5FE2-4EC9-B7CE-C66BBAC80FCA",
+    "OVT-58D458BB-7560-47F0-A23E-2DA80684A61A",
+    "OVT-67F34971-E4AB-4584-B76F-CF28E9673775",
+    "OVT-C9E4F09C-315F-412D-964E-45ADDB3B76DA",
+    "OVT-FD41B2AE-D4F9-4D8F-BEAC-4009FF3D0E30",
+    "OVT-A3B4A3F7-D063-4D55-8C7D-4FC40D61EBB3",
+    "OVT-3D0B7FBB-F7B8-4504-9ECF-4A680F5C72DA"
+  ],
+  "projection_reconciliation": {
+    "rebuilt_at": "2026-07-11T22:10:21.807Z",
+    "canonical_url_policy": "Google Maps query-form search URLs preserve query identity; future fallbacks use unique encoded path form",
+    "trusted_after_url_identity_rebuild": true,
+    "replayed_exports": [
+      {
+        "attempt_key": "restaurants-017-2026-07-11T20-40-17-677Z-external-slot",
+        "export": "scratch/bigset-output/attempts/restaurants-attempt-017-2026-07-11T20-40-17-677Z-rows.json",
+        "raw_rows": 4
+      },
+      {
+        "attempt_key": "restaurants-018-2026-07-11T20-44-10-752Z-external-slot",
+        "export": "scratch/bigset-output/attempts/restaurants-attempt-018-2026-07-11T20-44-10-752Z-rows.json",
+        "raw_rows": 7
+      },
+      {
+        "attempt_key": "restaurants-019-2026-07-11T20-47-59-464Z-external-slot",
+        "export": "scratch/bigset-output/attempts/restaurants-attempt-019-2026-07-11T20-47-59-464Z-rows.json",
+        "raw_rows": 3
+      },
+      {
+        "attempt_key": "restaurants-020-2026-07-11T20-50-53-278Z-external-slot",
+        "export": "scratch/bigset-output/attempts/restaurants-attempt-020-2026-07-11T20-50-53-278Z-rows.json",
+        "raw_rows": 2
+      },
+      {
+        "attempt_key": "restaurants-021-2026-07-11T20-52-02-775Z-external-slot",
+        "export": "scratch/bigset-output/attempts/restaurants-attempt-021-2026-07-11T20-52-02-775Z-rows.json",
+        "raw_rows": 1
+      },
+      {
+        "attempt_key": "restaurants-022-2026-07-11T20-52-59-360Z-external-slot",
+        "export": "scratch/bigset-output/attempts/restaurants-attempt-022-2026-07-11T20-52-59-360Z-rows.json",
+        "raw_rows": 0
+      },
+      {
+        "attempt_key": "restaurants-023-2026-07-11T20-59-07-784Z-open-pack-queue",
+        "export": "scratch/bigset-output/attempts/restaurants-attempt-023-2026-07-11T20-59-07-784Z-rows.json",
+        "raw_rows": 5
+      },
+      {
+        "attempt_key": "restaurants-024-2026-07-11T21-01-34-201Z-open-pack-queue",
+        "export": "scratch/bigset-output/attempts/restaurants-attempt-024-2026-07-11T21-01-34-201Z-rows.json",
+        "raw_rows": 3
+      },
+      {
+        "attempt_key": "restaurants-025-2026-07-11T21-03-34-011Z-open-pack-queue",
+        "export": "scratch/bigset-output/attempts/restaurants-attempt-025-2026-07-11T21-10-22-371Z-recovered-rows.json",
+        "raw_rows": 14
+      },
+      {
+        "attempt_key": "restaurants-026-2026-07-11T21-17-09-414Z-open-pack-queue",
+        "export": "scratch/bigset-output/attempts/restaurants-attempt-026-2026-07-11T21-17-09-414Z-rows.json",
+        "raw_rows": 4
+      },
+      {
+        "attempt_key": "restaurants-027-2026-07-11T21-19-06-692Z-open-pack-queue",
+        "export": "scratch/bigset-output/attempts/restaurants-attempt-027-2026-07-11T21-19-06-692Z-rows.json",
+        "raw_rows": 7
+      },
+      {
+        "attempt_key": "restaurants-028-2026-07-11T21-23-19-790Z-open-pack-queue",
+        "export": "scratch/bigset-output/attempts/restaurants-attempt-028-2026-07-11T21-23-19-790Z-rows.json",
+        "raw_rows": 0
+      },
+      {
+        "attempt_key": "restaurants-029-2026-07-11T21-29-59-319Z-open-pack-queue",
+        "export": "scratch/bigset-output/attempts/restaurants-attempt-029-2026-07-11T21-29-59-319Z-rows.json",
+        "raw_rows": 1
+      }
+    ],
+    "projected_unique_rows": 79,
+    "projected_usable_rows": 68
+  },
+  "used_identity_groups": [
+    "ann quan|66|duong ngo duc ke",
+    "ashima mushroom hotpot|331a|duong nguyen trai",
+    "beo oi quan mon ngon ha noi|15/20|hem 15 nguyen thi minh khai",
+    "bo kho co mai|71|duong ho tung mau",
+    "bun dau co khan|102/26|hem 102 cong quynh",
+    "bun dau|102/26|hem 102 cong quynh",
+    "fsc garden|1b|duong pham ngoc thach",
+    "lau long bo|1|duong le thanh ton",
+    "le comptoir bistro books|12|duong ho huan nghiep",
+    "mandarine finest vietnamese cuisine|11a|duong ngo van nam",
+    "mulligans pub|91|duong nguyen thai binh",
+    "nam giao quan since|242|duong de tham",
+    "nam giao|242|duong de tham",
+    "ngoc suong sai gon suong nguyet anh|106|duong suong nguyet anh",
+    "nha hang skewers|9a|duong thai van lung",
+    "nha hang|9a|duong thai van lung",
+    "opus|1|hem 12 phan ke binh",
+    "pate chaud sgc|5h|duong ton duc thang",
+    "quan chay sen|171|duong nguyen thai hoc",
+    "nha hang din ky|137c|duong nguyen trai",
+    "nha hang|137c|duong nguyen trai",
+    "quan ngon|138|duong nam ky khoi nghia",
+    "soul ben thanh|7|duong thu khoa huan",
+    "the street sai gon|41|duong nguyen thai binh",
+    "the street|41|duong nguyen thai binh",
+    "thoc grill craft beer|89|duong de tham",
+    "viet village|15|duong dinh tien hoang",
+    "vy da quan|62|duong ly tu trong",
+    "a bay quan|75|hem 75 duong hoang sa",
+    "basilico|39|duong le duan",
+    "bun thit nuong tuyen|195|duong co giang",
+    "bun thit|195|duong co giang",
+    "ech xanh|371d|duong nguyen canh chan",
+    "he thong nha hang ham ruou de cua|91|duong hoang sa",
+    "kingscross sonatus central|13b/1|hem 15 le thanh ton",
+    "la rieng|172|duong tran quang khai",
+    "la table de|185/10|hem 175 duong pham ngu lao",
+    "lau de huong|33b|duong nguyen dinh chieu",
+    "lau de|33b|duong nguyen dinh chieu",
+    "nha hang doan vien|6|duong huyen tran cong chua",
+    "nha hang|6|duong huyen tran cong chua",
+    "lion city vietnam am thuc singapore|24|duong le anh xuan",
+    "miss thu|65|duong le loi",
+    "my cay khuya city|233/18|hem 233 nguyen trai",
+    "oc ghe|34|duong mac dinh chi",
+    "propaganda|21|duong han thuyen",
+    "sora bistro|11|duong thai van lung",
+    "vee ayy food|345/84|hem 345 tran hung dao",
+    "bep hue|89|duong thach thi thanh",
+    "bep nha luc tinh|39|duong nam ky khoi nghia",
+    "bloom|3/1|duong hoang sa",
+    "bun dau a vung|6|duong luong huu khanh",
+    "bun dau|6|duong luong huu khanh",
+    "bun rieu ganh ben thanh|4|duong phan boi chau",
+    "bun rieu|4|duong phan boi chau",
+    "chef thien|158|duong pasteur",
+    "com ga hong xuong|353|duong nguyen trai",
+    "com ga|353|duong nguyen trai",
+    "haji osmal|35|duong nguyen an ninh",
+    "nha hang thien nam|55|duong nam ky khoi nghia",
+    "bun rieu cua|199|duong hoang sa",
+    "lau bo quang khai|60|duong ho hao hon"
+  ],
+  "status_before_adoption": "collecting_external",
+  "adopted_at": "2026-07-11T22:19:28.489Z",
+  "adopted_canonical": "scratch/bigset-output/q1-restaurants-b2.json",
+  "adopted_unique_rows": 79,
+  "adopted_usable_rows": 68
+}

@@ -6,7 +6,7 @@ The prototype deliberately optimizes for a reliable overnight demo: one Next.js 
 
 ## Journey composition and revision
 
-`src/lib/journey.ts` is a pure deterministic commerce layer beside ranking. It accepts organically ranked POIs, attaches eligible fuel/dining/parking actions afterward, and never changes the ranker. Actions use stable hashes, integer VND arithmetic, exact recomputed totals, and visible simulation disclosures. The response carries only the prior query/location, selected POI IDs, action kinds, total, and revision number for the next turn.
+`src/lib/journey.ts` is a pure deterministic commerce layer beside ranking. It accepts organically ranked POIs, attaches eligible fuel/dining/parking actions afterward, and never changes the ranker. Actions use stable hashes, integer VND arithmetic, exact recomputed totals, and visible simulation disclosures. Ordered café → phở requests carry a typed stop category plus an optional strict cuisine/dish constraint beside the legacy dining action kind, so revisions cannot replace a café with a restaurant or a requested phở stop with unrelated food. Each leg is ranked from its own segment plus shared location/constraints. The response carries only the prior query/location, selected POI IDs, action kinds, optional ordered stop categories and index-aligned cuisines, total, and revision number for the next turn.
 
 A cheaper revision searches same-kind, same-city candidates, applies the score-floor utility guardrail, and accepts a replacement only if the complete total is strictly lower. Otherwise it returns `no_cheaper_option` with the unchanged bundle. OpenAI cannot mutate the structured journey. Browser confirmation locks on first activation, creates one session-local simulated VETC receipt, and triggers Route Theater when motion and map readiness permit.
 
@@ -28,6 +28,8 @@ flowchart LR
 ```
 
 The browser owns the presentation and current conversation. The server routes own deterministic interpretation, search, ranking, and response construction. Shared TypeScript types keep the UI, chat API, and `/v1` facade aligned.
+
+`SessionContext.recentQueries` keeps the current user turn plus the three prior user turns. Typed journey state carries ordered stops and strict cuisine/dish enums across refinements; an explicit new category/topic rebases the rolling context so stale café/restaurant or city text cannot leak into the new search. The optional NLU model may translate only supported café/restaurant and cuisine enums, but POI selection, hard dish matching, and ordering remain deterministic.
 
 ## Session and context management
 
@@ -120,18 +122,17 @@ Route Theater is the non-camera “wow” moment: the assistant visibly turns a 
 
 ## Voice path
 
-The redesigned Atlas session uses browser WebRTC for optional low-latency voice and keeps a deterministic scripted/text fallback:
+Voice is provider-toggleable speech-in/speech-out with a deterministic scripted/text fallback. ElevenLabs is the default; Valsea (SEA-accent specialist) is the alternative, selected per direction with `TASCO_STT_PROVIDER` and `TASCO_TTS_PROVIDER` (values: `elevenlabs` | `valsea`; unrecognized values fall back to ElevenLabs).
 
 1. The user explicitly presses the session start control before microphone capture begins.
-2. The browser creates a peer connection and sends its SDP offer to `POST /api/realtime/session`.
-3. The server-only route adds the `gpt-realtime-2.1` session configuration and authenticates the unified Realtime call with `OPENAI_API_KEY`; the standard key is never returned to or bundled into the browser.
-4. Semantic VAD commits input and produces transcription events with automatic model responses disabled (`create_response:false`, `interrupt_response:false`).
-5. The completed transcript goes through `/api/chat`, so the deterministic ranker and journey engine remain authoritative for POIs, routes, prices, totals, and changes.
-6. Only after `/api/chat` returns does the browser send an out-of-band `response.create` containing the grounded structured result. The Realtime model may phrase/speak that result but receives no authority to choose facts or actions.
-7. Barge-in sends documented `response.cancel` and WebRTC `output_audio_buffer.clear` control events before the new transcript is processed.
-8. Missing credentials, microphone denial, WebRTC failure, or provider failure preserves the scripted judge path and text composer.
+2. The browser calls `POST /api/stt/token`, which returns `{ provider, token }`. For ElevenLabs this is a single-use Scribe token (15-minute expiry, consumed on use) minted with the server-side `ELEVENLABS_API_KEY`. For Valsea — which has no token-minting endpoint — the route returns `VALSEA_API_KEY` itself, because Valsea's documented browser WebSocket auth is `?api_key=`; that trade-off is demo-only and flagged in the route.
+3. `stt-client.ts` opens the provider's realtime WebSocket and streams 16kHz PCM16 mic audio. ElevenLabs: Scribe v2 Realtime with `keyterms` biasing and server-side VAD (`vad_threshold` 0.75). Valsea: `valsea-rtt` model with `language: vietnamese` and the same domain vocabulary passed as `hint_text`; audio starts only after `session.ready`.
+4. Partial transcripts (`partial_transcript` / `transcript.partial`) drive the live caption and barge-in checks; committed transcripts (`committed_transcript` / `transcript.final`) go through `/api/chat`, so the deterministic ranker and journey engine remain authoritative for POIs, routes, prices, totals, and changes.
+5. The grounded `assistantResponse` text is spoken via `POST /api/tts`, a server-side proxy that never generates or alters text. ElevenLabs: Flash v2.5 (`eleven_flash_v2_5`, `ELEVENLABS_VOICE_ID` optional). Valsea: OpenAI-compatible `POST /v1/audio/speech` (`valsea-tts`, `VALSEA_VOICE` optional, default `valsea-neutral`).
+6. Barge-in is word-confirmed only (`isConfirmedSpeech` / stricter `isConfirmedBargeIn` during playback) and stops TTS playback immediately.
+7. Missing credentials, microphone denial, WebSocket failure, or provider failure preserves the scripted judge path and text composer.
 
-The app does not persist an audio file. Realtime transport is session-only, and ending the Atlas session stops every local media track and closes the peer connection.
+The app does not persist an audio file. Realtime transport is session-only, and ending the Atlas session stops every local media track and closes the WebSocket.
 
 ## Privacy boundaries
 
