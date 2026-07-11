@@ -62,16 +62,36 @@ function tokensFor(row) {
   return [...tokens].filter((t) => DICTIONARY.canonicalTokens.includes(t));
 }
 
-function validRow(row) {
+function rowCoords(row) {
   const lat = Number(row.latitude ?? row.lat);
   const lon = Number(row.longitude ?? row.lon);
+  return Number.isFinite(lat) && lat > 10.6 && lat < 10.9 && Number.isFinite(lon) && lon > 106.6 && lon < 106.8
+    ? { lat, lon }
+    : null;
+}
+
+// Coordinates are OPTIONAL: agents often can't extract them from JS-rendered
+// pages, but we hold exact Overture coordinates for every skeleton venue —
+// name + street address is enough identity to merge on.
+function validRow(row) {
   const rating = row.rating === undefined ? 0 : Number(row.rating);
+  const hasAddress = typeof (row.street_address ?? row.address) === "string" && String(row.street_address ?? row.address).trim().length > 5;
   return (
     typeof row.name === "string" && row.name.trim().length > 1 &&
-    Number.isFinite(lat) && lat > 10.6 && lat < 10.9 &&
-    Number.isFinite(lon) && lon > 106.6 && lon < 106.8 &&
+    (rowCoords(row) !== null || hasAddress) &&
     Number.isFinite(rating) && rating >= 0 && rating <= 5
   );
+}
+
+const streetTokens = (value) =>
+  new Set(normalize(String(value ?? "")).split(" ").filter((t) => t.length > 1));
+
+function addressSimilarity(a, b) {
+  const ta = streetTokens(a);
+  const tb = streetTokens(b);
+  if (!ta.size || !tb.size) return 0;
+  const overlap = [...ta].filter((t) => tb.has(t)).length;
+  return overlap / Math.min(ta.size, tb.size);
 }
 
 const stats = { rows: 0, invalid: 0, matched: 0, review: 0, unmatched: 0 };
@@ -83,23 +103,37 @@ for (const path of inputs) {
   for (const row of Array.isArray(rows) ? rows : rows.rows ?? []) {
     stats.rows++;
     if (!validRow(row)) { stats.invalid++; continue; }
-    const point = { lat: Number(row.latitude ?? row.lat), lon: Number(row.longitude ?? row.lon) };
+    const point = rowCoords(row);
+    const rowAddress = row.street_address ?? row.address ?? "";
 
     let best = null;
     for (const poi of pack.pois) {
-      const distance = meters(point, poi.coordinates);
-      if (distance > MAX_MATCH_METERS) continue;
+      // Geo gate when the row has coordinates; address overlap otherwise.
+      let distance = Infinity;
+      let addressScore = 0;
+      if (point) {
+        distance = meters(point, poi.coordinates);
+        if (distance > MAX_MATCH_METERS) continue;
+      } else {
+        addressScore = addressSimilarity(rowAddress, poi.address);
+        if (addressScore < 0.5) continue;
+      }
       const exact = normalize(poi.name) === normalize(row.name) && normalize(poi.name).length > 0;
       const similarity = exact ? 1 : tokenSimilarity(poi.name, row.name);
-      if (!best || similarity > best.similarity || (similarity === best.similarity && distance < best.distance)) {
-        best = { poi, similarity, distance };
+      const combined = similarity + (point ? 0 : addressScore * 0.2);
+      if (!best || combined > best.combined || (combined === best.combined && distance < best.distance)) {
+        best = { poi, similarity, distance, addressScore, combined };
       }
     }
 
     const accepted =
       best &&
-      ((best.similarity >= 0.75 && best.distance <= MAX_MATCH_METERS) ||
-        (best.similarity >= 0.5 && best.distance <= TIGHT_METERS));
+      (point
+        ? (best.similarity >= 0.75 && best.distance <= MAX_MATCH_METERS) ||
+          (best.similarity >= 0.5 && best.distance <= TIGHT_METERS)
+        : // No coordinates: demand a strong name AND corroborating address.
+          (best.similarity >= 0.75 && best.addressScore >= 0.5) ||
+          (best.similarity >= 0.55 && best.addressScore >= 0.8));
     if (accepted) {
       stats.matched++;
       const existing = enrichedById.get(best.poi.id) ?? { tokens: new Set(), rating: 0, reviewCount: 0 };

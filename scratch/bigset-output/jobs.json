@@ -4,28 +4,34 @@
   "q1-hotels": "jd784p7jr4fybkrv7jyeynz67n8abcge",
   "state": {
     "q1-cafes": {
-      "status": "failed_partial",
-      "rows_collected": 20,
+      "status": "complete",
+      "rows_collected": 50,
       "target_rows": 50,
       "export": "scratch/bigset-output/q1-cafes.json"
     },
     "q1-restaurants": {
-      "status": "failed_partial",
-      "rows_collected": 18,
+      "status": "complete",
+      "rows_collected": 50,
       "target_rows": 50,
       "export": "scratch/bigset-output/q1-restaurants.json"
     },
     "q1-hotels": {
-      "status": "failed_partial",
-      "rows_collected": 15,
+      "status": "complete",
+      "rows_collected": 50,
       "target_rows": 50,
       "export": "scratch/bigset-output/q1-hotels.json"
     },
-    "summary": "All three datasets were created and populate ran, but each run FAILED partway. Partial rows were salvaged to the export files above. See blocker below."
+    "summary": "2026-07-12 run on z-ai/glm-5.2 (both POPULATE_ORCHESTRATOR_MODEL and INVESTIGATE_SUBAGENT_MODEL). Raised OpenRouter cap held: NO credit/402 errors this run. All three datasets repopulated to the full 50-row target and exported. glm-5.2 was accepted with no data-policy 404. One transient SSL error ('bad record mac', alert 20) failed the first cafes run at 46 rows; a clean retry reached 50. The backend was killed once by memory pressure (frontend+convex+backend+2 concurrent LLM populates on 16GB RAM) right as restaurants hit 50 — data persisted in local Convex and survived the restart. batch2 was NOT submitted (session wrap-up before step 5).",
+    "merge_result": "node scripts/merge-enrichment.mjs q1-cafes.json q1-restaurants.json q1-hotels.json => rows:150 invalid:91 matched:23 review-band:9 unmatched:27 | enriched POIs 54/1096 | core cafe+restaurant match-rate 5.1% (needs >=60% for AD9 demo flip). NOTE: 91/150 rows invalid mostly because many BigSet rows lack usable lat/lon; coordinate coverage is the bottleneck, not row count."
+  },
+  "batch2": {
+    "status": "not_submitted",
+    "reason": "Session wrap-up requested before step 5. Steps 1-4 completed cleanly on glm-5.2. batch2 (one extra 100-row batch per category with deeper-pagination source hints) can be created on the next run."
   },
   "blocker": {
-    "type": "openrouter_key_credit_limit",
-    "detail": "The OpenRouter API key in .env.local has a per-key spend limit of $10 and is exhausted (usage=$9.96, limit_remaining=$0.04). Populate returns HTTP 402: 'This request requires more credits, or fewer max_tokens'. The parent account still has ~$9.5 of its $25 balance, but THIS key is capped at $10 and cannot reach it.",
+    "type": "RESOLVED_2026-07-12",
+    "detail": "PREVIOUS (now resolved): OpenRouter key had a $10 per-key cap that drained on the expensive Anthropic override. User raised the cap; the 2026-07-12 run on the cheaper z-ai/glm-5.2 hit NO 402/credit errors and completed all three datasets to 50 rows. Original blocker text kept below for history.",
+    "original_detail": "The OpenRouter API key in .env.local has a per-key spend limit of $10 and is exhausted (usage=$9.96, limit_remaining=$0.04). Populate returns HTTP 402: 'This request requires more credits, or fewer max_tokens'. The parent account still has ~$9.5 of its $25 balance, but THIS key is capped at $10 and cannot reach it.",
     "fix_options": [
       "Preferred: raise/remove the $10 limit on this key (or mint a new uncapped key) at https://openrouter.ai/settings/keys, then re-run the populate step below.",
       "Also required for the cheap default model: BigSet's default populate model is qwen/qwen3.7-max, which this account's data policy currently BLOCKS ('No endpoints available matching your guardrail restrictions and data policy'). Either (a) allow those providers at https://openrouter.ai/settings/privacy so the cheaper qwen default works, or (b) keep the Anthropic override shown below (works but ~10x more expensive, which is what drained the key)."
@@ -39,7 +45,7 @@
     "credentials": "TINYFISH_API_KEY + OPENROUTER_API_KEY were stored into the OS keychain (service ai.bigset.local-credentials, accounts bigset-local:tinyfish / bigset-local:openrouter). They persist, so future runs do not need re-seeding.",
     "model_override_used": "POPULATE_ORCHESTRATOR_MODEL=anthropic/claude-sonnet-4.6 and INVESTIGATE_SUBAGENT_MODEL=anthropic/claude-sonnet-4.6 (needed because the qwen default is blocked by the account data policy)."
   },
-  "start_backend_command": "cd ~/side-projects/tasco-ai-map && set -a && source .env.local && set +a && BIGSET_LOCAL_WORKSPACE_ID=bigset-local BIGSET_KEYCHAIN_PORT=3599 POPULATE_ORCHESTRATOR_MODEL=z-ai/glm-5.2 INVESTIGATE_SUBAGENT_MODEL=z-ai/glm-5.2 npx @adamexu/bigset start",
+  "start_backend_command": "cd ~/side-projects/tasco-ai-map && set -a && source .env.local && set +a && BIGSET_LOCAL_WORKSPACE_ID=bigset-local BIGSET_KEYCHAIN_PORT=3599 POPULATE_ORCHESTRATOR_MODEL=openai/gpt-oss-120b:nitro INVESTIGATE_SUBAGENT_MODEL=openai/gpt-oss-120b:nitro npx @adamexu/bigset start",
   "repopulate_commands": {
     "_comment": "After fixing the OpenRouter key limit, start the backend (command above), then re-run populate for each dataset:",
     "q1-cafes": "npx @adamexu/bigset populate jd7em53sxpp66hycp9n58bjemd8abtzm",
@@ -57,5 +63,5 @@
     "q1-restaurants": "npx @adamexu/bigset status jd744eta9tefxtgwcdr4qt2mdh8aame0",
     "q1-hotels": "npx @adamexu/bigset status jd784p7jr4fybkrv7jyeynz67n8abcge"
   },
-  "model_commandment": "USER MANDATE (final): run populate with POPULATE_ORCHESTRATOR_MODEL=z-ai/glm-5.2 and INVESTIGATE_SUBAGENT_MODEL=z-ai/glm-5.2 (text-to-text is fine for the orchestrator). If OpenRouter returns the data-policy 404 that hit qwen, allow the provider at https://openrouter.ai/settings/privacy first."
+  "model_commandment": "USER MANDATE (v3): POPULATE_ORCHESTRATOR_MODEL=openai/gpt-oss-120b:nitro and INVESTIGATE_SUBAGENT_MODEL=openai/gpt-oss-120b:nitro — nitro routing auto-selects the fastest provider (Cerebras 740tps / Groq). Supersedes glm-5.2 (too slow). NEVER substitute any other model."
 }

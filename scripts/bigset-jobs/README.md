@@ -9,6 +9,19 @@ explicit field list keeps its inferred schema aligned with
 `attribute-dictionary.json` (`fieldMap` keys) so `merge-enrichment.mjs` can map
 outputs onto canonical Vietnamese attribute tokens without guesswork.
 
+LESSONS FROM RUN 1 (GLM-5.2, 150 rows):
+- Do NOT ask for latitude/longitude — agents can't extract them from
+  JS-rendered map pages (61% of rows came back blank). The merge matches by
+  name + street_address against Overture's exact coordinates instead. Ask for
+  "street_address (exact, with house number)" and drop lat/long from the field
+  lists when submitting new batches.
+- Populate ONE dataset at a time (two concurrent populates OOM a 16GB machine).
+- Prioritize FAMOUS venues: phrase batch-2 descriptions as "the most popular /
+  best-known Xs in Quận 1 according to Foody rankings" — demo questions hit the
+  head of the popularity curve, not the long tail.
+- Model: openai/gpt-oss-120b:nitro (user mandate v3 — nitro routes to the
+  fastest provider, e.g. Cerebras; extraction work doesn't need a smarter model).
+
 ## Job 1 — q1-cafes
 "Cafés and coffee shops in Quận 1 (District 1), Ho Chi Minh City, Vietnam,
 researched from Foody.vn and Google Maps. For each café: name, street address,
