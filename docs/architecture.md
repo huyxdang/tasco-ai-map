@@ -120,14 +120,18 @@ Route Theater is the non-camera “wow” moment: the assistant visibly turns a 
 
 ## Voice path
 
-Voice input uses the browser's Web Speech API when available:
+The redesigned Atlas session uses browser WebRTC for optional low-latency voice and keeps a deterministic scripted/text fallback:
 
-1. The user explicitly starts microphone capture and grants browser permission.
-2. The browser produces a Vietnamese (`vi-VN`) transcript.
-3. The UI places the transcript in the composer for review.
-4. Only the submitted text is sent to `/api/chat`.
+1. The user explicitly presses the session start control before microphone capture begins.
+2. The browser creates a peer connection and sends its SDP offer to `POST /api/realtime/session`.
+3. The server-only route adds the `gpt-realtime-2.1` session configuration and authenticates the unified Realtime call with `OPENAI_API_KEY`; the standard key is never returned to or bundled into the browser.
+4. Semantic VAD commits input and produces transcription events with automatic model responses disabled (`create_response:false`, `interrupt_response:false`).
+5. The completed transcript goes through `/api/chat`, so the deterministic ranker and journey engine remain authoritative for POIs, routes, prices, totals, and changes.
+6. Only after `/api/chat` returns does the browser send an out-of-band `response.create` containing the grounded structured result. The Realtime model may phrase/speak that result but receives no authority to choose facts or actions.
+7. Barge-in sends documented `response.cancel` and WebRTC `output_audio_buffer.clear` control events before the new transcript is processed.
+8. Missing credentials, microphone denial, WebRTC failure, or provider failure preserves the scripted judge path and text composer.
 
-The app does not upload or store an audio file. Browser implementations may process speech through the browser vendor's service, so this prototype must not imply that voice processing is fully on-device. Unsupported browsers fall back to typing.
+The app does not persist an audio file. Realtime transport is session-only, and ending the Atlas session stops every local media track and closes the peer connection.
 
 ## Privacy boundaries
 
