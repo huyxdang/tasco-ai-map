@@ -58,6 +58,11 @@ const TOKEN_ALIASES: Record<string, string> = {
   "ben thanh market": "cho ben thanh",
   ks: "khach san",
   bv: "benh vien",
+  vietnamese: "mon viet",
+  italian: "mon y",
+  japanese: "mon nhat",
+  korean: "mon han",
+  hungry: "quan an",
 };
 
 export function normalizeText(value: string): string {

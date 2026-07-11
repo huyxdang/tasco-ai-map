@@ -182,6 +182,8 @@ export interface SessionContext {
   profileId?: string;
   lastIntent?: string;
   lastQuery?: string;
+  /** Rolling window of the last few user turns for multi-turn context. */
+  recentQueries?: string[];
   constraints?: string[];
   pendingClarification?: {
     entity: string;

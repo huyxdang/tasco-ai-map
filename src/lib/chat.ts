@@ -113,8 +113,14 @@ function conversationText(request: ChatRequest): string {
   const history = Array.isArray(request.history)
     ? request.history.map(({ role, content }) => `${role}: ${content}`).join("\n")
     : request.history ?? "";
+  // Rolling multi-turn context: the last few user turns, not just the previous
+  // one, so a cuisine/location said three turns ago still shapes this turn.
+  const recent = request.sessionContext?.recentQueries ?? [];
   const previous = request.sessionContext?.lastQuery ?? "";
-  return [history, previous, request.message].filter(Boolean).join("\n");
+  const contextTurns = [...new Set([...recent, previous])].filter(
+    (turn) => turn && turn !== request.message,
+  );
+  return [history, ...contextTurns, request.message].filter(Boolean).join("\n");
 }
 
 function ambiguityFor(message: string): Ambiguity | undefined {
@@ -345,6 +351,31 @@ const KNOWN_CONSTRAINTS: Array<{ match: string; label: string }> = [
   { match: "gan trung tam", label: "gần trung tâm" },
 ];
 
+// Mutually exclusive constraint families: asserting a new member REPLACES the
+// old one instead of coexisting with it ("món Việt" must evict a stale "món Ý";
+// a new budget must evict the previous budget).
+const EXCLUSIVE_GROUPS: string[][] = [
+  ["món Việt", "món Ý"],
+  ["giá rẻ", "cao cấp"],
+];
+
+function isBudgetConstraint(label: string): boolean {
+  return /^(dưới|khoảng|tối đa|trên|hơn)\s/.test(label);
+}
+
+function resolveConstraintConflicts(previous: string[], incoming: string[]): string[] {
+  let kept = [...previous];
+  for (const group of EXCLUSIVE_GROUPS) {
+    if (incoming.some((item) => group.includes(item))) {
+      kept = kept.filter((item) => !group.includes(item));
+    }
+  }
+  if (incoming.some(isBudgetConstraint)) {
+    kept = kept.filter((item) => !isBudgetConstraint(item));
+  }
+  return [...new Set([...kept, ...incoming])];
+}
+
 const PARTY_WORD_DIGITS: Record<string, string> = {
   hai: "2", ba: "3", bon: "4", nam: "5", sau: "6", bay: "7", tam: "8", chin: "9", muoi: "10",
 };
@@ -458,7 +489,10 @@ function sessionContext(
           const normalized = normalizeText(item);
           return !normalized.includes(removalTarget) && !removalTarget.includes(normalized);
         })
-      : [...new Set([...previousConstraints, ...constraintsFor(request.message)])],
+      : resolveConstraintConflicts(previousConstraints, constraintsFor(request.message)),
+    recentQueries: removalTarget
+      ? request.sessionContext?.recentQueries ?? []
+      : [...(request.sessionContext?.recentQueries ?? []), request.message].slice(-4),
     ...(pendingClarification
       ? {
           pendingClarification: {
