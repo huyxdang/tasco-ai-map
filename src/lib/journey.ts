@@ -24,7 +24,7 @@ const ACTIONS: Record<JourneyActionKind, {
 }> = {
   fuel: { categories: ["Trạm xăng"], miniApp: "VETC Fuel", cta: "Đặt mức đổ xăng", basePrice: 420_000, reason: "Bổ sung nhiên liệu trên hành trình" },
   dining: { categories: ["Nhà hàng", "Quán cà phê"], miniApp: "TASCO Dining", cta: "Giữ chỗ ăn uống", basePrice: 260_000, reason: "Điểm dừng ăn uống phù hợp yêu cầu" },
-  parking: { categories: ["Trung tâm thương mại", "Rạp chiếu phim"], miniApp: "VETC Parking", cta: "Giữ chỗ đỗ xe", basePrice: 45_000, reason: "POI có thuộc tính bãi đỗ xe trong dữ liệu mẫu" },
+  parking: { categories: ["Trung tâm thương mại", "Rạp chiếu phim"], miniApp: "VETC Parking", cta: "Giữ chỗ đỗ xe", basePrice: 45_000, reason: "Địa điểm có chỗ đỗ xe phù hợp hành trình" },
 };
 
 const ORDERED_STOPS: Record<JourneyStopCategory, {
@@ -222,7 +222,7 @@ function action(
     reason: config.reason,
     ...pricing,
     rewardPoints,
-    ...(ranked.poi.id === "POI024" ? { sponsored: { label: "Ưu đãi mô phỏng", disclosure: "Gắn sau xếp hạng hữu cơ; không ảnh hưởng thứ tự POI." } } : {}),
+    ...(ranked.poi.id === "POI024" ? { sponsored: { label: "Ưu đãi VETC", disclosure: "Gắn sau xếp hạng hữu cơ; không ảnh hưởng thứ tự POI." } } : {}),
     status: "ready",
     simulated: true,
   };
@@ -248,7 +248,7 @@ function buildJourney(actions: JourneyAction[], state?: JourneySessionState, out
       number: revision,
       outcome,
       changedActionIds,
-      message: outcome === "cheaper" ? `Đã giảm tổng chi phí ${Math.max(0, (state?.totalVnd ?? totalVnd) - totalVnd).toLocaleString("vi-VN")} ₫ mà vẫn giữ loại dịch vụ và khu vực.` : outcome === "no_cheaper_option" ? "Không có lựa chọn rẻ hơn đủ điều kiện trong dữ liệu mẫu; hành trình hiện tại được giữ nguyên." : "Đã ghép các dịch vụ từ những địa điểm phù hợp nhất.",
+      message: outcome === "cheaper" ? `Đã giảm tổng chi phí ${Math.max(0, (state?.totalVnd ?? totalVnd) - totalVnd).toLocaleString("vi-VN")} ₫ mà vẫn giữ loại dịch vụ và khu vực.` : outcome === "no_cheaper_option" ? "Không có lựa chọn rẻ hơn đủ điều kiện trong danh sách hiện có; hành trình hiện tại được giữ nguyên." : "Đã ghép các dịch vụ từ những địa điểm phù hợp nhất.",
     },
   };
 }

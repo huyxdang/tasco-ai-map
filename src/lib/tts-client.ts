@@ -8,7 +8,7 @@ export interface TtsPlayback {
   done: Promise<boolean>;
 }
 
-export function playGroundedSpeech(text: string): TtsPlayback {
+export function playGroundedSpeech(text: string, provider: "elevenlabs" | "valsea"): TtsPlayback {
   const controller = new AbortController();
   let audio: HTMLAudioElement | null = null;
   let objectUrl: string | null = null;
@@ -30,7 +30,7 @@ export function playGroundedSpeech(text: string): TtsPlayback {
     const response = await fetch("/api/tts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text }),
+      body: JSON.stringify({ text, provider }),
       signal: controller.signal,
     });
     if (!response.ok) throw new Error(`TTS unavailable (${response.status})`);

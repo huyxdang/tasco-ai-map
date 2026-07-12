@@ -1,10 +1,10 @@
 {
-  "status": "paused_zero_row_review",
+  "status": "completed_external_unadopted",
   "category": "hotels",
-  "attempt": 20,
-  "attempt_key": "hotels-020-2026-07-11T22-07-50-977Z-open-pack-queue",
-  "old_dataset_id": "jd7ep2h1d41ackxrtx8zzfw08d8abbb7",
-  "dataset_id": "jd70f813m12yba1t3sa8ykymqx8aabzy",
+  "attempt": 24,
+  "attempt_key": "hotels-024-2026-07-11T23-21-06-939Z-external-slot",
+  "old_dataset_id": "jd7cgah0r7djdyw8w7zx0jw2rx8aawbx",
+  "dataset_id": "jd7cfyrr3vaa28qfq0tq1tqfh18aa4gk",
   "schema_verified": true,
   "schema_signature": [
     "breakfast:boolean:field",
@@ -22,232 +22,37 @@
     "review_count:number:field",
     "street_address:text:field"
   ],
-  "reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"a39c67f7-c797-4150-a323-6e2117904ff7\",\"search_calls\":2,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
-  "prompt_strategy": "deterministic open-pack lead queue (6 exact uncovered name/address candidates); exact search then mandatory run_subagent per lead; fallback URL prevents discovery-only exit",
-  "deterministic_open_pack_recovery": true,
-  "lead_queue": [
-    {
-      "open_pack_id": "OVT-D3567118-0E83-4E36-A96F-FC5B6C0E38AE",
-      "name": "The Luxe Hotel",
-      "address": "265 Đường Lê Thánh Tôn, Quận 1",
-      "brand": "",
-      "normalized_name": "the luxe",
-      "chain_family": "the luxe",
-      "street_keys": [
-        "265|duong le thanh ton"
-      ],
-      "identity_group_keys": [
-        "the luxe|265|duong le thanh ton",
-        "the luxe|265|duong le thanh ton"
-      ],
-      "corridor": "duong le thanh ton",
-      "corridor_coverage": 1,
-      "quality_score": 3,
-      "popularity_score": 99,
-      "fallback_url": "https://www.google.com/maps/search/The%20Luxe%20Hotel%20265%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%AA%20Th%C3%A1nh%20T%C3%B4n%2C%20Qu%E1%BA%ADn%201",
-      "identity_group": {
-        "normalized_name": "the luxe",
-        "chain_family": "the luxe",
-        "street_keys": [
-          "265|duong le thanh ton"
-        ],
-        "keys": [
-          "the luxe|265|duong le thanh ton",
-          "the luxe|265|duong le thanh ton"
-        ]
-      }
-    },
-    {
-      "open_pack_id": "OVT-CA654C9B-ED54-471C-96E1-D8D5BBBC8889",
-      "name": "Ace Hotel Ben Thanh",
-      "address": "100 Đường Lý Tự Trọng, Quận 1",
-      "brand": "",
-      "normalized_name": "ace ben thanh",
-      "chain_family": "ace ben thanh",
-      "street_keys": [
-        "100|duong ly tu trong"
-      ],
-      "identity_group_keys": [
-        "ace ben thanh|100|duong ly tu trong",
-        "ace ben thanh|100|duong ly tu trong"
-      ],
-      "corridor": "duong ly tu trong",
-      "corridor_coverage": 1,
-      "quality_score": 3,
-      "popularity_score": 98,
-      "fallback_url": "https://www.google.com/maps/search/Ace%20Hotel%20Ben%20Thanh%20100%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%BD%20T%E1%BB%B1%20Tr%E1%BB%8Dng%2C%20Qu%E1%BA%ADn%201",
-      "identity_group": {
-        "normalized_name": "ace ben thanh",
-        "chain_family": "ace ben thanh",
-        "street_keys": [
-          "100|duong ly tu trong"
-        ],
-        "keys": [
-          "ace ben thanh|100|duong ly tu trong",
-          "ace ben thanh|100|duong ly tu trong"
-        ]
-      }
-    },
-    {
-      "open_pack_id": "OVT-71A64A14-7A95-4791-990D-132490728A06",
-      "name": "Prague Hotel Vietnam",
-      "address": "12 Đường Phạm Ngũ Lão, Quận 1",
-      "brand": "",
-      "normalized_name": "prague vietnam",
-      "chain_family": "prague vietnam",
-      "street_keys": [
-        "12|duong pham ngu lao"
-      ],
-      "identity_group_keys": [
-        "prague vietnam|12|duong pham ngu lao",
-        "prague vietnam|12|duong pham ngu lao"
-      ],
-      "corridor": "duong pham ngu lao",
-      "corridor_coverage": 1,
-      "quality_score": 3,
-      "popularity_score": 98,
-      "fallback_url": "https://www.google.com/maps/search/Prague%20Hotel%20Vietnam%2012%20%C4%90%C6%B0%E1%BB%9Dng%20Ph%E1%BA%A1m%20Ng%C5%A9%20L%C3%A3o%2C%20Qu%E1%BA%ADn%201",
-      "identity_group": {
-        "normalized_name": "prague vietnam",
-        "chain_family": "prague vietnam",
-        "street_keys": [
-          "12|duong pham ngu lao"
-        ],
-        "keys": [
-          "prague vietnam|12|duong pham ngu lao",
-          "prague vietnam|12|duong pham ngu lao"
-        ]
-      }
-    },
-    {
-      "open_pack_id": "OVT-A90FCDA4-D96E-4378-8605-9FF8192B57DE",
-      "name": "Thien Xuan Hotel",
-      "address": "110 Đường Lê Thánh Tôn, Quận 1",
-      "brand": "",
-      "normalized_name": "thien xuan",
-      "chain_family": "thien xuan",
-      "street_keys": [
-        "110|duong le thanh ton"
-      ],
-      "identity_group_keys": [
-        "thien xuan|110|duong le thanh ton",
-        "thien xuan|110|duong le thanh ton"
-      ],
-      "corridor": "duong le thanh ton",
-      "corridor_coverage": 1,
-      "quality_score": 3,
-      "popularity_score": 99,
-      "fallback_url": "https://www.google.com/maps/search/Thien%20Xuan%20Hotel%20110%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%AA%20Th%C3%A1nh%20T%C3%B4n%2C%20Qu%E1%BA%ADn%201",
-      "identity_group": {
-        "normalized_name": "thien xuan",
-        "chain_family": "thien xuan",
-        "street_keys": [
-          "110|duong le thanh ton"
-        ],
-        "keys": [
-          "thien xuan|110|duong le thanh ton",
-          "thien xuan|110|duong le thanh ton"
-        ]
-      }
-    },
-    {
-      "open_pack_id": "OVT-8D2525F6-FD9B-4811-971A-7FDD9130EE91",
-      "name": "Adora Art Hotel",
-      "address": "189 Đường Lý Tự Trọng, Quận 1",
-      "brand": "",
-      "normalized_name": "adora art",
-      "chain_family": "adora art",
-      "street_keys": [
-        "189|duong ly tu trong"
-      ],
-      "identity_group_keys": [
-        "adora art|189|duong ly tu trong",
-        "adora art|189|duong ly tu trong"
-      ],
-      "corridor": "duong ly tu trong",
-      "corridor_coverage": 1,
-      "quality_score": 3,
-      "popularity_score": 98,
-      "fallback_url": "https://www.google.com/maps/search/Adora%20Art%20Hotel%20189%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%BD%20T%E1%BB%B1%20Tr%E1%BB%8Dng%2C%20Qu%E1%BA%ADn%201",
-      "identity_group": {
-        "normalized_name": "adora art",
-        "chain_family": "adora art",
-        "street_keys": [
-          "189|duong ly tu trong"
-        ],
-        "keys": [
-          "adora art|189|duong ly tu trong",
-          "adora art|189|duong ly tu trong"
-        ]
-      }
-    },
-    {
-      "open_pack_id": "OVT-ADE4BF61-25E8-4058-A0FE-C62726BE2CA8",
-      "name": "Sogo Hotel Saigon",
-      "address": "359 Đường Phạm Ngũ Lão, Quận 1",
-      "brand": "",
-      "normalized_name": "sogo",
-      "chain_family": "sogo",
-      "street_keys": [
-        "359|duong pham ngu lao"
-      ],
-      "identity_group_keys": [
-        "sogo|359|duong pham ngu lao",
-        "sogo|359|duong pham ngu lao"
-      ],
-      "corridor": "duong pham ngu lao",
-      "corridor_coverage": 1,
-      "quality_score": 3,
-      "popularity_score": 98,
-      "fallback_url": "https://www.google.com/maps/search/Sogo%20Hotel%20Saigon%20359%20%C4%90%C6%B0%E1%BB%9Dng%20Ph%E1%BA%A1m%20Ng%C5%A9%20L%C3%A3o%2C%20Qu%E1%BA%ADn%201",
-      "identity_group": {
-        "normalized_name": "sogo",
-        "chain_family": "sogo",
-        "street_keys": [
-          "359|duong pham ngu lao"
-        ],
-        "keys": [
-          "sogo|359|duong pham ngu lao",
-          "sogo|359|duong pham ngu lao"
-        ]
-      }
-    }
-  ],
-  "lead_ids": [
-    "OVT-D3567118-0E83-4E36-A96F-FC5B6C0E38AE",
-    "OVT-CA654C9B-ED54-471C-96E1-D8D5BBBC8889",
-    "OVT-71A64A14-7A95-4791-990D-132490728A06",
-    "OVT-A90FCDA4-D96E-4378-8605-9FF8192B57DE",
-    "OVT-8D2525F6-FD9B-4811-971A-7FDD9130EE91",
-    "OVT-ADE4BF61-25E8-4058-A0FE-C62726BE2CA8"
-  ],
-  "created_at": "2026-07-11T22:07:50.977Z",
-  "started_at": "2026-07-11T22:07:50.978Z",
-  "pre_snapshot": "scratch/bigset-output/attempts/hotels-attempt-020-2026-07-11T22-07-50-977Z-pre.json",
+  "reason": "Causal recovery after replacement hotel attempt 10 made a zero-row terminal run; route one hotel-source-and-corridor lead directly to each subagent",
+  "prompt_strategy": "hotel lead-router recovery: one source-and-corridor search then immediate run_subagent; no orchestrator fetch; rotate property source and under-covered corridor",
+  "hotel_corridor_recovery": true,
+  "causal_terminal_recovery": true,
+  "created_at": "2026-07-11T23:21:06.939Z",
+  "started_at": "2026-07-11T23:21:06.941Z",
+  "pre_snapshot": "scratch/bigset-output/attempts/hotels-attempt-024-2026-07-11T23-21-06-939Z-pre.json",
   "required_models": {
-    "populate_orchestrator": "openai/gpt-oss-120b:nitro",
-    "investigate_subagent": "openai/gpt-oss-120b:nitro"
+    "populate_orchestrator": "gpt-5.6-luna",
+    "investigate_subagent": "gpt-5.6-luna"
   },
   "effective_model_config": {
-    "schema_inference": "anthropic/claude-sonnet-4.6",
-    "populate_orchestrator": "openai/gpt-oss-120b:nitro",
-    "investigate_subagent": "openai/gpt-oss-120b:nitro",
-    "verified_at": "2026-07-11T22:07:24.244Z",
+    "schema_inference": "gpt-5.6-luna",
+    "populate_orchestrator": "gpt-5.6-luna",
+    "investigate_subagent": "gpt-5.6-luna",
+    "verified_at": "2026-07-11T23:21:01.320Z",
     "source": "GET /settings/models"
   },
   "fail_fast_zero_rows": true,
-  "unique_before": 100,
-  "usable_before": 88,
-  "run_id": "c2c7b8f1-a69d-41be-b7ef-2211aa9ab521",
-  "submitted_at": "2026-07-11T22:07:50.998Z",
-  "dataset_status": "failed",
-  "status_error": "Populate workflow completed with 0 rows",
-  "rows_exported": 0,
-  "export": "scratch/bigset-output/attempts/hotels-attempt-020-2026-07-11T22-07-50-977Z-rows.json",
-  "finished_at": "2026-07-11T22:08:21.036Z",
+  "unique_before": 103,
+  "usable_before": 91,
+  "run_id": "05fc4d73-0f59-4240-867a-d37aa739fb3e",
+  "submitted_at": "2026-07-11T23:21:06.956Z",
+  "dataset_status": "live",
+  "status_error": null,
+  "rows_exported": 19,
+  "export": "scratch/bigset-output/attempts/hotels-attempt-024-2026-07-11T23-21-06-939Z-rows.json",
+  "finished_at": "2026-07-11T23:23:07.071Z",
   "adoption_ready": true,
-  "unique_after": 100,
-  "unique_delta": 0,
-  "usable_after": 88,
-  "usable_delta": 0
+  "unique_after": 122,
+  "unique_delta": 19,
+  "usable_after": 110,
+  "usable_delta": 19
 }

@@ -402,7 +402,7 @@ export function MapView({
       {mapInitError ? (
         <div className="map-unavailable" role="status">
           <strong>Bản đồ 3D chưa sẵn sàng</strong>
-          <span>Hành trình và xác nhận mô phỏng vẫn hoạt động. Có thể thử Trình diễn lại trên thiết bị hỗ trợ WebGL.</span>
+          <span>Hành trình và biên nhận vẫn được giữ nguyên. Có thể thử lại trên thiết bị hỗ trợ WebGL.</span>
         </div>
       ) : null}
       <div className="map-vignette" aria-hidden="true" />

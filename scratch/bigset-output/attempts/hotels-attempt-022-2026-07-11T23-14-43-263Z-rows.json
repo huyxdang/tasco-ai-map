@@ -1,0 +1,34 @@
+[
+  {
+    "breakfast": true,
+    "breakfast_buffet": "",
+    "family_friendly": "",
+    "hotel_url": "https://www.google.com.vn/travel/hotels/entity/ChcI6oaQ-anV0LdBGgsvZy8xdGRoMWM2cxAB",
+    "name": "Sanouva Saigon Hotel",
+    "nice_view": "",
+    "parking": true,
+    "pool": false,
+    "price_tier": "high (US$37; typical US$27–36/night)",
+    "quiet": "",
+    "rating": "",
+    "rating_source": "",
+    "review_count": 1038,
+    "street_address": "175 Lý Tự Trọng, Bến Thành, Quận 1, Ho Chi Minh City, Vietnam"
+  },
+  {
+    "breakfast": "true",
+    "breakfast_buffet": "",
+    "family_friendly": "",
+    "hotel_url": "https://www.skyscanner.gg/hotels/vietnam/ho-chi-minh-city-hotels/gk-central-hotel/ht-127020010",
+    "name": "GK Central Hotel",
+    "nice_view": "",
+    "parking": "",
+    "pool": "",
+    "price_tier": "",
+    "quiet": "",
+    "rating": "4.3",
+    "rating_source": "Skyscanner individual hotel profile/search result: https://www.skyscanner.gg/hotels/vietnam/ho-chi-minh-city-hotels/gk-central-hotel/ht-127020010",
+    "review_count": "6885",
+    "street_address": "92-94 Đường Lý Tự Trọng, Phường Bến Thành, Quận 1, Ho Chi Minh City, 711045, Vietnam"
+  }
+]

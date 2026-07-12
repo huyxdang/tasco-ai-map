@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-11T22:10:45.002Z",
+  "generated_at": "2026-07-11T23:23:18.125Z",
   "categories": {
     "cafes": [
       {
@@ -534,6 +534,383 @@
           "review_count": 1520,
           "romantic": "",
           "street_address": "39-41 Nguyễn Thái Bình, Quận 1, TP. Hồ Chí Minh"
+        }
+      },
+      {
+        "canonical_index": 91,
+        "reasons": [
+          "missing_house_number",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "air_conditioned": true,
+          "cuisine": "Món Việt",
+          "family_friendly": true,
+          "foody_url": "https://foody.vn/ho-chi-minh/banh-cuon-hai-nam",
+          "name": "Bánh Cuốn Hải Nam - Cao Thắng",
+          "nice_view": "",
+          "open_late": true,
+          "outdoor_seating": true,
+          "parking": true,
+          "price_tier": "40.000đ - 88.000đ",
+          "rating": 5,
+          "rating_source": "Foody",
+          "reservations": true,
+          "review_count": 229,
+          "romantic": "",
+          "street_address": ""
+        }
+      },
+      {
+        "canonical_index": 96,
+        "reasons": [
+          "missing_name",
+          "missing_house_number",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "air_conditioned": "",
+          "cuisine": "",
+          "family_friendly": "",
+          "foody_url": "https://foody.vn/ho-chi-minh/secret-garden",
+          "name": "",
+          "nice_view": "",
+          "open_late": "",
+          "outdoor_seating": "",
+          "parking": "",
+          "price_tier": "",
+          "rating": "",
+          "rating_source": "",
+          "reservations": "",
+          "review_count": "",
+          "romantic": "",
+          "street_address": ""
+        }
+      },
+      {
+        "canonical_index": 103,
+        "reasons": [
+          "missing_house_number",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "air_conditioned": true,
+          "cuisine": "Lẩu băng chuyền / buffet lẩu",
+          "family_friendly": true,
+          "foody_url": "https://foody.vn/ho-chi-minh/buffet-nuong-noi-bang-chuyen-kichi-kichi-tran-hung-dao",
+          "name": "Kichi-Kichi - Trần Hưng Đạo",
+          "nice_view": "",
+          "open_late": "",
+          "outdoor_seating": "",
+          "parking": true,
+          "price_tier": "300.000đ/người",
+          "rating": 4,
+          "rating_source": "MoMo",
+          "reservations": true,
+          "review_count": 21,
+          "romantic": "",
+          "street_address": ""
+        }
+      },
+      {
+        "canonical_index": 104,
+        "reasons": [
+          "missing_house_number",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "air_conditioned": true,
+          "cuisine": "Món Âu, Ý",
+          "family_friendly": true,
+          "foody_url": "https://foody.vn/ho-chi-minh/pendolasco",
+          "name": "Pendolasco - Nhà Hàng Ý",
+          "nice_view": "",
+          "open_late": "",
+          "outdoor_seating": true,
+          "parking": true,
+          "price_tier": "90.000đ - 450.000đ",
+          "rating": "",
+          "rating_source": "",
+          "reservations": true,
+          "review_count": "",
+          "romantic": true,
+          "street_address": ""
+        }
+      },
+      {
+        "canonical_index": 106,
+        "reasons": [
+          "missing_house_number",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "air_conditioned": true,
+          "cuisine": "Món Việt; Bánh mì",
+          "family_friendly": true,
+          "foody_url": "https://foody.vn/ho-chi-minh/banh-mi-hoa-ma",
+          "name": "Bánh Mì Hòa Mã - Bánh Mì Chảo",
+          "nice_view": "",
+          "open_late": false,
+          "outdoor_seating": true,
+          "parking": true,
+          "price_tier": "50.000đ - 60.000đ",
+          "rating": "",
+          "rating_source": "",
+          "reservations": true,
+          "review_count": 149,
+          "romantic": "",
+          "street_address": ""
+        }
+      },
+      {
+        "canonical_index": 107,
+        "reasons": [
+          "missing_house_number",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "air_conditioned": true,
+          "cuisine": "Món Á; Món Âu",
+          "family_friendly": true,
+          "foody_url": "https://foody.vn/ho-chi-minh/shri-restaurant-lounge",
+          "name": "Shri - Rooftop Restaurant & Lounge",
+          "nice_view": true,
+          "open_late": true,
+          "outdoor_seating": true,
+          "parking": true,
+          "price_tier": "300.000đ - 660.000đ",
+          "rating": 4.2,
+          "rating_source": "TripAdvisor",
+          "reservations": true,
+          "review_count": 777,
+          "romantic": true,
+          "street_address": ""
+        }
+      },
+      {
+        "canonical_index": 109,
+        "reasons": [
+          "missing_house_number"
+        ],
+        "row": {
+          "air_conditioned": "",
+          "cuisine": "Seafood",
+          "family_friendly": true,
+          "foody_url": "https://foody.vn/ho-chi-minh/market-39",
+          "name": "Rạn Biển Seafood Restaurant",
+          "nice_view": "",
+          "open_late": true,
+          "outdoor_seating": true,
+          "parking": "",
+          "price_tier": "",
+          "rating": "",
+          "rating_source": "",
+          "reservations": true,
+          "review_count": "",
+          "romantic": "",
+          "street_address": "2-4-6 Hai Bà Trưng, Phường Sài Gòn, Ho Chi Minh City"
+        }
+      },
+      {
+        "canonical_index": 115,
+        "reasons": [
+          "missing_house_number",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "air_conditioned": true,
+          "cuisine": "Món Việt; bánh xèo",
+          "family_friendly": true,
+          "foody_url": "https://foody.vn/ho-chi-minh/banh-xeo-ngoc-son",
+          "name": "Bánh Xèo Ngọc Sơn",
+          "nice_view": "",
+          "open_late": false,
+          "outdoor_seating": true,
+          "parking": true,
+          "price_tier": "40.000đ - 110.000đ",
+          "rating": "",
+          "rating_source": "",
+          "reservations": true,
+          "review_count": 78,
+          "romantic": "",
+          "street_address": ""
+        }
+      },
+      {
+        "canonical_index": 123,
+        "reasons": [
+          "missing_name",
+          "missing_house_number",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "air_conditioned": "",
+          "cuisine": "",
+          "family_friendly": "",
+          "foody_url": "https://foody.vn/ho-chi-minh/quan-an-ngon-ngo-duc-ke",
+          "name": "",
+          "nice_view": "",
+          "open_late": "",
+          "outdoor_seating": "",
+          "parking": "",
+          "price_tier": "",
+          "rating": "",
+          "rating_source": "",
+          "reservations": "",
+          "review_count": "",
+          "romantic": "",
+          "street_address": ""
+        }
+      },
+      {
+        "canonical_index": 126,
+        "reasons": [
+          "missing_house_number",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "air_conditioned": "",
+          "cuisine": "Seafood; Asian Fusion",
+          "family_friendly": "",
+          "foody_url": "https://foody.vn/ho-chi-minh/the-deck-saigon-10-dang-huu-pho",
+          "name": "The Deck Saigon",
+          "nice_view": true,
+          "open_late": "",
+          "outdoor_seating": true,
+          "parking": "",
+          "price_tier": "",
+          "rating": 4.2,
+          "rating_source": "Tripadvisor",
+          "reservations": true,
+          "review_count": 1402,
+          "romantic": true,
+          "street_address": ""
+        }
+      },
+      {
+        "canonical_index": 127,
+        "reasons": [
+          "missing_house_number",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "air_conditioned": "",
+          "cuisine": "International buffet; seafood",
+          "family_friendly": true,
+          "foody_url": "https://foody.vn/ho-chi-minh/food-connexion",
+          "name": "Food ConneXion",
+          "nice_view": true,
+          "open_late": "",
+          "outdoor_seating": "",
+          "parking": "",
+          "price_tier": "VND 490,000++/adult breakfast; VND 1,300,000++/adult seafood dinner",
+          "rating": 4.6,
+          "rating_source": "Tripadvisor",
+          "reservations": true,
+          "review_count": "",
+          "romantic": "",
+          "street_address": ""
+        }
+      },
+      {
+        "canonical_index": 130,
+        "reasons": [
+          "missing_house_number",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "air_conditioned": true,
+          "cuisine": "Bar/Pub; Vietnamese; International; light snacks; drinks",
+          "family_friendly": "",
+          "foody_url": "https://foody.vn/ho-chi-minh/blank-lounge",
+          "name": "Blank Lounge",
+          "nice_view": true,
+          "open_late": "",
+          "outdoor_seating": true,
+          "parking": true,
+          "price_tier": "80,000đ - 2,000,000đ",
+          "rating": 4.6,
+          "rating_source": "TripAdvisor",
+          "reservations": true,
+          "review_count": "",
+          "romantic": true,
+          "street_address": ""
+        }
+      },
+      {
+        "canonical_index": 133,
+        "reasons": [
+          "missing_house_number",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "air_conditioned": "",
+          "cuisine": "French fine dining",
+          "family_friendly": "",
+          "foody_url": "https://foody.vn/ho-chi-minh/la-villa-french-restaurant",
+          "name": "La Villa French Restaurant",
+          "nice_view": "",
+          "open_late": "",
+          "outdoor_seating": true,
+          "parking": "",
+          "price_tier": "",
+          "rating": 4.6,
+          "rating_source": "Tripadvisor",
+          "reservations": true,
+          "review_count": 1086,
+          "romantic": true,
+          "street_address": ""
+        }
+      },
+      {
+        "canonical_index": 139,
+        "reasons": [
+          "missing_house_number",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "air_conditioned": "",
+          "cuisine": "Vietnamese, broken rice",
+          "family_friendly": "",
+          "foody_url": "https://foody.vn/ho-chi-minh/quan-com-tam-thuan-kieu",
+          "name": "Cơm Tấm Thuận Kiều",
+          "nice_view": "",
+          "open_late": "",
+          "outdoor_seating": "",
+          "parking": "",
+          "price_tier": "",
+          "rating": 3.5,
+          "rating_source": "Tripadvisor",
+          "reservations": "",
+          "review_count": 12,
+          "romantic": "",
+          "street_address": ""
+        }
+      },
+      {
+        "canonical_index": 143,
+        "reasons": [
+          "missing_name",
+          "missing_house_number",
+          "not_grounded_in_quan_1"
+        ],
+        "row": {
+          "air_conditioned": "",
+          "cuisine": "",
+          "family_friendly": "",
+          "foody_url": "https://foody.vn/ho-chi-minh/quan-an-ngon-pasteur",
+          "name": "",
+          "nice_view": "",
+          "open_late": "",
+          "outdoor_seating": "",
+          "parking": "",
+          "price_tier": "",
+          "rating": "",
+          "rating_source": "",
+          "reservations": "",
+          "review_count": "",
+          "romantic": "",
+          "street_address": ""
         }
       }
     ],

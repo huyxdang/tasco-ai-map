@@ -2,7 +2,15 @@
 
 Run BEFOREHAND as batch (never live; the runtime hot path stays local-only).
 Runner: local BigSet clone (`~/side-projects/bigset`), keys `TINYFISH_API_KEY` +
-`OPENROUTER_API_KEY` from `.env.local` (execution-only).
+By default BigSet uses `OPENROUTER_API_KEY` from `.env.local` (execution-only).
+
+For the hackathon OpenAI adapter, run `pnpm bigset:openai`. It aliases the
+existing `OPENAI_API_KEY` into BigSet's OpenRouter-named compatibility slot,
+points that slot at `https://api.openai.com/v1`, and selects
+`gpt-5.6-luna` for schema inference, orchestration, and investigation. Override
+the model with `BIGSET_OPENAI_MODEL`. BigSet 0.1.x does not expose reasoning
+effort through its public configuration, so the adapter records low effort as
+requested provenance but cannot guarantee the backend forwards that setting.
 
 Each job below is the plain-English dataset description to give BigSet. The
 explicit field list keeps its inferred schema aligned with

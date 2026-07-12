@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T22:52:56.986Z",
+  "generatedAt": "2026-07-12T01:56:39.775Z",
   "source": "dataset.xlsx#Conversation_Scenarios + synthetic-scenarios",
   "scenarioCount": 90,
   "passed": 90,
@@ -888,7 +888,7 @@
             },
             "maneuvers": [
               {
-                "instruction": "Tiếp tục theo tuyến mô phỏng và đến điểm đích.",
+                "instruction": "Tiếp tục theo lộ trình và đến điểm đích.",
                 "distanceMeters": 764,
                 "durationSeconds": 79,
                 "beginShapeIndex": 0,
@@ -2397,7 +2397,7 @@
             },
             "maneuvers": [
               {
-                "instruction": "Tiếp tục theo tuyến mô phỏng và đến điểm đích.",
+                "instruction": "Tiếp tục theo lộ trình và đến điểm đích.",
                 "distanceMeters": 907,
                 "durationSeconds": 93,
                 "beginShapeIndex": 0,
@@ -6573,7 +6573,7 @@
             },
             "maneuvers": [
               {
-                "instruction": "Tiếp tục theo tuyến mô phỏng và đến điểm đích.",
+                "instruction": "Tiếp tục theo lộ trình và đến điểm đích.",
                 "distanceMeters": 372,
                 "durationSeconds": 38,
                 "beginShapeIndex": 0,
@@ -6703,7 +6703,7 @@
             },
             "maneuvers": [
               {
-                "instruction": "Tiếp tục theo tuyến mô phỏng và đến điểm đích.",
+                "instruction": "Tiếp tục theo lộ trình và đến điểm đích.",
                 "distanceMeters": 1313,
                 "durationSeconds": 135,
                 "beginShapeIndex": 0,
@@ -6833,7 +6833,7 @@
             },
             "maneuvers": [
               {
-                "instruction": "Tiếp tục theo tuyến mô phỏng và đến điểm đích.",
+                "instruction": "Tiếp tục theo lộ trình và đến điểm đích.",
                 "distanceMeters": 1153,
                 "durationSeconds": 119,
                 "beginShapeIndex": 0,
@@ -6963,7 +6963,7 @@
             },
             "maneuvers": [
               {
-                "instruction": "Tiếp tục theo tuyến mô phỏng và đến điểm đích.",
+                "instruction": "Tiếp tục theo lộ trình và đến điểm đích.",
                 "distanceMeters": 372,
                 "durationSeconds": 38,
                 "beginShapeIndex": 0,
@@ -7093,7 +7093,7 @@
             },
             "maneuvers": [
               {
-                "instruction": "Tiếp tục theo tuyến mô phỏng và đến điểm đích.",
+                "instruction": "Tiếp tục theo lộ trình và đến điểm đích.",
                 "distanceMeters": 7089,
                 "durationSeconds": 729,
                 "beginShapeIndex": 0,
@@ -7305,7 +7305,7 @@
             },
             "maneuvers": [
               {
-                "instruction": "Tiếp tục theo tuyến mô phỏng và đến điểm đích.",
+                "instruction": "Tiếp tục theo lộ trình và đến điểm đích.",
                 "distanceMeters": 4170,
                 "durationSeconds": 429,
                 "beginShapeIndex": 0,
@@ -7436,7 +7436,7 @@
             },
             "maneuvers": [
               {
-                "instruction": "Tiếp tục theo tuyến mô phỏng và đến điểm đích.",
+                "instruction": "Tiếp tục theo lộ trình và đến điểm đích.",
                 "distanceMeters": 3226,
                 "durationSeconds": 332,
                 "beginShapeIndex": 0,

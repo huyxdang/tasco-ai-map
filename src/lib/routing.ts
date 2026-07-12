@@ -103,8 +103,8 @@ function makeRoute(
   const maneuvers = segmentDistances.map((segmentDistance, index) => ({
     instruction:
       index === segmentDistances.length - 1
-        ? "Tiếp tục theo tuyến mô phỏng và đến điểm đích."
-        : "Tiếp tục theo tuyến mô phỏng đến điểm tiếp theo.",
+        ? "Tiếp tục theo lộ trình và đến điểm đích."
+        : "Tiếp tục theo lộ trình đến điểm tiếp theo.",
     distanceMeters: segmentDistance,
     durationSeconds: Math.max(1, Math.round(segmentDistance / speed)),
     beginShapeIndex: index * 5,

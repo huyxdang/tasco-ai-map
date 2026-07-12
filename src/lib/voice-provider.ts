@@ -5,14 +5,14 @@
 
 export type VoiceProvider = "elevenlabs" | "valsea";
 
-function resolve(value: string | undefined): VoiceProvider {
+export function resolveVoiceProvider(value: string | undefined): VoiceProvider {
   return value?.trim().toLowerCase() === "valsea" ? "valsea" : "elevenlabs";
 }
 
 export function resolveSttProvider(): VoiceProvider {
-  return resolve(process.env.TASCO_STT_PROVIDER);
+  return resolveVoiceProvider(process.env.TASCO_STT_PROVIDER);
 }
 
 export function resolveTtsProvider(): VoiceProvider {
-  return resolve(process.env.TASCO_TTS_PROVIDER);
+  return resolveVoiceProvider(process.env.TASCO_TTS_PROVIDER);
 }

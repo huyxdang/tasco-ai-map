@@ -18,19 +18,21 @@ export interface SttSession {
   stop: () => void;
 }
 
-type SttProvider = "elevenlabs" | "valsea";
+export type SttProvider = "elevenlabs" | "valsea";
 
 const TARGET_SAMPLE_RATE = 16_000;
 
 // Domain vocabulary biases the recognizer toward the words our users actually
-// say — venue types, districts, landmarks, and the demo's key phrases.
+// say — venue types, districts, landmarks, and the planned trip's key phrases.
 // ElevenLabs takes these as repeated `keyterms` params; Valsea as `hint_text`.
 const KEYTERMS = [
   "quán cà phê", "nhà hàng", "khách sạn", "trạm xăng", "bãi đỗ xe", "công viên",
   "Quận 1", "Sài Gòn", "Hà Nội", "Đà Nẵng", "Hồ Gươm", "Chợ Bến Thành",
   "Tân Sơn Nhất", "phở", "bún chả", "món Việt", "món Ý", "gần đây", "yên tĩnh",
   "wifi", "giá rẻ", "mở cửa khuya", "học nhóm", "hẹn hò", "đặt bàn", "gần hơn",
-  "rẻ hơn", "đổ xăng", "ăn tối", "gần trung tâm", "dễ đỗ xe",
+  "rẻ hơn", "đổ xăng", "ăn tối", "ba người", "làm việc", "gần trung tâm", "dễ đỗ xe",
+  "Pizza 4P's", "Trung Nguyên", "Ví VETC", "7 giờ tối", "19 giờ", "12 tháng 7",
+  "ngày 12 tháng 7", "chốt đi", "chốt hành trình", "bắt đầu dẫn đường",
 ];
 
 const SCRIBE_PARAMS = new URLSearchParams({
@@ -87,8 +89,12 @@ function encodeChunk(provider: SttProvider, pcm: Int16Array): string {
   });
 }
 
-export async function startSttSession(handlers: SttHandlers): Promise<SttSession> {
-  const tokenResponse = await fetch("/api/stt/token", { method: "POST" });
+export async function startSttSession(handlers: SttHandlers, requestedProvider: SttProvider = "elevenlabs"): Promise<SttSession> {
+  const tokenResponse = await fetch("/api/stt/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ provider: requestedProvider }),
+  });
   if (!tokenResponse.ok) throw new Error("STT token unavailable");
   const { token, provider = "elevenlabs" } = (await tokenResponse.json()) as {
     token: string;

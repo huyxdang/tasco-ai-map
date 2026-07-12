@@ -13,6 +13,7 @@
     "test:eval": "vitest run tests/conversation-scenarios-eval.test.ts --reporter=verbose",
     "test:eval:open": "TASCO_DATASET_PACK=open vitest run tests/open-holdout.test.ts --reporter=verbose",
     "dev:open": "TASCO_DATASET_PACK=open TASCO_DISTRICT_LOCK='Quận 1' next dev --turbopack",
+    "bigset:openai": "set -a; source .env.local; set +a; node scripts/start-bigset-openai.mjs",
     "test:watch": "vitest"
   },
   "dependencies": {
