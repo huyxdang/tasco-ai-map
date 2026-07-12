@@ -1,13 +1,13 @@
 {
   "mode": "apply",
-  "generated_at": "2026-07-11T22:10:45.002Z",
+  "generated_at": "2026-07-11T23:23:18.125Z",
   "target_strict_usable_per_category": 100,
   "invariants": {
     "controller_lock": true,
     "atomic_json_writes": true,
     "model_roles": {
-      "populate_orchestrator": "openai/gpt-oss-120b:nitro",
-      "investigate_subagent": "openai/gpt-oss-120b:nitro"
+      "populate_orchestrator": "gpt-5.6-luna",
+      "investigate_subagent": "gpt-5.6-luna"
     },
     "successful_terminal_status": "live only",
     "identity_dedupe": "canonical URL OR canonical venue name plus normalized street/house identity"
@@ -26,10 +26,10 @@
     },
     "restaurants": {
       "primary_key": "foody_url",
-      "input_rows": 79,
-      "canonical_unique_rows": 79,
-      "strict_usable_rows": 68,
-      "invalid_rows_preserved": 11,
+      "input_rows": 159,
+      "canonical_unique_rows": 159,
+      "strict_usable_rows": 133,
+      "invalid_rows_preserved": 26,
       "duplicate_rows_collapsed": 0,
       "duplicate_groups": [],
       "post_reconciliation_duplicate_count": 0,
@@ -37,9 +37,9 @@
     },
     "hotels": {
       "primary_key": "hotel_url",
-      "input_rows": 100,
-      "canonical_unique_rows": 100,
-      "strict_usable_rows": 88,
+      "input_rows": 122,
+      "canonical_unique_rows": 122,
+      "strict_usable_rows": 110,
       "invalid_rows_preserved": 12,
       "duplicate_rows_collapsed": 0,
       "duplicate_groups": [],

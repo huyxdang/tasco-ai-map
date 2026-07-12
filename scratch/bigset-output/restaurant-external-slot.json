@@ -1,10 +1,10 @@
 {
   "status": "completed_external_unadopted",
   "category": "restaurants",
-  "attempt": 29,
-  "attempt_key": "restaurants-029-2026-07-11T21-29-59-319Z-open-pack-queue",
-  "old_dataset_id": "jd73ymswk3kmzkaakhjc9tdwjd8ab1en",
-  "dataset_id": "jd7a0bfc2wqv9t1y4dsk28m0gs8ab7jc",
+  "attempt": 31,
+  "attempt_key": "restaurants-031-2026-07-11T23-14-44-555Z-open-pack-queue",
+  "old_dataset_id": "jd7d9wnv1t3kmzqw6a81qjt4ns8aaeqm",
+  "dataset_id": "jd76b5te6mv65trf6fb0cm8ygs8abtwf",
   "schema_verified": true,
   "schema_signature": [
     "air_conditioned:boolean:field",
@@ -25,44 +25,17 @@
     "street_address:text:field"
   ],
   "reason": "Pre-resolved direct-dispatch pivot after exact queue runStats {\"run_id\":\"03209cbc-a467-4ff3-9c00-1a4b278e515e\",\"search_calls\":27,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0,\"orchestrator_steps\":30}; individual URLs remove all remaining orchestrator discovery decisions",
-  "prompt_strategy": "pre-resolved direct-dispatch queue (7 exact individual URLs); zero orchestrator discovery; mandatory run_subagent per lead",
+  "prompt_strategy": "pre-resolved direct-dispatch queue (6 exact individual URLs); zero orchestrator discovery; mandatory run_subagent per lead",
   "deterministic_open_pack_recovery": true,
   "pre_resolved_direct_dispatch": true,
   "lead_queue": [
-    {
-      "open_pack_id": "OVT-FD41B2AE-D4F9-4D8F-BEAC-4009FF3D0E30",
-      "name": "Nhà Hàng Thiên Nam",
-      "address": "55 Đường Nam Kỳ Khởi Nghĩa, Quận 1",
-      "resolved_url": "https://www.foody.vn/ho-chi-minh/nha-hang-thien-nam-am-thuc-hoa-phap",
-      "resolved_source": "TinyFish exact-name/address result with matching house number",
-      "normalized_name": "nha hang thien nam",
-      "chain_family": "nha hang thien nam",
-      "street_keys": [
-        "55|duong nam ky khoi nghia"
-      ],
-      "identity_group_keys": [
-        "nha hang thien nam|55|duong nam ky khoi nghia",
-        "nha hang thien nam|55|duong nam ky khoi nghia"
-      ],
-      "corridor": "duong nam ky khoi nghia",
-      "identity_group": {
-        "normalized_name": "nha hang thien nam",
-        "chain_family": "nha hang thien nam",
-        "street_keys": [
-          "55|duong nam ky khoi nghia"
-        ],
-        "keys": [
-          "nha hang thien nam|55|duong nam ky khoi nghia",
-          "nha hang thien nam|55|duong nam ky khoi nghia"
-        ]
-      }
-    },
     {
       "open_pack_id": "OVT-A3B4A3F7-D063-4D55-8C7D-4FC40D61EBB3",
       "name": "Bún Riêu Cua",
       "address": "199 Đường Hoàng Sa, Quận 1",
       "resolved_url": "https://www.facebook.com/199hoangsa/?locale=vi_VN",
       "resolved_source": "TinyFish exact-name/address result with matching house number",
+      "phase1_outcome": "not_inserted",
       "normalized_name": "bun rieu cua",
       "chain_family": "bun rieu cua",
       "street_keys": [
@@ -91,6 +64,7 @@
       "address": "60 Đường Hồ Hảo Hớn, Quận 1",
       "resolved_url": "https://www.foody.vn/ho-chi-minh/lau-bo-quang-khai-ho-hao-hon",
       "resolved_source": "TinyFish exact-name/address result with matching house number",
+      "phase1_outcome": "not_inserted",
       "normalized_name": "lau bo quang khai",
       "chain_family": "lau bo quang khai",
       "street_keys": [
@@ -119,6 +93,7 @@
       "address": "21 Đường Hàn Thuyên, Quận 1",
       "resolved_url": "https://www.foody.vn/ho-chi-minh/propaganda-saigon",
       "resolved_source": "TinyFish exact-name/address result with matching house number",
+      "phase1_outcome": "not_inserted",
       "normalized_name": "propaganda",
       "chain_family": "propaganda",
       "street_keys": [
@@ -147,6 +122,7 @@
       "address": "34 Đường Mạc Đĩnh Chi, Quận 1",
       "resolved_url": "https://www.foody.vn/ho-chi-minh/oc-ghe",
       "resolved_source": "TinyFish exact-name/address result with matching house number",
+      "phase1_outcome": "not_inserted",
       "normalized_name": "oc ghe",
       "chain_family": "oc ghe",
       "street_keys": [
@@ -175,6 +151,7 @@
       "address": "4 Đường Phan Bội Châu, Quận 1",
       "resolved_url": "https://riviu.vn/bun-rieu-ganh-ben-thanh-phan-boi-chau",
       "resolved_source": "TinyFish exact-name/address result with matching house number",
+      "phase1_outcome": "not_inserted",
       "normalized_name": "bun rieu ganh ben thanh",
       "chain_family": "bun rieu ganh ben thanh",
       "street_keys": [
@@ -203,6 +180,7 @@
       "address": "89 Đường Thạch Thị Thanh, Quận 1",
       "resolved_url": "https://www.foody.vn/ho-chi-minh/bep-hue",
       "resolved_source": "TinyFish exact-name/address result with matching house number",
+      "phase1_outcome": "not_inserted",
       "normalized_name": "bep hue",
       "chain_family": "bep hue",
       "street_keys": [
@@ -227,7 +205,6 @@
     }
   ],
   "lead_ids": [
-    "OVT-FD41B2AE-D4F9-4D8F-BEAC-4009FF3D0E30",
     "OVT-A3B4A3F7-D063-4D55-8C7D-4FC40D61EBB3",
     "OVT-3D0B7FBB-F7B8-4504-9ECF-4A680F5C72DA",
     "OVT-C66345B1-D9F6-474E-9B62-232EDE90BA64",
@@ -235,33 +212,33 @@
     "OVT-8B9128EC-5FE2-4EC9-B7CE-C66BBAC80FCA",
     "OVT-65EE2088-017E-47EB-8902-6904583F80EF"
   ],
-  "created_at": "2026-07-11T21:29:59.319Z",
-  "started_at": "2026-07-11T21:29:59.320Z",
-  "pre_snapshot": "scratch/bigset-output/attempts/restaurants-attempt-029-2026-07-11T21-29-59-319Z-pre.json",
+  "created_at": "2026-07-11T23:14:44.555Z",
+  "started_at": "2026-07-11T23:14:44.556Z",
+  "pre_snapshot": "scratch/bigset-output/attempts/restaurants-attempt-031-2026-07-11T23-14-44-555Z-pre.json",
   "required_models": {
-    "populate_orchestrator": "openai/gpt-oss-120b:nitro",
-    "investigate_subagent": "openai/gpt-oss-120b:nitro"
+    "populate_orchestrator": "gpt-5.6-luna",
+    "investigate_subagent": "gpt-5.6-luna"
   },
   "effective_model_config": {
-    "schema_inference": "anthropic/claude-sonnet-4.6",
-    "populate_orchestrator": "openai/gpt-oss-120b:nitro",
-    "investigate_subagent": "openai/gpt-oss-120b:nitro",
-    "verified_at": "2026-07-11T21:29:36.257Z",
+    "schema_inference": "gpt-5.6-luna",
+    "populate_orchestrator": "gpt-5.6-luna",
+    "investigate_subagent": "gpt-5.6-luna",
+    "verified_at": "2026-07-11T23:14:37.592Z",
     "source": "GET /settings/models"
   },
   "fail_fast_zero_rows": true,
-  "unique_before": 78,
-  "usable_before": 67,
-  "run_id": "aa4b5f3d-d23c-4224-ba86-46a44afa91fd",
-  "submitted_at": "2026-07-11T21:29:59.335Z",
+  "unique_before": 79,
+  "usable_before": 68,
+  "run_id": "c210f82e-dc66-4d81-815c-7d0ef14bba4a",
+  "submitted_at": "2026-07-11T23:14:44.565Z",
   "dataset_status": "live",
   "status_error": null,
-  "rows_exported": 1,
-  "export": "scratch/bigset-output/attempts/restaurants-attempt-029-2026-07-11T21-29-59-319Z-rows.json",
-  "finished_at": "2026-07-11T21:30:44.387Z",
+  "rows_exported": 100,
+  "export": "scratch/bigset-output/attempts/restaurants-attempt-031-2026-07-11T23-14-44-555Z-rows.json",
+  "finished_at": "2026-07-11T23:19:44.764Z",
   "adoption_ready": true,
-  "unique_after": 79,
-  "unique_delta": 1,
-  "usable_after": 68,
-  "usable_delta": 1
+  "unique_after": 159,
+  "unique_delta": 80,
+  "usable_after": 133,
+  "usable_delta": 65
 }

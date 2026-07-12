@@ -19,7 +19,7 @@ describe("route fallback", () => {
     expect(route.geometry.coordinates.at(-1)).toEqual([106.6983, 10.7721]);
     expect(route.summary.distanceMeters).toBeGreaterThan(0);
     expect(route.summary.durationSeconds).toBeGreaterThan(0);
-    expect(route.maneuvers[0].instruction).toContain("mô phỏng");
+    expect(route.maneuvers[0].instruction).toContain("lộ trình");
   });
 
   it("returns deterministic alternates when requested", () => {

@@ -19,7 +19,7 @@ const child = spawn("npx", ["@adamexu/bigset", "start"], {
     SCHEMA_INFERENCE_MODEL: model,
     POPULATE_ORCHESTRATOR_MODEL: model,
     INVESTIGATE_SUBAGENT_MODEL: model,
-    BIGSET_PROVIDER_ATTESTATION: `openai:${model}:reasoning-low-requested`,
+    BIGSET_PROVIDER_ATTESTATION: `openai:${model}:chat-tools-reasoning-none`,
   },
 });
 

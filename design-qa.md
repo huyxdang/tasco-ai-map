@@ -1,4 +1,21 @@
-# TASCO Atlas first mobile redesign — design QA
+# TASCO Atlas mobile design QA history
+
+## Current submission flow — 2026-07-12
+
+- Reference: `/var/folders/qw/8bws4dqx7m50rh_ljbc2cxj40000gn/T/codex-clipboard-501e16bb-b455-48f2-b597-78ec8e4ddde5.png` (selected Tesla-style car visualization)
+- Driving asset: `public/assets/tasco-driving-loop.mp4` (8 s, 1280 × 720, H.264, 24 fps, muted in UI); static PNG retained as poster fallback
+- Required viewport: 375 × 812 px
+- Required states: real microphone start, actual Vietnamese transcript, spoken Italian choice, one spoken 19:00 time turn, spoken confirmation of July 12 at 19:00, four-second booking state, two-stop result, 3-person table hold, attached Pizza parking service, VETC payment, receipt, and moving-car payoff
+- Copy requirement: no user-facing `Mô phỏng`, locked-script, or fake-data labels in the recording path; deterministic flags remain internal
+- Static verification: full ESLint and TypeScript pass; 127 tests pass and 16 are intentionally skipped
+- Provider-selector cleanup: the start sheet no longer exposes Valsea or ElevenLabs controls or vendor-named status copy; Valsea STT and ElevenLabs TTS remain fixed internal defaults. Post-cleanup TypeScript, scoped ESLint, and 45 focused tests pass.
+- Visual verification: blocked. The selected Codex in-app browser rejected localhost access under its URL security policy, so no current implementation screenshot could be captured or compared with the reference. The existing `/tmp` captures below predate this submission flow and are not accepted as current evidence.
+
+The implementation must therefore be manually checked in the already-open
+`http://localhost:3000/` tab at 375 × 812 before recording. Do not treat the
+historical passed comparison below as sign-off for the new locked demo.
+
+### Historical first-redesign evidence
 
 - Source visual truth: `/Users/edwardtran/Downloads/TASCO Atlas conversational map experience (2)/TASCO Atlas Prototype.dc.html`
 - Source captures: `/tmp/reference-home-frame.png`, `/tmp/reference-start-frame.png`
@@ -65,4 +82,4 @@ The rendered source and implementation were captured at the same 402 × 874 phon
 - P3: production TASCO/VETC assets can replace the text `vetc` lockup when licensed brand files are supplied.
 - P3: validate the available branch on a hardware WebGL browser; the pure readiness seam is tested for both `canPlay:true` and `canPlay:false`, while this QA environment exercised the rendered non-WebGL fallback.
 
-final result: passed
+final result: blocked

@@ -23,14 +23,16 @@ export type SttProvider = "elevenlabs" | "valsea";
 const TARGET_SAMPLE_RATE = 16_000;
 
 // Domain vocabulary biases the recognizer toward the words our users actually
-// say — venue types, districts, landmarks, and the demo's key phrases.
+// say — venue types, districts, landmarks, and the planned trip's key phrases.
 // ElevenLabs takes these as repeated `keyterms` params; Valsea as `hint_text`.
 const KEYTERMS = [
   "quán cà phê", "nhà hàng", "khách sạn", "trạm xăng", "bãi đỗ xe", "công viên",
   "Quận 1", "Sài Gòn", "Hà Nội", "Đà Nẵng", "Hồ Gươm", "Chợ Bến Thành",
   "Tân Sơn Nhất", "phở", "bún chả", "món Việt", "món Ý", "gần đây", "yên tĩnh",
   "wifi", "giá rẻ", "mở cửa khuya", "học nhóm", "hẹn hò", "đặt bàn", "gần hơn",
-  "rẻ hơn", "đổ xăng", "ăn tối", "gần trung tâm", "dễ đỗ xe",
+  "rẻ hơn", "đổ xăng", "ăn tối", "ba người", "làm việc", "gần trung tâm", "dễ đỗ xe",
+  "Pizza 4P's", "Trung Nguyên", "Ví VETC", "7 giờ tối", "19 giờ", "12 tháng 7",
+  "ngày 12 tháng 7", "chốt đi", "chốt hành trình", "bắt đầu dẫn đường",
 ];
 
 const SCRIBE_PARAMS = new URLSearchParams({

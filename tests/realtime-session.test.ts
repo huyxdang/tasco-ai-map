@@ -119,6 +119,18 @@ describe("Valsea voice endpoints (TASCO_STT_PROVIDER / TASCO_TTS_PROVIDER = vals
     expect(upstreamFetch).not.toHaveBeenCalled();
   });
 
+  it("allows the session UI to choose Valsea STT independently of the server default", async () => {
+    vi.stubEnv("TASCO_STT_PROVIDER", "elevenlabs");
+    vi.stubEnv("VALSEA_API_KEY", "vs-demo-key");
+    vi.stubGlobal("fetch", vi.fn());
+    const response = await POST_STT_TOKEN(new Request("http://localhost/api/stt/token", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ provider: "valsea" })
+    }));
+    expect(response.status).toBe(200);
+    await expect(response.json()).resolves.toEqual({ provider: "valsea", token: "vs-demo-key" });
+  });
+
   it("TTS endpoint fails closed without the Valsea key", async () => {
     vi.stubEnv("TASCO_TTS_PROVIDER", "valsea");
     vi.stubEnv("VALSEA_API_KEY", "");
@@ -156,6 +168,24 @@ describe("Valsea voice endpoints (TASCO_STT_PROVIDER / TASCO_TTS_PROVIDER = vals
     expect(response.status).toBe(200);
     expect(response.headers.get("Content-Type")).toBe("audio/mpeg");
     expect(JSON.stringify([...response.headers.entries()])).not.toContain("vs-demo-key");
+    expect(upstreamFetch).toHaveBeenCalledOnce();
+  });
+
+  it("allows the session UI to pair Valsea STT with ElevenLabs TTS", async () => {
+    vi.stubEnv("TASCO_TTS_PROVIDER", "valsea");
+    vi.stubEnv("ELEVENLABS_API_KEY", "el-secret-key");
+    const upstreamFetch = vi.fn(async (url: string | URL | Request) => {
+      expect(String(url)).toContain("api.elevenlabs.io/v1/text-to-speech/");
+      return new Response(new Blob([new Uint8Array([1])]).stream(), {
+        status: 200, headers: { "Content-Type": "audio/mpeg" }
+      });
+    });
+    vi.stubGlobal("fetch", upstreamFetch);
+    const response = await POST_TTS(new Request("http://localhost/api/tts", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text: "Xin chào", provider: "elevenlabs" })
+    }));
+    expect(response.status).toBe(200);
     expect(upstreamFetch).toHaveBeenCalledOnce();
   });
 
@@ -215,7 +245,7 @@ describe("voice UI guards", () => {
     expect(routeTheaterAvailability(true)).toEqual({ canPlay: true, message: "" });
     expect(routeTheaterAvailability(false)).toEqual({
       canPlay: false,
-      message: "Bản đồ 3D chưa sẵn sàng. Biên nhận và hành trình mô phỏng vẫn được giữ nguyên."
+      message: "Bản đồ 3D chưa sẵn sàng. Biên nhận và hành trình vẫn được giữ nguyên."
     });
   });
 });

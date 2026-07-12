@@ -1,5 +1,5 @@
 {
-  "status": "adopted_partial",
+  "status": "adopted_complete",
   "category": "hotels",
   "attempts": [
     {
@@ -4161,6 +4161,570 @@
       "unique_delta": 0,
       "usable_after": 88,
       "usable_delta": 0
+    },
+    {
+      "status": "paused_zero_row_review",
+      "category": "hotels",
+      "attempt": 21,
+      "attempt_key": "hotels-021-2026-07-11T23-13-16-023Z-open-pack-queue",
+      "old_dataset_id": "jd70f813m12yba1t3sa8ykymqx8aabzy",
+      "dataset_id": "jd73qyh6gmr2jkp3yvvxb86gdn8abfzm",
+      "schema_verified": true,
+      "schema_signature": [
+        "breakfast:boolean:field",
+        "breakfast_buffet:boolean:field",
+        "family_friendly:boolean:field",
+        "hotel_url:url:pk",
+        "name:text:field",
+        "nice_view:boolean:field",
+        "parking:boolean:field",
+        "pool:boolean:field",
+        "price_tier:text:field",
+        "quiet:boolean:field",
+        "rating:number:field",
+        "rating_source:text:field",
+        "review_count:number:field",
+        "street_address:text:field"
+      ],
+      "reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"a39c67f7-c797-4150-a323-6e2117904ff7\",\"search_calls\":2,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
+      "prompt_strategy": "deterministic open-pack lead queue (6 exact uncovered name/address candidates); exact search then mandatory run_subagent per lead; fallback URL prevents discovery-only exit",
+      "deterministic_open_pack_recovery": true,
+      "pre_resolved_direct_dispatch": false,
+      "lead_queue": [
+        {
+          "open_pack_id": "OVT-40707B5A-FDC3-40E6-BA03-EE86E9B712CF",
+          "name": "Saigon Charm Hotel",
+          "address": "153 Đường Lý Tự Trọng, Quận 1",
+          "brand": "",
+          "normalized_name": "charm",
+          "chain_family": "charm",
+          "street_keys": [
+            "153|duong ly tu trong"
+          ],
+          "identity_group_keys": [
+            "charm|153|duong ly tu trong",
+            "charm|153|duong ly tu trong"
+          ],
+          "corridor": "duong ly tu trong",
+          "corridor_coverage": 1,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Saigon%20Charm%20Hotel%20153%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%BD%20T%E1%BB%B1%20Tr%E1%BB%8Dng%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "charm",
+            "chain_family": "charm",
+            "street_keys": [
+              "153|duong ly tu trong"
+            ],
+            "keys": [
+              "charm|153|duong ly tu trong",
+              "charm|153|duong ly tu trong"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-39B4C72C-4797-4308-9E31-CA190524F3C6",
+          "name": "Nhat Ha 1 Hotel",
+          "address": "252 Đường Lê Thánh Tôn, Quận 1",
+          "brand": "",
+          "normalized_name": "nhat ha",
+          "chain_family": "nhat ha",
+          "street_keys": [
+            "252|duong le thanh ton"
+          ],
+          "identity_group_keys": [
+            "nhat ha|252|duong le thanh ton",
+            "nhat ha|252|duong le thanh ton"
+          ],
+          "corridor": "duong le thanh ton",
+          "corridor_coverage": 1,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Nhat%20Ha%201%20Hotel%20252%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%AA%20Th%C3%A1nh%20T%C3%B4n%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "nhat ha",
+            "chain_family": "nhat ha",
+            "street_keys": [
+              "252|duong le thanh ton"
+            ],
+            "keys": [
+              "nhat ha|252|duong le thanh ton",
+              "nhat ha|252|duong le thanh ton"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-9B7D7417-17F0-4DD9-B8FC-948B2DB65A88",
+          "name": "Liberty Saigon Greenview",
+          "address": "187 Đường Phạm Ngũ Lão, Quận 1",
+          "brand": "",
+          "normalized_name": "liberty greenview",
+          "chain_family": "liberty",
+          "street_keys": [
+            "187|duong pham ngu lao"
+          ],
+          "identity_group_keys": [
+            "liberty greenview|187|duong pham ngu lao",
+            "liberty|187|duong pham ngu lao"
+          ],
+          "corridor": "duong pham ngu lao",
+          "corridor_coverage": 1,
+          "quality_score": 2,
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/Liberty%20Saigon%20Greenview%20187%20%C4%90%C6%B0%E1%BB%9Dng%20Ph%E1%BA%A1m%20Ng%C5%A9%20L%C3%A3o%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "liberty greenview",
+            "chain_family": "liberty",
+            "street_keys": [
+              "187|duong pham ngu lao"
+            ],
+            "keys": [
+              "liberty greenview|187|duong pham ngu lao",
+              "liberty|187|duong pham ngu lao"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-AE9366F5-0DBA-4382-9E5B-E8F2C51CE95D",
+          "name": "Happy Land Hotel",
+          "address": "102-104 Đường Lý Tự Trọng, Quận 1",
+          "brand": "",
+          "normalized_name": "happy land",
+          "chain_family": "happy",
+          "street_keys": [
+            "102|duong ly tu trong"
+          ],
+          "identity_group_keys": [
+            "happy land|102|duong ly tu trong",
+            "happy|102|duong ly tu trong"
+          ],
+          "corridor": "duong ly tu trong",
+          "corridor_coverage": 1,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Happy%20Land%20Hotel%20102-104%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%BD%20T%E1%BB%B1%20Tr%E1%BB%8Dng%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "happy land",
+            "chain_family": "happy",
+            "street_keys": [
+              "102|duong ly tu trong"
+            ],
+            "keys": [
+              "happy land|102|duong ly tu trong",
+              "happy|102|duong ly tu trong"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-D0B11B93-B320-4C15-90F4-6FD9C437D50C",
+          "name": "Liberty Central Saigon Centre Hotel",
+          "address": "179 Đường Lê Thánh Tôn, Quận 1",
+          "brand": "",
+          "normalized_name": "liberty central centre",
+          "chain_family": "liberty central",
+          "street_keys": [
+            "179|duong le thanh ton"
+          ],
+          "identity_group_keys": [
+            "liberty central centre|179|duong le thanh ton",
+            "liberty central|179|duong le thanh ton"
+          ],
+          "corridor": "duong le thanh ton",
+          "corridor_coverage": 1,
+          "quality_score": 2,
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/Liberty%20Central%20Saigon%20Centre%20Hotel%20179%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%AA%20Th%C3%A1nh%20T%C3%B4n%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "liberty central centre",
+            "chain_family": "liberty central",
+            "street_keys": [
+              "179|duong le thanh ton"
+            ],
+            "keys": [
+              "liberty central centre|179|duong le thanh ton",
+              "liberty central|179|duong le thanh ton"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-EBFA56A8-DA56-4A23-8867-C90865140AD6",
+          "name": "Meow Hotel and Cafe 2",
+          "address": "373/3 Đường Phạm Ngũ Lão, Quận 1",
+          "brand": "",
+          "normalized_name": "meow and",
+          "chain_family": "meow and",
+          "street_keys": [
+            "373/3|duong pham ngu lao"
+          ],
+          "identity_group_keys": [
+            "meow and|373/3|duong pham ngu lao",
+            "meow and|373/3|duong pham ngu lao"
+          ],
+          "corridor": "duong pham ngu lao",
+          "corridor_coverage": 1,
+          "quality_score": 2,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Meow%20Hotel%20and%20Cafe%202%20373%2F3%20%C4%90%C6%B0%E1%BB%9Dng%20Ph%E1%BA%A1m%20Ng%C5%A9%20L%C3%A3o%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "meow and",
+            "chain_family": "meow and",
+            "street_keys": [
+              "373/3|duong pham ngu lao"
+            ],
+            "keys": [
+              "meow and|373/3|duong pham ngu lao",
+              "meow and|373/3|duong pham ngu lao"
+            ]
+          }
+        }
+      ],
+      "lead_ids": [
+        "OVT-40707B5A-FDC3-40E6-BA03-EE86E9B712CF",
+        "OVT-39B4C72C-4797-4308-9E31-CA190524F3C6",
+        "OVT-9B7D7417-17F0-4DD9-B8FC-948B2DB65A88",
+        "OVT-AE9366F5-0DBA-4382-9E5B-E8F2C51CE95D",
+        "OVT-D0B11B93-B320-4C15-90F4-6FD9C437D50C",
+        "OVT-EBFA56A8-DA56-4A23-8867-C90865140AD6"
+      ],
+      "created_at": "2026-07-11T23:13:16.023Z",
+      "started_at": "2026-07-11T23:13:16.024Z",
+      "pre_snapshot": "scratch/bigset-output/attempts/hotels-attempt-021-2026-07-11T23-13-16-023Z-pre.json",
+      "required_models": {
+        "populate_orchestrator": "gpt-5.6-luna",
+        "investigate_subagent": "gpt-5.6-luna"
+      },
+      "effective_model_config": {
+        "schema_inference": "gpt-5.6-luna",
+        "populate_orchestrator": "gpt-5.6-luna",
+        "investigate_subagent": "gpt-5.6-luna",
+        "verified_at": "2026-07-11T23:13:07.176Z",
+        "source": "GET /settings/models"
+      },
+      "fail_fast_zero_rows": true,
+      "unique_before": 100,
+      "usable_before": 88,
+      "run_id": "a52c3452-e90a-408e-822d-8bdf9479e250",
+      "submitted_at": "2026-07-11T23:13:16.032Z",
+      "dataset_status": "failed",
+      "status_error": "Workflow ended with status: failed",
+      "rows_exported": 0,
+      "export": "scratch/bigset-output/attempts/hotels-attempt-021-2026-07-11T23-13-16-023Z-rows.json",
+      "finished_at": "2026-07-11T23:13:31.063Z",
+      "adoption_ready": true,
+      "unique_after": 100,
+      "unique_delta": 0,
+      "usable_after": 88,
+      "usable_delta": 0
+    },
+    {
+      "status": "completed_external_unadopted",
+      "category": "hotels",
+      "attempt": 22,
+      "attempt_key": "hotels-022-2026-07-11T23-14-43-263Z-open-pack-queue",
+      "old_dataset_id": "jd73qyh6gmr2jkp3yvvxb86gdn8abfzm",
+      "dataset_id": "jd7e4tkkkqvb0zgphbr1nf530h8aarzc",
+      "schema_verified": true,
+      "schema_signature": [
+        "breakfast:boolean:field",
+        "breakfast_buffet:boolean:field",
+        "family_friendly:boolean:field",
+        "hotel_url:url:pk",
+        "name:text:field",
+        "nice_view:boolean:field",
+        "parking:boolean:field",
+        "pool:boolean:field",
+        "price_tier:text:field",
+        "quiet:boolean:field",
+        "rating:number:field",
+        "rating_source:text:field",
+        "review_count:number:field",
+        "street_address:text:field"
+      ],
+      "reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"a39c67f7-c797-4150-a323-6e2117904ff7\",\"search_calls\":2,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
+      "prompt_strategy": "deterministic open-pack lead queue (3 exact uncovered name/address candidates); exact search then mandatory run_subagent per lead; fallback URL prevents discovery-only exit",
+      "deterministic_open_pack_recovery": true,
+      "pre_resolved_direct_dispatch": false,
+      "lead_queue": [
+        {
+          "open_pack_id": "OVT-0A175B10-BEDA-44C0-B404-86530F448934",
+          "name": "Sanouva Saigon Hotel",
+          "address": "175 Đường Lý Tự Trọng, Quận 1",
+          "brand": "",
+          "normalized_name": "sanouva",
+          "chain_family": "sanouva",
+          "street_keys": [
+            "175|duong ly tu trong"
+          ],
+          "identity_group_keys": [
+            "sanouva|175|duong ly tu trong",
+            "sanouva|175|duong ly tu trong"
+          ],
+          "corridor": "duong ly tu trong",
+          "corridor_coverage": 1,
+          "quality_score": 3,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Sanouva%20Saigon%20Hotel%20175%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%BD%20T%E1%BB%B1%20Tr%E1%BB%8Dng%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "sanouva",
+            "chain_family": "sanouva",
+            "street_keys": [
+              "175|duong ly tu trong"
+            ],
+            "keys": [
+              "sanouva|175|duong ly tu trong",
+              "sanouva|175|duong ly tu trong"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-E8D4D7D7-A2F7-4411-986C-42B8F70BE49C",
+          "name": "Vien Dong Hotel",
+          "address": "275A Đường Phạm Ngũ Lão, Quận 1",
+          "brand": "",
+          "normalized_name": "vien",
+          "chain_family": "vien",
+          "street_keys": [
+            "275a|duong pham ngu lao"
+          ],
+          "identity_group_keys": [
+            "vien|275a|duong pham ngu lao",
+            "vien|275a|duong pham ngu lao"
+          ],
+          "corridor": "duong pham ngu lao",
+          "corridor_coverage": 1,
+          "quality_score": 2,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Vien%20Dong%20Hotel%20275A%20%C4%90%C6%B0%E1%BB%9Dng%20Ph%E1%BA%A1m%20Ng%C5%A9%20L%C3%A3o%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "vien",
+            "chain_family": "vien",
+            "street_keys": [
+              "275a|duong pham ngu lao"
+            ],
+            "keys": [
+              "vien|275a|duong pham ngu lao",
+              "vien|275a|duong pham ngu lao"
+            ]
+          }
+        },
+        {
+          "open_pack_id": "OVT-64759BDB-3436-4890-AD5B-CB4B31F239A4",
+          "name": "GK Central Hotel",
+          "address": "92-94 Đường Lý Tự Trọng, Quận 1",
+          "brand": "",
+          "normalized_name": "gk central",
+          "chain_family": "gk central",
+          "street_keys": [
+            "92|duong ly tu trong"
+          ],
+          "identity_group_keys": [
+            "gk central|92|duong ly tu trong",
+            "gk central|92|duong ly tu trong"
+          ],
+          "corridor": "duong ly tu trong",
+          "corridor_coverage": 1,
+          "quality_score": 2,
+          "popularity_score": 99,
+          "fallback_url": "https://www.google.com/maps/search/GK%20Central%20Hotel%2092-94%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%BD%20T%E1%BB%B1%20Tr%E1%BB%8Dng%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "gk central",
+            "chain_family": "gk central",
+            "street_keys": [
+              "92|duong ly tu trong"
+            ],
+            "keys": [
+              "gk central|92|duong ly tu trong",
+              "gk central|92|duong ly tu trong"
+            ]
+          }
+        }
+      ],
+      "lead_ids": [
+        "OVT-0A175B10-BEDA-44C0-B404-86530F448934",
+        "OVT-E8D4D7D7-A2F7-4411-986C-42B8F70BE49C",
+        "OVT-64759BDB-3436-4890-AD5B-CB4B31F239A4"
+      ],
+      "created_at": "2026-07-11T23:14:43.263Z",
+      "started_at": "2026-07-11T23:14:43.265Z",
+      "pre_snapshot": "scratch/bigset-output/attempts/hotels-attempt-022-2026-07-11T23-14-43-263Z-pre.json",
+      "required_models": {
+        "populate_orchestrator": "gpt-5.6-luna",
+        "investigate_subagent": "gpt-5.6-luna"
+      },
+      "effective_model_config": {
+        "schema_inference": "gpt-5.6-luna",
+        "populate_orchestrator": "gpt-5.6-luna",
+        "investigate_subagent": "gpt-5.6-luna",
+        "verified_at": "2026-07-11T23:14:37.592Z",
+        "source": "GET /settings/models"
+      },
+      "fail_fast_zero_rows": true,
+      "unique_before": 100,
+      "usable_before": 88,
+      "run_id": "baed9d9b-4a55-40e7-b99d-ec7f6a32625f",
+      "submitted_at": "2026-07-11T23:14:43.280Z",
+      "dataset_status": "live",
+      "status_error": null,
+      "rows_exported": 2,
+      "export": "scratch/bigset-output/attempts/hotels-attempt-022-2026-07-11T23-14-43-263Z-rows.json",
+      "finished_at": "2026-07-11T23:20:13.451Z",
+      "adoption_ready": true,
+      "unique_after": 102,
+      "unique_delta": 2,
+      "usable_after": 90,
+      "usable_delta": 2
+    },
+    {
+      "status": "completed_external_unadopted",
+      "category": "hotels",
+      "attempt": 23,
+      "attempt_key": "hotels-023-2026-07-11T23-20-18-735Z-open-pack-queue",
+      "old_dataset_id": "jd7e4tkkkqvb0zgphbr1nf530h8aarzc",
+      "dataset_id": "jd7cgah0r7djdyw8w7zx0jw2rx8aawbx",
+      "schema_verified": true,
+      "schema_signature": [
+        "breakfast:boolean:field",
+        "breakfast_buffet:boolean:field",
+        "family_friendly:boolean:field",
+        "hotel_url:url:pk",
+        "name:text:field",
+        "nice_view:boolean:field",
+        "parking:boolean:field",
+        "pool:boolean:field",
+        "price_tier:text:field",
+        "quiet:boolean:field",
+        "rating:number:field",
+        "rating_source:text:field",
+        "review_count:number:field",
+        "street_address:text:field"
+      ],
+      "reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"a39c67f7-c797-4150-a323-6e2117904ff7\",\"search_calls\":2,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
+      "prompt_strategy": "deterministic open-pack lead queue (1 exact uncovered name/address candidates); exact search then mandatory run_subagent per lead; fallback URL prevents discovery-only exit",
+      "deterministic_open_pack_recovery": true,
+      "pre_resolved_direct_dispatch": false,
+      "lead_queue": [
+        {
+          "open_pack_id": "OVT-29351D3F-7973-48DA-8FC0-571DDF3B28EA",
+          "name": "Akoya Saigon Central Hotel",
+          "address": "88 Đường Lý Tự Trọng, Quận 1",
+          "brand": "",
+          "normalized_name": "akoya central",
+          "chain_family": "akoya central",
+          "street_keys": [
+            "88|duong ly tu trong"
+          ],
+          "identity_group_keys": [
+            "akoya central|88|duong ly tu trong",
+            "akoya central|88|duong ly tu trong"
+          ],
+          "corridor": "duong ly tu trong",
+          "corridor_coverage": 2,
+          "quality_score": 2,
+          "popularity_score": 98,
+          "fallback_url": "https://www.google.com/maps/search/Akoya%20Saigon%20Central%20Hotel%2088%20%C4%90%C6%B0%E1%BB%9Dng%20L%C3%BD%20T%E1%BB%B1%20Tr%E1%BB%8Dng%2C%20Qu%E1%BA%ADn%201",
+          "identity_group": {
+            "normalized_name": "akoya central",
+            "chain_family": "akoya central",
+            "street_keys": [
+              "88|duong ly tu trong"
+            ],
+            "keys": [
+              "akoya central|88|duong ly tu trong",
+              "akoya central|88|duong ly tu trong"
+            ]
+          }
+        }
+      ],
+      "lead_ids": [
+        "OVT-29351D3F-7973-48DA-8FC0-571DDF3B28EA"
+      ],
+      "created_at": "2026-07-11T23:20:18.735Z",
+      "started_at": "2026-07-11T23:20:18.736Z",
+      "pre_snapshot": "scratch/bigset-output/attempts/hotels-attempt-023-2026-07-11T23-20-18-735Z-pre.json",
+      "required_models": {
+        "populate_orchestrator": "gpt-5.6-luna",
+        "investigate_subagent": "gpt-5.6-luna"
+      },
+      "effective_model_config": {
+        "schema_inference": "gpt-5.6-luna",
+        "populate_orchestrator": "gpt-5.6-luna",
+        "investigate_subagent": "gpt-5.6-luna",
+        "verified_at": "2026-07-11T23:20:13.462Z",
+        "source": "GET /settings/models"
+      },
+      "fail_fast_zero_rows": true,
+      "unique_before": 102,
+      "usable_before": 90,
+      "run_id": "3bd7c330-2f81-4255-bfe2-8a48918893d8",
+      "submitted_at": "2026-07-11T23:20:18.748Z",
+      "dataset_status": "live",
+      "status_error": null,
+      "rows_exported": 1,
+      "export": "scratch/bigset-output/attempts/hotels-attempt-023-2026-07-11T23-20-18-735Z-rows.json",
+      "finished_at": "2026-07-11T23:20:48.779Z",
+      "adoption_ready": true,
+      "unique_after": 103,
+      "unique_delta": 1,
+      "usable_after": 91,
+      "usable_delta": 1
+    },
+    {
+      "status": "completed_external_unadopted",
+      "category": "hotels",
+      "attempt": 24,
+      "attempt_key": "hotels-024-2026-07-11T23-21-06-939Z-external-slot",
+      "old_dataset_id": "jd7cgah0r7djdyw8w7zx0jw2rx8aawbx",
+      "dataset_id": "jd7cfyrr3vaa28qfq0tq1tqfh18aa4gk",
+      "schema_verified": true,
+      "schema_signature": [
+        "breakfast:boolean:field",
+        "breakfast_buffet:boolean:field",
+        "family_friendly:boolean:field",
+        "hotel_url:url:pk",
+        "name:text:field",
+        "nice_view:boolean:field",
+        "parking:boolean:field",
+        "pool:boolean:field",
+        "price_tier:text:field",
+        "quiet:boolean:field",
+        "rating:number:field",
+        "rating_source:text:field",
+        "review_count:number:field",
+        "street_address:text:field"
+      ],
+      "reason": "Causal recovery after replacement hotel attempt 10 made a zero-row terminal run; route one hotel-source-and-corridor lead directly to each subagent",
+      "prompt_strategy": "hotel lead-router recovery: one source-and-corridor search then immediate run_subagent; no orchestrator fetch; rotate property source and under-covered corridor",
+      "hotel_corridor_recovery": true,
+      "causal_terminal_recovery": true,
+      "created_at": "2026-07-11T23:21:06.939Z",
+      "started_at": "2026-07-11T23:21:06.941Z",
+      "pre_snapshot": "scratch/bigset-output/attempts/hotels-attempt-024-2026-07-11T23-21-06-939Z-pre.json",
+      "required_models": {
+        "populate_orchestrator": "gpt-5.6-luna",
+        "investigate_subagent": "gpt-5.6-luna"
+      },
+      "effective_model_config": {
+        "schema_inference": "gpt-5.6-luna",
+        "populate_orchestrator": "gpt-5.6-luna",
+        "investigate_subagent": "gpt-5.6-luna",
+        "verified_at": "2026-07-11T23:21:01.320Z",
+        "source": "GET /settings/models"
+      },
+      "fail_fast_zero_rows": true,
+      "unique_before": 103,
+      "usable_before": 91,
+      "run_id": "05fc4d73-0f59-4240-867a-d37aa739fb3e",
+      "submitted_at": "2026-07-11T23:21:06.956Z",
+      "dataset_status": "live",
+      "status_error": null,
+      "rows_exported": 19,
+      "export": "scratch/bigset-output/attempts/hotels-attempt-024-2026-07-11T23-21-06-939Z-rows.json",
+      "finished_at": "2026-07-11T23:23:07.071Z",
+      "adoption_ready": true,
+      "unique_after": 122,
+      "unique_delta": 19,
+      "usable_after": 110,
+      "usable_delta": 19
     }
   ],
   "replacements": [
@@ -4405,6 +4969,62 @@
       ],
       "schema_verified": true,
       "at": "2026-07-11T22:07:50.977Z"
+    },
+    {
+      "old_dataset_id": "jd70f813m12yba1t3sa8ykymqx8aabzy",
+      "new_dataset_id": "jd73qyh6gmr2jkp3yvvxb86gdn8abfzm",
+      "reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"a39c67f7-c797-4150-a323-6e2117904ff7\",\"search_calls\":2,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
+      "prompt_strategy": "deterministic open-pack lead queue (6 exact uncovered name/address candidates); exact search then mandatory run_subagent per lead; fallback URL prevents discovery-only exit",
+      "deterministic_open_pack_recovery": true,
+      "pre_resolved_direct_dispatch": false,
+      "lead_ids": [
+        "OVT-40707B5A-FDC3-40E6-BA03-EE86E9B712CF",
+        "OVT-39B4C72C-4797-4308-9E31-CA190524F3C6",
+        "OVT-9B7D7417-17F0-4DD9-B8FC-948B2DB65A88",
+        "OVT-AE9366F5-0DBA-4382-9E5B-E8F2C51CE95D",
+        "OVT-D0B11B93-B320-4C15-90F4-6FD9C437D50C",
+        "OVT-EBFA56A8-DA56-4A23-8867-C90865140AD6"
+      ],
+      "schema_verified": true,
+      "at": "2026-07-11T23:13:16.023Z"
+    },
+    {
+      "old_dataset_id": "jd73qyh6gmr2jkp3yvvxb86gdn8abfzm",
+      "new_dataset_id": "jd7e4tkkkqvb0zgphbr1nf530h8aarzc",
+      "reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"a39c67f7-c797-4150-a323-6e2117904ff7\",\"search_calls\":2,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
+      "prompt_strategy": "deterministic open-pack lead queue (3 exact uncovered name/address candidates); exact search then mandatory run_subagent per lead; fallback URL prevents discovery-only exit",
+      "deterministic_open_pack_recovery": true,
+      "pre_resolved_direct_dispatch": false,
+      "lead_ids": [
+        "OVT-0A175B10-BEDA-44C0-B404-86530F448934",
+        "OVT-E8D4D7D7-A2F7-4411-986C-42B8F70BE49C",
+        "OVT-64759BDB-3436-4890-AD5B-CB4B31F239A4"
+      ],
+      "schema_verified": true,
+      "at": "2026-07-11T23:14:43.263Z"
+    },
+    {
+      "old_dataset_id": "jd7e4tkkkqvb0zgphbr1nf530h8aarzc",
+      "new_dataset_id": "jd7cgah0r7djdyw8w7zx0jw2rx8aawbx",
+      "reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"a39c67f7-c797-4150-a323-6e2117904ff7\",\"search_calls\":2,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
+      "prompt_strategy": "deterministic open-pack lead queue (1 exact uncovered name/address candidates); exact search then mandatory run_subagent per lead; fallback URL prevents discovery-only exit",
+      "deterministic_open_pack_recovery": true,
+      "pre_resolved_direct_dispatch": false,
+      "lead_ids": [
+        "OVT-29351D3F-7973-48DA-8FC0-571DDF3B28EA"
+      ],
+      "schema_verified": true,
+      "at": "2026-07-11T23:20:18.735Z"
+    },
+    {
+      "old_dataset_id": "jd7cgah0r7djdyw8w7zx0jw2rx8aawbx",
+      "new_dataset_id": "jd7cfyrr3vaa28qfq0tq1tqfh18aa4gk",
+      "reason": "Causal recovery after replacement hotel attempt 10 made a zero-row terminal run; route one hotel-source-and-corridor lead directly to each subagent",
+      "prompt_strategy": "hotel lead-router recovery: one source-and-corridor search then immediate run_subagent; no orchestrator fetch; rotate property source and under-covered corridor",
+      "hotel_corridor_recovery": true,
+      "causal_terminal_recovery": true,
+      "schema_verified": true,
+      "at": "2026-07-11T23:21:06.939Z"
     }
   ],
   "created_at": "2026-07-11T20:53:27.723Z",
@@ -4412,10 +5032,10 @@
     "populate_orchestrator": "openai/gpt-oss-120b:nitro",
     "investigate_subagent": "openai/gpt-oss-120b:nitro"
   },
-  "current_dataset_id": "jd70f813m12yba1t3sa8ykymqx8aabzy",
-  "projected_unique_rows": 100,
-  "projected_usable_rows": 88,
-  "updated_at": "2026-07-11T22:08:21.037Z",
+  "current_dataset_id": "jd7cfyrr3vaa28qfq0tq1tqfh18aa4gk",
+  "projected_unique_rows": 122,
+  "projected_usable_rows": 110,
+  "updated_at": "2026-07-11T23:23:07.072Z",
   "strategy_phase": "deterministic_open_pack_queue",
   "strategy_changes": [
     {
@@ -4439,6 +5059,50 @@
         "rows_inserted": 0
       },
       "at": "2026-07-11T21:18:13.489Z"
+    },
+    {
+      "strategy": "deterministic_open_pack_queue",
+      "causal_metrics": {
+        "run_id": "a39c67f7-c797-4150-a323-6e2117904ff7",
+        "search_calls": 2,
+        "fetch_calls": 0,
+        "investigate_calls": 0,
+        "rows_inserted": 0
+      },
+      "at": "2026-07-11T23:10:26.750Z"
+    },
+    {
+      "strategy": "deterministic_open_pack_queue",
+      "causal_metrics": {
+        "run_id": "a39c67f7-c797-4150-a323-6e2117904ff7",
+        "search_calls": 2,
+        "fetch_calls": 0,
+        "investigate_calls": 0,
+        "rows_inserted": 0
+      },
+      "at": "2026-07-11T23:12:27.482Z"
+    },
+    {
+      "strategy": "deterministic_open_pack_queue",
+      "causal_metrics": {
+        "run_id": "a39c67f7-c797-4150-a323-6e2117904ff7",
+        "search_calls": 2,
+        "fetch_calls": 0,
+        "investigate_calls": 0,
+        "rows_inserted": 0
+      },
+      "at": "2026-07-11T23:13:07.137Z"
+    },
+    {
+      "strategy": "deterministic_open_pack_queue",
+      "causal_metrics": {
+        "run_id": "a39c67f7-c797-4150-a323-6e2117904ff7",
+        "search_calls": 2,
+        "fetch_calls": 0,
+        "investigate_calls": 0,
+        "rows_inserted": 0
+      },
+      "at": "2026-07-11T23:14:37.557Z"
     }
   ],
   "deterministic_causal_reason": "Deterministic open-pack pivot after discovery-stage evidence {\"run_id\":\"a39c67f7-c797-4150-a323-6e2117904ff7\",\"search_calls\":2,\"fetch_calls\":0,\"investigate_calls\":0,\"rows_inserted\":0}; exact uncovered names and house-number addresses remove the lead-discovery exit",
@@ -4575,7 +5239,17 @@
     "OVT-71A64A14-7A95-4791-990D-132490728A06",
     "OVT-A90FCDA4-D96E-4378-8605-9FF8192B57DE",
     "OVT-8D2525F6-FD9B-4811-971A-7FDD9130EE91",
-    "OVT-ADE4BF61-25E8-4058-A0FE-C62726BE2CA8"
+    "OVT-ADE4BF61-25E8-4058-A0FE-C62726BE2CA8",
+    "OVT-40707B5A-FDC3-40E6-BA03-EE86E9B712CF",
+    "OVT-39B4C72C-4797-4308-9E31-CA190524F3C6",
+    "OVT-9B7D7417-17F0-4DD9-B8FC-948B2DB65A88",
+    "OVT-AE9366F5-0DBA-4382-9E5B-E8F2C51CE95D",
+    "OVT-D0B11B93-B320-4C15-90F4-6FD9C437D50C",
+    "OVT-EBFA56A8-DA56-4A23-8867-C90865140AD6",
+    "OVT-0A175B10-BEDA-44C0-B404-86530F448934",
+    "OVT-E8D4D7D7-A2F7-4411-986C-42B8F70BE49C",
+    "OVT-64759BDB-3436-4890-AD5B-CB4B31F239A4",
+    "OVT-29351D3F-7973-48DA-8FC0-571DDF3B28EA"
   ],
   "projection_reconciliation": {
     "rebuilt_at": "2026-07-11T22:10:21.823Z",
@@ -4744,11 +5418,24 @@
     "prague vietnam|12|duong pham ngu lao",
     "thien xuan|110|duong le thanh ton",
     "adora art|189|duong ly tu trong",
-    "sogo|359|duong pham ngu lao"
+    "sogo|359|duong pham ngu lao",
+    "charm|153|duong ly tu trong",
+    "nhat ha|252|duong le thanh ton",
+    "liberty greenview|187|duong pham ngu lao",
+    "liberty|187|duong pham ngu lao",
+    "happy land|102|duong ly tu trong",
+    "happy|102|duong ly tu trong",
+    "liberty central centre|179|duong le thanh ton",
+    "liberty central|179|duong le thanh ton",
+    "meow and|373/3|duong pham ngu lao",
+    "sanouva|175|duong ly tu trong",
+    "vien|275a|duong pham ngu lao",
+    "gk central|92|duong ly tu trong",
+    "akoya central|88|duong ly tu trong"
   ],
-  "status_before_adoption": "paused_zero_row_review",
-  "adopted_at": "2026-07-11T22:19:28.489Z",
+  "status_before_adoption": "complete_external_unadopted",
+  "adopted_at": "2026-07-11T23:23:11.941Z",
   "adopted_canonical": "scratch/bigset-output/q1-hotels-b2.json",
-  "adopted_unique_rows": 100,
-  "adopted_usable_rows": 88
+  "adopted_unique_rows": 122,
+  "adopted_usable_rows": 110
 }

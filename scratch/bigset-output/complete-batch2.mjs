@@ -5,7 +5,7 @@ import { execFile } from "node:child_process";
 import path from "node:path";
 import { promisify } from "node:util";
 
-const REQUIRED_MODEL = "openai/gpt-oss-120b:nitro";
+const REQUIRED_MODEL = process.env.BIGSET_OPENAI_MODEL?.trim() || "gpt-5.6-luna";
 const ROOT = process.cwd();
 const OUTPUT_DIR = path.join(ROOT, "scratch/bigset-output");
 const OPEN_PACK_PATH = path.join(ROOT, "src/data/packs/open.json");
