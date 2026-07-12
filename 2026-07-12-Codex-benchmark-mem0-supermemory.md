@@ -70,3 +70,12 @@
 - Relevance/effectiveness: both layers captured Next.js, React, TypeScript, MapLibre/OpenStreetMap, deterministic search, OpenAI, Valsea, and ElevenLabs without implementation noise.
 - Noise/failures: no rejection or auth failure. Mem0 required four status checks before completion; Supermemory returned an immediate receipt.
 - Agent-experience verdict: Supermemory was substantially smoother for this small factual write; Mem0's eventual structured record was accurate but operationally slower.
+
+## 09:00 +07 — Persist immediate all-files merge outcome
+
+- Task: save the completed PR #4 merge, the no-CI hackathon shipping preference, and the production credential fix that landed before merge.
+- Mem0: two scoped `add_memory` events. Outcome event `723524f0-1613-4d7b-ada8-41bc3adff66e` succeeded in 25.6 s; preference event `f991a135-5240-4eb3-b739-a516e6e06624` succeeded in 7.5 s after the first cleared the queue. Tool token counts were not exposed.
+- Supermemory: `save-memory.js` acknowledged the combined ship record as `gM72cYvHSRGXjRT6LNjNmL` in 1.9 s. Tool token count was not exposed.
+- Relevance/effectiveness: both layers retained PR #4, merge commit `d404307`, complete visible-workspace inclusion, ignored-secret exclusion, 128-pass validation, and the Valsea production guard.
+- Noise/failures: no rejection or auth failure. Mem0 split the outcome into four linked facts and required repeated polling; Supermemory returned one immediate compact receipt.
+- Agent-experience verdict: Supermemory was the better urgent write path; Mem0's linked preference and outcome records are richer for later exact retrieval.
