@@ -13,13 +13,19 @@ export const runtime = "nodejs";
 //   - "valsea": Valsea has NO single-use-token endpoint — its documented
 //     browser auth is `?api_key=` on the WebSocket URL, so this route returns
 //     the raw VALSEA_API_KEY as the token. That exposes the key to the browser
-//     session; acceptable for the local demo, NOT for production.
+//     session, so the route only permits it outside production.
 export async function POST(request?: Request) {
   let requestedProvider: string | undefined;
   try { requestedProvider = request ? ((await request.json()) as { provider?: string }).provider : undefined; } catch { /* env default */ }
   const provider = requestedProvider ? resolveVoiceProvider(requestedProvider) : resolveSttProvider();
 
   if (provider === "valsea") {
+    if (process.env.NODE_ENV === "production") {
+      return NextResponse.json(
+        { error: "Valsea browser STT is disabled in production." },
+        { status: 403, headers: { "Cache-Control": "no-store" } },
+      );
+    }
     const apiKey = process.env.VALSEA_API_KEY;
     if (!apiKey) {
       return NextResponse.json({ error: "STT is not configured." }, { status: 503 });

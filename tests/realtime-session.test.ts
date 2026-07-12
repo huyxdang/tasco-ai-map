@@ -131,6 +131,18 @@ describe("Valsea voice endpoints (TASCO_STT_PROVIDER / TASCO_TTS_PROVIDER = vals
     await expect(response.json()).resolves.toEqual({ provider: "valsea", token: "vs-demo-key" });
   });
 
+  it("never exposes the Valsea browser credential in production", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("TASCO_STT_PROVIDER", "elevenlabs");
+    vi.stubEnv("VALSEA_API_KEY", "vs-demo-key");
+    const response = await POST_STT_TOKEN(new Request("http://localhost/api/stt/token", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ provider: "valsea" })
+    }));
+    expect(response.status).toBe(403);
+    expect(JSON.stringify(await response.json())).not.toContain("vs-demo-key");
+  });
+
   it("TTS endpoint fails closed without the Valsea key", async () => {
     vi.stubEnv("TASCO_TTS_PROVIDER", "valsea");
     vi.stubEnv("VALSEA_API_KEY", "");
